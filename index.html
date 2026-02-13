@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aphoria | Skincare Engineered for Visible Transformation</title>
+  <meta name="description"
+    content="Clinical-grade formulations engineered for long-term skin transformation. Developed with cosmetic science rigour and luxury restraint." />
+
+  <!-- SEO & Social Meta Tags -->
+  <meta property="og:title" content="Aphoria | Skincare Engineered for Visible Transformation" />
+  <meta property="og:description" content="Precision-dosed, clinically inspired eye treatments and facial protocols." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            aphoria: {
+              bg: '#F5F3EF',
+              green: '#0F3B2E',
+              gold: '#C6A15B',
+              black: '#111111',
+              white: '#FFFFFF',
+              mid: '#6B6B65',
+            }
+          },
+          fontFamily: {
+            sans: ['"Manrope"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          spacing: {
+            '18': '4.5rem',
+            '22': '5.5rem',
+            '32': '8rem',
+            '40': '10rem',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --brand-primary: #0F3B2E;
+      --luxury-gold: #C6A15B;
+      --bg-primary: #F5F3EF;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: #111111;
+      font-family: 'Manrope', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    ::selection {
+      background: var(--brand-primary);
+      color: #FFFFFF;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(32px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Shopify Cart Styling */
+    shopify-cart::part(dialog) {
+      border: none;
+      background: #FFFFFF;
+      max-width: 450px;
+      height: 100vh;
+      margin-right: 0;
+      box-shadow: -10px 0 50px rgba(0, 0, 0, 0.05);
+    }
+
+    shopify-cart::part(primary-button) {
+      background-color: var(--brand-primary);
+      border-radius: 2px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 13px;
+      padding: 18px;
+      color: white;
+    }
+  </style>
+  <script type="module" src="https://cdn.shopify.com/storefront/web-components.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+        "react/": "https://esm.sh/react@^19.2.4/",
+        "react": "https://esm.sh/react@^19.2.4",
+        "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+        "framer-motion": "https://esm.sh/framer-motion@^12.34.0"
+      }
+    }
+    </script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+
+<body>
+  <shopify-store store-domain="r6duap-tx.myshopify.com" public-access-token="62b40e3f01d5b303e2b923d6d13bed2e"
+    country="US" language="en"></shopify-store>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
+</html>
