@@ -33,7 +33,7 @@ const ProductGallery: React.FC = () => {
   ];
 
   return (
-    <section id="ritual" className="relative py-32 md:py-40 bg-aphoria-bg px-6" style={{ willChange: 'transform' }}>
+    <section id="ritual" className="relative py-20 md:py-28 bg-aphoria-bg px-6" style={{ willChange: 'transform' }}>
       {/* Decorative accents */}
       <div className="pointer-events-none absolute -left-32 top-0 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle_at_top_left,_rgba(198,161,91,0.15),_transparent_60%)]"></div>
       <div className="pointer-events-none absolute -right-40 bottom-0 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle_at_bottom_right,_rgba(15,59,46,0.1),_transparent_60%)]"></div>
@@ -75,8 +75,8 @@ const ProductGallery: React.FC = () => {
                         src={product.image}
                         alt={product.name}
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                        loading="eager"
-                        fetchPriority="high"
+                        loading="lazy"
+                        decoding="async"
                         style={{ transform: 'translateZ(0)', willChange: 'transform' }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent"></div>

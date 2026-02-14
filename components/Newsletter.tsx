@@ -2,7 +2,7 @@ import React from 'react';
 
 const Newsletter: React.FC = () => {
   return (
-    <section className="sm:px-6 lg:px-8 md:py-20 w-full max-w-7xl mr-auto ml-auto pt-14 pr-4 pb-14 pl-4 bg-aphoria-bg">
+    <section className="sm:px-6 lg:px-8 w-full max-w-7xl mr-auto ml-auto py-16 md:py-24 px-4 bg-aphoria-bg">
       <div className="relative pt-20 [animation:fadeSlideIn_0.8s_ease-out_0.1s_both] animate-on-scroll">
         <style>
           {`@keyframes floatBounce {

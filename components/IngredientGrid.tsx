@@ -4,7 +4,7 @@ import { SCIENCE_INGREDIENTS } from '../constants';
 const IngredientGrid: React.FC = () => {
   const VARIANTS = {
     clinical: {
-      section: 'relative py-32 md:py-40 bg-white px-6',
+      section: 'relative py-20 md:py-28 bg-white px-6',
       showAccents: false,
       badge: 'text-[11px] uppercase tracking-[0.3em] text-aphoria-black/60',
       heading: 'mt-4 text-[28px] md:text-[34px] font-medium text-aphoria-black tracking-tight',
@@ -23,7 +23,7 @@ const IngredientGrid: React.FC = () => {
       mechanism: 'text-[13px] leading-relaxed text-aphoria-mid font-light'
     },
     luxury: {
-      section: 'relative py-32 md:py-40 bg-aphoria-bg px-6 overflow-hidden',
+      section: 'relative py-20 md:py-28 bg-aphoria-bg px-6 overflow-hidden',
       showAccents: true,
       badge: 'text-[11px] uppercase tracking-[0.3em] text-aphoria-gold',
       heading: 'mt-4 text-[28px] md:text-[34px] font-light text-aphoria-black tracking-tight',
@@ -42,7 +42,7 @@ const IngredientGrid: React.FC = () => {
       mechanism: 'text-[13px] leading-relaxed text-aphoria-mid font-light'
     },
     balanced: {
-      section: 'relative py-32 md:py-40 bg-gradient-to-b from-aphoria-bg to-white px-6 overflow-hidden',
+      section: 'relative py-20 md:py-28 bg-gradient-to-b from-aphoria-bg to-white px-6 overflow-hidden',
       showAccents: true,
       badge: 'text-[11px] uppercase tracking-[0.3em] text-aphoria-gold',
       heading: 'mt-4 text-[28px] md:text-[34px] font-light text-aphoria-black tracking-tight',
@@ -212,9 +212,8 @@ const IngredientGrid: React.FC = () => {
                     src={imgSrc}
                     alt={item.name}
                     className="h-44 md:h-48 lg:h-52 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    loading="eager"
-                    fetchPriority="high"
-                    decoding="sync"
+                    loading="lazy"
+                    decoding="async"
                     style={{ transform: 'translateZ(0)' }}
                   />
                 </div>

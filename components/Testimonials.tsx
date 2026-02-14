@@ -104,7 +104,7 @@ const Testimonials: React.FC = () => {
   };
 
   return (
-    <section id="testimonials" className="py-32 md:py-40 bg-aphoria-bg overflow-hidden">
+    <section id="testimonials" className="py-20 md:py-28 bg-aphoria-bg overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20 [animation:fadeSlideIn_0.8s_ease-out_0.1s_both] animate-on-scroll">

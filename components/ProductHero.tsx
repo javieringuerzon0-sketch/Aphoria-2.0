@@ -19,7 +19,7 @@ const ProductHero: React.FC = () => {
   const cardHeight = 'h-[520px] md:h-[620px]';
 
   return (
-    <section id="signature" className="relative py-32 md:py-40 bg-white px-6 overflow-hidden">
+    <section id="signature" className="relative py-20 md:py-28 bg-white px-6 overflow-hidden">
       <div className="pointer-events-none absolute -left-40 top-10 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle_at_top_left,_rgba(198,161,91,0.16),_transparent_60%)]"></div>
       <div className="pointer-events-none absolute -right-40 bottom-0 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle_at_bottom_right,_rgba(15,59,46,0.08),_transparent_60%)]"></div>
 

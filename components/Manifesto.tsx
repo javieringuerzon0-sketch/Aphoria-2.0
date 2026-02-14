@@ -4,7 +4,7 @@ import { MANIFESTO_COPY } from '../constants';
 
 const Manifesto: React.FC = () => {
   return (
-    <section id="about" className="py-40 md:py-48 px-6 bg-aphoria-bg flex flex-col items-center">
+    <section id="about" className="py-24 md:py-32 px-6 bg-aphoria-bg flex flex-col items-center">
       <div className="max-w-[640px] text-center">
         <motion.div
           initial={{ opacity: 0, y: 32 }}

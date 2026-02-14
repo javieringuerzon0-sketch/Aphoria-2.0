@@ -51,7 +51,7 @@ const BeforeAfterHero: React.FC = () => {
   };
 
   return (
-    <section id="before-after" className="py-32 md:py-40 bg-aphoria-bg">
+    <section id="before-after" className="py-20 md:py-28 bg-aphoria-bg">
       <div className="max-w-[1360px] mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 32 }}

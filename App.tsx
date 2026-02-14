@@ -1,35 +1,48 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { Agentation } from 'agentation';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Manifesto from './components/Manifesto';
-import ProductHero from './components/ProductHero';
-import ProductVideoHero from './components/ProductVideoHero';
-import IngredientGrid from './components/IngredientGrid';
-import ProductGallery from './components/ProductGallery';
-import BeforeAfterHero from './components/BeforeAfterHero';
-import Testimonials from './components/Testimonials';
-import Newsletter from './components/Newsletter';
 import TrustBar from './components/TrustBar';
-import Footer from './components/Footer';
+
+// Lazy load components below the fold
+const Manifesto = lazy(() => import('./components/Manifesto'));
+const ProductHero = lazy(() => import('./components/ProductHero'));
+const ProductVideoHero = lazy(() => import('./components/ProductVideoHero'));
+const IngredientGrid = lazy(() => import('./components/IngredientGrid'));
+const ProductGallery = lazy(() => import('./components/ProductGallery'));
+const BeforeAfterHero = lazy(() => import('./components/BeforeAfterHero'));
+const Testimonials = lazy(() => import('./components/Testimonials'));
+const Newsletter = lazy(() => import('./components/Newsletter'));
+const Footer = lazy(() => import('./components/Footer'));
 
 function App() {
   useEffect(() => {
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const href = this.getAttribute('href');
-        if (!href || href === '#') return;
+    // Smooth scroll for anchor links with passive listeners
+    const handleAnchorClick = (e: Event) => {
+      const anchor = e.currentTarget as HTMLAnchorElement;
+      const href = anchor.getAttribute('href');
+      if (!href || href === '#') return;
 
-        const target = document.querySelector(href);
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth'
-          });
-        }
-      });
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    };
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', handleAnchorClick, { passive: false });
     });
+
+    // Cleanup
+    return () => {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.removeEventListener('click', handleAnchorClick);
+      });
+    };
   }, []);
 
   return (
@@ -38,16 +51,20 @@ function App() {
       <main>
         <Hero />
         <TrustBar />
-        <Manifesto />
-        <ProductHero />
-        <ProductVideoHero />
-        <IngredientGrid />
-        <ProductGallery />
-        <BeforeAfterHero />
-        <Testimonials />
-        <Newsletter />
+        <Suspense fallback={<div className="h-screen" />}>
+          <Manifesto />
+          <ProductHero />
+          <ProductVideoHero />
+          <IngredientGrid />
+          <ProductGallery />
+          <BeforeAfterHero />
+          <Testimonials />
+          <Newsletter />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
       <Agentation />
     </div>
   );
