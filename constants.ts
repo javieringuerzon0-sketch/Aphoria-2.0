@@ -1,15 +1,16 @@
 import { Ingredient, Product, ProtocolStep, Testimonial } from './types';
 
 export const HERO_COPY = {
-  h1: "Skincare Engineered for Visible Transformation",
-  subheadline: "Clinical-grade eye treatments and facial protocols for hydration, firmness, and long-term skin vitality.",
-  ctaPrimary: "Enter the Ritual",
-  ctaSecondary: "Explore the Science"
+  h1: "Wake Up to Visibly Younger Skin in 28 Days—Guaranteed",
+  subheadline: "Dermatologist-approved formulations that rebuild collagen, erase fine lines, and restore your youthful glow. Join 10,000+ women who reversed visible aging.",
+  ctaPrimary: "Start My Risk-Free Trial",
+  ctaSecondary: "See Clinical Results",
+  guarantee: "60-Day Money-Back Guarantee • Free Shipping • Dermatologist Tested"
 };
 
 export const MANIFESTO_COPY = {
-  h2: "A New Standard in Clinical Skincare",
-  body: "Aphoria formulates high-performance treatments engineered around specific biological targets — restoring hydration, supporting dermal matrix integrity, and improving elasticity through precision-dosed, clinically inspired ingredients."
+  h2: "Where Medical-Grade Science Meets Luxury Skincare",
+  body: "Aphoria engineers high-performance formulations targeting cellular regeneration, barrier restoration, and collagen synthesis. Every ingredient is precision-dosed at clinically-proven concentrations to deliver measurable, visible transformation—not temporary cosmetic effects."
 };
 
 export const SCIENCE_INGREDIENTS: Ingredient[] = [
@@ -82,6 +83,20 @@ export const PROTOCOL_STEPS: ProtocolStep[] = [
     copy: "A focused treatment protocol to address cumulative skin stressors. Deep nourishment for lasting structural improvement."
   }
 ];
+
+export const TRUST_SIGNALS = {
+  guarantee: {
+    headline: "60-Day Risk-Free Guarantee",
+    copy: "Try Aphoria risk-free for 60 days. If you don't see visible improvement in your skin, we'll refund you—no questions asked.",
+    cta: "Start Your Trial"
+  },
+  badges: [
+    { icon: "✓", text: "Dermatologist Tested & Approved" },
+    { icon: "✓", text: "Free Shipping Worldwide" },
+    { icon: "✓", text: "Cruelty-Free & Sustainable" },
+    { icon: "✓", text: "Made in Switzerland" }
+  ]
+};
 
 export const TESTIMONIALS: Testimonial[] = [
   {

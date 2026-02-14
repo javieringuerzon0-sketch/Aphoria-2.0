@@ -1,63 +1,219 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FaInstagram, FaPinterest, FaTiktok } from 'react-icons/fa';
+import { HiMail } from 'react-icons/hi';
+import { HiChevronDown } from 'react-icons/hi';
 
 const Footer: React.FC = () => {
-    return (
-        <footer className="bg-aphoria-bg pt-24 pb-12 px-6">
-            <div className="max-w-[1360px] mx-auto px-6 md:px-12">
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-                {/* Conversion Section */}
-                <div className="mb-40 text-center">
-                    <h2 className="text-3xl md:text-[48px] font-light text-aphoria-black tracking-tight mb-8">
-                        Begin Your Protocol
-                    </h2>
-                    <p className="max-w-xl mx-auto text-aphoria-mid text-lg font-normal mb-12 leading-relaxed">
-                        Aphoria formulations are available without subscription, without minimum commitment. Begin with one. Build a system over time.
-                    </p>
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-                        <button className="px-12 py-5 bg-aphoria-green text-white text-[13px] font-bold uppercase tracking-[0.15em] hover:opacity-90 transition-opacity">
-                            Explore the Collection
-                        </button>
-                        <a href="#" className="text-[13px] font-bold uppercase tracking-[0.12em] text-aphoria-black border-b border-aphoria-black pb-1 hover:opacity-50 transition-opacity">
-                            Understand Your Skin First
-                        </a>
-                    </div>
-                </div>
+  const faqs = [
+    {
+      question: "What makes Aphoria different?",
+      answer: "Aphoria combines clinical-grade bioactive ingredients with luxurious formulations. Our 28-day protocols are backed by dermatological science and designed for measurable transformation."
+    },
+    {
+      question: "How do I use the 24 Gold Mask?",
+      answer: "Apply a thin layer to clean, dry skin 2-3 times per week. Leave on for 15-20 minutes, then rinse with lukewarm water. Follow with your regular skincare routine."
+    },
+    {
+      question: "What are the benefits of Avocado Mask?",
+      answer: "The Avocado Mask deeply nourishes and hydrates, locks in moisture, and keeps skin calm and supple. Rich in vitamins and essential fatty acids for optimal skin health."
+    },
+    {
+      question: "Are Aphoria products cruelty-free?",
+      answer: "Yes, all Aphoria formulations are cruelty-free and developed with sustainable practices. We never test on animals."
+    }
+  ];
 
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-16 md:gap-8 pt-24 border-t border-aphoria-black/5">
-                    {/* Logo/Identity */}
-                    <div className="md:col-span-2">
-                        <h3 className="text-2xl font-light text-aphoria-black tracking-[-0.02em] mb-6">Aphoria</h3>
-                        <p className="max-w-xs text-[13px] text-aphoria-mid leading-relaxed font-normal mb-8">
-                            Clinical-grade formulations engineered for long-term skin transformation. Developed with the rigour of cosmetic science, refined with the restraint of luxury.
-                        </p>
-                        <span className="text-[10px] text-aphoria-mid/40 uppercase tracking-widest block">
-                            © 2026 Aphoria Laboratories — All Rights Reserved.
-                        </span>
-                    </div>
+  return (
+    <footer className="bg-gradient-to-b from-aphoria-bg to-white/50 pt-20 pb-0">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        {/* Top Section */}
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 mb-16">
+          {/* Left: Brand */}
+          <div>
+            <h3 className="text-6xl md:text-7xl font-brand font-light text-aphoria-black tracking-tight mb-2">
+              Aphoria
+            </h3>
+            <p className="text-lg font-serif italic text-aphoria-mid/80">
+              The Science of Transformation—
+            </p>
+          </div>
 
-                    {/* Links Group 1 */}
-                    <div>
-                        <h4 className="text-[11px] font-bold uppercase tracking-widest text-aphoria-black mb-8">Protocol</h4>
-                        <div className="flex flex-col space-y-4 text-[13px] text-aphoria-mid font-medium">
-                            <a href="#science" className="hover:text-aphoria-black transition-colors">Science</a>
-                            <a href="#ritual" className="hover:text-aphoria-black transition-colors">Ritual</a>
-                            <a href="#about" className="hover:text-aphoria-black transition-colors">Manifesto</a>
-                        </div>
-                    </div>
-
-                    {/* Links Group 2 */}
-                    <div>
-                        <h4 className="text-[11px] font-bold uppercase tracking-widest text-aphoria-black mb-8">Legal</h4>
-                        <div className="flex flex-col space-y-4 text-[13px] text-aphoria-mid font-medium">
-                            <a href="#" className="hover:text-aphoria-black transition-colors">Terms of Service</a>
-                            <a href="#" className="hover:text-aphoria-black transition-colors">Privacy Policy</a>
-                            <a href="#" className="hover:text-aphoria-black transition-colors">Ingredient Glossary</a>
-                        </div>
-                    </div>
-                </div>
+          {/* Right: Message */}
+          <div className="max-w-md text-right">
+            <div className="inline-flex items-start gap-2">
+              <span className="text-aphoria-gold text-2xl mt-1">✦</span>
+              <p className="text-base md:text-lg font-serif italic text-aphoria-black/80 leading-relaxed">
+                We are currently formulating bioactive protocols
+                <br />
+                for luminous skin and crafting excellence
+                <br />
+                from our laboratory.
+              </p>
             </div>
-        </footer>
-    );
+          </div>
+        </div>
+
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6 pb-12">
+          {/* Navigation Links - Column 1 */}
+          <div className="lg:col-span-2">
+            <nav className="flex flex-col space-y-4 text-[15px] text-aphoria-black font-medium">
+              <a href="#home" className="hover:text-aphoria-gold transition-colors duration-200">
+                Home
+              </a>
+              <a href="#goldmask" className="hover:text-aphoria-gold transition-colors duration-200">
+                24 Gold Mask
+              </a>
+              <a href="#avocadomask" className="hover:text-aphoria-gold transition-colors duration-200">
+                Avocado Mask
+              </a>
+              <a href="#science" className="hover:text-aphoria-gold transition-colors duration-200">
+                Science
+              </a>
+              <a href="#ritual" className="hover:text-aphoria-gold transition-colors duration-200">
+                Ritual
+              </a>
+              <a href="#testimonials" className="hover:text-aphoria-gold transition-colors duration-200">
+                Testimonials
+              </a>
+              <a href="#contact" className="hover:text-aphoria-gold transition-colors duration-200">
+                Contact
+              </a>
+            </nav>
+          </div>
+
+          {/* Navigation Links - Column 2 */}
+          <div className="lg:col-span-2">
+            <nav className="flex flex-col space-y-4 text-[15px] text-aphoria-black font-medium">
+              <a href="#privacy" className="hover:text-aphoria-gold transition-colors duration-200">
+                Privacy Policy
+              </a>
+              <a href="#terms" className="hover:text-aphoria-gold transition-colors duration-200">
+                Terms of Service
+              </a>
+              <a href="#about" className="hover:text-aphoria-gold transition-colors duration-200">
+                About
+              </a>
+            </nav>
+          </div>
+
+          {/* FAQ Card */}
+          <div className="lg:col-span-4">
+            <div className="bg-white/80 backdrop-blur-sm border border-aphoria-black/10 rounded-2xl p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_40px_rgba(198,161,91,0.15)] transition-all duration-300 group relative overflow-hidden">
+              <h4 className="text-2xl font-brand font-light text-aphoria-black mb-4 tracking-tight">FAQs</h4>
+              <div className="flex flex-col gap-3">
+                {faqs.map((faq, index) => (
+                  <div key={index} className="border-b border-aphoria-black/10 last:border-0 pb-3 last:pb-0">
+                    <button
+                      onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                      className="w-full flex items-center justify-between text-left group/faq"
+                    >
+                      <span className="text-sm font-medium text-aphoria-black group-hover/faq:text-aphoria-gold transition-colors">
+                        {faq.question}
+                      </span>
+                      <HiChevronDown
+                        className={`w-4 h-4 text-aphoria-gold transition-transform duration-300 ${
+                          openFaq === index ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </button>
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ${
+                        openFaq === index ? 'max-h-40 mt-2' : 'max-h-0'
+                      }`}
+                    >
+                      <p className="text-sm text-aphoria-mid leading-relaxed">{faq.answer}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Premium glow effect */}
+              <div
+                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10"
+                style={{
+                  background:
+                    'radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(198,161,91,0.1), transparent 40%)'
+                }}
+              ></div>
+            </div>
+          </div>
+
+          {/* Social Links Card */}
+          <div className="lg:col-span-4">
+            <div className="bg-white/80 backdrop-blur-sm border border-aphoria-black/10 rounded-2xl p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_40px_rgba(15,59,46,0.15)] transition-all duration-300 group">
+              <div className="flex flex-col space-y-4">
+                <a
+                  href="#instagram"
+                  className="flex items-center gap-3 text-aphoria-black hover:text-aphoria-gold transition-colors group/link"
+                >
+                  <div className="w-10 h-10 flex items-center justify-center bg-aphoria-bg/50 rounded-lg group-hover/link:bg-aphoria-gold/10 transition-colors">
+                    <FaInstagram className="w-5 h-5" />
+                  </div>
+                  <span className="font-medium text-[15px]">Instagram</span>
+                </a>
+
+                <a
+                  href="#pinterest"
+                  className="flex items-center gap-3 text-aphoria-black hover:text-aphoria-gold transition-colors group/link"
+                >
+                  <div className="w-10 h-10 flex items-center justify-center bg-aphoria-bg/50 rounded-lg group-hover/link:bg-aphoria-gold/10 transition-colors">
+                    <FaPinterest className="w-5 h-5" />
+                  </div>
+                  <span className="font-medium text-[15px]">Pinterest</span>
+                </a>
+
+                <a
+                  href="#tiktok"
+                  className="flex items-center gap-3 text-aphoria-black hover:text-aphoria-gold transition-colors group/link"
+                >
+                  <div className="w-10 h-10 flex items-center justify-center bg-aphoria-bg/50 rounded-lg group-hover/link:bg-aphoria-gold/10 transition-colors">
+                    <FaTiktok className="w-5 h-5" />
+                  </div>
+                  <span className="font-medium text-[15px]">TikTok</span>
+                </a>
+
+                <a
+                  href="mailto:hello@aphoria.beauty"
+                  className="flex items-center gap-3 text-aphoria-black hover:text-aphoria-gold transition-colors group/link"
+                >
+                  <div className="w-10 h-10 flex items-center justify-center bg-aphoria-bg/50 rounded-lg group-hover/link:bg-aphoria-gold/10 transition-colors">
+                    <HiMail className="w-5 h-5" />
+                  </div>
+                  <span className="font-medium text-[15px]">Email</span>
+                </a>
+              </div>
+
+              {/* Premium glow effect */}
+              <div
+                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10"
+                style={{
+                  background:
+                    'radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(15,59,46,0.1), transparent 40%)'
+                }}
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="bg-gradient-to-r from-aphoria-black via-aphoria-green to-aphoria-black mt-8">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-white/80">
+            <p className="text-xs md:text-sm">
+              © 2026 Aphoria Laboratories — All Rights Reserved.
+            </p>
+            <p className="text-xs md:text-sm font-light italic">
+              Engineered for transformation, refined with luxury.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;

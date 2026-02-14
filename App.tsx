@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react';
+import { Agentation } from 'agentation';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Manifesto from './components/Manifesto';
+import ProductHero from './components/ProductHero';
+import ProductVideoHero from './components/ProductVideoHero';
 import IngredientGrid from './components/IngredientGrid';
 import ProductGallery from './components/ProductGallery';
-import ProtocolTimeline from './components/ProtocolTimeline';
-import Validation from './components/Validation';
+import BeforeAfterHero from './components/BeforeAfterHero';
+import Testimonials from './components/Testimonials';
+import Newsletter from './components/Newsletter';
+import TrustBar from './components/TrustBar';
 import Footer from './components/Footer';
 
 function App() {
@@ -32,13 +37,18 @@ function App() {
       <Navbar />
       <main>
         <Hero />
+        <TrustBar />
         <Manifesto />
+        <ProductHero />
+        <ProductVideoHero />
         <IngredientGrid />
         <ProductGallery />
-        <ProtocolTimeline />
-        <Validation />
+        <BeforeAfterHero />
+        <Testimonials />
+        <Newsletter />
       </main>
       <Footer />
+      <Agentation />
     </div>
   );
 }
