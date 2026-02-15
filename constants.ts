@@ -1,9 +1,9 @@
 import { Ingredient, Product, ProtocolStep, Testimonial } from './types';
 
 export const HERO_COPY = {
-  h1: "Wake Up to Visibly Younger Skin in 28 Days—Guaranteed",
-  subheadline: "Dermatologist-approved formulations that rebuild collagen, erase fine lines, and restore your youthful glow. Join 10,000+ women who reversed visible aging.",
-  ctaPrimary: "Start My Risk-Free Trial",
+  h1: "You. In 28 Days. Radiant.",
+  subheadline: "Join 10,000+ women who chose science over promises. Visible transformation, backed by clinical results. Money-back guaranteed.",
+  ctaPrimary: "Get 60-Day Supply",
   ctaSecondary: "See Clinical Results",
   guarantee: "60-Day Money-Back Guarantee • Free Shipping • Dermatologist Tested"
 };

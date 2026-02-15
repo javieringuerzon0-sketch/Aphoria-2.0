@@ -1,4 +1,4 @@
-import * as React from 'react';
+export {};
 
 declare global {
     namespace JSX {

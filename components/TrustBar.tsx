@@ -17,6 +17,13 @@ const TrustBar: React.FC = () => {
         >
           {TRUST_SIGNALS.badges.map((badge, index) => {
             const Icon = icons[index];
+            const colors = [
+              { bg: 'from-aphoria-gold/20 to-aphoria-gold/5', border: 'border-aphoria-gold/30', text: 'text-aphoria-gold', shadow: 'shadow-aphoria-gold/10' },
+              { bg: 'from-aphoria-green/20 to-aphoria-green/5', border: 'border-aphoria-green/30', text: 'text-aphoria-green', shadow: 'shadow-aphoria-green/10' },
+              { bg: 'from-aphoria-gold/20 to-aphoria-gold/5', border: 'border-aphoria-gold/30', text: 'text-aphoria-gold', shadow: 'shadow-aphoria-gold/10' },
+              { bg: 'from-aphoria-green/20 to-aphoria-green/5', border: 'border-aphoria-green/30', text: 'text-aphoria-green', shadow: 'shadow-aphoria-green/10' }
+            ][index];
+
             return (
               <motion.div
                 key={index}
@@ -24,17 +31,26 @@ const TrustBar: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="flex flex-col items-center text-center group"
+                className="relative group"
               >
-                {/* Icon */}
-                <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-aphoria-gold/10 border border-aphoria-gold/20 text-aphoria-gold transition-all duration-300 group-hover:bg-aphoria-gold/20 group-hover:scale-110">
-                  <Icon className="w-6 h-6" strokeWidth={1.5} />
-                </div>
+                {/* Card Container */}
+                <div className="flex flex-col items-center text-center p-6 rounded-2xl border border-aphoria-black/5 bg-white hover:border-aphoria-black/10 transition-all duration-500 hover:shadow-lg hover:-translate-y-1">
+                  {/* Glow Effect */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${colors.bg} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`}></div>
 
-                {/* Text */}
-                <p className="text-[11px] md:text-[12px] font-medium uppercase tracking-[0.24em] text-aphoria-black leading-relaxed">
-                  {badge.text}
-                </p>
+                  {/* Icon Container */}
+                  <div className={`mb-4 relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${colors.bg} border ${colors.border} ${colors.text} transition-all duration-500 group-hover:scale-110 shadow-lg ${colors.shadow} group-hover:shadow-xl`}>
+                    <Icon className="w-7 h-7" strokeWidth={1.8} />
+
+                    {/* Shine effect */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  </div>
+
+                  {/* Text */}
+                  <p className="text-[10px] md:text-[11px] font-semibold uppercase tracking-[0.28em] text-aphoria-black leading-relaxed">
+                    {badge.text}
+                  </p>
+                </div>
               </motion.div>
             );
           })}

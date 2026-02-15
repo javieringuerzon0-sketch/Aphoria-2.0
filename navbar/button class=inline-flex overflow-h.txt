@@ -1,0 +1,47 @@
+<header class="relative z-10 max-w-5xl w-full">
+      <nav class="flex max-w-7xl md:px-6 mr-auto ml-auto pt-4 pr-4 pb-4 pl-4 items-center justify-between">
+        <a href="#" class="flex items-center gap-3">
+          <svg class="md:w-14 md:h-14 w-[36px] h-[36px]" viewBox="0 0 48 48" aria-hidden="true" stroke-width="2" style="width: 36px; height: 36px;">
+<path d="M24 10 L26 22 L38 24 L26 26 L24 38 L22 26 L10 24 L22 22 Z" fill="currentColor" class=""></path>
+</svg>
+          <span class="text-lg font-medium tracking-tight">Nebula</span>
+        </a>
+
+        <button id="menuBtn" class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 md:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="menu" class="lucide lucide-menu h-5 w-5 text-white"><path d="M4 12h16" class=""></path><path d="M4 18h16" class=""></path><path d="M4 6h16" class=""></path></svg>
+          <span class="sr-only">Open menu</span>
+        </button>
+
+        <div id="navLinks" class="hidden items-center gap-8 md:flex">
+          <a href="#" class="text-sm font-medium text-slate-300 hover:text-white">Platform</a>
+          <a href="#" class="text-sm font-medium text-slate-300 hover:text-white">Templates</a>
+          <a href="#" class="text-sm font-medium text-slate-300 hover:text-white">Docs</a>
+          <a href="#" class="text-sm font-medium text-slate-300 hover:text-white">Community</a>
+          <a href="#" class="text-sm font-medium text-slate-300 hover:text-white">Pricing</a>
+          <div class="hidden h-6 w-px bg-white/10 md:block"></div>
+          <a href="#" class="text-sm font-medium text-slate-300 hover:text-white">Log in</a>
+          <button class="group relative inline-flex cursor-pointer transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] hover:-translate-y-[3px] hover:scale-[1.1] hover:text-white text-xs font-semibold text-white/70 tracking-tight rounded-full pt-[8px] pr-[16px] pb-[8px] pl-[16px] items-center justify-center" style="box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1);background:radial-gradient(ellipse at bottom,rgba(71,81,92,1) 0%,rgba(0,0,0,1) 100%);">
+  <span class="relative z-10 text-sm font-normal rounded-full">Sign Up</span>
+
+  <!-- replaces the old ::before underline -->
+  <span aria-hidden="true" class="absolute bottom-0 left-1/2 h-[1px] w-[70%] -translate-x-1/2 opacity-20 transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] group-hover:opacity-80 text-xs rounded-full" style="background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);"></span>
+</button>
+        </div>
+      </nav>
+
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="mx-auto hidden max-w-7xl px-4 md:hidden">
+        <div class="space-y-1 rounded-xl border border-white/10 bg-white/5 p-3 backdrop-blur">
+          <a class="block rounded-lg px-3 py-2 text-sm font-medium text-slate-200 hover:bg-white/5" href="#">Platform</a>
+          <a class="block rounded-lg px-3 py-2 text-sm font-medium text-slate-200 hover:bg-white/5" href="#">Templates</a>
+          <a class="block rounded-lg px-3 py-2 text-sm font-medium text-slate-200 hover:bg-white/5" href="#">Docs</a>
+          <a class="block rounded-lg px-3 py-2 text-sm font-medium text-slate-200 hover:bg-white/5" href="#">Community</a>
+          <a class="block rounded-lg px-3 py-2 text-sm font-medium text-slate-200 hover:bg-white/5" href="#">Pricing</a>
+          <div class="my-2 h-px w-full bg-white/10"></div>
+          <div class="flex items-center gap-2">
+            <a href="#" class="flex-1 rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-center text-sm font-medium text-slate-200 hover:bg-white/5">Log in</a>
+            <a href="#" class="flex-1 rounded-lg bg-white px-3 py-2 text-center text-sm font-medium text-black hover:bg-white/90">Sign up</a>
+          </div>
+        </div>
+      </div>
+    </header>

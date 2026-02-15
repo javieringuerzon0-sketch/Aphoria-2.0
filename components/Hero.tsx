@@ -107,6 +107,36 @@ const Hero: React.FC = () => {
               HERO_COPY.h1
             )}
           </motion.h1>
+
+          {/* Social Proof - MOVED UP */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-wrap items-center gap-4 mb-4"
+          >
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-[2px] text-aphoria-gold">
+                {stars.map((_, index) => (
+                  <svg
+                    key={index}
+                    viewBox="0 0 24 24"
+                    className="h-4 w-4"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 2l2.83 6.02 6.64.57-5 4.33 1.5 6.5L12 16.9 6.03 19.4l1.5-6.5-5-4.33 6.64-.57L12 2z" />
+                  </svg>
+                ))}
+              </div>
+              <div className="text-[12px] font-medium text-white">4.9</div>
+            </div>
+            <div className="h-4 w-[1px] bg-white/30"></div>
+            <div className="text-[11px] uppercase tracking-[0.22em] text-white/80">
+              <strong className="font-semibold">10,000+</strong> Women Trust Us
+            </div>
+          </motion.div>
+
           <p className="text-[9px] uppercase tracking-[0.24em] text-white/80 mb-4">
             Cellular renewal, barrier repair, and visible firmness in 28 days.
           </p>
@@ -126,6 +156,21 @@ const Hero: React.FC = () => {
             {HERO_COPY.subheadline}
           </motion.p>
 
+          {/* Guarantee Badge - MOVED UP & ENHANCED */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-aphoria-gold/40 bg-white/10 px-5 py-3 text-[11px] uppercase tracking-[0.24em] text-white backdrop-blur-sm"
+          >
+            <svg className="w-5 h-5 text-aphoria-gold" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            <span className="font-medium">60-Day Money-Back</span>
+            <span className="text-white/60">•</span>
+            <span className="font-medium">Free Shipping</span>
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -133,24 +178,11 @@ const Hero: React.FC = () => {
             className="flex flex-col sm:flex-row items-start sm:items-center gap-3"
           >
             <button className="rounded-full px-7 py-[12px] bg-white text-aphoria-black text-[9px] font-semibold uppercase tracking-[0.26em] shadow-[0_16px_32px_rgba(0,0,0,0.28)] transition-all duration-500 hover:-translate-y-[2px]">
-              {HERO_COPY.ctaPrimary}
+              Get 60-Day Supply →
             </button>
             <a href="#science" className="rounded-full border border-white/30 bg-white/5 px-6 py-[12px] text-[9px] font-semibold uppercase tracking-[0.24em] text-white/90 backdrop-blur transition-all duration-500 hover:border-white/60 hover:text-white">
               {HERO_COPY.ctaSecondary}
             </a>
-          </motion.div>
-
-          {/* Guarantee Badge */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.7 }}
-            className="mt-4 inline-flex items-center gap-2 text-[9px] uppercase tracking-[0.28em] text-white/70"
-          >
-            <svg className="w-4 h-4 text-aphoria-gold" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            {HERO_COPY.guarantee}
           </motion.div>
 
           <motion.div
@@ -173,22 +205,6 @@ const Hero: React.FC = () => {
                 ))}
               </div>
               <div className="text-[10px] uppercase tracking-[0.22em] text-white/70">Verified women clients</div>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-[2px] text-aphoria-gold">
-                {stars.map((_, index) => (
-                  <svg
-                    key={index}
-                    viewBox="0 0 24 24"
-                    className="h-3 w-3"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 2l2.83 6.02 6.64.57-5 4.33 1.5 6.5L12 16.9 6.03 19.4l1.5-6.5-5-4.33 6.64-.57L12 2z" />
-                  </svg>
-                ))}
-              </div>
-              <div className="text-[10px] uppercase tracking-[0.22em] text-white/70">4.9 average</div>
             </div>
           </motion.div>
 

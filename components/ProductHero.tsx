@@ -9,7 +9,7 @@ const ProductHero: React.FC = () => {
   const ShopifyMoney = 'shopify-money' as any;
   const product = FEATURED_PRODUCTS[0];
   const productHeroImage = new URL(
-    '../seccion gold mask/goldmask-hero seccion 1.PNG',
+    '../seccion gold mask/imagen-section.png',
     import.meta.url
   ).toString();
   const productCardImage = new URL(
@@ -34,7 +34,7 @@ const ProductHero: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-14 lg:gap-20 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           <motion.div
             initial={{ opacity: 0, y: 32 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -42,15 +42,22 @@ const ProductHero: React.FC = () => {
             transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
             className="relative"
           >
-            <div className={`group relative overflow-hidden rounded-2xl border border-aphoria-black/10 bg-aphoria-bg/40 ${cardHeight}`}>
+            <div className={`group relative overflow-hidden rounded-2xl bg-white cursor-pointer ${cardHeight}`}>
               <img
                 src={productHeroImage}
                 alt={product.name}
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                loading="lazy"
-                decoding="async"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                loading="eager"
+                fetchPriority="high"
+                decoding="sync"
+                style={{
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden',
+                  transformOrigin: 'center center',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale'
+                }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent"></div>
             </div>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -93,7 +100,7 @@ const ProductHero: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="max-w-xl"
+                className="w-full"
               >
                 <div className={`rounded-2xl bg-aphoria-bg/40 p-8 ${cardHeight} flex flex-col justify-between`}>
                   <div>
@@ -173,13 +180,21 @@ const ProductHero: React.FC = () => {
             </template>
 
             <div shopify-loading-placeholder className="rounded-2xl bg-white/80">
-              <div className={`group w-full rounded-2xl bg-aphoria-bg/60 overflow-hidden ${cardHeight}`}>
+              <div className={`group w-full rounded-2xl bg-white overflow-hidden cursor-pointer ${cardHeight}`}>
                 <img
                   src={productCardImage}
                   alt={product.name}
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  loading="lazy"
-                  decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="sync"
+                  style={{
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden',
+                    transformOrigin: 'center center',
+                    WebkitFontSmoothing: 'antialiased',
+                    MozOsxFontSmoothing: 'grayscale'
+                  }}
                 />
               </div>
               <div className="mt-6 flex flex-wrap items-center gap-4">

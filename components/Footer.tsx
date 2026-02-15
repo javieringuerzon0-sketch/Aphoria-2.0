@@ -63,6 +63,9 @@ const Footer: React.FC = () => {
               <a href="#home" className="hover:text-aphoria-gold transition-colors duration-200">
                 Home
               </a>
+              <a href="#ritual" className="hover:text-aphoria-gold transition-colors duration-200">
+                Bundle
+              </a>
               <a href="#goldmask" className="hover:text-aphoria-gold transition-colors duration-200">
                 24 Gold Mask
               </a>

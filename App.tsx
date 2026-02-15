@@ -3,6 +3,9 @@ import { Agentation } from 'agentation';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import TrustBar from './components/TrustBar';
+import ExitIntent from './components/ExitIntent';
+import LiveNotifications from './components/LiveNotifications';
+import StickyBar from './components/StickyBar';
 
 // Lazy load components below the fold
 const Manifesto = lazy(() => import('./components/Manifesto'));
@@ -17,7 +20,7 @@ const Footer = lazy(() => import('./components/Footer'));
 
 function App() {
   useEffect(() => {
-    // Smooth scroll for anchor links with passive listeners
+    // Instant scroll for anchor links with passive listeners
     const handleAnchorClick = (e: Event) => {
       const anchor = e.currentTarget as HTMLAnchorElement;
       const href = anchor.getAttribute('href');
@@ -27,7 +30,7 @@ function App() {
       if (target) {
         e.preventDefault();
         target.scrollIntoView({
-          behavior: 'smooth',
+          behavior: 'auto',
           block: 'start'
         });
       }
@@ -65,6 +68,9 @@ function App() {
       <Suspense fallback={null}>
         <Footer />
       </Suspense>
+      <ExitIntent />
+      <LiveNotifications />
+      <StickyBar />
       <Agentation />
     </div>
   );

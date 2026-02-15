@@ -1,0 +1,149 @@
+import React from 'react';
+
+const Testimonials: React.FC = () => {
+  const mainPortrait = new URL('../testimonio/testimonio-imagen.png', import.meta.url).toString();
+  const testimonials = [
+    {
+      text: 'El Intensive Eye Recovery Mask suavizo el contorno y redujo la sequedad. La mirada amanece mas firme cada semana.',
+      name: 'Valeria Costa',
+      role: 'Clienta verificada • 38',
+      image:
+        'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=facearea&w=160&h=160&q=80',
+      delay: '0s'
+    },
+    {
+      text: 'La Cellular Restoration Cream estabilizo mi barrera: menos tirantez, mas confort y textura uniforme desde la primera semana.',
+      name: 'Camila Ortega',
+      role: 'Esteticista clinica',
+      image:
+        'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=facearea&w=160&h=160&q=80',
+      delay: '1s'
+    },
+    {
+      text: 'Usar ambos en el protocolo nocturno dio luminosidad y elasticidad sin irritacion. La piel se ve descansada y suave.',
+      name: 'Sofia Mendez',
+      role: 'Clienta verificada • piel sensible',
+      image:
+        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=facearea&w=160&h=160&q=80',
+      delay: '2s'
+    }
+  ];
+
+  return (
+    <section id="testimonios" className="py-32 md:py-40 bg-aphoria-bg">
+      <div className="sm:px-6 lg:px-8 max-w-[1360px] mx-auto px-6 md:px-12">
+        <div className="overflow-hidden bg-white/70 border border-aphoria-black/10 border-dashed rounded-none mt-6 relative">
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute inset-0 opacity-70 [mask-image:radial-gradient(65%_65%_at_50%_50%,black,transparent)] bg-[radial-gradient(1200px_400px_at_50%_-10%,rgba(198,161,91,0.25),transparent),radial-gradient(1200px_600px_at_50%_120%,rgba(15,59,46,0.18),transparent)]"></div>
+            <div className="absolute inset-0 opacity-[0.2] [mask-image:radial-gradient(80%_80%_at_50%_50%,black,transparent)] bg-[linear-gradient(to_right,rgba(17,17,17,.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(17,17,17,.18)_1px,transparent_1px)] bg-[size:28px_28px]"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-transparent to-white/80"></div>
+          </div>
+
+          <div className="flex min-h-[68vh] flex-col sm:py-28 md:min-h-[76vh] md:px-8 md:pt-16 md:pb-8 text-left mx-auto pt-16 px-8 pb-8 relative justify-center">
+            <div className="[animation:fadeSlideIn_0.8s_ease-out_0.1s_both] animate-on-scroll text-left max-w-3xl mb-16">
+              <div className="inline-flex text-[11px] font-semibold text-aphoria-gold rounded-none mb-6 px-3.5 py-1.5 gap-2 items-center border border-aphoria-black/10 bg-white/60">
+                <span className="tabular-nums text-2xl font-light text-aphoria-gold/80">04</span>
+                <span className="text-aphoria-black/30">/</span>
+                <span className="uppercase text-[11px] text-aphoria-black/70 tracking-widest">
+                  Testimonios
+                </span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-brand font-light tracking-tight text-aphoria-black mb-4">
+                Resultados visibles en contorno y barrera cutanea
+              </h2>
+              <p className="text-base sm:text-lg text-aphoria-mid leading-relaxed">
+                Experiencias reales con Intensive Eye Recovery Mask y Cellular Restoration Cream en el protocolo de 28 dias.
+              </p>
+            </div>
+
+            <div className="w-full">
+              <div className="grid lg:grid-cols-2 lg:gap-y-8 lg:gap-x-6 gap-x-6 gap-y-8 items-stretch">
+                <div className="overflow-hidden min-h-[320px] [animation:fadeSlideIn_0.8s_ease-out_0.2s_both] animate-on-scroll bg-white/60 rounded-none ring-aphoria-black/10 ring-1 relative">
+                  <img src={mainPortrait} alt="Retrato de clienta Aphoria" className="opacity-100 w-full h-full object-cover" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-aphoria-gold/35 to-transparent mix-blend-multiply"></div>
+                  <div className="absolute inset-0 opacity-40 bg-[linear-gradient(to_right,rgba(17,17,17,.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(17,17,17,.12)_1px,transparent_1px)] bg-[size:10px_10px]"></div>
+                  <div className="bg-gradient-to-b from-white/10 via-transparent to-white/40 absolute inset-0"></div>
+                </div>
+
+                <div className="flex flex-col sm:p-10 sm:bg-white/80 [animation:fadeSlideIn_0.8s_ease-out_0.3s_both] animate-on-scroll text-left bg-white/60 rounded-none ring-aphoria-black/10 ring-1 pt-8 px-8 pb-8 relative justify-center">
+                  <div className="mb-4">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.25"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="text-aphoria-gold"
+                    >
+                      <path d="M3 21c3 0 7-2 7-7V4H3v10"></path>
+                      <path d="M14 21c3 0 7-2 7-7V4h-7v10"></path>
+                    </svg>
+                  </div>
+                  <p className="text-aphoria-black font-brand tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-snug">
+                    "El Intensive Eye Recovery Mask redujo lineas finas y devolvio firmeza. La Cellular Restoration Cream sello la hidratacion sin irritar."
+                  </p>
+                  <div className="mt-8">
+                    <div className="text-aphoria-black text-base font-medium">Mariana Ruiz</div>
+                    <div className="text-aphoria-mid text-sm mt-1">Clienta verificada • piel mixta</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid lg:grid-cols-3 [animation:fadeSlideIn_0.8s_ease-out_0.4s_both] animate-on-scroll mt-6 relative gap-x-6 gap-y-6" style={{ minHeight: 240 }}>
+                <style>
+                  {`@keyframes smoothSlideInUp {
+                    0% {
+                      opacity: 0;
+                      transform: translateY(40px);
+                    }
+                    20% {
+                      opacity: 1;
+                      transform: translateY(0);
+                    }
+                    80% {
+                      opacity: 1;
+                      transform: translateY(0);
+                    }
+                    100% {
+                      opacity: 0;
+                      transform: translateY(-40px);
+                    }
+                  }`}
+                </style>
+
+                {testimonials.map((item) => (
+                  <div
+                    key={item.name}
+                    className="flex flex-col text-left bg-white/70 rounded-none ring-aphoria-black/10 ring-1 pt-6 px-6 pb-6 justify-between overflow-hidden relative"
+                  >
+                    <div style={{ animation: `smoothSlideInUp 6s ease-in-out ${item.delay} infinite` }}>
+                      <p className="text-aphoria-mid text-base leading-relaxed">"{item.text}"</p>
+                      <div className="flex items-center gap-3 mt-6">
+                        <img
+                          src={item.image}
+                          alt={`Retrato de ${item.name}`}
+                          className="h-8 w-8 rounded-none object-cover ring-1 ring-aphoria-black/10"
+                          loading="lazy"
+                        />
+                        <div>
+                          <div className="text-aphoria-black text-sm font-medium">{item.name}</div>
+                          <div className="text-aphoria-mid text-xs mt-1">{item.role}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Testimonials;

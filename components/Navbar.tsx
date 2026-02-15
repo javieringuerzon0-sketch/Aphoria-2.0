@@ -52,6 +52,7 @@ const Navbar: React.FC = () => {
           <div className="hidden md:flex items-center gap-10" style={{ textShadow: textGlow }}>
             <a href="#science" className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Science</a>
             <a href="#ritual" className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Ritual</a>
+            <a href="#ritual" className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Bundle</a>
             <a href="#about" className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>About</a>
             <a href="#goldmask" className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>24 Gold Mask</a>
             <a href="#avocadomask" className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Avocado Mask</a>
@@ -130,6 +131,7 @@ const Navbar: React.FC = () => {
             <div className="flex flex-col space-y-6 text-[16px] font-medium uppercase tracking-[0.2em] text-white/85">
               <a href="#science" onClick={() => setIsMenuOpen(false)}>Science</a>
               <a href="#ritual" onClick={() => setIsMenuOpen(false)}>Ritual</a>
+              <a href="#ritual" onClick={() => setIsMenuOpen(false)}>Bundle</a>
               <a href="#about" onClick={() => setIsMenuOpen(false)}>About</a>
               <a href="#journal" onClick={() => setIsMenuOpen(false)}>Journal</a>
             </div>
