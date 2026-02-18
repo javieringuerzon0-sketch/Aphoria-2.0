@@ -263,7 +263,9 @@ const ProductGallery: React.FC = () => {
                   transition={{ delay: 0.3, duration: 0.8 }}
                 >
                   <h3 className="text-[20px] font-bold text-aphoria-black tracking-tight mb-2" style={{ letterSpacing: '-0.02em' }}>
-                    24 Gold Mask
+                    <a href="/products/24-gold-mask" className="hover:text-aphoria-gold transition-colors duration-300">
+                      24 Gold Mask
+                    </a>
                   </h3>
                   <p className="text-[13px] text-aphoria-gold uppercase tracking-[0.2em] font-semibold">
                     Radiance Treatment
@@ -352,7 +354,9 @@ const ProductGallery: React.FC = () => {
                   transition={{ delay: 0.45, duration: 0.8 }}
                 >
                   <h3 className="text-[20px] font-bold text-aphoria-black tracking-tight mb-2" style={{ letterSpacing: '-0.02em' }}>
-                    Avocado Mask
+                    <a href="/products/avocado-mask" className="hover:text-aphoria-gold transition-colors duration-300">
+                      Avocado Mask
+                    </a>
                   </h3>
                   <p className="text-[13px] text-aphoria-green uppercase tracking-[0.2em] font-semibold">
                     Hydration Treatment
@@ -513,7 +517,9 @@ const ProductGallery: React.FC = () => {
                     <div className="p-8">
                       <div className="mb-4">
                         <h3 className="text-[24px] font-brand font-light text-aphoria-black tracking-tight mb-2">
-                          {product.name}
+                          <a href={`/products/${product.handle}`} className="hover:text-aphoria-gold transition-colors duration-300">
+                            {product.name}
+                          </a>
                         </h3>
                         <p className="text-[11px] uppercase tracking-[0.28em] text-aphoria-mid">
                           {product.tagline}
