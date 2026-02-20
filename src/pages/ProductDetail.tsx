@@ -21,6 +21,7 @@ import Newsletter from '../components/Newsletter';
 
 import { PRODUCTS } from '../constants';
 import { Product, Variant, Review } from '../types';
+import { useCartStore } from '../store/useCartStore';
 
 const ProductDetail: React.FC = () => {
     const { handle } = useParams<{ handle: string }>();
@@ -53,14 +54,18 @@ const ProductDetail: React.FC = () => {
     const currentVariant: Variant = variants[selectedVariant] || variants[Object.keys(variants)[0]];
 
 
-    const addToCart = (e: React.MouseEvent) => {
-        const cart = document.getElementById('main-cart') as any;
-        if (cart) {
-            for (let i = 0; i < quantity; i++) {
-                cart.addLine(e);
-            }
-            cart.showModal();
-        }
+    const { addItem, open: openCart } = useCartStore();
+
+    const addToCart = () => {
+        addItem({
+            variantId: currentVariant.shopifyVariantId || `local-${currentVariant.id}`,
+            title: currentProduct.name,
+            variantTitle: currentVariant.name,
+            price: currentVariant.price,
+            quantity,
+            img: currentVariant.img,
+        });
+        openCart();
     };
 
     return (
@@ -186,7 +191,7 @@ const ProductDetail: React.FC = () => {
 
                                 <button
                                     onClick={addToCart}
-                                    className="flex-1 h-14 inline-flex items-center justify-center gap-3 bg-aphoria-black text-white rounded-full text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-500 shadow-lg hover:shadow-xl group"
+                                    className="flex-1 h-14 inline-flex items-center justify-center gap-3 bg-aphoria-black text-white rounded-full text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-500 shadow-lg hover:shadow-xl group active:scale-95"
                                 >
                                     <span>GET MY TRANSFORMATION</span>
                                     <span className="w-1 h-1 bg-white/30 rounded-full"></span>

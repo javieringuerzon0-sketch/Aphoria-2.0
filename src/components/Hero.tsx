@@ -178,10 +178,16 @@ const Hero: React.FC = () => {
             transition={{ duration: 1.2, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col sm:flex-row items-start sm:items-center gap-3"
           >
-            <button className="inline-flex items-center gap-3 px-12 py-4 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-500 shadow-lg hover:shadow-xl group" style={{ backgroundColor: '#0F3B2E', color: 'white' }} onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#C6A15B'; (e.currentTarget as HTMLButtonElement).style.color = '#111111'; }} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#0F3B2E'; (e.currentTarget as HTMLButtonElement).style.color = 'white'; }}>
+            <a
+              href="#goldmask"
+              className="inline-flex items-center gap-3 px-12 py-4 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-500 shadow-lg hover:shadow-xl group"
+              style={{ backgroundColor: '#0F3B2E', color: 'white' }}
+              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#C6A15B'; (e.currentTarget as HTMLAnchorElement).style.color = '#111111'; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#0F3B2E'; (e.currentTarget as HTMLAnchorElement).style.color = 'white'; }}
+            >
               Get 60-Day Supply
               <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform ml-2" />
-            </button>
+            </a>
             <a href="#science" className="rounded-full border border-white/30 bg-white/5 px-6 py-[12px] text-[9px] font-semibold uppercase tracking-[0.24em] text-white/90 backdrop-blur transition-all duration-500 hover:border-white/60 hover:text-white">
               {HERO_COPY.ctaSecondary}
             </a>

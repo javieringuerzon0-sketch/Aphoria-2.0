@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useCartStore } from '../store/useCartStore';
+import { PRODUCTS } from '../constants';
 
 const StickyBar: React.FC = () => {
   const [show, setShow] = useState(false);
@@ -16,9 +18,20 @@ const StickyBar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const openCart = () => {
-    const cart = document.getElementById('main-cart') as any;
-    if (cart) cart.showModal();
+  const { addItem, open: openCart } = useCartStore();
+
+  const addBundleToCart = () => {
+    const gold = PRODUCTS.find(p => p.handle === '24-gold-mask');
+    const avocado = PRODUCTS.find(p => p.handle === 'avocado-mask');
+    if (gold) {
+      const v = gold.variants['1pc'];
+      addItem({ variantId: v.shopifyVariantId || `local-${v.id}`, title: gold.name, variantTitle: v.name, price: v.price, img: v.img });
+    }
+    if (avocado) {
+      const v = avocado.variants['1pc'];
+      addItem({ variantId: v.shopifyVariantId || `local-${v.id}`, title: avocado.name, variantTitle: v.name, price: v.price, img: v.img });
+    }
+    openCart();
   };
 
   return (
@@ -66,7 +79,7 @@ const StickyBar: React.FC = () => {
 
               {/* CTA Button */}
               <button
-                onClick={openCart}
+                onClick={addBundleToCart}
                 className="inline-flex items-center gap-2 md:gap-3 px-6 md:px-12 py-3 md:py-4 min-h-[44px] bg-aphoria-black text-white rounded-full text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-500 shadow-lg hover:shadow-xl group"
               >
                 Add to Cart

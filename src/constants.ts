@@ -69,14 +69,16 @@ export const PRODUCTS: Product[] = [
         regularPrice: 59.99,
         id: 'REF_GOLD_S1',
         // PRODUCT IMAGE for /product/24-gold-mask — NEVER CHANGE
-        img: '/goldmask-landing/producto/producto%201%20pcs.png'
+        img: '/goldmask-landing/producto/producto%201%20pcs.png',
+        shopifyVariantId: 'gid://shopify/ProductVariant/REPLACE_GOLD_1PC'
       },
       '2pcs': {
         name: 'Double Protocol Set',
         price: 36.99,
         regularPrice: 119.98,
         id: 'REF_GOLD_M2',
-        img: '/goldmask-landing/producto/producto%202%20pcs.png'
+        img: '/goldmask-landing/producto/producto%202%20pcs.png',
+        shopifyVariantId: 'gid://shopify/ProductVariant/REPLACE_GOLD_2PCS'
       }
     },
     ugc: [
@@ -153,7 +155,8 @@ export const PRODUCTS: Product[] = [
         regularPrice: 59.99,
         id: 'REF_AVO_S1',
         // PRODUCT IMAGE for /product/avocado-mask — transparent PNG (no background)
-        img: '/bundlee/bundlle-avocado-transparent.png'
+        img: '/bundlee/bundlle-avocado-transparent.png',
+        shopifyVariantId: 'gid://shopify/ProductVariant/REPLACE_AVO_1PC'
       }
     },
     ugc: [

@@ -4,10 +4,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { useUIStore } from '../store/useUIStore';
+import { useCartStore } from '../store/useCartStore';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { scrolled, setScrolled } = useUIStore();
+  const { open: openCart, totalItems } = useCartStore();
+  const cartCount = totalItems();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -20,10 +23,6 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [setScrolled]);
 
-  const openCart = () => {
-    const cart = document.getElementById('main-cart') as any;
-    if (cart) cart.showModal();
-  };
 
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
     if (location.pathname !== '/') {
@@ -90,13 +89,11 @@ const Navbar: React.FC = () => {
             >
               <div className="relative">
                 <ShoppingBag size={16} strokeWidth={1.5} />
-                <span
-                  className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-aphoria-gold text-[8px] font-bold text-white"
-                  style={{ display: 'none' }}
-                  data-cart-count
-                >
-                  0
-                </span>
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-aphoria-gold text-[8px] font-bold text-white">
+                    {cartCount}
+                  </span>
+                )}
               </div>
               Cart
             </button>

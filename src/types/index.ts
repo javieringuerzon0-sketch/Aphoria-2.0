@@ -12,6 +12,8 @@ export interface Variant {
   regularPrice: number;
   id: string;
   img: string;
+  /** Shopify Storefront GID — e.g. "gid://shopify/ProductVariant/12345678" */
+  shopifyVariantId?: string;
 }
 
 export interface Review {
