@@ -9,7 +9,7 @@ import { useCartStore } from '../store/useCartStore';
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { scrolled, setScrolled } = useUIStore();
-  const { open: openCart, totalItems } = useCartStore();
+  const { open: openCart, totalItems, checkout } = useCartStore();
   const cartCount = totalItems();
   const location = useLocation();
   const navigate = useNavigate();
@@ -99,7 +99,7 @@ const Navbar: React.FC = () => {
             </button>
 
             <button
-              onClick={openCart}
+              onClick={() => cartCount > 0 ? checkout() : openCart()}
               className={`group relative overflow-hidden rounded-full border px-6 py-2.5 text-[10px] font-bold uppercase tracking-[0.28em] transition-all duration-500 hover:border-aphoria-gold ${buttonBorder} ${buttonText}`}
             >
               <span className="relative z-10 transition-colors group-hover:text-white">Shop Now</span>
