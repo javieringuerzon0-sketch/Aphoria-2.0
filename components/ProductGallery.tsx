@@ -125,7 +125,7 @@ const ProductGallery: React.FC = () => {
       tagline: 'Radiance & Luminosity Treatment',
       description: 'Gold-infused luxury mask that brightens, firms, and restores youthful radiance. Visible glow in minutes.',
       benefits: ['Instant radiance', 'Firms & lifts', 'Reduces fine lines'],
-      image: new URL('../productos/colection-gold2.png', import.meta.url).toString(),
+      image: '/productos/colection-gold2.png',
       price: 29.99,
       regularPrice: 59.99, // Inflated for better perceived value
       size: '50ml',
@@ -140,7 +140,7 @@ const ProductGallery: React.FC = () => {
       tagline: 'Deep Hydration & Nourishment',
       description: 'Rich in vitamins and essential fatty acids, this mask deeply nourishes, hydrates, and calms sensitive skin.',
       benefits: ['Deep hydration', 'Soothes irritation', 'Strengthens barrier'],
-      image: new URL('../productos/seccion-avocado.png', import.meta.url).toString(),
+      image: '/productos/seccion-avocado.png',
       price: 33.99,
       regularPrice: 69.99, // Inflated for better perceived value
       size: '60 patch',
@@ -222,7 +222,7 @@ const ProductGallery: React.FC = () => {
                   {/* Imagen principal — SIN filter, SIN drop-shadow */}
                   <div style={{ position: 'relative' }}>
                     <img
-                      src={new URL('../bundlee/goldmask-bundlee.png', import.meta.url).toString()}
+                      src="/bundlee/goldmask-bundlee.png"
                       alt="24 Gold Mask"
                       className="product-img-main z-10 transition-transform duration-700 group-hover:scale-[1.04]"
                       loading="eager"
@@ -233,7 +233,7 @@ const ProductGallery: React.FC = () => {
                     {/* Reflejo — imagen duplicada SIN filter, solo mask */}
                     <div className="product-reflection">
                       <img
-                        src={new URL('../bundlee/goldmask-bundlee.png', import.meta.url).toString()}
+                        src="/bundlee/goldmask-bundlee.png"
                         alt=""
                       />
                     </div>
@@ -316,7 +316,7 @@ const ProductGallery: React.FC = () => {
 
                   <div style={{ position: 'relative' }}>
                     <img
-                      src={new URL('../bundlee/bundlle-avocado-transparent.png', import.meta.url).toString()}
+                      src="/bundlee/bundlle-avocado-transparent.png"
                       alt="Avocado Mask"
                       className="product-img-main z-10 transition-transform duration-700 group-hover:scale-[1.04]"
                       loading="eager"
@@ -326,7 +326,7 @@ const ProductGallery: React.FC = () => {
 
                     <div className="product-reflection">
                       <img
-                        src={new URL('../bundlee/bundlle-avocado-transparent.png', import.meta.url).toString()}
+                        src="/bundlee/bundlle-avocado-transparent.png"
                         alt=""
                       />
                     </div>
@@ -423,9 +423,9 @@ const ProductGallery: React.FC = () => {
                 </div>
 
                 {/* CTA */}
-                <button
-                  onClick={(e) => (document.getElementById('main-cart') as any).addLine(e).showModal()}
-                  className="group w-full relative overflow-hidden bg-gradient-to-r from-aphoria-green to-aphoria-green/90 text-white rounded-full py-5 text-[12px] uppercase tracking-[0.28em] font-bold shadow-[0_16px_40px_rgba(15,59,46,0.3)] hover:scale-105 transition-all"
+                <a
+                  href="/cart"
+                  className="group w-full relative overflow-hidden bg-gradient-to-r from-aphoria-green to-aphoria-green/90 text-white rounded-full py-5 text-[12px] uppercase tracking-[0.28em] font-bold shadow-[0_16px_40px_rgba(15,59,46,0.3)] hover:scale-105 transition-all flex items-center justify-center gap-2"
                 >
                   <span className="relative z-10 flex items-center justify-center gap-2">
                     Get Complete Kit - Save $15
@@ -438,7 +438,7 @@ const ProductGallery: React.FC = () => {
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
                   </div>
-                </button>
+                </a>
 
                 <p className="text-[10px] text-aphoria-mid mt-3 text-center lg:text-left uppercase tracking-wide">
                   🔒 60-Day Guarantee • Free Shipping • Save ${bundleSavings}
@@ -468,178 +468,178 @@ const ProductGallery: React.FC = () => {
               transition={{ duration: 1, delay: index * 0.15 }}
               className="group"
             >
-                  {/* Product Card */}
-                  <div className="relative rounded-2xl border border-aphoria-black/10 bg-white/80 backdrop-blur overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.06)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] transition-all duration-500">
-                    {/* Image */}
-                    <div className="relative h-[450px] overflow-hidden bg-gradient-to-br from-aphoria-bg/50 to-white/80">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                        loading={index === 0 ? "eager" : "lazy"}
-                        fetchPriority={index === 0 ? "high" : "auto"}
-                        decoding="sync"
-                        style={{
-                          transform: 'translateZ(0)',
-                          willChange: 'transform',
-                          backfaceVisibility: 'hidden',
-                          WebkitBackfaceVisibility: 'hidden',
-                          WebkitFontSmoothing: 'antialiased',
-                          MozOsxFontSmoothing: 'grayscale'
-                        }}
-                      />
+              {/* Product Card */}
+              <div className="relative rounded-2xl border border-aphoria-black/10 bg-white/80 backdrop-blur overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.06)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] transition-all duration-500">
+                {/* Image */}
+                <div className="relative h-[450px] overflow-hidden bg-gradient-to-br from-aphoria-bg/50 to-white/80">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    fetchPriority={index === 0 ? "high" : "auto"}
+                    decoding="sync"
+                    style={{
+                      transform: 'translateZ(0)',
+                      willChange: 'transform',
+                      backfaceVisibility: 'hidden',
+                      WebkitBackfaceVisibility: 'hidden',
+                      WebkitFontSmoothing: 'antialiased',
+                      MozOsxFontSmoothing: 'grayscale'
+                    }}
+                  />
 
-                      {/* Badges */}
-                      <div className="absolute top-4 left-4 right-4 flex items-start justify-between gap-2 flex-wrap">
-                        <div className="inline-flex items-center gap-1.5 rounded-full bg-aphoria-green/95 backdrop-blur-sm border border-aphoria-green/40 px-3 py-1.5 text-[9px] uppercase tracking-[0.24em] text-white shadow-lg">
-                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                          </svg>
-                          Bestseller
-                        </div>
-                        <div className="inline-flex items-center gap-1.5 rounded-full bg-aphoria-gold/95 backdrop-blur-sm border border-aphoria-gold/40 px-3 py-1.5 text-[9px] uppercase tracking-[0.20em] text-white shadow-lg animate-pulse">
-                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-                          </svg>
-                          <CountdownTimer />
-                        </div>
-                      </div>
-
-                      {/* Recommended badge */}
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <div className="inline-flex items-center gap-2 rounded-full bg-aphoria-black/80 backdrop-blur-sm px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-white/90 shadow-xl">
-                          ✦ {product.recommended}
-                        </div>
-                      </div>
+                  {/* Badges */}
+                  <div className="absolute top-4 left-4 right-4 flex items-start justify-between gap-2 flex-wrap">
+                    <div className="inline-flex items-center gap-1.5 rounded-full bg-aphoria-green/95 backdrop-blur-sm border border-aphoria-green/40 px-3 py-1.5 text-[9px] uppercase tracking-[0.24em] text-white shadow-lg">
+                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      Bestseller
                     </div>
-
-                    {/* Content */}
-                    <div className="p-8">
-                      <div className="mb-4">
-                        <h3 className="text-[24px] font-brand font-light text-aphoria-black tracking-tight mb-2">
-                          <a href={`/products/${product.handle}`} className="hover:text-aphoria-gold transition-colors duration-300">
-                            {product.name}
-                          </a>
-                        </h3>
-                        <p className="text-[11px] uppercase tracking-[0.28em] text-aphoria-mid">
-                          {product.tagline}
-                        </p>
-                      </div>
-
-                      <p className="text-[14px] text-aphoria-mid leading-relaxed mb-6">
-                        {product.description}
-                      </p>
-
-                      {/* Benefits */}
-                      <div className="mb-6 space-y-2">
-                        {product.benefits.map((benefit, i) => (
-                          <div key={i} className="flex items-center gap-2 text-[13px] text-aphoria-black">
-                            <svg className="w-4 h-4 text-aphoria-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                            </svg>
-                            {benefit}
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Price & CTA - ENHANCED */}
-                      <div className="pt-6 border-t border-aphoria-black/10">
-                        {/* Price Display */}
-                        <div className="bg-aphoria-bg/50 rounded-xl p-4 mb-4">
-                          <div className="flex items-baseline justify-between mb-3">
-                            <div>
-                              <span className="text-[11px] uppercase tracking-wide text-aphoria-mid block mb-1">
-                                Regular Price
-                              </span>
-                              <div className="text-[20px] text-aphoria-mid line-through">
-                                ${product.regularPrice.toFixed(2)}
-                              </div>
-                            </div>
-                            <div className="bg-aphoria-gold text-white px-3 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wide">
-                              Save {Math.round(((product.regularPrice - product.price) / product.regularPrice) * 100)}%
-                            </div>
-                          </div>
-
-                          <div className="flex items-baseline gap-1 mb-2">
-                            <span className="text-[16px] text-aphoria-black/70">$</span>
-                            <span className="text-[52px] font-bold text-aphoria-black tabular-nums leading-none">
-                              {Math.floor(product.price)}
-                            </span>
-                            <span className="text-[28px] text-aphoria-black/70">
-                              .{(product.price % 1).toFixed(2).substring(2)}
-                            </span>
-                          </div>
-
-                          <div className="text-[11px] text-aphoria-mid">
-                            Less than <strong className="text-aphoria-green font-semibold">
-                              ${product.perUsePrice.toFixed(2)} per use
-                            </strong>
-                            <span className="block text-[9px] mt-1 text-aphoria-mid/80">
-                              Based on 2-3x weekly application for 28 days
-                            </span>
-                          </div>
-                        </div>
-
-                        {/* Guarantee & Shipping */}
-                        <div className="mb-4 p-3 rounded-lg bg-aphoria-gold/5 border border-aphoria-gold/20">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <svg className="w-4 h-4 text-aphoria-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                              </svg>
-                              <div>
-                                <div className="text-[11px] font-medium text-aphoria-gold uppercase tracking-[0.22em]">
-                                  60-Day Guarantee
-                                </div>
-                                <div className="text-[10px] text-aphoria-mid mt-0.5">
-                                  Free worldwide shipping included
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="flex flex-col gap-3">
-                          {/* Primary CTA */}
-                          <button
-                            onClick={(e) => (document.getElementById('main-cart') as any).addLine(e).showModal()}
-                            className="group/btn relative overflow-hidden w-full rounded-full bg-gradient-to-r from-aphoria-green to-aphoria-green/90 px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.26em] text-white shadow-[0_12px_28px_rgba(15,59,46,0.25)] transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_20px_40px_rgba(15,59,46,0.4)]"
-                          >
-                            <span className="relative z-10">Add to Cart</span>
-                            {/* Shine effect */}
-                            <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500">
-                              <div className="absolute inset-0 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-                            </div>
-                          </button>
-
-                          {/* Secondary CTA */}
-                          <button
-                            onClick={(e) => (document.querySelector('shopify-store') as any)?.buyNow(e)}
-                            className="w-full rounded-full border-2 border-aphoria-black/15 px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-aphoria-black/80 transition-all duration-500 hover:border-aphoria-gold hover:text-aphoria-gold hover:bg-aphoria-gold/5"
-                          >
-                            Buy Now — Fast Checkout
-                          </button>
-
-                          {/* Additional CTA */}
-                          <a
-                            href="#science"
-                            className="text-center text-[10px] uppercase tracking-[0.24em] text-aphoria-mid hover:text-aphoria-gold transition-colors flex items-center justify-center gap-2 py-2"
-                          >
-                            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                              <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
-                            </svg>
-                            See Clinical Results
-                          </a>
-                        </div>
-
-                        <p className="mt-4 text-[10px] text-aphoria-mid text-center">
-                          {product.usage}
-                        </p>
-                      </div>
+                    <div className="inline-flex items-center gap-1.5 rounded-full bg-aphoria-gold/95 backdrop-blur-sm border border-aphoria-gold/40 px-3 py-1.5 text-[9px] uppercase tracking-[0.20em] text-white shadow-lg animate-pulse">
+                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                      </svg>
+                      <CountdownTimer />
                     </div>
                   </div>
-                </motion.div>
+
+                  {/* Recommended badge */}
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="inline-flex items-center gap-2 rounded-full bg-aphoria-black/80 backdrop-blur-sm px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-white/90 shadow-xl">
+                      ✦ {product.recommended}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-8">
+                  <div className="mb-4">
+                    <h3 className="text-[24px] font-brand font-light text-aphoria-black tracking-tight mb-2">
+                      <a href={`/products/${product.handle}`} className="hover:text-aphoria-gold transition-colors duration-300">
+                        {product.name}
+                      </a>
+                    </h3>
+                    <p className="text-[11px] uppercase tracking-[0.28em] text-aphoria-mid">
+                      {product.tagline}
+                    </p>
+                  </div>
+
+                  <p className="text-[14px] text-aphoria-mid leading-relaxed mb-6">
+                    {product.description}
+                  </p>
+
+                  {/* Benefits */}
+                  <div className="mb-6 space-y-2">
+                    {product.benefits.map((benefit, i) => (
+                      <div key={i} className="flex items-center gap-2 text-[13px] text-aphoria-black">
+                        <svg className="w-4 h-4 text-aphoria-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        {benefit}
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Price & CTA - ENHANCED */}
+                  <div className="pt-6 border-t border-aphoria-black/10">
+                    {/* Price Display */}
+                    <div className="bg-aphoria-bg/50 rounded-xl p-4 mb-4">
+                      <div className="flex items-baseline justify-between mb-3">
+                        <div>
+                          <span className="text-[11px] uppercase tracking-wide text-aphoria-mid block mb-1">
+                            Regular Price
+                          </span>
+                          <div className="text-[20px] text-aphoria-mid line-through">
+                            ${product.regularPrice.toFixed(2)}
+                          </div>
+                        </div>
+                        <div className="bg-aphoria-gold text-white px-3 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wide">
+                          Save {Math.round(((product.regularPrice - product.price) / product.regularPrice) * 100)}%
+                        </div>
+                      </div>
+
+                      <div className="flex items-baseline gap-1 mb-2">
+                        <span className="text-[16px] text-aphoria-black/70">$</span>
+                        <span className="text-[52px] font-bold text-aphoria-black tabular-nums leading-none">
+                          {Math.floor(product.price)}
+                        </span>
+                        <span className="text-[28px] text-aphoria-black/70">
+                          .{(product.price % 1).toFixed(2).substring(2)}
+                        </span>
+                      </div>
+
+                      <div className="text-[11px] text-aphoria-mid">
+                        Less than <strong className="text-aphoria-green font-semibold">
+                          ${product.perUsePrice.toFixed(2)} per use
+                        </strong>
+                        <span className="block text-[9px] mt-1 text-aphoria-mid/80">
+                          Based on 2-3x weekly application for 28 days
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Guarantee & Shipping */}
+                    <div className="mb-4 p-3 rounded-lg bg-aphoria-gold/5 border border-aphoria-gold/20">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <svg className="w-4 h-4 text-aphoria-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                          </svg>
+                          <div>
+                            <div className="text-[11px] font-medium text-aphoria-gold uppercase tracking-[0.22em]">
+                              60-Day Guarantee
+                            </div>
+                            <div className="text-[10px] text-aphoria-mid mt-0.5">
+                              Free worldwide shipping included
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col gap-3">
+                      {/* Primary CTA */}
+                      <a
+                        href={`/products/${product.handle}`}
+                        className="group/btn relative overflow-hidden w-full rounded-full bg-gradient-to-r from-aphoria-green to-aphoria-green/90 px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.26em] text-white shadow-[0_12px_28px_rgba(15,59,46,0.25)] transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_20px_40px_rgba(15,59,46,0.4)] flex items-center justify-center"
+                      >
+                        <span className="relative z-10">Add to Cart</span>
+                        {/* Shine effect */}
+                        <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500">
+                          <div className="absolute inset-0 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                        </div>
+                      </a>
+
+                      {/* Secondary CTA */}
+                      <a
+                        href={`/products/${product.handle}`}
+                        className="w-full rounded-full border-2 border-aphoria-black/15 px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-aphoria-black/80 transition-all duration-500 hover:border-aphoria-gold hover:text-aphoria-gold hover:bg-aphoria-gold/5 flex items-center justify-center"
+                      >
+                        Buy Now — Fast Checkout
+                      </a>
+
+                      {/* Additional CTA */}
+                      <a
+                        href="#science"
+                        className="text-center text-[10px] uppercase tracking-[0.24em] text-aphoria-mid hover:text-aphoria-gold transition-colors flex items-center justify-center gap-2 py-2"
+                      >
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                          <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+                        </svg>
+                        See Clinical Results
+                      </a>
+                    </div>
+
+                    <p className="mt-4 text-[10px] text-aphoria-mid text-center">
+                      {product.usage}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
 

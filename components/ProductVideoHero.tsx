@@ -8,10 +8,7 @@ const ProductVideoHero: React.FC = () => {
   const ShopifyData = 'shopify-data' as any;
   const ShopifyMoney = 'shopify-money' as any;
   const product = FEATURED_PRODUCTS[1];
-  const videoSrc = new URL(
-    '../section avocado/avocado-video.mp4',
-    import.meta.url
-  ).toString();
+  const videoSrc = '/section%20avocado/avocado-video.mp4';
 
   return (
     <section id="signature-video" className="relative h-screen min-h-[720px] w-full overflow-hidden">

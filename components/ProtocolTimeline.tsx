@@ -1,8 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { PROTOCOL_STEPS } from '../constants';
+import { PRODUCTS, PROTOCOL_STEPS } from '../constants';
 
-const ProtocolTimeline: React.FC = () => {
+interface ProtocolTimelineProps {
+    productHandle?: string;
+}
+
+const ProtocolTimeline: React.FC<ProtocolTimelineProps> = ({ productHandle }) => {
+    const product = PRODUCTS.find(p => p.handle === productHandle);
+    // Use product-specific steps when available (e.g. 24-gold-mask), else fallback to global
+    const steps = product?.protocolSteps ?? PROTOCOL_STEPS;
+
     return (
         <section id="protocol" className="py-32 md:py-48 bg-aphoria-bg px-6">
             <div className="max-w-[1360px] mx-auto px-6 md:px-12">
@@ -23,7 +31,7 @@ const ProtocolTimeline: React.FC = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-px md:bg-aphoria-black/5">
-                    {PROTOCOL_STEPS.map((step, index) => (
+                    {steps.map((step, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 32 }}
@@ -38,6 +46,19 @@ const ProtocolTimeline: React.FC = () => {
                             <h3 className="text-2xl font-light text-aphoria-black tracking-tight mb-6">
                                 {step.name}
                             </h3>
+
+                            {/* Step image — shown when product provides one (e.g. 24-gold-mask) */}
+                            {step.img && (
+                                <div className="w-full mb-8 rounded-2xl overflow-hidden aspect-[4/3] bg-aphoria-black/5">
+                                    <img
+                                        src={step.img}
+                                        alt={step.name}
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                    />
+                                </div>
+                            )}
+
                             <p className="text-aphoria-mid text-[15px] leading-relaxed font-normal mb-12">
                                 {step.copy}
                             </p>

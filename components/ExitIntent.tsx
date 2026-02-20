@@ -99,7 +99,7 @@ const ExitIntent: React.FC = () => {
                 </p>
 
                 {/* Form */}
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-3">
                   <input
                     type="email"
                     value={email}
@@ -109,11 +109,37 @@ const ExitIntent: React.FC = () => {
                     required
                   />
 
+                  {/* Primary CTA */}
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-aphoria-green to-aphoria-green/90 text-white rounded-full py-4 text-[12px] uppercase tracking-[0.26em] font-semibold hover:scale-105 transition-transform shadow-[0_12px_28px_rgba(15,59,46,0.25)] hover:shadow-[0_16px_36px_rgba(15,59,46,0.35)]"
+                    className="group/btn relative overflow-hidden w-full bg-gradient-to-r from-aphoria-green to-aphoria-green/90 text-white rounded-full py-4 text-[12px] uppercase tracking-[0.26em] font-semibold hover:scale-105 transition-all shadow-[0_12px_28px_rgba(15,59,46,0.25)] hover:shadow-[0_16px_36px_rgba(15,59,46,0.35)]"
                   >
-                    Get My 15% Discount →
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      Claim My 15% Off
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </span>
+                    <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500">
+                      <div className="absolute inset-0 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                    </div>
+                  </button>
+
+                  {/* Secondary CTA */}
+                  <a
+                    href="/collections/all"
+                    className="w-full rounded-full border-2 border-aphoria-black/15 px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-aphoria-black/70 transition-all duration-300 hover:border-aphoria-gold hover:text-aphoria-gold hover:bg-aphoria-gold/5 flex items-center justify-center"
+                  >
+                    Shop Full Price
+                  </a>
+
+                  {/* No thanks dismiss */}
+                  <button
+                    type="button"
+                    onClick={() => setShow(false)}
+                    className="w-full text-[10px] uppercase tracking-[0.24em] text-aphoria-mid/60 hover:text-aphoria-mid transition-colors py-1"
+                  >
+                    No thanks, I'll pay full price
                   </button>
                 </form>
 

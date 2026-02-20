@@ -56,14 +56,14 @@ const Hero: React.FC = () => {
           onLoadedData={(e) => {
             const video = e.currentTarget;
             // Ensure smooth loop by seeking slightly before end
-            video.addEventListener('timeupdate', function() {
+            video.addEventListener('timeupdate', function () {
               if (video.duration - video.currentTime < 0.1) {
                 video.currentTime = 0;
               }
             });
           }}
         >
-          <source src="./Hero video/hero-video.mp4" type="video/mp4" />
+          <source src="/Hero%20video/hero-video.mp4" type="video/mp4" />
         </video>
 
         {/* Bottom Gradient for Text Legibility */}

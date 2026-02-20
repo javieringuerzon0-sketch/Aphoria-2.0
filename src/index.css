@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+@theme {
+  --color-aphoria-bg: #F5F3EF;
+  --color-aphoria-green: #0F3B2E;
+  --color-aphoria-gold: #C6A15B;
+  --color-aphoria-black: #111111;
+  --color-aphoria-white: #FFFFFF;
+  --color-aphoria-mid: #6B6B65;
+
+  --font-sans: "Manrope", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-brand: "Cormorant Garamond", serif;
+
+  --animate-marquee: marquee 18s linear infinite;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-cta-pulse: ctaPulse 2s infinite;
+}
+
+:root {
+  --brand-primary: #0F3B2E;
+  --luxury-gold: #C6A15B;
+  --bg-primary: #F5F3EF;
+}
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+
+  body {
+    @apply bg-aphoria-bg text-aphoria-black font-sans antialiased overflow-x-hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior-y: none;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Keyboard focus — visible only when navigating with keyboard, invisible for mouse */
+  :focus-visible {
+    outline: 2px solid #C6A15B;
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  /* Respect reduced-motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+
+  /* GPU acceleration for transforms */
+  .gpu-accel {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .cta-3d {
+    transform: perspective(700px) translateZ(0);
+    box-shadow: 0 10px 22px rgba(15, 59, 46, 0.14), inset 0 0 0 1px rgba(15, 59, 46, 0.12);
+  }
+
+  .cta-3d:hover {
+    transform: perspective(700px) translateY(-2px) rotateX(8deg);
+    box-shadow: 0 18px 36px rgba(15, 59, 46, 0.2), inset 0 0 0 1px rgba(15, 59, 46, 0.2);
+  }
+
+  .reveal {
+    opacity: 0;
+    animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 32px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Shopify Cart Styling */
+shopify-cart::part(dialog) {
+  border: none;
+  background: #FFFFFF;
+  max-width: 450px;
+  height: 100vh;
+  margin-right: 0;
+  box-shadow: -10px 0 50px rgba(0, 0, 0, 0.05);
+}
+
+shopify-cart::part(primary-button) {
+  background-color: var(--brand-primary);
+  border-radius: 2px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 13px;
+  padding: 18px;
+  color: white;
+}

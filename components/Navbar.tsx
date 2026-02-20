@@ -28,12 +28,12 @@ const Navbar: React.FC = () => {
   const buttonBorder = isScrolled ? 'border-aphoria-black/20' : 'border-white/25';
   const buttonText = isScrolled ? 'text-aphoria-black' : 'text-white/80';
   const textGlow = isScrolled
-    ? '0 1px 8px rgba(255,255,255,0.35)'
+    ? 'none'
     : '0 2px 14px rgba(0,0,0,0.55)';
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent">
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${isScrolled ? 'bg-aphoria-bg border-b border-aphoria-black/15 shadow-sm' : 'bg-transparent'}`}>
         {!isScrolled && (
           <div
             aria-hidden="true"
@@ -52,7 +52,7 @@ const Navbar: React.FC = () => {
           <div className="hidden md:flex items-center gap-10" style={{ textShadow: textGlow }}>
             <a href="#science" className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Science</a>
             <a href="#ritual" className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Ritual</a>
-            <a href="#ritual" className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Bundle</a>
+            <a href="#ritual" className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Bundlee
             <a href="#about" className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>About</a>
             <a href="#goldmask" className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>24 Gold Mask</a>
             <a href="#avocadomask" className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Avocado Mask</a>
@@ -88,18 +88,19 @@ const Navbar: React.FC = () => {
             </button>
           </div>
 
-          <div className="flex items-center gap-4 md:hidden">
+          <div className="flex items-center gap-3 md:hidden">
             <button
               onClick={() => setIsMenuOpen(true)}
-              className={`inline-flex h-9 w-9 items-center justify-center rounded-full border bg-white/5 transition-all duration-300 hover:bg-white/10 ${buttonBorder} ${iconTone}`}
+              className={`inline-flex h-11 w-11 items-center justify-center rounded-full border bg-white/5 transition-all duration-300 hover:bg-white/10 ${buttonBorder} ${iconTone}`}
               style={{ filter: isScrolled ? 'drop-shadow(0 1px 6px rgba(255,255,255,0.35))' : 'drop-shadow(0 2px 10px rgba(0,0,0,0.5))' }}
               aria-label="Open menu"
+              aria-expanded={isMenuOpen}
             >
               <Menu size={20} strokeWidth={1.5} />
             </button>
             <button
               onClick={openCart}
-              className={`inline-flex h-9 w-9 items-center justify-center rounded-full border bg-white/5 transition-all duration-300 hover:bg-white/10 ${buttonBorder} ${iconTone}`}
+              className={`inline-flex h-11 w-11 items-center justify-center rounded-full border bg-white/5 transition-all duration-300 hover:bg-white/10 ${buttonBorder} ${iconTone}`}
               style={{ filter: isScrolled ? 'drop-shadow(0 1px 6px rgba(255,255,255,0.35))' : 'drop-shadow(0 2px 10px rgba(0,0,0,0.5))' }}
               aria-label="View cart"
             >
@@ -121,19 +122,19 @@ const Navbar: React.FC = () => {
               <span className="font-brand text-[22px] font-medium uppercase tracking-[0.32em] text-white/95">Aphoria</span>
               <button
                 onClick={() => setIsMenuOpen(false)}
-                className="text-white"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white hover:bg-white/10 transition-colors"
                 aria-label="Close menu"
               >
-                <X size={24} strokeWidth={1.5} />
+                <X size={22} strokeWidth={1.5} />
               </button>
             </div>
 
-            <div className="flex flex-col space-y-6 text-[16px] font-medium uppercase tracking-[0.2em] text-white/85">
-              <a href="#science" onClick={() => setIsMenuOpen(false)}>Science</a>
-              <a href="#ritual" onClick={() => setIsMenuOpen(false)}>Ritual</a>
-              <a href="#ritual" onClick={() => setIsMenuOpen(false)}>Bundle</a>
-              <a href="#about" onClick={() => setIsMenuOpen(false)}>About</a>
-              <a href="#journal" onClick={() => setIsMenuOpen(false)}>Journal</a>
+            <div className="flex flex-col text-[16px] font-medium uppercase tracking-[0.2em] text-white/85">
+              <a href="#science" onClick={() => setIsMenuOpen(false)} className="py-3 border-b border-white/10 last:border-0">Science</a>
+              <a href="#ritual" onClick={() => setIsMenuOpen(false)} className="py-3 border-b border-white/10 last:border-0">Ritual</a>
+              <a href="#ritual" onClick={() => setIsMenuOpen(false)} className="py-3 border-b border-white/10 last:border-0">Bundle</a>
+              <a href="#about" onClick={() => setIsMenuOpen(false)} className="py-3 border-b border-white/10 last:border-0">About</a>
+              <a href="#journal" onClick={() => setIsMenuOpen(false)} className="py-3 border-b border-white/10 last:border-0">Journal</a>
             </div>
 
             <div className="mt-10 flex items-center gap-3">
