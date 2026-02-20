@@ -98,17 +98,16 @@ const Navbar: React.FC = () => {
               Cart
             </button>
 
-            <Link
-              to={isHomePage ? "/#bundle" : "/"}
-              onClick={(e) => isHomePage && handleAnchorClick(e as any, '#bundle')}
-              className={`group relative overflow-hidden rounded-full border px-6 py-2.5 text-[10px] font-bold uppercase tracking-[0.28em] transition-all duration-500 hover:border-aphoria-gold hover:text-aphoria-gold ${buttonBorder} ${buttonText}`}
+            <button
+              onClick={openCart}
+              className={`group relative overflow-hidden rounded-full border px-6 py-2.5 text-[10px] font-bold uppercase tracking-[0.28em] transition-all duration-500 hover:border-aphoria-gold ${buttonBorder} ${buttonText}`}
             >
               <span className="relative z-10 transition-colors group-hover:text-white">Shop Now</span>
               <span
                 aria-hidden="true"
                 className="absolute inset-0 translate-y-full bg-aphoria-gold transition-transform duration-500 group-hover:translate-y-0"
               ></span>
-            </Link>
+            </button>
           </div>
 
           <div className="flex items-center gap-3 md:hidden">
@@ -167,6 +166,7 @@ const Navbar: React.FC = () => {
                 View Cart
               </button>
               <button
+                onClick={() => { openCart(); setIsMenuOpen(false); }}
                 className="flex-1 rounded-full bg-white text-aphoria-black px-3 py-3 min-h-[44px] text-center text-[11px] font-medium uppercase tracking-[0.2em] hover:bg-white/90 transition-colors"
               >
                 Shop Now

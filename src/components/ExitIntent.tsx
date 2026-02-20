@@ -111,7 +111,8 @@ const ExitIntent: React.FC = () => {
 
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-aphoria-green to-aphoria-green/90 text-white rounded-full py-4 text-[12px] uppercase tracking-[0.26em] font-semibold hover:scale-105 transition-transform shadow-[0_12px_28px_rgba(15,59,46,0.25)] hover:shadow-[0_16px_36px_rgba(15,59,46,0.35)]"
+                    className="w-full text-white rounded-full py-4 text-[12px] uppercase tracking-[0.26em] font-semibold hover:opacity-90 active:scale-95 transition-all shadow-[0_12px_28px_rgba(15,59,46,0.25)]"
+                    style={{ backgroundColor: '#0F3B2E' }}
                   >
                     Get My 15% Discount →
                   </button>
