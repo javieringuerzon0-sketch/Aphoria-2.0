@@ -17,7 +17,8 @@ import {
     Activity,
     Target
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useCartStore } from '../store/useCartStore';
+import { PRODUCTS } from '../constants';
 
 interface Question {
     id: number;
@@ -181,6 +182,23 @@ const Diagnostic: React.FC = () => {
         setResult(null);
     };
 
+    const { addItem, checkout } = useCartStore();
+
+    const handleViewProtocol = () => {
+        const handle = result === 'gold' ? '24-gold-mask' : 'avocado-mask';
+        const product = PRODUCTS.find(p => p.handle === handle);
+        if (!product) return;
+        const v = product.variants['1pc'];
+        addItem({
+            variantId: v.shopifyVariantId || `local-${v.id}`,
+            title: product.name,
+            variantTitle: v.name,
+            price: v.price,
+            img: product.galleryImg || v.img,
+        });
+        checkout();
+    };
+
     const progress = (currentStep / (QUESTIONS.length)) * 100;
 
     return (
@@ -324,12 +342,12 @@ const Diagnostic: React.FC = () => {
                                     </div>
 
                                     <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                                        <Link
-                                            to={result === 'gold' ? "/#goldmask" : "/#avocadomask"}
+                                        <button
+                                            onClick={handleViewProtocol}
                                             className="flex-1 inline-flex items-center justify-center gap-2.5 bg-aphoria-black text-white px-7 py-3.5 rounded-full text-[11px] uppercase tracking-[0.22em] font-semibold hover:bg-aphoria-green transition-all duration-500 active:scale-95"
                                         >
                                             View Protocol <ArrowRight size={14} />
-                                        </Link>
+                                        </button>
                                         <button
                                             onClick={reset}
                                             className="inline-flex items-center justify-center px-6 py-3.5 rounded-full border border-aphoria-black/12 text-[10px] uppercase tracking-[0.22em] font-semibold text-aphoria-mid hover:text-aphoria-black hover:border-aphoria-black/25 transition-all duration-300"

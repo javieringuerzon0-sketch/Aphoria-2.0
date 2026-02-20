@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const BeforeAfterHero: React.FC = () => {
   const beforeAfterRef = useRef<HTMLDivElement | null>(null);
@@ -130,12 +131,12 @@ const BeforeAfterHero: React.FC = () => {
           </div>
 
           <div className="mt-10 flex items-center justify-center gap-4">
-            <a
-              href="#signature"
+            <Link
+              to="/product/avocado-mask"
               className="rounded-full bg-aphoria-black px-8 py-[14px] text-[11px] font-semibold uppercase tracking-[0.26em] text-white transition-all duration-500 hover:-translate-y-[2px] hover:opacity-95"
             >
               Start the 28-day protocol
-            </a>
+            </Link>
             <a
               href="#science"
               className="rounded-full border border-aphoria-black/15 px-7 py-[13px] text-[11px] font-semibold uppercase tracking-[0.22em] text-aphoria-black/80 transition-all duration-500 hover:border-aphoria-black/40 hover:text-aphoria-black"

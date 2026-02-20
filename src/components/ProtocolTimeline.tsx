@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
+import { useCartStore } from '../store/useCartStore';
+import { PRODUCTS } from '../constants';
 
 interface ProtocolTimelineProps {
     productHandle?: string;
@@ -57,6 +59,22 @@ const ProtocolTimeline: React.FC<ProtocolTimelineProps> = ({ productHandle = '24
     };
 
     const steps = protocols[productHandle] || protocols['24-gold-mask'];
+
+    const { addItem, checkout } = useCartStore();
+
+    const handleBeginProtocol = () => {
+        const product = PRODUCTS.find(p => p.handle === productHandle);
+        if (!product) return;
+        const v = product.variants['1pc'];
+        addItem({
+            variantId: v.shopifyVariantId || `local-${v.id}`,
+            title: product.name,
+            variantTitle: v.name,
+            price: v.price,
+            img: product.galleryImg || v.img,
+        });
+        checkout();
+    };
 
     return (
         <section className="py-24 lg:py-32 bg-[#FAF8F5] relative overflow-hidden">
@@ -140,7 +158,10 @@ const ProtocolTimeline: React.FC<ProtocolTimelineProps> = ({ productHandle = '24
 
                 {/* Section CTA - Soft & Clean */}
                 <div className="text-center">
-                    <button className="inline-flex items-center gap-3 px-12 py-4 bg-aphoria-black text-white rounded-full text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-500 shadow-lg hover:shadow-xl group">
+                    <button
+                        onClick={handleBeginProtocol}
+                        className="inline-flex items-center gap-3 px-12 py-4 bg-aphoria-black text-white rounded-full text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-500 shadow-lg hover:shadow-xl group"
+                    >
                         Begin The Protocol
                         <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
                     </button>

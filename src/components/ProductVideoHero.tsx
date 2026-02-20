@@ -1,13 +1,29 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { RefreshCw, ShieldCheck, Truck, ChevronRight } from 'lucide-react';
 import { FEATURED_PRODUCTS } from '../constants';
+import { useCartStore } from '../store/useCartStore';
 
 const ProductVideoHero: React.FC = () => {
   const ShopifyContext = 'shopify-context' as any;
   const ShopifyData = 'shopify-data' as any;
   const ShopifyMoney = 'shopify-money' as any;
   const product = FEATURED_PRODUCTS[1];
+
+  const { addItem, open: openCart } = useCartStore();
+
+  const addAvocadoToCart = () => {
+    const v = product.variants['1pc'];
+    addItem({
+      variantId: v.shopifyVariantId || `local-${v.id}`,
+      title: product.name,
+      variantTitle: v.name,
+      price: v.price,
+      img: product.galleryImg || v.img,
+    });
+    openCart();
+  };
   const videoSrc = '/section%20avocado/avocado-video.mp4';
 
   return (
@@ -57,32 +73,32 @@ const ProductVideoHero: React.FC = () => {
                 </div>
 
                 <div className="mt-8 flex flex-wrap items-center gap-4">
-                  <a
-                    href="/products/avocado-mask"
+                  <Link
+                    to="/product/avocado-mask"
                     className="inline-flex items-center gap-3 px-12 py-4 bg-aphoria-black text-white rounded-full text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-500 shadow-lg hover:shadow-xl group"
                   >
                     Shop Cellular Restoration Cream
                     <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform ml-2" />
-                  </a>
-                  <a
-                    href="/products/avocado-mask"
+                  </Link>
+                  <button
+                    onClick={addAvocadoToCart}
                     className="rounded-full border border-white/30 px-7 py-[13px] text-[11px] font-semibold uppercase tracking-[0.22em] text-white/85 transition-all duration-500 hover:border-white/60 hover:text-white"
                   >
                     Add to cart
-                  </a>
-                  <a
-                    href="#science"
+                  </button>
+                  <Link
+                    to="/product/avocado-mask"
                     className="group relative overflow-hidden rounded-full border border-white/30 px-6 py-[12px] text-[11px] font-semibold uppercase tracking-[0.24em] text-white/85 transition-all duration-500 hover:border-white/70 hover:text-white"
                   >
                     <span className="relative z-10">Learn more</span>
                     <span className="absolute inset-0 translate-y-full bg-white/15 transition-transform duration-500 group-hover:translate-y-0"></span>
-                  </a>
-                  <a
-                    href="#science"
+                  </Link>
+                  <Link
+                    to="/product/avocado-mask"
                     className="text-[11px] uppercase tracking-[0.24em] text-white/70 hover:text-white"
                   >
                     Clinical evidence
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -113,20 +129,20 @@ const ProductVideoHero: React.FC = () => {
                 {product.tagline}
               </div>
               <div className="mt-8 flex flex-wrap items-center gap-4">
-                <a href="/products/avocado-mask" className="inline-flex items-center gap-3 px-12 py-4 bg-aphoria-black text-white rounded-full text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-500 shadow-lg hover:shadow-xl group">
+                <Link to="/product/avocado-mask" className="inline-flex items-center gap-3 px-12 py-4 bg-aphoria-black text-white rounded-full text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-500 shadow-lg hover:shadow-xl group">
                   Shop now
                   <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform ml-2" />
-                </a>
-                <a href="/products/avocado-mask" className="rounded-full border border-white/30 px-7 py-[13px] text-[11px] font-semibold uppercase tracking-[0.22em] text-white/85 transition-all duration-500 hover:border-white/60 hover:text-white">
+                </Link>
+                <button onClick={addAvocadoToCart} className="rounded-full border border-white/30 px-7 py-[13px] text-[11px] font-semibold uppercase tracking-[0.22em] text-white/85 transition-all duration-500 hover:border-white/60 hover:text-white">
                   Add to cart
-                </a>
-                <a
-                  href="#science"
+                </button>
+                <Link
+                  to="/product/avocado-mask"
                   className="group relative overflow-hidden rounded-full border border-white/30 px-6 py-[12px] text-[11px] font-semibold uppercase tracking-[0.24em] text-white/85 transition-all duration-500 hover:border-white/70 hover:text-white"
                 >
                   <span className="relative z-10">Learn more</span>
                   <span className="absolute inset-0 translate-y-full bg-white/15 transition-transform duration-500 group-hover:translate-y-0"></span>
-                </a>
+                </Link>
               </div>
             </div>
           </ShopifyContext>

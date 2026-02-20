@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { RefreshCw, ShieldCheck, Truck, ChevronRight } from 'lucide-react';
 import { FEATURED_PRODUCTS } from '../constants';
+import { useCartStore } from '../store/useCartStore';
 
 const ProductHero: React.FC = () => {
   const ShopifyContext = 'shopify-context' as any;
@@ -12,6 +13,20 @@ const ProductHero: React.FC = () => {
   const productHeroImage = '/seccion%20gold%20mask/imagen-section.png';
   const productCardImage = '/seccion%20gold%20mask/imagen-producto.png';
   const cardHeight = 'h-[520px] md:h-[620px]';
+
+  const { addItem, open: openCart } = useCartStore();
+
+  const addGoldToCart = () => {
+    const v = product.variants['1pc'];
+    addItem({
+      variantId: v.shopifyVariantId || `local-${v.id}`,
+      title: product.name,
+      variantTitle: v.name,
+      price: v.price,
+      img: product.galleryImg || v.img,
+    });
+    openCart();
+  };
 
   return (
     <section id="ritual" className="relative py-20 md:py-28 bg-white px-6 overflow-hidden">
@@ -101,19 +116,16 @@ const ProductHero: React.FC = () => {
                     <p className="mt-3 text-[13px] uppercase tracking-[0.24em] text-aphoria-mid">
                       {product.tagline}
                     </p>
-
                     <div className="mt-6 flex items-center gap-4">
                       <span className="text-[22px] font-medium text-aphoria-black">
                         <ShopifyMoney query="product.selectedOrFirstAvailableVariant.price" />
                       </span>
                       <span className="text-[11px] uppercase tracking-[0.24em] text-aphoria-mid">50ml</span>
                     </div>
-
                     <p className="mt-5 text-[15px] leading-relaxed text-aphoria-mid">
                       {product.description}
                     </p>
                   </div>
-
                   <div className="mt-6 grid gap-3">
                     <div className="flex items-start gap-3">
                       <span className="mt-2 h-1.5 w-1.5 rounded-full bg-aphoria-gold"></span>
@@ -132,7 +144,6 @@ const ProductHero: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Urgency/Scarcity Badges */}
                 <div className="mt-6 flex flex-wrap items-center gap-3">
                   <div className="inline-flex items-center gap-2 rounded-full bg-aphoria-gold/10 border border-aphoria-gold/20 px-3 py-1.5 text-[9px] uppercase tracking-[0.24em] text-aphoria-gold">
                     <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
@@ -153,12 +164,12 @@ const ProductHero: React.FC = () => {
                     Get My Transformation Kit
                     <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform ml-2" />
                   </Link>
-                  <Link
-                    to="/product/24-gold-mask"
-                    className="rounded-full border border-aphoria-black/15 px-7 py-[13px] text-[11px] font-semibold uppercase tracking-[0.22em] text-aphoria-black/80 transition-all duration-500 hover:border-aphoria-black/40 hover:text-aphoria-black"
+                  <button
+                    onClick={addGoldToCart}
+                    className="rounded-full border border-aphoria-black/15 px-7 py-[13px] text-[11px] font-semibold uppercase tracking-[0.22em] text-aphoria-black/80 transition-all duration-500 hover:border-aphoria-black/40 hover:text-aphoria-black active:scale-95"
                   >
                     Add to cart
-                  </Link>
+                  </button>
                   <Link
                     to="/product/24-gold-mask"
                     className="text-[11px] uppercase tracking-[0.24em] text-aphoria-black/60 hover:text-aphoria-black"
@@ -166,7 +177,6 @@ const ProductHero: React.FC = () => {
                     See clinical results
                   </Link>
                 </div>
-
               </motion.div>
             </template>
 
@@ -186,9 +196,12 @@ const ProductHero: React.FC = () => {
                   Shop now
                   <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform ml-2" />
                 </Link>
-                <Link to="/product/24-gold-mask" className="rounded-full border border-aphoria-black/15 px-7 py-[13px] text-[11px] font-semibold uppercase tracking-[0.22em] text-aphoria-black/80 transition-all duration-500 hover:border-aphoria-black/40 hover:text-aphoria-black">
+                <button
+                  onClick={addGoldToCart}
+                  className="rounded-full border border-aphoria-black/15 px-7 py-[13px] text-[11px] font-semibold uppercase tracking-[0.22em] text-aphoria-black/80 transition-all duration-500 hover:border-aphoria-black/40 hover:text-aphoria-black active:scale-95"
+                >
                   Add to cart
-                </Link>
+                </button>
               </div>
             </div>
           </ShopifyContext>

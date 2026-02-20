@@ -98,8 +98,8 @@ export const PRODUCT_BY_HANDLE_QUERY = `
 `;
 
 export const CREATE_CART_MUTATION = `
-  mutation CartCreate($lines: [CartLineInput!]) {
-    cartCreate(input: { lines: $lines }) {
+  mutation CartCreate($lines: [CartLineInput!], $discountCodes: [String!]) {
+    cartCreate(input: { lines: $lines, discountCodes: $discountCodes }) {
       cart {
         id
         checkoutUrl

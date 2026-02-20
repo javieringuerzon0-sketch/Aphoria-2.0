@@ -23,7 +23,7 @@ interface CartStore {
   clearCart: () => void;
   open: () => void;
   close: () => void;
-  checkout: () => Promise<void>;
+  checkout: (discountCode?: string) => Promise<void>;
 
   // Computed
   totalItems: () => number;
@@ -71,7 +71,7 @@ export const useCartStore = create<CartStore>()(
       open: () => set({ isOpen: true }),
       close: () => set({ isOpen: false }),
 
-      checkout: async () => {
+      checkout: async (discountCode?: string) => {
         const { items } = get();
         if (!items.length) return;
 
@@ -89,9 +89,19 @@ export const useCartStore = create<CartStore>()(
               return;
             }
 
-            const data = await storefrontFetch<any>(CREATE_CART_MUTATION, { lines });
+            const variables: Record<string, any> = { lines };
+            if (discountCode) variables.discountCodes = [discountCode];
+
+            const data = await storefrontFetch<any>(CREATE_CART_MUTATION, variables);
             const checkoutUrl = data?.cartCreate?.cart?.checkoutUrl;
-            if (checkoutUrl) window.location.href = checkoutUrl;
+            if (checkoutUrl) {
+              // Append return_to so the Shopify checkout logo links back to our frontend
+              const returnTo = encodeURIComponent(
+                import.meta.env.VITE_STORE_URL || window.location.origin
+              );
+              const separator = checkoutUrl.includes('?') ? '&' : '?';
+              window.location.href = `${checkoutUrl}${separator}return_to=${returnTo}`;
+            }
           } else {
             // No credentials: inform user
             alert('Agrega las credenciales de Shopify en el archivo .env para habilitar el checkout.');

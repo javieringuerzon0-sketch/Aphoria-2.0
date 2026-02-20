@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import CountdownTimer from './CountdownTimer';
 import { PRODUCTS } from '../constants';
 import { Product } from '../types';
+import { useCartStore } from '../store/useCartStore';
 
 const STYLES = `
   @keyframes appleFloat {
@@ -113,8 +114,6 @@ const STYLES = `
 `;
 
 const ProductGallery: React.FC = () => {
-  const ShopifyCart = 'shopify-cart' as any;
-
   // Use centralized products
   const products = PRODUCTS;
 
@@ -126,6 +125,30 @@ const ProductGallery: React.FC = () => {
   const bundleRegular = goldMask.variants['1pc'].price + avocadoMask.variants['1pc'].price; // $63.98
   const bundleSavings = (bundleRegular - bundlePrice).toFixed(2); // $8.99
   const bundleDiscount = Math.round(((bundleRegular - bundlePrice) / bundleRegular) * 100); // 14%
+
+  const { addItem, open: openCart, checkout } = useCartStore();
+
+  const BUNDLE_DISCOUNT_CODE = import.meta.env.VITE_BUNDLE_DISCOUNT_CODE || '';
+
+  const addBundleAndCheckout = () => {
+    const gv = goldMask.variants['1pc'];
+    addItem({ variantId: gv.shopifyVariantId || `local-${gv.id}`, title: goldMask.name, variantTitle: gv.name, price: gv.price, img: goldMask.galleryImg || gv.img });
+    const av = avocadoMask.variants['1pc'];
+    addItem({ variantId: av.shopifyVariantId || `local-${av.id}`, title: avocadoMask.name, variantTitle: av.name, price: av.price, img: avocadoMask.galleryImg || av.img });
+    checkout(BUNDLE_DISCOUNT_CODE || undefined);
+  };
+
+  const addProductToCart = (product: Product) => {
+    const v = product.variants['1pc'];
+    addItem({ variantId: v.shopifyVariantId || `local-${v.id}`, title: product.name, variantTitle: v.name, price: v.price, img: product.galleryImg || v.img });
+    openCart();
+  };
+
+  const buyProductNow = (product: Product) => {
+    const v = product.variants['1pc'];
+    addItem({ variantId: v.shopifyVariantId || `local-${v.id}`, title: product.name, variantTitle: v.name, price: v.price, img: product.galleryImg || v.img });
+    checkout();
+  };
 
 
   return (
@@ -396,8 +419,8 @@ const ProductGallery: React.FC = () => {
 
             {/* CTA — centered across full card width */}
             <div className="mt-8 max-w-md mx-auto px-4">
-              <a
-                href="/cart"
+              <button
+                onClick={addBundleAndCheckout}
                 className="w-full relative overflow-hidden rounded-full py-5 text-[12px] uppercase tracking-[0.28em] font-bold shadow-[0_16px_40px_rgba(15,59,46,0.3)] hover:opacity-90 transition-all flex items-center justify-center"
                 style={{ background: 'linear-gradient(to right, #0F3B2E, #1a5c47)', color: 'white' }}
               >
@@ -407,7 +430,7 @@ const ProductGallery: React.FC = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </span>
-              </a>
+              </button>
               <p className="text-[10px] text-aphoria-mid mt-3 text-center uppercase tracking-wide">
                 🔒 60-Day Guarantee • Free Shipping • Save ${bundleSavings}
               </p>
@@ -571,22 +594,22 @@ const ProductGallery: React.FC = () => {
 
                     <div className="flex flex-col gap-3">
                       {/* Primary CTA */}
-                      <Link
-                        to={`/product/${product.handle}`}
+                      <button
+                        onClick={() => addProductToCart(product)}
                         className="w-full rounded-full px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.26em] shadow-[0_12px_28px_rgba(15,59,46,0.25)] transition-all duration-500 flex items-center justify-center"
                         style={{ background: 'linear-gradient(to right, #0F3B2E, #1a5c47)', color: 'white' }}
                       >
                         Add to Cart
-                      </Link>
+                      </button>
 
                       {/* Secondary CTA */}
-                      <Link
-                        to={`/product/${product.handle}`}
+                      <button
+                        onClick={() => buyProductNow(product)}
                         className="w-full rounded-full border-2 px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] transition-all duration-500 flex items-center justify-center"
                         style={{ borderColor: 'rgba(17,17,17,0.15)', color: 'rgba(17,17,17,0.8)' }}
                       >
                         Buy Now — Fast Checkout
-                      </Link>
+                      </button>
 
                       {/* Additional CTA */}
                       <a
@@ -629,8 +652,6 @@ const ProductGallery: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Shopify Cart */}
-      <ShopifyCart id="main-cart"></ShopifyCart>
     </section>
   );
 };

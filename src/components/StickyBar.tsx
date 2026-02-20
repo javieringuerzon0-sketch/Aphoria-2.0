@@ -18,9 +18,11 @@ const StickyBar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const { addItem, open: openCart } = useCartStore();
+  const { addItem, checkout } = useCartStore();
 
-  const addBundleToCart = () => {
+  const BUNDLE_DISCOUNT_CODE = import.meta.env.VITE_BUNDLE_DISCOUNT_CODE || '';
+
+  const addBundleAndCheckout = () => {
     const gold = PRODUCTS.find(p => p.handle === '24-gold-mask');
     const avocado = PRODUCTS.find(p => p.handle === 'avocado-mask');
     if (gold) {
@@ -31,7 +33,7 @@ const StickyBar: React.FC = () => {
       const v = avocado.variants['1pc'];
       addItem({ variantId: v.shopifyVariantId || `local-${v.id}`, title: avocado.name, variantTitle: v.name, price: v.price, img: v.img });
     }
-    openCart();
+    checkout(BUNDLE_DISCOUNT_CODE || undefined);
   };
 
   return (
@@ -79,10 +81,10 @@ const StickyBar: React.FC = () => {
 
               {/* CTA Button */}
               <button
-                onClick={addBundleToCart}
+                onClick={addBundleAndCheckout}
                 className="inline-flex items-center gap-2 md:gap-3 px-6 md:px-12 py-3 md:py-4 min-h-[44px] bg-aphoria-black text-white rounded-full text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-500 shadow-lg hover:shadow-xl group"
               >
-                Add to Cart
+                Shop Now
                 <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
