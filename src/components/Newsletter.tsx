@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
+import { subscribeToNewsletter } from '../services/newsletterService';
 
 const Newsletter: React.FC = () => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'success'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    if (!email) return;
+
+    const response = await subscribeToNewsletter(email);
+    if (response.success) {
       setStatus('success');
       setEmail('');
+    } else {
+      alert(response.message || 'Error subscribing. Please try again.');
     }
   };
 

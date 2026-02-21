@@ -77,7 +77,7 @@ const Navbar: React.FC = () => {
             <Link to="/product/avocado-mask" className={`text-[11px] font-bold uppercase tracking-[0.22em] text-aphoria-green hover:text-aphoria-black transition-colors duration-300`}>Avocado Mask</Link>
             <a href="/#science" onClick={(e) => handleAnchorClick(e, '#science')} className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Science</a>
             <a href="/#ritual" onClick={(e) => handleAnchorClick(e, '#ritual')} className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Ritual</a>
-            <a href="/#bundle" onClick={(e) => handleAnchorClick(e, '#bundle')} className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Bundlee</a>
+            <a href="/#bundle" onClick={(e) => handleAnchorClick(e, '#bundle')} className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Bundle</a>
             <Link to="/contact" className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Contact</Link>
 
             <div className={`hidden h-5 w-px md:block ${scrolled || !isHomePage ? 'bg-aphoria-black/15' : 'bg-white/15'}`}></div>

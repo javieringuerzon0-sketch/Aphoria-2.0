@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://aphoria.com/sitemap.xml
+Sitemap: https://aphoria-2-0.vercel.app/sitemap.xml
 
 # Crawl-delay for bots
 Crawl-delay: 1
