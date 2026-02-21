@@ -177,7 +177,7 @@ const CartDrawer: React.FC = () => {
 
                 {/* Checkout CTA */}
                 <button
-                  onClick={checkout}
+                  onClick={() => checkout()}
                   disabled={isCheckingOut}
                   className="w-full flex items-center justify-center gap-3 bg-aphoria-black text-white rounded-full py-4 text-[11px] uppercase tracking-[0.28em] font-bold hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-500 shadow-lg disabled:opacity-60 disabled:cursor-not-allowed group"
                 >

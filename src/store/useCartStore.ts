@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { isShopifyConfigured, storefrontFetch } from '../lib/shopify';
-import { CREATE_CART_MUTATION } from '../lib/queries';
+import { isShopifyConfigured } from '../lib/shopify';
 
 export interface CartItem {
   variantId: string;
@@ -79,31 +78,27 @@ export const useCartStore = create<CartStore>()(
 
         try {
           if (isShopifyConfigured) {
-            // Real Shopify checkout
-            const lines = items
+            // Build direct /cart/{variantId}:{qty} URL — instant redirect to payment
+            const cartLines = items
               .filter((i) => i.variantId.startsWith('gid://'))
-              .map((i) => ({ merchandiseId: i.variantId, quantity: i.quantity }));
+              .map((i) => {
+                const numericId = i.variantId.split('/').pop()!;
+                return `${numericId}:${i.quantity}`;
+              })
+              .join(',');
 
-            if (lines.length === 0) {
+            if (!cartLines) {
               alert('Agrega los Shopify Variant IDs en constants.ts para habilitar el checkout.');
               return;
             }
 
-            const variables: Record<string, any> = { lines };
-            if (discountCode) variables.discountCodes = [discountCode];
-
-            const data = await storefrontFetch<any>(CREATE_CART_MUTATION, variables);
-            const checkoutUrl = data?.cartCreate?.cart?.checkoutUrl;
-            if (checkoutUrl) {
-              // Append return_to so the Shopify checkout logo links back to our frontend
-              const returnTo = encodeURIComponent(
-                import.meta.env.VITE_STORE_URL || window.location.origin
-              );
-              const separator = checkoutUrl.includes('?') ? '&' : '?';
-              window.location.href = `${checkoutUrl}${separator}return_to=${returnTo}`;
-            }
+            const storeDomain = import.meta.env.VITE_SHOPIFY_STORE_DOMAIN as string;
+            const base = import.meta.env.VITE_STORE_URL || window.location.origin;
+            const returnTo = encodeURIComponent(base);
+            let checkoutUrl = `https://${storeDomain}/cart/${cartLines}?return_to=${returnTo}`;
+            if (discountCode) checkoutUrl += `&discount=${encodeURIComponent(discountCode)}`;
+            window.location.href = checkoutUrl;
           } else {
-            // No credentials: inform user
             alert('Agrega las credenciales de Shopify en el archivo .env para habilitar el checkout.');
           }
         } catch (err) {

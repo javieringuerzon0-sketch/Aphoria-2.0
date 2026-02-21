@@ -47,14 +47,35 @@ const StickyBar: React.FC = () => {
           className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl border-t border-aphoria-black/10 shadow-2xl"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 md:py-4 flex items-center justify-between gap-3 md:gap-6">
-            {/* Product Info - Hidden on mobile */}
-            <div className="hidden md:block">
-              <p className="text-[10px] uppercase tracking-[0.24em] text-aphoria-gold font-medium">
-                Limited Time Offer
-              </p>
-              <p className="text-[15px] font-bold text-aphoria-black">
-                Complete Kit • Save $8.99
-              </p>
+            {/* Product Images + Info */}
+            <div className="hidden md:flex items-center gap-4">
+              {/* Product thumbnails */}
+              <div className="flex items-center gap-1">
+                <div className="w-14 h-14 rounded-lg bg-white border border-aphoria-black/8 flex items-center justify-center overflow-hidden shadow-sm">
+                  <img
+                    src="/goldmask-landing/producto/producto%201%20pcs.png"
+                    alt="24 Gold Mask"
+                    className="w-full h-full object-contain"
+                    style={{ mixBlendMode: 'multiply', filter: 'brightness(1.1)' }}
+                  />
+                </div>
+                <div className="w-14 h-14 rounded-lg bg-white border border-aphoria-black/8 flex items-center justify-center overflow-hidden shadow-sm">
+                  <img
+                    src="/bundlee/bundlle-avocado-transparent.png"
+                    alt="Avocado Mask"
+                    className="w-full h-full object-contain"
+                    style={{ mixBlendMode: 'multiply', filter: 'brightness(1.1)' }}
+                  />
+                </div>
+              </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.24em] text-aphoria-gold font-medium">
+                  Limited Time Offer
+                </p>
+                <p className="text-[15px] font-bold text-aphoria-black">
+                  Complete Kit • Save $8.99
+                </p>
+              </div>
             </div>
 
             {/* Mobile Product Info */}
