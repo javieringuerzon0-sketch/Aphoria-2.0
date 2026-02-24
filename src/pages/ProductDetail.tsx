@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -41,6 +41,9 @@ const ProductDetail: React.FC = () => {
 
     const { variants, ugc } = currentProduct;
 
+    // Default variant
+    const currentVariant: Variant = variants[selectedVariant] || variants[Object.keys(variants)[0]];
+
     // Shuffle UGC only once on mount or handle change
     const [shuffledUgc, setShuffledUgc] = useState<Review[]>(ugc);
 
@@ -51,8 +54,77 @@ const ProductDetail: React.FC = () => {
         setSelectedVariant(newInitialVariant);
     }, [ugc, currentProduct]);
 
-    const currentVariant: Variant = variants[selectedVariant] || variants[Object.keys(variants)[0]];
+    // Track hero image load to avoid white-flash before mix-blend-mode composites
+    const [productImgLoaded, setProductImgLoaded] = useState(false);
+    useEffect(() => {
+        setProductImgLoaded(false);
+        // Preload image to prevent white flash
+        const img = new Image();
+        img.src = currentVariant.img;
+        img.onload = () => setProductImgLoaded(true);
+    }, [selectedVariant, currentVariant.img]);
 
+
+    // UGC drag-to-scroll + auto-scroll via rAF
+    const ugcTrackRef = useRef<HTMLDivElement>(null);
+    const isDragging = useRef(false);
+    const dragStartX = useRef(0);
+    const dragScrollLeft = useRef(0);
+    const autoScrollPos = useRef(0);
+    const rafRef = useRef<number | undefined>(undefined);
+
+    useEffect(() => {
+        const track = ugcTrackRef.current;
+        if (!track) return;
+        autoScrollPos.current = track.scrollLeft;
+
+        const tick = () => {
+            if (!isDragging.current) {
+                autoScrollPos.current += 0.7;
+                const half = track.scrollWidth / 2;
+                if (half > 0 && autoScrollPos.current >= half) {
+                    autoScrollPos.current = 0;
+                }
+                track.scrollLeft = autoScrollPos.current;
+            }
+            rafRef.current = requestAnimationFrame(tick);
+        };
+
+        rafRef.current = requestAnimationFrame(tick);
+        return () => { if (rafRef.current !== undefined) cancelAnimationFrame(rafRef.current); };
+    }, [shuffledUgc]);
+
+    const handleUgcMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+        isDragging.current = true;
+        dragStartX.current = e.pageX;
+        dragScrollLeft.current = ugcTrackRef.current?.scrollLeft ?? 0;
+    };
+    const handleUgcMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!isDragging.current) return;
+        e.preventDefault();
+        const walk = (dragStartX.current - e.pageX) * 1.5;
+        if (ugcTrackRef.current) {
+            ugcTrackRef.current.scrollLeft = dragScrollLeft.current + walk;
+            autoScrollPos.current = ugcTrackRef.current.scrollLeft;
+        }
+    };
+    const handleUgcDragEnd = () => {
+        isDragging.current = false;
+        if (ugcTrackRef.current) autoScrollPos.current = ugcTrackRef.current.scrollLeft;
+    };
+    const handleUgcTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+        isDragging.current = true;
+        dragStartX.current = e.touches[0].pageX;
+        dragScrollLeft.current = ugcTrackRef.current?.scrollLeft ?? 0;
+    };
+    const handleUgcTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+        if (!isDragging.current) return;
+        const walk = (dragStartX.current - e.touches[0].pageX) * 1.5;
+        if (ugcTrackRef.current) {
+            ugcTrackRef.current.scrollLeft = dragScrollLeft.current + walk;
+            autoScrollPos.current = ugcTrackRef.current.scrollLeft;
+        }
+    };
 
     const { addItem, open: openCart } = useCartStore();
 
@@ -92,20 +164,30 @@ const ProductDetail: React.FC = () => {
                                 animate={{ opacity: 1 }}
                                 className="relative aspect-[4/5] flex items-center justify-center p-8 lg:p-12"
                             >
+                                {/* Loading Skeleton - shows immediately to prevent white flash */}
+                                <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${productImgLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'} z-20`}>
+                                    <div className="w-12 h-12 border-4 border-aphoria-gold/20 border-t-aphoria-gold rounded-full animate-spin" />
+                                </div>
                                 <AnimatePresence mode="wait">
                                     <motion.img
                                         key={selectedVariant}
-                                        initial={{ opacity: 0, scale: 0.95 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        exit={{ opacity: 0, scale: 0.95 }}
-                                        transition={{ duration: 0.3, ease: "easeOut" }}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: productImgLoaded ? 1 : 0 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 0.4, ease: "easeOut" }}
                                         src={currentVariant.img}
                                         alt={currentProduct.name}
                                         className="w-full h-full object-contain relative z-10"
                                         style={{
                                             mixBlendMode: 'multiply',
                                             filter: 'brightness(1.35) contrast(1.05) saturate(1.1)',
+                                            visibility: productImgLoaded ? 'visible' : 'hidden'
                                         }}
+                                        onLoad={() => {
+                                            // Small delay to ensure browser handled blend mode composite
+                                            setTimeout(() => setProductImgLoaded(true), 50);
+                                        }}
+                                        fetchPriority="high"
                                     />
                                 </AnimatePresence>
 
@@ -258,24 +340,18 @@ const ProductDetail: React.FC = () => {
 
                         {/* INFINITE MARQUEE CONTAINER */}
                         <div className="mask-fade-x relative w-full overflow-hidden">
-                            <style>{`
-                                @keyframes marquee {
-                                    0% { transform: translateX(0); }
-                                    100% { transform: translateX(-50%); }
-                                }
-                                .animate-marquee {
-                                    animation: marquee 60s linear infinite;
-                                }
-                                .animate-marquee:hover {
-                                    animation-play-state: paused;
-                                }
-                                .mask-fade-x {
-                                    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-                                    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-                                }
-                            `}</style>
-
-                            <div className="flex w-max animate-marquee py-10">
+                            <div
+                                ref={ugcTrackRef}
+                                className="overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing select-none"
+                                onMouseDown={handleUgcMouseDown}
+                                onMouseMove={handleUgcMouseMove}
+                                onMouseUp={handleUgcDragEnd}
+                                onMouseLeave={handleUgcDragEnd}
+                                onTouchStart={handleUgcTouchStart}
+                                onTouchMove={handleUgcTouchMove}
+                                onTouchEnd={handleUgcDragEnd}
+                            >
+                            <div className="flex w-max py-10">
                                 {/* Duplicate array for seamless loop using shuffled data */}
                                 {[...shuffledUgc, ...shuffledUgc].map((item: any, i) => (
                                     <div
@@ -283,12 +359,12 @@ const ProductDetail: React.FC = () => {
                                         className="w-[300px] md:w-[360px] mx-5 flex-shrink-0 group cursor-pointer"
                                     >
                                         {/* STORY CARD */}
-                                        <div className="aspect-[9/16] relative rounded-[30px] overflow-hidden bg-gray-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_40px_80px_-20px_rgba(198,161,91,0.2)]">
+                                        <div className="aspect-[9/16] relative rounded-[30px] overflow-hidden bg-gray-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] [transition-property:scale,box-shadow] duration-500 hover:scale-[1.02] hover:shadow-[0_40px_80px_-20px_rgba(198,161,91,0.2)]">
 
                                             {/* IMAGE */}
                                             <img
                                                 src={item.img}
-                                                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:blur-sm"
+                                                className="w-full h-full object-cover [transition-property:scale,filter] duration-700 group-hover:scale-105 group-hover:blur-sm"
                                                 alt={`Review by ${item.user}`}
                                                 loading="lazy"
                                             />
@@ -298,7 +374,7 @@ const ProductDetail: React.FC = () => {
 
                                                 {/* BLUR REVEAL TEXT (Centered when blurred) */}
                                                 <div className="absolute inset-0 flex items-center justify-center p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
-                                                    <div className="text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                                    <div className="text-center translate-y-4 group-hover:translate-y-0 [transition-property:translate] duration-500">
                                                         <Quote size={24} className="text-aphoria-gold mx-auto mb-4" />
                                                         <p className="text-white text-sm font-medium leading-relaxed italic">
                                                             "{item.text}"
@@ -335,6 +411,7 @@ const ProductDetail: React.FC = () => {
                                         </div>
                                     </div>
                                 ))}
+                            </div>
                             </div>
                         </div>
 

@@ -34,18 +34,20 @@ const Navbar: React.FC = () => {
   // Determine tones based on scroll position and route
   const isHomePage = location.pathname === '/';
   const isProductPage = location.pathname.includes('/product/');
+  // Pages that start with a dark full-screen hero — navbar should be white until scrolled
+  const isDarkHeroPage = location.pathname === '/' || location.pathname === '/about';
 
   // Determine appearance based on scroll and current route
-  const brandTone = (scrolled || !isHomePage) ? 'text-aphoria-black' : 'text-white';
-  const linkTone = (scrolled || !isHomePage)
+  const brandTone = (scrolled || !isDarkHeroPage) ? 'text-aphoria-black' : 'text-white';
+  const linkTone = (scrolled || !isDarkHeroPage)
     ? 'text-aphoria-black/70 hover:text-aphoria-black'
     : 'text-white/70 hover:text-white';
-  const iconTone = (scrolled || !isHomePage) ? 'text-aphoria-black/80' : 'text-white';
-  const buttonBorder = (scrolled || !isHomePage) ? 'border-aphoria-black/20' : 'border-white/20';
-  const buttonText = (scrolled || !isHomePage) ? 'text-aphoria-black' : 'text-white/90';
+  const iconTone = (scrolled || !isDarkHeroPage) ? 'text-aphoria-black/80' : 'text-white';
+  const buttonBorder = (scrolled || !isDarkHeroPage) ? 'border-aphoria-black/20' : 'border-white/20';
+  const buttonText = (scrolled || !isDarkHeroPage) ? 'text-aphoria-black' : 'text-white/90';
 
-  // High-end text shadow for readability only on home page video
-  const textGlow = (scrolled || !isHomePage)
+  // High-end text shadow for readability on dark hero pages
+  const textGlow = (scrolled || !isDarkHeroPage)
     ? 'none'
     : '0 2px 14px rgba(0,0,0,0.35)';
 
@@ -64,7 +66,7 @@ const Navbar: React.FC = () => {
 
             {isProductPage && (
               <div className="flex items-center gap-3">
-                <span className={`h-4 w-px ${scrolled || !isHomePage ? 'bg-aphoria-black/20' : 'bg-white/20'}`}></span>
+                <span className={`h-4 w-px ${scrolled || !isDarkHeroPage ? 'bg-aphoria-black/20' : 'bg-white/20'}`}></span>
                 <span className={`text-[9px] md:text-[11px] uppercase tracking-[0.4em] font-bold ${brandTone} opacity-60`}>
                   {location.pathname.includes('gold-mask') ? '24 Gold Mask' : 'Avocado Mask'}
                 </span>
@@ -80,7 +82,7 @@ const Navbar: React.FC = () => {
             <a href="/#bundle" onClick={(e) => handleAnchorClick(e, '#bundle')} className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Bundle</a>
             <Link to="/contact" className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Contact</Link>
 
-            <div className={`hidden h-5 w-px md:block ${scrolled || !isHomePage ? 'bg-aphoria-black/15' : 'bg-white/15'}`}></div>
+            <div className={`hidden h-5 w-px md:block ${scrolled || !isDarkHeroPage ? 'bg-aphoria-black/15' : 'bg-white/15'}`}></div>
 
             <button
               onClick={openCart}
@@ -114,7 +116,7 @@ const Navbar: React.FC = () => {
             <button
               onClick={() => setIsMenuOpen(true)}
               className={`inline-flex h-11 w-11 items-center justify-center rounded-full border bg-white/5 transition-all duration-300 hover:bg-white/10 ${buttonBorder} ${iconTone}`}
-              style={{ filter: (scrolled || !isHomePage) ? 'none' : 'drop-shadow(0 2px 10px rgba(0,0,0,0.5))' }}
+              style={{ filter: (scrolled || !isDarkHeroPage) ? 'none' : 'drop-shadow(0 2px 10px rgba(0,0,0,0.5))' }}
               aria-label="Open menu"
               aria-expanded={isMenuOpen}
             >
@@ -123,7 +125,7 @@ const Navbar: React.FC = () => {
             <button
               onClick={openCart}
               className={`inline-flex h-11 w-11 items-center justify-center rounded-full border bg-white/5 transition-all duration-300 hover:bg-white/10 ${buttonBorder} ${iconTone}`}
-              style={{ filter: (scrolled || !isHomePage) ? 'none' : 'drop-shadow(0 2px 10px rgba(0,0,0,0.5))' }}
+              style={{ filter: (scrolled || !isDarkHeroPage) ? 'none' : 'drop-shadow(0 2px 10px rgba(0,0,0,0.5))' }}
               aria-label="View cart"
             >
               <ShoppingBag size={18} strokeWidth={1.5} />

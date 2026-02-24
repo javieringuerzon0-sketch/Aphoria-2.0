@@ -46,15 +46,16 @@ const STYLES = `
   }
 
   .product-img-main {
-    /* Sin filter SVG, sin drop-shadow, sin willChange en la imagen */
+    /* Sin filter SVG, sin drop-shadow */
     display: block;
     width: 100%;
     height: auto;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: auto;
     mix-blend-mode: multiply;
-    /* Unico transform permitido: fuerza GPU layer sin rasterizar */
-    transform: translateZ(0);
+    /* Tailwind v4 usa CSS scale property — transition-transform no la cubre */
+    will-change: scale, transform;
+    transition: scale 700ms cubic-bezier(0.22, 1, 0.36, 1);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
   }
@@ -208,18 +209,12 @@ const ProductGallery: React.FC = () => {
               >
                 {/* Wrapper con SOLO translateY — sin preserve-3d ni willChange */}
                 <div className="product-float-wrapper group">
-                  {/* Glow en div separado — nunca en la imagen */}
-                  <div
-                    className="product-glow"
-                    style={{ background: 'radial-gradient(circle, rgba(198,161,91,0.45) 0%, rgba(198,161,91,0.15) 45%, transparent 70%)' }}
-                  />
-
                   {/* Imagen principal — SIN filter, SIN drop-shadow */}
                   <div style={{ position: 'relative' }}>
                     <img
                       src={'/bundlee/goldmask-bundlee.png'}
                       alt="24 Gold Mask"
-                      className="product-img-main z-10 transition-transform duration-700 group-hover:scale-[1.04]"
+                      className="product-img-main z-10 group-hover:scale-[1.04]"
                       loading="eager"
                       fetchPriority="high"
                       decoding="sync"
@@ -304,16 +299,11 @@ const ProductGallery: React.FC = () => {
                 transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
               >
                 <div className="product-float-wrapper-delayed group">
-                  <div
-                    className="product-glow"
-                    style={{ background: 'radial-gradient(circle, rgba(15,59,46,0.45) 0%, rgba(15,59,46,0.15) 45%, transparent 70%)' }}
-                  />
-
                   <div style={{ position: 'relative' }}>
                     <img
                       src={'/bundlee/bundlle-avocado-transparent.png'}
                       alt="Avocado Mask"
-                      className="product-img-main z-10 transition-transform duration-700 group-hover:scale-[1.04]"
+                      className="product-img-main z-10 group-hover:scale-[1.04]"
                       loading="eager"
                       fetchPriority="high"
                       decoding="sync"
@@ -461,27 +451,57 @@ const ProductGallery: React.FC = () => {
               {/* Product Card */}
               <div className="relative rounded-2xl border border-aphoria-black/10 bg-white/80 backdrop-blur overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.06)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] transition-all duration-500">
                 {/* Image */}
-                <div className="relative h-[450px] overflow-hidden bg-gradient-to-br from-aphoria-bg/50 to-white/80">
-                  <img
-                    src={product.galleryImg || product.variants['1pc'].img}
-                    alt={product.name}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    loading={index === 0 ? "eager" : "lazy"}
-                    fetchPriority={index === 0 ? "high" : "auto"}
-                    decoding="sync"
-                    style={{
-                      transform: 'translateZ(0)',
-                      willChange: 'transform',
-                      backfaceVisibility: 'hidden',
-                      WebkitBackfaceVisibility: 'hidden',
-                      WebkitFontSmoothing: 'antialiased',
-                      MozOsxFontSmoothing: 'grayscale'
-                    }}
-                  />
+                {/* Image Wrap for Apple Style */}
+                <div className="relative h-[480px] overflow-hidden bg-gradient-to-br from-aphoria-bg/50 to-white/80 flex items-center justify-center">
+                  <div className="product-float-wrapper group/float w-full relative">
+                    {/* Glow */}
+                    <div
+                      className="product-glow"
+                      style={{
+                        background: index % 2 === 0
+                          ? 'radial-gradient(circle, rgba(198,161,91,0.3) 0%, transparent 70%)'
+                          : 'radial-gradient(circle, rgba(15,59,46,0.3) 0%, transparent 70%)'
+                      }}
+                    />
 
+                    <div className="relative">
+                      <img
+                        src={product.galleryImg || product.variants['1pc'].img}
+                        alt={product.name}
+                        className="product-img-main z-10 transition-transform duration-700 group-hover/float:scale-105"
+                        loading={index === 0 ? "eager" : "lazy"}
+                        fetchPriority={index === 0 ? "high" : "auto"}
+                        decoding="sync"
+                      />
+
+                      {/* Reflection */}
+                      <div className="product-reflection">
+                        <img
+                          src={product.galleryImg || product.variants['1pc'].img}
+                          alt=""
+                        />
+                      </div>
+
+                      {/* Ground Shadow */}
+                      <div className="product-ground-shadow" />
+                    </div>
+
+                    {/* Shine effect on hover */}
+                    <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-0 group-hover/float:opacity-100 transition-opacity duration-300 z-20">
+                      <div
+                        style={{
+                          position: 'absolute',
+                          inset: 0,
+                          background: 'linear-gradient(110deg, transparent 20%, rgba(255,255,255,0.85) 50%, transparent 80%)',
+                          animation: 'appleShine 1.5s ease-out',
+                          transform: 'translateX(-100%)'
+                        }}
+                      />
+                    </div>
+                  </div>
 
                   {/* Badges */}
-                  <div className="absolute top-4 left-4 right-4 flex items-start justify-between gap-2 flex-wrap">
+                  <div className="absolute top-4 left-4 right-4 flex items-start justify-between gap-2 flex-wrap z-30">
                     <div className="inline-flex items-center gap-1.5 rounded-full bg-aphoria-green/95 backdrop-blur-sm border border-aphoria-green/40 px-3 py-1.5 text-[9px] uppercase tracking-[0.24em] text-white shadow-lg">
                       <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -497,7 +517,7 @@ const ProductGallery: React.FC = () => {
                   </div>
 
                   {/* Recommended badge */}
-                  <div className="absolute bottom-4 left-4 right-4">
+                  <div className="absolute bottom-4 left-4 right-4 z-30">
                     <div className="inline-flex items-center gap-2 rounded-full bg-aphoria-black/80 backdrop-blur-sm px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-white/90 shadow-xl">
                       ✦ {product.recommended}
                     </div>
@@ -596,7 +616,7 @@ const ProductGallery: React.FC = () => {
                       {/* Primary CTA */}
                       <button
                         onClick={() => addProductToCart(product)}
-                        className="w-full rounded-full px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.26em] shadow-[0_12px_28px_rgba(15,59,46,0.25)] transition-all duration-500 flex items-center justify-center"
+                        className="w-full rounded-full px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.26em] shadow-[0_12px_28px_rgba(15,59,46,0.25)] flex items-center justify-center transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:shadow-[0_20px_40px_rgba(15,59,46,0.35)] hover:brightness-110"
                         style={{ background: 'linear-gradient(to right, #0F3B2E, #1a5c47)', color: 'white' }}
                       >
                         Add to Cart
@@ -605,8 +625,8 @@ const ProductGallery: React.FC = () => {
                       {/* Secondary CTA */}
                       <button
                         onClick={() => buyProductNow(product)}
-                        className="w-full rounded-full border-2 px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] transition-all duration-500 flex items-center justify-center"
-                        style={{ borderColor: 'rgba(17,17,17,0.15)', color: 'rgba(17,17,17,0.8)' }}
+                        className="w-full rounded-full border-2 px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] transition-all duration-300 flex items-center justify-center hover:scale-[1.02] active:scale-[0.98] hover:bg-aphoria-black hover:text-white hover:border-aphoria-black text-aphoria-black/80"
+                        style={{ borderColor: 'rgba(17,17,17,0.15)' }}
                       >
                         Buy Now — Fast Checkout
                       </button>

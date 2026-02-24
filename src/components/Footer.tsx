@@ -93,15 +93,24 @@ const Footer: React.FC = () => {
           {/* Navigation Links - Column 2 */}
           <div className="lg:col-span-2">
             <nav className="flex flex-col space-y-4 text-[15px] text-aphoria-black font-medium text-left">
-              <a href="#" className="hover:text-aphoria-gold transition-colors duration-200">
+              <Link to="/about" className="hover:text-aphoria-gold transition-colors duration-200">
+                About Us
+              </Link>
+              <Link to="/shipping-policy" className="hover:text-aphoria-gold transition-colors duration-200">
+                Shipping Policy
+              </Link>
+              <Link to="/refund-policy" className="hover:text-aphoria-gold transition-colors duration-200">
+                Return & Refunds
+              </Link>
+              <Link to="/privacy-policy" className="hover:text-aphoria-gold transition-colors duration-200">
                 Privacy Policy
-              </a>
-              <a href="#" className="hover:text-aphoria-gold transition-colors duration-200">
+              </Link>
+              <Link to="/terms-of-service" className="hover:text-aphoria-gold transition-colors duration-200">
                 Terms of Service
-              </a>
-              <a href="/#about" className="hover:text-aphoria-gold transition-colors duration-200">
-                About
-              </a>
+              </Link>
+              <Link to="/cookie-policy" className="hover:text-aphoria-gold transition-colors duration-200">
+                Cookie Policy
+              </Link>
             </nav>
           </div>
 

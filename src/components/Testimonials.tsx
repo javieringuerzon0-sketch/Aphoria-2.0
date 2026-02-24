@@ -65,7 +65,7 @@ const Testimonials: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % testimonials.length);
-    }, 3000);
+    }, 2000);
     return () => clearInterval(interval);
   }, [testimonials.length]);
 
@@ -133,7 +133,7 @@ const Testimonials: React.FC = () => {
                 className="absolute w-full max-w-md"
                 style={{
                   ...getCardStyle(index),
-                  transition: 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)'
+                  transition: 'all 0.45s cubic-bezier(0.22, 1, 0.36, 1)'
                 }}
               >
                 <div className="bg-white rounded-2xl shadow-2xl p-8 border border-aphoria-black/5">

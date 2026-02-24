@@ -154,8 +154,8 @@ export const PRODUCTS: Product[] = [
         price: 33.99,
         regularPrice: 59.99,
         id: 'REF_AVO_S1',
-        // PRODUCT IMAGE for /product/avocado-mask — transparent PNG (no background)
-        img: '/bundlee/bundlle-avocado-transparent.png',
+        // PRODUCT IMAGE for /product/avocado-mask
+        img: '/avocado-landing/producto/avocado-producto.png',
         shopifyVariantId: 'gid://shopify/ProductVariant/42494908629035'
       }
     },

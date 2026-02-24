@@ -9,6 +9,12 @@ import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Diagnostic from './pages/Diagnostic';
 import ThankYou from './pages/ThankYou';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import ShippingPolicy from './pages/ShippingPolicy';
+import RefundPolicy from './pages/RefundPolicy';
+import CookiePolicy from './pages/CookiePolicy';
+import About from './pages/About';
 
 // Common Components
 const Footer = lazy(() => import('./components/Footer'));
@@ -29,6 +35,12 @@ function AppInner() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/diagnostic" element={<Diagnostic />} />
           <Route path="/thank-you" element={<ThankYou />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/shipping-policy" element={<ShippingPolicy />} />
+          <Route path="/refund-policy" element={<RefundPolicy />} />
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </Suspense>
 
