@@ -23,7 +23,19 @@
       "Bash(node -e:*)",
       "Bash(ping:*)",
       "Bash(curl -s -X POST \"https://r6duap-tx.myshopify.com/api/2025-01/graphql.json\" -H \"X-Shopify-Storefront-Access-Token: 62b40e3f01d5b303e2b923d6d13bed2e\" -H \"Content-Type: application/json\" -d \"{\"\"query\"\":\"\"{ products\\(first:5\\){ nodes{ title variants\\(first:3\\){ nodes{ id title price{ amount } } } } } }\"\"}\")",
-      "Bash(npx vercel:*)"
+      "Bash(npx vercel:*)",
+      "Bash(cat:*)",
+      "Bash(node:*)",
+      "Bash(perl:*)",
+      "Bash(head:*)",
+      "Bash(tasklist:*)",
+      "Bash(cd:*)",
+      "WebSearch",
+      "WebFetch(domain:www.glossier.com)",
+      "WebFetch(domain:help.tatcha.com)",
+      "WebFetch(domain:www.drunkelephant.com)",
+      "WebFetch(domain:unsplash.com)",
+      "WebFetch(domain:images.unsplash.com)"
     ]
   }
 }

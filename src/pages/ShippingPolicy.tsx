@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Package, Clock, MapPin, Shield } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const regions = [
   {
@@ -120,16 +121,28 @@ const ShippingPolicy: React.FC = () => {
               { icon: Clock, label: '1–3 Day Processing', sub: 'Orders dispatched quickly' },
               { icon: MapPin, label: 'Tracked Delivery', sub: 'Real-time tracking included' },
               { icon: Shield, label: 'Insured Parcels', sub: 'Every shipment is protected' },
-            ].map(({ icon: Icon, label, sub }) => (
-              <div key={label} className="bg-white/80 border border-aphoria-black/8 rounded-2xl p-6 flex flex-col gap-3">
-                <div className="w-10 h-10 bg-aphoria-gold/10 rounded-xl flex items-center justify-center">
+            ].map(({ icon: Icon, label, sub }, i) => (
+              <motion.div
+                key={label}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.08 }}
+                whileHover={{ y: -6, boxShadow: '0 20px 48px rgba(198,161,91,0.13)' }}
+                className="bg-white/80 border border-aphoria-black/8 rounded-2xl p-6 flex flex-col gap-3 cursor-default transition-colors duration-300 hover:border-aphoria-gold/30"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.12, rotate: -4 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 18 }}
+                  className="w-10 h-10 bg-aphoria-gold/10 rounded-xl flex items-center justify-center"
+                >
                   <Icon size={18} className="text-aphoria-gold" />
-                </div>
+                </motion.div>
                 <div>
                   <p className="text-[13px] font-semibold text-aphoria-black">{label}</p>
                   <p className="text-[12px] text-aphoria-mid font-light">{sub}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -145,17 +158,33 @@ const ShippingPolicy: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {regions.map((r) => (
-                <div
+              {regions.map((r, i) => (
+                <motion.div
                   key={r.name}
-                  className={`rounded-2xl p-6 border transition-all ${
+                  initial={{ opacity: 0, y: 32 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.07 }}
+                  whileHover={{
+                    y: -7,
+                    boxShadow: r.highlight
+                      ? '0 24px 52px rgba(15,59,46,0.28)'
+                      : '0 20px 48px rgba(198,161,91,0.12)',
+                  }}
+                  className={`rounded-2xl p-6 border cursor-default transition-colors duration-300 ${
                     r.highlight
-                      ? 'bg-aphoria-green border-aphoria-green text-white'
-                      : 'bg-white/80 border-aphoria-black/8'
+                      ? 'bg-aphoria-green border-aphoria-green text-white hover:border-aphoria-gold/60'
+                      : 'bg-white/80 border-aphoria-black/8 hover:border-aphoria-gold/30'
                   }`}
                 >
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="text-3xl">{r.flag}</span>
+                    <motion.span
+                      whileHover={{ scale: 1.18, rotate: -6 }}
+                      transition={{ type: 'spring', stiffness: 320, damping: 16 }}
+                      className="text-3xl inline-block"
+                    >
+                      {r.flag}
+                    </motion.span>
                     <div>
                       <p className={`font-semibold text-[14px] ${r.highlight ? 'text-white' : 'text-aphoria-black'}`}>{r.name}</p>
                       {r.highlight && (
@@ -167,30 +196,46 @@ const ShippingPolicy: React.FC = () => {
                     {r.transit}
                   </p>
                   <p className={`text-[12px] font-light ${r.highlight ? 'text-white/60' : 'text-aphoria-mid'}`}>{r.note}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
 
           {/* Processing & Tracking */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
-            <div className="bg-white/80 border border-aphoria-black/8 rounded-2xl p-8">
-              <h3 className="text-xl font-brand font-light text-aphoria-black mb-4">Order Processing</h3>
-              <div className="space-y-4 text-[15px] text-aphoria-mid font-light leading-relaxed">
-                <p>Orders are typically processed and handed to our shipping carrier within <strong className="text-aphoria-black font-medium">1–3 business days</strong> of being placed. Orders placed on weekends or public holidays will begin processing on the next business day.</p>
-                <p>During peak periods (promotional events, holidays), processing may take up to 5 business days. We will notify you if there is an unexpected delay.</p>
-                <p>You will receive an order confirmation email immediately after purchase, followed by a shipping confirmation with tracking details once your order is dispatched.</p>
-              </div>
-            </div>
-
-            <div className="bg-white/80 border border-aphoria-black/8 rounded-2xl p-8">
-              <h3 className="text-xl font-brand font-light text-aphoria-black mb-4">Tracking Your Order</h3>
-              <div className="space-y-4 text-[15px] text-aphoria-mid font-light leading-relaxed">
-                <p>Every Aphoria shipment includes full tracking. Once your order is dispatched, you will receive an email with your <strong className="text-aphoria-black font-medium">tracking number and a direct link</strong> to monitor your delivery in real time.</p>
-                <p>Tracking information may take up to 24 hours to update after your order ships, as carriers process scan data at scheduled intervals.</p>
-                <p>If you have not received a tracking email within 5 business days of your order, please check your spam folder or contact us at <a href="mailto:support@aphoriabeauty.com" className="text-aphoria-gold hover:underline">support@aphoriabeauty.com</a>.</p>
-              </div>
-            </div>
+            {[
+              {
+                title: 'Order Processing',
+                paragraphs: [
+                  <p key="1">Orders are typically processed and handed to our shipping carrier within <strong className="text-aphoria-black font-medium">1–3 business days</strong> of being placed. Orders placed on weekends or public holidays will begin processing on the next business day.</p>,
+                  <p key="2">During peak periods (promotional events, holidays), processing may take up to 5 business days. We will notify you if there is an unexpected delay.</p>,
+                  <p key="3">You will receive an order confirmation email immediately after purchase, followed by a shipping confirmation with tracking details once your order is dispatched.</p>,
+                ]
+              },
+              {
+                title: 'Tracking Your Order',
+                paragraphs: [
+                  <p key="1">Every Aphoria shipment includes full tracking. Once your order is dispatched, you will receive an email with your <strong className="text-aphoria-black font-medium">tracking number and a direct link</strong> to monitor your delivery in real time.</p>,
+                  <p key="2">Tracking information may take up to 24 hours to update after your order ships, as carriers process scan data at scheduled intervals.</p>,
+                  <p key="3">If you have not received a tracking email within 5 business days of your order, please check your spam folder or contact us at <a href="mailto:support@aphoriabeauty.com" className="text-aphoria-gold hover:underline">support@aphoriabeauty.com</a>.</p>,
+                ]
+              }
+            ].map((card, i) => (
+              <motion.div
+                key={card.title}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 }}
+                whileHover={{ y: -5, boxShadow: '0 18px 44px rgba(198,161,91,0.10)' }}
+                className="bg-white/80 border border-aphoria-black/8 rounded-2xl p-8 cursor-default transition-colors duration-300 hover:border-aphoria-gold/25"
+              >
+                <h3 className="text-xl font-brand font-light text-aphoria-black mb-4">{card.title}</h3>
+                <div className="space-y-4 text-[15px] text-aphoria-mid font-light leading-relaxed">
+                  {card.paragraphs}
+                </div>
+              </motion.div>
+            ))}
           </div>
 
           {/* Customs Note */}
