@@ -53,13 +53,17 @@ const ProductDetail: React.FC = () => {
     }, [ugc, currentProduct]);
 
     // Track hero image load to avoid white-flash before mix-blend-mode composites
+    const productImgRef = useRef<HTMLImageElement>(null);
     const [productImgLoaded, setProductImgLoaded] = useState(false);
     useEffect(() => {
+        // Reset state for the new variant/image
         setProductImgLoaded(false);
-        // Preload image to prevent white flash
-        const img = new Image();
-        img.src = currentVariant.img;
-        img.onload = () => setProductImgLoaded(true);
+        // For cached images: onLoad fires during DOM commit (BEFORE this effect runs),
+        // so we must check .complete here and recover. React batches both calls → single render.
+        const el = productImgRef.current;
+        if (el && el.complete && el.naturalWidth > 0) {
+            setProductImgLoaded(true);
+        }
     }, [selectedVariant, currentVariant.img]);
 
 
@@ -168,6 +172,7 @@ const ProductDetail: React.FC = () => {
                                 </div>
                                 <AnimatePresence mode="wait">
                                     <motion.img
+                                        ref={productImgRef}
                                         key={selectedVariant}
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: productImgLoaded ? 1 : 0 }}
@@ -181,10 +186,7 @@ const ProductDetail: React.FC = () => {
                                             filter: 'brightness(1.35) contrast(1.05) saturate(1.1)',
                                             visibility: productImgLoaded ? 'visible' : 'hidden'
                                         }}
-                                        onLoad={() => {
-                                            // Small delay to ensure browser handled blend mode composite
-                                            setTimeout(() => setProductImgLoaded(true), 50);
-                                        }}
+                                        onLoad={() => setProductImgLoaded(true)}
                                         fetchPriority="high"
                                     />
                                 </AnimatePresence>
