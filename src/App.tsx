@@ -9,12 +9,12 @@ import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Diagnostic from './pages/Diagnostic';
 import ThankYou from './pages/ThankYou';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import TermsOfService from './pages/TermsOfService';
-import ShippingPolicy from './pages/ShippingPolicy';
-import RefundPolicy from './pages/RefundPolicy';
-import CookiePolicy from './pages/CookiePolicy';
-import About from './pages/About';
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsOfService = lazy(() => import('./pages/TermsOfService'));
+const ShippingPolicy = lazy(() => import('./pages/ShippingPolicy'));
+const RefundPolicy = lazy(() => import('./pages/RefundPolicy'));
+const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
+const About = lazy(() => import('./pages/About'));
 
 // Common Components
 const Footer = lazy(() => import('./components/Footer'));

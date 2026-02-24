@@ -1,21 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCartStore } from '../store/useCartStore';
 import { PRODUCTS } from '../constants';
 
 const StickyBar: React.FC = () => {
   const [show, setShow] = useState(false);
+  const scrollRafRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Mostrar después de scrollear 2000px (aproximadamente después de ProductGallery)
-      const scrolled = window.scrollY > 2000;
-      setShow(scrolled);
+      if (scrollRafRef.current !== undefined) return;
+      scrollRafRef.current = requestAnimationFrame(() => {
+        setShow(window.scrollY > 2000);
+        scrollRafRef.current = undefined;
+      });
     };
 
-    handleScroll(); // Check initial state
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollRafRef.current !== undefined) cancelAnimationFrame(scrollRafRef.current);
+    };
   }, []);
 
   const { addItem, checkout } = useCartStore();

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ShoppingBag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -13,14 +13,22 @@ const Navbar: React.FC = () => {
   const cartCount = totalItems();
   const location = useLocation();
   const navigate = useNavigate();
+  const scrollRafRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 24);
+      if (scrollRafRef.current !== undefined) return;
+      scrollRafRef.current = requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 24);
+        scrollRafRef.current = undefined;
+      });
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollRafRef.current !== undefined) cancelAnimationFrame(scrollRafRef.current);
+    };
   }, [setScrolled]);
 
 

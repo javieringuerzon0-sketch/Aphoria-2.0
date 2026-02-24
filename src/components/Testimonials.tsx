@@ -1,66 +1,67 @@
 import React, { useState, useEffect } from 'react';
 
+// Defined outside component — array is stable, never recreated on re-render
+const testimonials = [
+  {
+    quote:
+      "I've been using the Avocado Mask for three weeks and my skin feels so nourished! The texture is creamy and absorbs beautifully. My face looks plump and hydrated every morning.",
+    name: 'Emma Richardson',
+    role: 'Skincare Enthusiast',
+    image:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&w=160&h=160&q=80'
+  },
+  {
+    quote:
+      "The 24 Gold Mask is pure luxury! I love how it brightens my complexion and gives me that healthy glow. It's become my go-to treatment before special occasions.",
+    name: 'Sophia Martinez',
+    role: 'Beauty Blogger',
+    image:
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=facearea&w=160&h=160&q=80'
+  },
+  {
+    quote:
+      "Both masks are incredible! The Avocado Mask soothes my sensitive skin, and the 24 Gold Mask adds radiance. I alternate them weekly and my skin has never looked better.",
+    name: 'Isabella Chen',
+    role: 'Verified Customer',
+    image:
+      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=facearea&w=160&h=160&q=80'
+  },
+  {
+    quote:
+      "The 24 Gold Mask feels so elegant on the skin. I notice firmer texture and reduced fine lines after just a few uses. Totally worth the investment!",
+    name: 'Olivia Thompson',
+    role: 'Spa Director',
+    image:
+      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=facearea&w=160&h=160&q=80'
+  },
+  {
+    quote:
+      "The Avocado Mask is a game-changer for dry skin! It's rich without being heavy, and my skin drinks it up. I wake up with a smooth, dewy complexion.",
+    name: 'Natalie Brooks',
+    role: 'Makeup Artist',
+    image:
+      'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=facearea&w=160&h=160&q=80'
+  },
+  {
+    quote:
+      "I'm obsessed with the 24 Gold Mask! It makes my skin look luminous and feels incredibly soft. My clients always ask what I'm using.",
+    name: 'Carmen Vasquez',
+    role: 'Esthetician',
+    image:
+      'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=facearea&w=160&h=160&q=80'
+  },
+  {
+    quote:
+      "These masks are my weekly ritual now. The Avocado Mask calms redness and the 24 Gold Mask brings back my youthful glow. Highly recommend both!",
+    name: 'Rachel Kim',
+    role: 'Wellness Coach',
+    image:
+      'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=facearea&w=160&h=160&q=80'
+  }
+];
+
 const Testimonials: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-
-  const testimonials = [
-    {
-      quote:
-        "I've been using the Avocado Mask for three weeks and my skin feels so nourished! The texture is creamy and absorbs beautifully. My face looks plump and hydrated every morning.",
-      name: 'Emma Richardson',
-      role: 'Skincare Enthusiast',
-      image:
-        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&w=160&h=160&q=80'
-    },
-    {
-      quote:
-        "The 24 Gold Mask is pure luxury! I love how it brightens my complexion and gives me that healthy glow. It's become my go-to treatment before special occasions.",
-      name: 'Sophia Martinez',
-      role: 'Beauty Blogger',
-      image:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=facearea&w=160&h=160&q=80'
-    },
-    {
-      quote:
-        "Both masks are incredible! The Avocado Mask soothes my sensitive skin, and the 24 Gold Mask adds radiance. I alternate them weekly and my skin has never looked better.",
-      name: 'Isabella Chen',
-      role: 'Verified Customer',
-      image:
-        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=facearea&w=160&h=160&q=80'
-    },
-    {
-      quote:
-        "The 24 Gold Mask feels so elegant on the skin. I notice firmer texture and reduced fine lines after just a few uses. Totally worth the investment!",
-      name: 'Olivia Thompson',
-      role: 'Spa Director',
-      image:
-        'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=facearea&w=160&h=160&q=80'
-    },
-    {
-      quote:
-        "The Avocado Mask is a game-changer for dry skin! It's rich without being heavy, and my skin drinks it up. I wake up with a smooth, dewy complexion.",
-      name: 'Natalie Brooks',
-      role: 'Makeup Artist',
-      image:
-        'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=facearea&w=160&h=160&q=80'
-    },
-    {
-      quote:
-        "I'm obsessed with the 24 Gold Mask! It makes my skin look luminous and feels incredibly soft. My clients always ask what I'm using.",
-      name: 'Carmen Vasquez',
-      role: 'Esthetician',
-      image:
-        'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=facearea&w=160&h=160&q=80'
-    },
-    {
-      quote:
-        "These masks are my weekly ritual now. The Avocado Mask calms redness and the 24 Gold Mask brings back my youthful glow. Highly recommend both!",
-      name: 'Rachel Kim',
-      role: 'Wellness Coach',
-      image:
-        'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=facearea&w=160&h=160&q=80'
-    }
-  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -167,6 +168,9 @@ const Testimonials: React.FC = () => {
                       <img
                         src={testimonial.image}
                         alt={testimonial.name}
+                        width={48}
+                        height={48}
+                        loading="lazy"
                         className="h-12 w-12 rounded-full object-cover ring-2 ring-aphoria-gold/20"
                       />
                       <div>

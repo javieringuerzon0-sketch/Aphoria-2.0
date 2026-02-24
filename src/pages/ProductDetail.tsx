@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -94,12 +94,12 @@ const ProductDetail: React.FC = () => {
         return () => { if (rafRef.current !== undefined) cancelAnimationFrame(rafRef.current); };
     }, [shuffledUgc]);
 
-    const handleUgcMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    const handleUgcMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
         isDragging.current = true;
         dragStartX.current = e.pageX;
         dragScrollLeft.current = ugcTrackRef.current?.scrollLeft ?? 0;
-    };
-    const handleUgcMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    }, []);
+    const handleUgcMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
         if (!isDragging.current) return;
         e.preventDefault();
         const walk = (dragStartX.current - e.pageX) * 1.5;
@@ -107,24 +107,24 @@ const ProductDetail: React.FC = () => {
             ugcTrackRef.current.scrollLeft = dragScrollLeft.current + walk;
             autoScrollPos.current = ugcTrackRef.current.scrollLeft;
         }
-    };
-    const handleUgcDragEnd = () => {
+    }, []);
+    const handleUgcDragEnd = useCallback(() => {
         isDragging.current = false;
         if (ugcTrackRef.current) autoScrollPos.current = ugcTrackRef.current.scrollLeft;
-    };
-    const handleUgcTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    }, []);
+    const handleUgcTouchStart = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
         isDragging.current = true;
         dragStartX.current = e.touches[0].pageX;
         dragScrollLeft.current = ugcTrackRef.current?.scrollLeft ?? 0;
-    };
-    const handleUgcTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    }, []);
+    const handleUgcTouchMove = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
         if (!isDragging.current) return;
         const walk = (dragStartX.current - e.touches[0].pageX) * 1.5;
         if (ugcTrackRef.current) {
             ugcTrackRef.current.scrollLeft = dragScrollLeft.current + walk;
             autoScrollPos.current = ugcTrackRef.current.scrollLeft;
         }
-    };
+    }, []);
 
     const { addItem, open: openCart } = useCartStore();
 

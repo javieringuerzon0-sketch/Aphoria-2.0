@@ -127,8 +127,11 @@ const LiveNotifications: React.FC = () => {
                 <img
                   src={notification.image}
                   alt={notification.name}
-                  className="w-10 h-10 rounded-full border-2 border-aphoria-gold/30 object-cover flex-shrink-0"
+                  width={40}
+                  height={40}
                   loading="lazy"
+                  decoding="async"
+                  className="w-10 h-10 rounded-full border-2 border-aphoria-gold/30 object-cover flex-shrink-0"
                 />
               ) : (
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-aphoria-gold/20 to-aphoria-green/20 flex items-center justify-center flex-shrink-0">

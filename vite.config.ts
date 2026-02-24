@@ -28,13 +28,15 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         output: {
           manualChunks: {
-            'react-vendor': ['react', 'react-dom'],
+            'react-vendor': ['react', 'react-dom', 'react-router-dom'],
             'motion': ['framer-motion'],
-            'icons': ['lucide-react']
+            'icons': ['lucide-react'],
+            'shopify': ['@shopify/hydrogen-react'],
+            'store': ['zustand']
           }
         }
       },
-      chunkSizeWarningLimit: 1000
+      chunkSizeWarningLimit: 500
     },
     optimizeDeps: {
       include: ['react', 'react-dom', 'framer-motion', 'lucide-react']
