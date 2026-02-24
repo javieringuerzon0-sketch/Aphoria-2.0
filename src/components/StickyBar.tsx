@@ -8,10 +8,18 @@ const StickyBar: React.FC = () => {
   const scrollRafRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
+    // Show after 20 seconds regardless of scroll
+    const timer = setTimeout(() => {
+      setShow(true);
+    }, 20000);
+
     const handleScroll = () => {
       if (scrollRafRef.current !== undefined) return;
       scrollRafRef.current = requestAnimationFrame(() => {
-        setShow(window.scrollY > 2000);
+        // Show after 600px scroll
+        if (window.scrollY > 600) {
+          setShow(true);
+        }
         scrollRafRef.current = undefined;
       });
     };
@@ -19,6 +27,7 @@ const StickyBar: React.FC = () => {
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
+      clearTimeout(timer);
       window.removeEventListener('scroll', handleScroll);
       if (scrollRafRef.current !== undefined) cancelAnimationFrame(scrollRafRef.current);
     };
@@ -46,13 +55,24 @@ const StickyBar: React.FC = () => {
     <AnimatePresence>
       {show && (
         <motion.div
-          initial={{ y: 100 }}
-          animate={{ y: 0 }}
-          exit={{ y: 100 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-          className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl border-t border-aphoria-black/10 shadow-2xl"
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 100, opacity: 0 }}
+          transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+          className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl border-t border-aphoria-black/10 shadow-[0_-10px_40px_rgba(0,0,0,0.1)]"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 md:py-4 flex items-center justify-between gap-3 md:gap-6">
+            {/* Close button for "pop-up" feel */}
+            <button
+              onClick={() => setShow(false)}
+              className="absolute -top-10 right-4 w-8 h-8 rounded-full bg-white/90 backdrop-blur shadow-lg flex items-center justify-center text-aphoria-black/40 hover:text-aphoria-black transition-colors border border-aphoria-black/5"
+              aria-label="Close offer"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
             {/* Product Images + Info */}
             <div className="hidden md:flex items-center gap-4">
               {/* Product thumbnails */}
@@ -76,10 +96,10 @@ const StickyBar: React.FC = () => {
               </div>
               <div>
                 <p className="text-[10px] uppercase tracking-[0.24em] text-aphoria-gold font-medium">
-                  Limited Time Offer
+                  Limited Time Protocol
                 </p>
                 <p className="text-[15px] font-bold text-aphoria-black">
-                  Complete Kit • Save $8.99
+                  Complete Transformation Kit • Save $10
                 </p>
               </div>
             </div>
@@ -87,10 +107,10 @@ const StickyBar: React.FC = () => {
             {/* Mobile Product Info */}
             <div className="flex-1 md:hidden">
               <p className="text-[10px] uppercase tracking-wide text-aphoria-gold font-medium">
-                Complete Kit
+                Transformation Kit
               </p>
               <p className="text-[13px] font-bold text-aphoria-black">
-                Save $8.99 Today
+                Save $10 Today
               </p>
             </div>
 
@@ -102,7 +122,7 @@ const StickyBar: React.FC = () => {
                   $63.98
                 </span>
                 <span className="text-[20px] md:text-[28px] font-bold text-aphoria-black tabular-nums">
-                  $54.99
+                  $53.98
                 </span>
               </div>
 
@@ -111,7 +131,7 @@ const StickyBar: React.FC = () => {
                 onClick={addBundleAndCheckout}
                 className="inline-flex items-center gap-2 md:gap-3 px-6 md:px-12 py-3 md:py-4 min-h-[44px] bg-aphoria-black text-white rounded-full text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-500 shadow-lg hover:shadow-xl group"
               >
-                Shop Now
+                Claim Offer
                 <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -137,7 +157,7 @@ const StickyBar: React.FC = () => {
                 Free Shipping
               </div>
               <span className="hidden sm:inline text-aphoria-black/20">•</span>
-              <div className="hidden sm:block">Only 8 Left</div>
+              <div className="hidden sm:block uppercase tracking-widest font-bold text-aphoria-green">Stock: Only 8 Kits Left</div>
             </div>
           </div>
         </motion.div>

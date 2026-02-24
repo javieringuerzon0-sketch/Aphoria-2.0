@@ -122,10 +122,10 @@ const ProductGallery: React.FC = () => {
   const goldMask = products.find(p => p.handle === '24-gold-mask')!;
   const avocadoMask = products.find(p => p.handle === 'avocado-mask')!;
 
-  const bundlePrice = 54.99; // Offer price
+  const bundlePrice = 53.98; // Offer price ($63.98 - $10.00)
   const bundleRegular = goldMask.variants['1pc'].price + avocadoMask.variants['1pc'].price; // $63.98
-  const bundleSavings = (bundleRegular - bundlePrice).toFixed(2); // $8.99
-  const bundleDiscount = Math.round(((bundleRegular - bundlePrice) / bundleRegular) * 100); // 14%
+  const bundleSavings = (bundleRegular - bundlePrice).toFixed(2); // $10.00
+  const bundleDiscount = Math.round(((bundleRegular - bundlePrice) / bundleRegular) * 100); // 16%
 
   const { addItem, open: openCart, checkout } = useCartStore();
 
@@ -415,7 +415,7 @@ const ProductGallery: React.FC = () => {
                 style={{ background: 'linear-gradient(to right, #0F3B2E, #1a5c47)', color: 'white' }}
               >
                 <span style={{ color: 'white' }} className="flex items-center gap-2">
-                  Get Complete Kit - Save $15
+                  Get Complete Kit - Save $10
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>

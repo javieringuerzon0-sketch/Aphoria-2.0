@@ -4,6 +4,10 @@ import { Agentation } from 'agentation';
 import Navbar from './components/Navbar';
 import CartDrawer from './components/CartDrawer';
 
+import ExitIntent from './components/ExitIntent';
+import LiveNotifications from './components/LiveNotifications';
+import StickyBar from './components/StickyBar';
+
 // Pages
 import Home from './pages/Home';
 import Contact from './pages/Contact';
@@ -45,9 +49,14 @@ function AppInner() {
       </Suspense>
 
       {!isThankYou && (
-        <Suspense fallback={null}>
-          <Footer />
-        </Suspense>
+        <>
+          <Suspense fallback={null}>
+            <Footer />
+          </Suspense>
+          <ExitIntent />
+          <LiveNotifications />
+          <StickyBar />
+        </>
       )}
 
       <CartDrawer />

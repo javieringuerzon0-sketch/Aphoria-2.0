@@ -1,10 +1,6 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import Hero from '../components/Hero';
 import TrustBar from '../components/TrustBar';
-import ExitIntent from '../components/ExitIntent';
-import LiveNotifications from '../components/LiveNotifications';
-import StickyBar from '../components/StickyBar';
-
 // Lazy load components below the fold
 const Manifesto = lazy(() => import('../components/Manifesto'));
 const ProductHero = lazy(() => import('../components/ProductHero'));
@@ -100,9 +96,6 @@ function Home() {
                     <Newsletter />
                 </Suspense>
             </main>
-            <ExitIntent />
-            <LiveNotifications />
-            <StickyBar />
         </div>
     );
 }

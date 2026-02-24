@@ -152,7 +152,7 @@ const ProductHero: React.FC = () => {
                     Limited Stock: Only 8 Left
                   </div>
                   <div className="inline-flex items-center gap-2 rounded-full bg-aphoria-green/10 border border-aphoria-green/20 px-3 py-1.5 text-[9px] uppercase tracking-[0.24em] text-aphoria-green">
-                    ✓ 15% Off First Order
+                    ✓ 10% Off First Order
                   </div>
                 </div>
 

@@ -7,12 +7,12 @@ const ExitIntent: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    const hasShown = localStorage.getItem('aphoria-exit-shown');
+    const hasShown = sessionStorage.getItem('aphoria-exit-shown');
 
     const handleMouseLeave = (e: MouseEvent) => {
       if (e.clientY < 10 && !hasShown && !show) {
         setShow(true);
-        localStorage.setItem('aphoria-exit-shown', 'true');
+        sessionStorage.setItem('aphoria-exit-shown', 'true');
       }
     };
 
@@ -93,8 +93,8 @@ const ExitIntent: React.FC = () => {
                 {/* Subheadline */}
                 <p className="text-[15px] md:text-[16px] text-aphoria-mid leading-relaxed mb-8">
                   Join <strong className="text-aphoria-black">10,000+ women</strong> and get{' '}
-                  <strong className="text-aphoria-gold">15% off</strong> your first order
-                  <br/>
+                  <strong className="text-aphoria-gold">10% off</strong> your first order
+                  <br />
                   <span className="text-[14px]">+ Free samples with every purchase</span>
                 </p>
 
@@ -114,7 +114,7 @@ const ExitIntent: React.FC = () => {
                     className="w-full text-white rounded-full py-4 text-[12px] uppercase tracking-[0.26em] font-semibold hover:opacity-90 active:scale-95 transition-all shadow-[0_12px_28px_rgba(15,59,46,0.25)]"
                     style={{ backgroundColor: '#0F3B2E' }}
                   >
-                    Get My 15% Discount →
+                    Get My 10% Discount →
                   </button>
                 </form>
 
@@ -161,7 +161,7 @@ const ExitIntent: React.FC = () => {
                   Welcome to Aphoria!
                 </h3>
                 <p className="text-[15px] text-aphoria-mid">
-                  Check your inbox for your 15% discount code
+                  Check your inbox for your 10% discount code
                 </p>
               </motion.div>
             )}

@@ -77,7 +77,7 @@ const LiveNotifications: React.FC = () => {
   useEffect(() => {
     // Check if sticky bar is visible
     const checkStickyBar = () => {
-      const scrolled = window.scrollY > 2000;
+      const scrolled = window.scrollY > 600;
       setStickyBarVisible(scrolled);
     };
 
