@@ -46,16 +46,12 @@ const STYLES = `
   }
 
   .product-img-main {
-    /* Sin filter SVG, sin drop-shadow */
     display: block;
     width: 100%;
     height: auto;
-    image-rendering: -webkit-optimize-contrast;
     image-rendering: auto;
-    mix-blend-mode: multiply;
-    /* Tailwind v4 usa CSS scale property — transition-transform no la cubre */
-    will-change: scale, transform;
-    transition: scale 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    /* Removed heavy mix-blend-mode and will-change for better performance */
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
   }
@@ -65,9 +61,11 @@ const STYLES = `
     inset: -2rem;
     border-radius: 50%;
     z-index: -1;
-    filter: blur(60px);
+    /* Reduced blur for performance */
+    filter: blur(40px);
     animation: glowPulse 4s ease-in-out infinite;
     pointer-events: none;
+    opacity: 0.5;
   }
 
   .product-ground-shadow {
@@ -76,8 +74,8 @@ const STYLES = `
     left: 12%;
     width: 76%;
     height: 28px;
-    background: radial-gradient(ellipse, rgba(0,0,0,0.28) 0%, transparent 68%);
-    filter: blur(10px);
+    background: radial-gradient(ellipse, rgba(0,0,0,0.15) 0%, transparent 68%);
+    /* Simplified shadow */
     animation: aphoriaShadow 7s ease-in-out infinite;
     pointer-events: none;
     z-index: -1;

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 import { SCIENCE_INGREDIENTS } from '../constants';
 
 const IngredientGrid: React.FC = () => {
@@ -180,77 +181,76 @@ const IngredientGrid: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {orderedIngredients.map((item, index) => {
               const imgSrc = ingredientImages[item.benefitHeadline];
+              const [isExpanded, setIsExpanded] = useState(false);
               return (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "200px" }}
-                transition={{ duration: 1, delay: index * 0.1 }}
-                className={`${styles.card} ${styles.cardShadow}`}
-              >
-                <div className="mb-6 overflow-hidden rounded-xl border border-white/60 bg-aphoria-bg/60">
-                  <img
-                    src={imgSrc}
-                    alt={item.name}
-                    className="h-44 md:h-48 lg:h-52 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    loading="lazy"
-                    decoding="async"
-                    style={{ transform: 'translateZ(0)' }}
-                  />
-                </div>
-                <div className="flex items-center justify-between mb-6">
-                  <span className={styles.activeLabel}>Focus 0{index + 1}</span>
-                  <span className={styles.mechanismLabel}>Benefit</span>
-                </div>
-
-                <h3 className={styles.title}>
-                  {item.benefitHeadline}
-                </h3>
-                <p className={styles.body}>
-                  {ingredientMeta[item.benefitHeadline]?.summary}
-                </p>
-
-                <div className="mb-5 flex items-center justify-between text-[10px] uppercase tracking-[0.22em] text-aphoria-mid">
-                  <span>Result: {ingredientMeta[item.benefitHeadline]?.result}</span>
-                  <span>{ingredientMeta[item.benefitHeadline]?.timeline}</span>
-                </div>
-
-                <div className="mb-6 flex flex-wrap gap-2">
-                  {ingredientMeta[item.benefitHeadline]?.badges.map((badge) => (
-                    <span
-                      key={badge}
-                      className="rounded-full border border-aphoria-black/10 bg-white/70 px-3 py-1 text-[9px] uppercase tracking-[0.24em] text-aphoria-black/80"
-                    >
-                      {badge}
-                    </span>
-                  ))}
-                </div>
-
-                <div className={`pt-6 border-t ${styles.divider}`}>
-                  <div className={styles.ingredientName}>
-                    {item.name}
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, y: 32 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "200px" }}
+                  transition={{ duration: 1, delay: index * 0.1 }}
+                  className={`${styles.card} ${styles.cardShadow}`}
+                  onClick={() => setIsExpanded(!isExpanded)}
+                >
+                  <div className="mb-6 overflow-hidden rounded-xl border border-white/60 bg-aphoria-bg/60">
+                    <img
+                      src={imgSrc}
+                      alt={item.name}
+                      className="h-44 md:h-48 lg:h-52 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      loading="lazy"
+                      decoding="async"
+                      style={{ transform: 'translateZ(0)' }}
+                    />
                   </div>
-                  <div className="mt-4 overflow-hidden max-h-0 opacity-0 transition-all duration-500 group-hover:max-h-24 group-hover:opacity-100">
-                    <div className="text-[10px] uppercase tracking-[0.28em] text-aphoria-mid mb-2">What you'll notice</div>
-                    <div className="text-[13px] text-aphoria-mid">
-                      {ingredientMeta[item.benefitHeadline]?.feel.join('. ')}.
+                  <div className="flex items-center justify-between mb-6">
+                    <span className={styles.activeLabel}>Focus 0{index + 1}</span>
+                    <span className={styles.mechanismLabel}>Benefit</span>
+                  </div>
+
+                  <h3 className={styles.title}>
+                    {item.benefitHeadline}
+                  </h3>
+                  <p className={styles.body}>
+                    {ingredientMeta[item.benefitHeadline]?.summary}
+                  </p>
+
+                  <div className="mb-5 flex items-center justify-between text-[10px] uppercase tracking-[0.22em] text-aphoria-mid">
+                    <span>Result: {ingredientMeta[item.benefitHeadline]?.result}</span>
+                    <span>{ingredientMeta[item.benefitHeadline]?.timeline}</span>
+                  </div>
+
+                  <div className="mb-6 flex flex-wrap gap-2">
+                    {ingredientMeta[item.benefitHeadline]?.badges.map((badge) => (
+                      <span
+                        key={badge}
+                        className="rounded-full border border-aphoria-black/10 bg-white/70 px-3 py-1 text-[9px] uppercase tracking-[0.24em] text-aphoria-black/80"
+                      >
+                        {badge}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className={`pt-6 border-t ${styles.divider}`}>
+                    <div className={styles.ingredientName}>
+                      {item.name}
                     </div>
+                    <div className={`mt-4 overflow-hidden transition-all duration-500 ${isExpanded ? 'max-h-24 opacity-100' : 'max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100'}`}>
+                      <div className="text-[10px] uppercase tracking-[0.28em] text-aphoria-mid mb-2">What you'll notice</div>
+                      <div className="text-[13px] text-aphoria-mid">
+                        {ingredientMeta[item.benefitHeadline]?.feel.join('. ')}.
+                      </div>
+                    </div>
+                    <a
+                      href="#protocol"
+                      className="mt-4 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-aphoria-black/70 hover:text-aphoria-black"
+                    >
+                      View regimen
+                      <span className="h-[1px] w-6 bg-aphoria-black/40"></span>
+                    </a>
                   </div>
-                  <a
-                    href="#protocol"
-                    className="mt-4 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-aphoria-black/70 hover:text-aphoria-black"
-                  >
-                    View regimen
-                    <span className="h-[1px] w-6 bg-aphoria-black/40"></span>
-                  </a>
-                </div>
-              </motion.div>
-            )})}
-            {/* Preload images */}
-            {Object.values(ingredientImages).map((src, i) => (
-              <link key={i} rel="preload" as="image" href={src} />
-            ))}
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </div>
