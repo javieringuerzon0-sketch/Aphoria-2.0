@@ -188,6 +188,7 @@ const ProductDetail: React.FC = () => {
                                         }}
                                         onLoad={() => setProductImgLoaded(true)}
                                         fetchPriority="high"
+                                        decoding="async"
                                     />
                                 </AnimatePresence>
 
@@ -485,6 +486,8 @@ const ProductDetail: React.FC = () => {
                                     muted
                                     loop
                                     playsInline
+                                    preload="metadata"
+                                    poster={currentProduct.galleryImg}
                                     className="w-full h-full object-cover grayscale-[20%] brightness-110"
                                 >
                                     <source src={currentProduct.video} type="video/mp4" />

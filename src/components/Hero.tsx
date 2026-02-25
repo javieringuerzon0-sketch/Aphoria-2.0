@@ -46,7 +46,8 @@ const Hero: React.FC = () => {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
+          poster="/Hero%20video/hero-gold2.png"
           className="w-full h-full object-cover object-center"
           style={{
             filter: 'brightness(0.9) contrast(1.1) saturate(1.05)',
@@ -54,15 +55,6 @@ const Hero: React.FC = () => {
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden',
             willChange: 'transform'
-          }}
-          onLoadedData={(e) => {
-            const video = e.currentTarget;
-            // Ensure smooth loop by seeking slightly before end
-            video.addEventListener('timeupdate', function () {
-              if (video.duration - video.currentTime < 0.1) {
-                video.currentTime = 0;
-              }
-            });
           }}
         >
           <source src="/Hero%20video/hero-video.mp4" type="video/mp4" />
@@ -207,9 +199,12 @@ const Hero: React.FC = () => {
                     key={client.src}
                     src={client.src}
                     alt={client.alt}
+                    width={32}
+                    height={32}
                     className="h-8 w-8 rounded-full border border-white/30 object-cover"
                     style={{ zIndex: 4 - index }}
-                    loading="lazy"
+                    loading="eager"
+                    decoding="async"
                   />
                 ))}
               </div>

@@ -134,7 +134,8 @@ const Testimonials: React.FC = () => {
                 className="absolute w-full max-w-md"
                 style={{
                   ...getCardStyle(index),
-                  transition: 'all 0.45s cubic-bezier(0.22, 1, 0.36, 1)'
+                  transition: 'all 0.45s cubic-bezier(0.22, 1, 0.36, 1)',
+                  willChange: 'transform, opacity'
                 }}
               >
                 <div className="bg-white rounded-2xl shadow-2xl p-8 border border-aphoria-black/5">

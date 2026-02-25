@@ -15,10 +15,20 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 24);
+    let rafId: number | undefined;
+    const handleScroll = () => {
+      if (rafId !== undefined) return;
+      rafId = requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 24);
+        rafId = undefined;
+      });
+    };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId !== undefined) cancelAnimationFrame(rafId);
+    };
   }, [setScrolled]);
 
 

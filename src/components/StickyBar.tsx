@@ -81,16 +81,24 @@ const StickyBar: React.FC = () => {
                   <img
                     src="/goldmask-landing/producto/producto%201%20pcs.png"
                     alt="24 Gold Mask"
+                    width={56}
+                    height={56}
                     className="w-full h-full object-contain"
                     style={{ mixBlendMode: 'multiply', filter: 'brightness(1.1)' }}
+                    loading="eager"
+                    decoding="async"
                   />
                 </div>
                 <div className="w-14 h-14 rounded-lg bg-white border border-aphoria-black/8 flex items-center justify-center overflow-hidden shadow-sm">
                   <img
                     src="/bundlee/bundlle-avocado-transparent.png"
                     alt="Avocado Mask"
+                    width={56}
+                    height={56}
                     className="w-full h-full object-contain"
                     style={{ mixBlendMode: 'multiply', filter: 'brightness(1.1)' }}
+                    loading="eager"
+                    decoding="async"
                   />
                 </div>
               </div>
