@@ -180,7 +180,7 @@ const Footer: React.FC = () => {
                 </a>
 
                 <a
-                  href="mailto:support@aphoria.com"
+                  href="mailto:support@aphoriabeauty.com"
                   className="flex items-center gap-3 text-aphoria-black hover:text-aphoria-gold transition-colors group/link"
                 >
                   <div className="w-11 h-11 flex items-center justify-center bg-aphoria-bg/50 rounded-lg group-hover/link:bg-aphoria-gold/10 transition-colors">

@@ -12,7 +12,8 @@ const Contact: React.FC = () => {
         {
             icon: <Mail size={22} />,
             title: "Scientific Support",
-            detail: "support@aphoria.com",
+            detail: "support@aphoriabeauty.com",
+            href: "mailto:support@aphoriabeauty.com",
             description: "Direct access to our dermal specialists for protocol inquiries.",
             delay: 0.1
         },
@@ -83,9 +84,15 @@ const Contact: React.FC = () => {
                                         <h3 className="text-[11px] uppercase tracking-[0.2em] text-aphoria-gold font-bold mb-1">
                                             {option.title}
                                         </h3>
-                                        <p className="text-[17px] font-medium text-aphoria-black mb-0.5">
-                                            {option.detail}
-                                        </p>
+                                        {(option as any).href ? (
+                                            <a href={(option as any).href} className="text-[17px] font-medium text-aphoria-black mb-0.5 hover:text-aphoria-gold transition-colors">
+                                                {option.detail}
+                                            </a>
+                                        ) : (
+                                            <p className="text-[17px] font-medium text-aphoria-black mb-0.5">
+                                                {option.detail}
+                                            </p>
+                                        )}
                                         <p className="text-[12px] text-aphoria-mid leading-relaxed font-light">
                                             {option.description}
                                         </p>
