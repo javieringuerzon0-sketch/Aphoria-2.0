@@ -50,10 +50,7 @@ const Hero: React.FC = () => {
           poster="/Hero%20video/hero-gold2.png"
           className="w-full h-full object-cover object-center"
           style={{
-            filter: 'brightness(0.9) contrast(1.1) saturate(1.05)',
             transform: 'translate3d(0,0,0)',
-            backfaceVisibility: 'hidden',
-            WebkitBackfaceVisibility: 'hidden',
             willChange: 'transform'
           }}
         >

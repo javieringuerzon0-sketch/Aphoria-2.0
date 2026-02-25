@@ -177,13 +177,11 @@ const ProductDetail: React.FC = () => {
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: productImgLoaded ? 1 : 0 }}
                                         exit={{ opacity: 0 }}
-                                        transition={{ duration: 0.4, ease: "easeOut" }}
+                                        transition={{ duration: 0.3, ease: "easeOut" }}
                                         src={currentVariant.img}
                                         alt={currentProduct.name}
                                         className="w-full h-full object-contain relative z-10"
                                         style={{
-                                            mixBlendMode: 'multiply',
-                                            filter: 'brightness(1.35) contrast(1.05) saturate(1.1)',
                                             visibility: productImgLoaded ? 'visible' : 'hidden'
                                         }}
                                         onLoad={() => setProductImgLoaded(true)}
@@ -488,7 +486,11 @@ const ProductDetail: React.FC = () => {
                                     playsInline
                                     preload="metadata"
                                     poster={currentProduct.galleryImg}
+<<<<<<< HEAD
                                     className="w-full h-full object-cover grayscale-[20%] brightness-110"
+=======
+                                    className="w-full h-full object-cover"
+>>>>>>> fix-stable
                                 >
                                     <source src={currentProduct.video} type="video/mp4" />
                                 </video>
