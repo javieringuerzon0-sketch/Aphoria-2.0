@@ -28,9 +28,10 @@ const ProductDetail = lazy(() => import('./pages/ProductDetail'));
 function AppInner() {
   const location = useLocation();
   const isThankYou = location.pathname === '/thank-you';
+  const isProductPage = location.pathname.startsWith('/product/');
 
   return (
-    <div className="min-h-screen bg-aphoria-bg selection:bg-aphoria-green selection:text-white">
+    <div className={`min-h-screen selection:bg-aphoria-green selection:text-white ${isProductPage ? 'bg-white' : 'bg-aphoria-bg'}`}>
       {!isThankYou && <Navbar />}
 
       <Suspense fallback={<div className="h-screen bg-aphoria-bg" />}>

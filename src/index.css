@@ -46,7 +46,8 @@
   }
 
   body {
-    @apply bg-aphoria-bg text-aphoria-black font-sans antialiased overflow-x-hidden;
+    @apply text-aphoria-black font-sans antialiased overflow-x-hidden;
+    background-color: #FFFFFF;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overscroll-behavior-y: none;
