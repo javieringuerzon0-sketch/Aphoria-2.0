@@ -299,7 +299,7 @@ const ProductGallery: React.FC = () => {
                 <div className="product-float-wrapper-delayed group">
                   <div style={{ position: 'relative' }}>
                     <img
-                      src={'/bundlee/bundlle-avocado-transparent.png'}
+                      src={'/bundlee/avocado-bundlee.png'}
                       alt="Avocado Mask"
                       className="product-img-main z-10 group-hover:scale-[1.04]"
                       loading="eager"
@@ -309,7 +309,7 @@ const ProductGallery: React.FC = () => {
 
                     <div className="product-reflection">
                       <img
-                        src={'/bundlee/bundlle-avocado-transparent.png'}
+                        src={'/bundlee/avocado-bundlee.png'}
                         alt=""
                       />
                     </div>
