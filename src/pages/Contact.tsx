@@ -1,12 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MessageSquare, Clock, Globe, ArrowRight } from 'lucide-react';
+import { Mail, MessageSquare, Clock, Globe, ArrowRight, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+const CONTACT_EMAIL = 'support@aphoriabeauty.com';
+
 const Contact: React.FC = () => {
+    const [formData, setFormData] = useState({ name: '', email: '', protocol: '24K Gold Mask Protocol', message: '' });
+    const [submitted, setSubmitted] = useState(false);
+    const [sending, setSending] = useState(false);
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!formData.name || !formData.email || !formData.message) return;
+
+        setSending(true);
+
+        const subject = encodeURIComponent(`[Aphoria] ${formData.protocol} — Inquiry from ${formData.name}`);
+        const body = encodeURIComponent(
+            `Name: ${formData.name}\nEmail: ${formData.email}\nProtocol: ${formData.protocol}\n\nMessage:\n${formData.message}`
+        );
+
+        // Open mailto — this triggers the user's email client with the message pre-filled
+        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+
+        // Show confirmation after a brief delay
+        setTimeout(() => {
+            setSending(false);
+            setSubmitted(true);
+        }, 500);
+    };
 
     const contactOptions = [
         {
@@ -127,55 +154,94 @@ const Contact: React.FC = () => {
                         className="relative"
                     >
                         <div className="bg-white rounded-[40px] p-8 md:p-12 shadow-[0_40px_100px_rgba(0,0,0,0.04)] border border-aphoria-black/5">
-                            <h2 className="text-[28px] font-brand font-light text-aphoria-black mb-10">Digital Skin Consultant</h2>
-                            <form className="space-y-8">
-                                <div className="grid md:grid-cols-2 gap-8">
-                                    <div className="space-y-2">
-                                        <label className="text-[11px] uppercase tracking-widest text-aphoria-mid font-bold ml-1">Name</label>
-                                        <input
-                                            type="text"
-                                            className="w-full bg-aphoria-bg border-none rounded-2xl px-6 py-4 text-aphoria-black focus:ring-1 focus:ring-aphoria-gold transition-all outline-none"
-                                            placeholder="Your full name"
-                                        />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-[11px] uppercase tracking-widest text-aphoria-mid font-bold ml-1">Email</label>
-                                        <input
-                                            type="email"
-                                            className="w-full bg-aphoria-bg border-none rounded-2xl px-6 py-4 text-aphoria-black focus:ring-1 focus:ring-aphoria-gold transition-all outline-none"
-                                            placeholder="you@email.com"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="space-y-2">
-                                    <label className="text-[11px] uppercase tracking-widest text-aphoria-mid font-bold ml-1">Protocol of Interest</label>
-                                    <select
-                                        className="w-full bg-aphoria-bg border-none rounded-2xl px-6 py-4 text-aphoria-black focus:ring-1 focus:ring-aphoria-gold transition-all outline-none appearance-none"
-                                        aria-label="Protocol of interest"
-                                    >
-                                        <option>24K Gold Mask Protocol</option>
-                                        <option>Pure Avocado Protocol</option>
-                                        <option>Synergistic Integration Bundle</option>
-                                        <option>Other / General Inquiry</option>
-                                    </select>
-                                </div>
-
-                                <div className="space-y-2">
-                                    <label className="text-[11px] uppercase tracking-widest text-aphoria-mid font-bold ml-1">How can we assist?</label>
-                                    <textarea
-                                        rows={4}
-                                        className="w-full bg-aphoria-bg border-none rounded-2xl px-6 py-4 text-aphoria-black focus:ring-1 focus:ring-aphoria-gold transition-all outline-none resize-none"
-                                        placeholder="Tell us about your dermal goals..."
-                                    />
-                                </div>
-
-                                <button
-                                    className="w-full bg-aphoria-black text-white py-5 rounded-full text-[12px] uppercase tracking-[0.3em] font-bold hover:bg-aphoria-green transition-all shadow-xl hover:-translate-y-1"
+                            {submitted ? (
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    className="text-center py-12"
                                 >
-                                    Transmit Inquiry
-                                </button>
-                            </form>
+                                    <div className="w-16 h-16 rounded-full bg-aphoria-green/10 flex items-center justify-center mx-auto mb-6">
+                                        <CheckCircle size={32} className="text-aphoria-green" />
+                                    </div>
+                                    <h3 className="text-[24px] font-brand font-light text-aphoria-black mb-3">
+                                        Message Prepared
+                                    </h3>
+                                    <p className="text-[15px] text-aphoria-mid leading-relaxed max-w-sm mx-auto mb-8">
+                                        Your email client should have opened with your inquiry. Send the email and our team will respond within 24 hours.
+                                    </p>
+                                    <button
+                                        onClick={() => { setSubmitted(false); setFormData({ name: '', email: '', protocol: '24K Gold Mask Protocol', message: '' }); }}
+                                        className="text-[10px] uppercase tracking-[0.3em] font-semibold text-aphoria-gold hover:text-aphoria-black transition-colors"
+                                    >
+                                        Send Another Inquiry
+                                    </button>
+                                </motion.div>
+                            ) : (
+                                <>
+                                    <h2 className="text-[28px] font-brand font-light text-aphoria-black mb-10">Digital Skin Consultant</h2>
+                                    <form onSubmit={handleSubmit} className="space-y-8">
+                                        <div className="grid md:grid-cols-2 gap-8">
+                                            <div className="space-y-2">
+                                                <label className="text-[11px] uppercase tracking-widest text-aphoria-mid font-bold ml-1">Name</label>
+                                                <input
+                                                    type="text"
+                                                    value={formData.name}
+                                                    onChange={e => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                                                    className="w-full bg-aphoria-bg border-none rounded-2xl px-6 py-4 text-aphoria-black focus:ring-1 focus:ring-aphoria-gold transition-all outline-none"
+                                                    placeholder="Your full name"
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="space-y-2">
+                                                <label className="text-[11px] uppercase tracking-widest text-aphoria-mid font-bold ml-1">Email</label>
+                                                <input
+                                                    type="email"
+                                                    value={formData.email}
+                                                    onChange={e => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                                                    className="w-full bg-aphoria-bg border-none rounded-2xl px-6 py-4 text-aphoria-black focus:ring-1 focus:ring-aphoria-gold transition-all outline-none"
+                                                    placeholder="you@email.com"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <label className="text-[11px] uppercase tracking-widest text-aphoria-mid font-bold ml-1">Protocol of Interest</label>
+                                            <select
+                                                value={formData.protocol}
+                                                onChange={e => setFormData(prev => ({ ...prev, protocol: e.target.value }))}
+                                                className="w-full bg-aphoria-bg border-none rounded-2xl px-6 py-4 text-aphoria-black focus:ring-1 focus:ring-aphoria-gold transition-all outline-none appearance-none"
+                                                aria-label="Protocol of interest"
+                                            >
+                                                <option>24K Gold Mask Protocol</option>
+                                                <option>Pure Avocado Protocol</option>
+                                                <option>Synergistic Integration Bundle</option>
+                                                <option>Other / General Inquiry</option>
+                                            </select>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <label className="text-[11px] uppercase tracking-widest text-aphoria-mid font-bold ml-1">How can we assist?</label>
+                                            <textarea
+                                                rows={4}
+                                                value={formData.message}
+                                                onChange={e => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                                                className="w-full bg-aphoria-bg border-none rounded-2xl px-6 py-4 text-aphoria-black focus:ring-1 focus:ring-aphoria-gold transition-all outline-none resize-none"
+                                                placeholder="Tell us about your dermal goals..."
+                                                required
+                                            />
+                                        </div>
+
+                                        <button
+                                            type="submit"
+                                            disabled={sending}
+                                            className="w-full bg-aphoria-black text-white py-5 rounded-full text-[12px] uppercase tracking-[0.3em] font-bold hover:bg-aphoria-green transition-all shadow-xl hover:-translate-y-1 disabled:opacity-60"
+                                        >
+                                            {sending ? 'Opening Email...' : 'Transmit Inquiry'}
+                                        </button>
+                                    </form>
+                                </>
+                            )}
                         </div>
                     </motion.div>
                 </div>

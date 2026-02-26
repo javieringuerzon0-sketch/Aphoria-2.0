@@ -35,6 +35,11 @@ const StickyBar: React.FC = () => {
 
   const { addItem, checkout } = useCartStore();
 
+  const goldMask = PRODUCTS.find(p => p.handle === '24-gold-mask');
+  const avocadoMask = PRODUCTS.find(p => p.handle === 'avocado-mask');
+  const bundleRegular = (goldMask?.variants['1pc'].price ?? 0) + (avocadoMask?.variants['1pc'].price ?? 0);
+  const bundlePrice = bundleRegular - 10;
+
   const BUNDLE_DISCOUNT_CODE = import.meta.env.VITE_BUNDLE_DISCOUNT_CODE || '';
 
   const addBundleAndCheckout = () => {
@@ -127,10 +132,10 @@ const StickyBar: React.FC = () => {
               {/* Price */}
               <div className="text-right">
                 <span className="text-[12px] md:text-[14px] text-aphoria-mid line-through mr-2">
-                  $63.98
+                  ${bundleRegular.toFixed(2)}
                 </span>
                 <span className="text-[20px] md:text-[28px] font-bold text-aphoria-black tabular-nums">
-                  $53.98
+                  ${bundlePrice.toFixed(2)}
                 </span>
               </div>
 
@@ -165,7 +170,7 @@ const StickyBar: React.FC = () => {
                 Free Shipping
               </div>
               <span className="hidden sm:inline text-aphoria-black/20">•</span>
-              <div className="hidden sm:block uppercase tracking-widest font-bold text-aphoria-green">Stock: Only 8 Kits Left</div>
+              <div className="hidden sm:block uppercase tracking-widest font-bold text-aphoria-green">Limited Stock Available</div>
             </div>
           </div>
         </motion.div>

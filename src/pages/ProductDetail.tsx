@@ -294,7 +294,7 @@ const ProductDetail: React.FC = () => {
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-aphoria-gold"></span>
                                 </div>
                                 <span className="text-[10px] font-bold text-aphoria-black/80 tracking-[0.2em] uppercase">
-                                    Allocation: 8 Units remaining in current batch
+                                    High demand — Limited stock available
                                 </span>
                             </div>
 
@@ -415,9 +415,9 @@ const ProductDetail: React.FC = () => {
                         </div>
 
                         <div className="mt-16 text-center">
-                            <button className="text-[10px] font-bold uppercase tracking-[0.3em] text-aphoria-mid hover:text-aphoria-black transition-colors border-b border-aphoria-mid/30 pb-1 hover:border-aphoria-black">
-                                Load 2,839 More Reviews
-                            </button>
+                            <Link to="/#testimonials" className="text-[10px] font-bold uppercase tracking-[0.3em] text-aphoria-mid hover:text-aphoria-black transition-colors border-b border-aphoria-mid/30 pb-1 hover:border-aphoria-black">
+                                See All Reviews
+                            </Link>
                         </div>
                     </div>
                 </section>
@@ -454,7 +454,7 @@ const ProductDetail: React.FC = () => {
                                 <div className="space-y-4">
                                     <div className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.2em] text-red-400 animate-pulse">
                                         <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                                        High Demand: Only 12 units left in this batch
+                                        High Demand — Limited stock available
                                     </div>
                                     <button
                                         onClick={addToCart}

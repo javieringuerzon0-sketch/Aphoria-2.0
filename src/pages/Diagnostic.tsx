@@ -47,7 +47,7 @@ const QUESTIONS: Question[] = [
                 weight: { avocado: 2, gold: 1 }
             },
             {
-                id: "o oily",
+                id: "oily",
                 label: "Excess Sebum Production",
                 description: "Visible pores, shine, or congestion.",
                 icon: <Zap className="w-6 h-6" />,
@@ -310,20 +310,30 @@ const Diagnostic: React.FC = () => {
                                             <Target size={14} /> Clinical Recommendation
                                         </span>
                                         <h2 className="text-[42px] md:text-[56px] font-brand font-light text-aphoria-black leading-[1.05] tracking-tight">
-                                            Your skin requires <span className="italic">Barrier Integration.</span>
+                                            {result === 'gold'
+                                                ? <>Your skin requires <span className="italic">Radiance Activation.</span></>
+                                                : <>Your skin requires <span className="italic">Barrier Integration.</span></>
+                                            }
                                         </h2>
                                     </div>
 
                                     <div className="space-y-6">
                                         <p className="text-[17px] text-aphoria-mid leading-relaxed font-light">
-                                            The Avocado Protocol is indicated for cellular rehydration and lipid barrier replenishment. Calming reactive responses at the source.
+                                            {result === 'gold'
+                                                ? 'The 24K Gold Protocol is indicated for luminosity activation, cellular renewal, and visible firming. Restoring radiance at the structural level.'
+                                                : 'The Avocado Protocol is indicated for cellular rehydration and lipid barrier replenishment. Calming reactive responses at the source.'
+                                            }
                                         </p>
 
                                         <div className="pt-8 border-t border-aphoria-black/10">
                                             <div className="grid grid-cols-2 gap-5">
                                                 <div className="bg-aphoria-bg/40 p-5 rounded-[24px] border border-aphoria-black/5 flex flex-col gap-1">
-                                                    <div className="text-[20px] font-bold text-aphoria-black">94%+</div>
-                                                    <div className="text-[10px] uppercase tracking-wider text-aphoria-mid font-semibold">Satisfaction</div>
+                                                    <div className="text-[20px] font-bold text-aphoria-black">
+                                                        {result === 'gold' ? '98%' : '94%+'}
+                                                    </div>
+                                                    <div className="text-[10px] uppercase tracking-wider text-aphoria-mid font-semibold">
+                                                        {result === 'gold' ? 'Instant Lift' : 'Satisfaction'}
+                                                    </div>
                                                 </div>
                                                 <div className="bg-aphoria-bg/40 p-5 rounded-[24px] border border-aphoria-black/5 flex flex-col gap-1">
                                                     <div className="text-[20px] font-bold text-aphoria-black">28 Days</div>
@@ -335,7 +345,7 @@ const Diagnostic: React.FC = () => {
 
                                     <div className="flex flex-col sm:flex-row gap-3 pt-4">
                                         <button
-                                            onClick={() => handleViewProtocol('avocado')}
+                                            onClick={() => handleViewProtocol(result!)}
                                             className="flex-1 inline-flex items-center justify-center gap-2.5 bg-aphoria-black text-white px-7 py-3.5 rounded-full text-[11px] uppercase tracking-[0.22em] font-semibold hover:bg-aphoria-green transition-all duration-500 active:scale-95"
                                         >
                                             View Protocol <ArrowRight size={14} />
@@ -359,9 +369,12 @@ const Diagnostic: React.FC = () => {
                                             className="absolute inset-0 flex items-center justify-center p-8"
                                         >
                                             <img
-                                                src="/avocado-landing/producto/avocado-producto.png"
+                                                src={result === 'gold'
+                                                    ? '/goldmask-landing/producto/producto%201%20pcs.png'
+                                                    : '/avocado-landing/producto/avocado-producto.png'
+                                                }
                                                 className="w-full h-full object-contain"
-                                                alt="Avocado Mask Result"
+                                                alt={result === 'gold' ? '24 Gold Mask' : 'Avocado Mask'}
                                             />
                                         </motion.div>
                                     </AnimatePresence>

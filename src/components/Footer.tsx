@@ -150,7 +150,9 @@ const Footer: React.FC = () => {
             <div className="bg-white/80 backdrop-blur-sm border border-aphoria-black/10 rounded-2xl p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_40px_rgba(15,59,46,0.15)] transition-all duration-300 group text-left">
               <div className="flex flex-col space-y-4">
                 <a
-                  href="#"
+                  href="https://instagram.com/aphoriabeauty"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-3 text-aphoria-black hover:text-aphoria-gold transition-colors group/link"
                 >
                   <div className="w-11 h-11 flex items-center justify-center bg-aphoria-bg/50 rounded-lg group-hover/link:bg-aphoria-gold/10 transition-colors">
@@ -160,7 +162,9 @@ const Footer: React.FC = () => {
                 </a>
 
                 <a
-                  href="#"
+                  href="https://pinterest.com/aphoriabeauty"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-3 text-aphoria-black hover:text-aphoria-gold transition-colors group/link"
                 >
                   <div className="w-11 h-11 flex items-center justify-center bg-aphoria-bg/50 rounded-lg group-hover/link:bg-aphoria-gold/10 transition-colors">
@@ -170,7 +174,9 @@ const Footer: React.FC = () => {
                 </a>
 
                 <a
-                  href="#"
+                  href="https://tiktok.com/@aphoriabeauty"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-3 text-aphoria-black hover:text-aphoria-gold transition-colors group/link"
                 >
                   <div className="w-11 h-11 flex items-center justify-center bg-aphoria-bg/50 rounded-lg group-hover/link:bg-aphoria-gold/10 transition-colors">

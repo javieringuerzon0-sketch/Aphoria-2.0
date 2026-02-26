@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { subscribeToNewsletter } from '../services/newsletterService';
 
 const ExitIntent: React.FC = () => {
   const [show, setShow] = useState(false);
@@ -24,19 +25,19 @@ const ExitIntent: React.FC = () => {
     return () => document.removeEventListener('mouseleave', handleMouseLeave);
   }, [show]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!email) return;
 
-    // Aquí integrar con Klaviyo/Mailchimp
-    console.log('Email captured:', email);
-
-    // Simular envío
-    setSubmitted(true);
-
-    // Cerrar después de mostrar confirmación
-    setTimeout(() => {
-      setShow(false);
-    }, 2000);
+    const response = await subscribeToNewsletter(email);
+    if (response.success) {
+      setSubmitted(true);
+      setTimeout(() => {
+        setShow(false);
+      }, 2000);
+    } else {
+      alert(response.message || 'Error subscribing. Please try again.');
+    }
   };
 
   return (

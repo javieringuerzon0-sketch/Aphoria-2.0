@@ -88,7 +88,7 @@ export const useCartStore = create<CartStore>()(
               .join(',');
 
             if (!cartLines) {
-              alert('Agrega los Shopify Variant IDs en constants.ts para habilitar el checkout.');
+              alert('Please add Shopify Variant IDs in constants.ts to enable checkout.');
               return;
             }
 
@@ -99,7 +99,7 @@ export const useCartStore = create<CartStore>()(
             if (discountCode) checkoutUrl += `&discount=${encodeURIComponent(discountCode)}`;
             window.location.href = checkoutUrl;
           } else {
-            alert('Agrega las credenciales de Shopify en el archivo .env para habilitar el checkout.');
+            alert('Please add Shopify credentials to your .env file to enable checkout.');
           }
         } catch (err) {
           console.error('Checkout error:', err);

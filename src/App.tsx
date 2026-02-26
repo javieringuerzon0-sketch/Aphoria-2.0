@@ -19,6 +19,7 @@ const ShippingPolicy = lazy(() => import('./pages/ShippingPolicy'));
 const RefundPolicy = lazy(() => import('./pages/RefundPolicy'));
 const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
 const About = lazy(() => import('./pages/About'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 // Common Components
 const Footer = lazy(() => import('./components/Footer'));
@@ -45,6 +46,7 @@ function AppInner() {
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/cookie-policy" element={<CookiePolicy />} />
           <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
 
