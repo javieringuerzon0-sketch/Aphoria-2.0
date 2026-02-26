@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
+import OptimizedImage from './OptimizedImage';
 import { SCIENCE_INGREDIENTS } from '../constants';
 
 const IngredientGrid: React.FC = () => {
@@ -189,7 +190,7 @@ const IngredientGrid: React.FC = () => {
                   onClick={() => setIsExpanded(!isExpanded)}
                 >
                   <div className="mb-6 overflow-hidden rounded-xl border border-white/60 bg-aphoria-bg/60">
-                    <img
+                    <OptimizedImage
                       src={imgSrc}
                       alt={item.name}
                       className="h-44 md:h-48 lg:h-52 w-full object-cover"

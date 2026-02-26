@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import OptimizedImage from '../components/OptimizedImage';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 
@@ -97,11 +98,13 @@ const About: React.FC = () => {
             </div>
 
             <div className="relative">
-              <img
-                src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d88153dc-622e-48d1-82ba-7d211ab47712_3840w.webp"
-                alt="Aphoria skincare ritual"
-                className="w-full aspect-[4/5] object-cover rounded-3xl"
-              />
+            <OptimizedImage
+              src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d88153dc-622e-48d1-82ba-7d211ab47712_3840w.webp"
+              alt="Aphoria skincare ritual"
+              className="w-full aspect-[4/5] object-cover rounded-3xl"
+              loading="eager"
+              decoding="async"
+            />
               <div className="absolute -bottom-6 -left-6 bg-aphoria-black text-white rounded-2xl p-6 shadow-2xl">
                 <p className="text-aphoria-gold font-brand text-3xl font-light">28 Days</p>
                 <p className="text-white/60 text-[12px] font-light mt-1">To visible transformation</p>

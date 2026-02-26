@@ -60,7 +60,7 @@ export const PRODUCTS: Product[] = [
     recommended: "Best for dull, aging skin",
     perUsePrice: 1.07,
     // HOMEPAGE GALLERY CARD IMAGE — NEVER CHANGE
-    galleryImg: '/productos%20front/colection-gold2.png',
+    galleryImg: '/goldmask-landing/producto/producto%201%20pcs.png',
     benefits: ['Instant radiance', 'Firms & lifts', 'Reduces fine lines'],
     variants: {
       '1pc': {
@@ -146,7 +146,7 @@ export const PRODUCTS: Product[] = [
     recommended: "Best for dry, sensitive skin",
     perUsePrice: 1.21,
     // HOMEPAGE GALLERY CARD IMAGE — NEVER CHANGE
-    galleryImg: '/productos%20front/seccion-avocado.png',
+    galleryImg: '/avocado-landing/producto/avocado-producto.png',
     benefits: ['Deep hydration', 'Soothes irritation', 'Strengthens barrier'],
     variants: {
       '1pc': {

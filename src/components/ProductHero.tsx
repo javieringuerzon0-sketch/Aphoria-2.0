@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import OptimizedImage from './OptimizedImage';
 import { Link } from 'react-router-dom';
 import { RefreshCw, ShieldCheck, Truck, ChevronRight } from 'lucide-react';
 import { FEATURED_PRODUCTS } from '../constants';
@@ -53,7 +54,7 @@ const ProductHero: React.FC = () => {
             className="relative"
           >
             <div className={`group relative overflow-hidden rounded-2xl bg-white cursor-pointer ${cardHeight}`}>
-              <img
+              <OptimizedImage
                 src={productHeroImage}
                 alt={product.name}
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] origin-center grayscale-0 group-hover:grayscale-0"
@@ -182,7 +183,7 @@ const ProductHero: React.FC = () => {
 
             <div shopify-loading-placeholder className="rounded-2xl bg-white/80">
               <div className={`group w-full rounded-2xl bg-white overflow-hidden cursor-pointer ${cardHeight}`}>
-                <img
+                <OptimizedImage
                   src={productCardImage}
                   alt={product.name}
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] origin-center grayscale-0 group-hover:grayscale-0"

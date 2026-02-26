@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
 import { HERO_COPY } from '../constants';
 
 const Hero: React.FC = () => {
@@ -201,7 +202,7 @@ const Hero: React.FC = () => {
             <div className="flex items-center gap-3">
               <div className="flex -space-x-2">
                 {clientImages.map((client, index) => (
-                  <img
+                  <OptimizedImage
                     key={client.src}
                     src={client.src}
                     alt={client.alt}

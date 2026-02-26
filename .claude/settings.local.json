@@ -35,7 +35,13 @@
       "WebFetch(domain:help.tatcha.com)",
       "WebFetch(domain:www.drunkelephant.com)",
       "WebFetch(domain:unsplash.com)",
-      "WebFetch(domain:images.unsplash.com)"
+      "WebFetch(domain:images.unsplash.com)",
+      "Bash(pip install:*)",
+      "Bash(cd \"/c/Users/Javier Inguerzon/.gemini/antigravity/Developer IA/Aphoria Beauty 2\" && git checkout HEAD -- \"public/avocado-landing/producto/avocado-producto.png\" && python3 << 'EOF'\nfrom rembg import remove\nfrom PIL import Image\n\ninput_img = Image.open\\(\"public/avocado-landing/producto/avocado-producto.png\"\\)\noutput_img = remove\\(input_img\\)\noutput_img.save\\(\"public/avocado-landing/producto/avocado-producto.png\", \"PNG\"\\)\nprint\\(f\"Done. Mode: {output_img.mode}, Size: {output_img.size}\"\\)\nEOF)",
+      "Bash(cd \"/c/Users/Javier Inguerzon/.gemini/antigravity/Developer IA/Aphoria Beauty 2\" && git checkout HEAD -- \"public/avocado-landing/producto/avocado-producto.png\" && python3 << 'EOF'\nfrom rembg import remove\nfrom PIL import Image\n\nprint\\(\"Procesando con IA...\"\\)\ninput_img = Image.open\\(\"public/avocado-landing/producto/avocado-producto.png\"\\)\noutput_img = remove\\(input_img\\)\noutput_img.save\\(\"public/avocado-landing/producto/avocado-producto.png\", \"PNG\"\\)\nprint\\(f\"Done. Mode: {output_img.mode}, Size: {output_img.size}\"\\)\nEOF)",
+      "mcp__ide__getDiagnostics",
+      "Bash(which gh:*)",
+      "Bash(npx vite:*)"
     ]
   }
 }

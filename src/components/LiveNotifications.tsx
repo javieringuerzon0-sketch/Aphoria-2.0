@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import OptimizedImage from './OptimizedImage';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Notification {
@@ -124,7 +125,7 @@ const LiveNotifications: React.FC = () => {
             <div className="flex items-start gap-3">
               {/* Customer Image */}
               {notification.image ? (
-                <img
+                <OptimizedImage
                   src={notification.image}
                   alt={notification.name}
                   width={40}

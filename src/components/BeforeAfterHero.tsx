@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import OptimizedImage from './OptimizedImage';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -78,7 +79,7 @@ const BeforeAfterHero: React.FC = () => {
             onTouchMove={(e) => updateBeforeAfter(e.touches[0].clientX)}
             onTouchStart={(e) => updateBeforeAfter(e.touches[0].clientX)}
           >
-            <img
+            <OptimizedImage
               src={afterImage}
               alt="After results"
               className="h-full w-full object-cover"
@@ -89,7 +90,7 @@ const BeforeAfterHero: React.FC = () => {
               className="absolute inset-y-0 left-0 overflow-hidden"
               style={{ width: 'calc(var(--ba) * 1%)', willChange: 'width' }}
             >
-              <img
+              <OptimizedImage
                 src={beforeImage}
                 alt="Before results"
                 className="h-full w-full object-cover"

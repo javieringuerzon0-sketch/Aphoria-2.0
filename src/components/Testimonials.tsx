@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import OptimizedImage from './OptimizedImage';
 // Defined outside component — array is stable, never recreated on re-render
 const testimonials = [
   {
@@ -166,13 +167,14 @@ const Testimonials: React.FC = () => {
                   {/* Author Info */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <img
+                      <OptimizedImage
                         src={testimonial.image}
                         alt={testimonial.name}
                         width={48}
                         height={48}
                         loading="lazy"
                         className="h-12 w-12 rounded-full object-cover ring-2 ring-aphoria-gold/20"
+                        decoding="async"
                       />
                       <div>
                         <div className="text-aphoria-black text-sm font-medium">

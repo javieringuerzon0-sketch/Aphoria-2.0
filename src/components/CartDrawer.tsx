@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Minus, Plus, ShoppingBag, Trash2, ArrowRight, Lock } from 'lucide-react';
 import { useCartStore } from '../store/useCartStore';
+import OptimizedImage from './OptimizedImage';
 
 const FREE_SHIPPING_THRESHOLD = 50;
 
@@ -112,7 +113,7 @@ const CartDrawer: React.FC = () => {
                   >
                     {/* Image */}
                     <div className="w-20 h-20 rounded-xl bg-aphoria-bg flex-shrink-0 overflow-hidden">
-                      <img
+                      <OptimizedImage
                         src={item.img}
                         alt={item.title}
                         className="w-full h-full object-contain"

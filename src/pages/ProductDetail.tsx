@@ -15,6 +15,7 @@ import {
     Sparkles
 } from 'lucide-react';
 import ProtocolTimeline from '../components/ProtocolTimeline';
+import OptimizedImage from '../components/OptimizedImage';
 import Newsletter from '../components/Newsletter';
 
 import { PRODUCTS } from '../constants';
@@ -164,31 +165,20 @@ const ProductDetail: React.FC = () => {
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                className="relative aspect-[4/5] flex items-center justify-center p-8 lg:p-12"
-                                style={{ backgroundColor: '#FFFFFF' }}
+                                className="relative aspect-[4/5] flex items-center justify-center bg-white"
                             >
                                 {/* Loading Skeleton - shows immediately to prevent white flash */}
                                 <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${productImgLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'} z-20`}>
                                     <div className="w-12 h-12 border-4 border-aphoria-gold/20 border-t-aphoria-gold rounded-full animate-spin" />
                                 </div>
                                 <AnimatePresence mode="wait">
-                                    <motion.img
-                                        ref={productImgRef}
-                                        key={selectedVariant}
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: productImgLoaded ? 1 : 0 }}
-                                        exit={{ opacity: 0 }}
-                                        transition={{ duration: 0.3, ease: "easeOut" }}
-                                        src={currentVariant.img}
-                                        alt={currentProduct.name}
-                                        className="w-full h-full object-contain relative z-10"
-                                        style={{
-                                            visibility: productImgLoaded ? 'visible' : 'hidden'
-                                        }}
-                                        onLoad={() => setProductImgLoaded(true)}
-                                        fetchPriority="high"
-                                        decoding="async"
-                                    />
+                                  <OptimizedImage
+                                    src={currentVariant.img}
+                                    alt={currentProduct.name}
+                                    className="w-full h-full object-contain relative z-10"
+                                    loading="eager"
+                                    decoding="async"
+                                  />
                                 </AnimatePresence>
 
                                 <div className="absolute top-8 left-8 bg-aphoria-black text-white px-5 py-2 rounded-full z-20 flex items-center gap-2 shadow-xl border border-white/10">
@@ -362,11 +352,12 @@ const ProductDetail: React.FC = () => {
                                             <div className="aspect-[9/16] relative rounded-[30px] overflow-hidden bg-gray-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] [transition-property:scale,box-shadow] duration-500 hover:scale-[1.02] hover:shadow-[0_40px_80px_-20px_rgba(198,161,91,0.2)]">
 
                                                 {/* IMAGE */}
-                                                <img
+                                                <OptimizedImage
                                                     src={item.img}
-                                                    className="w-full h-full object-cover [transition-property:scale,filter] duration-700 group-hover:scale-105 group-hover:blur-sm"
                                                     alt={`Review by ${item.user}`}
+                                                    className="w-full h-full object-cover [transition-property:scale,filter] duration-700 group-hover:scale-105 group-hover:blur-sm"
                                                     loading="lazy"
+                                                    decoding="async"
                                                 />
 
                                                 {/* GRADIENT OVERLAY & CONTENT CONTAINER */}
@@ -388,7 +379,7 @@ const ProductDetail: React.FC = () => {
                                                             <div className="p-[2px] rounded-full bg-gradient-to-tr from-aphoria-gold via-[#FFF4E0] to-aphoria-gold/50">
                                                                 <div className="p-[2px] rounded-full bg-black">
                                                                     <div className="w-8 h-8 rounded-full bg-aphoria-bg overflow-hidden">
-                                                                        <img src={item.img} className="w-full h-full object-cover" alt={item.user} />
+                                                                        <OptimizedImage src={item.img} alt={item.user} className="w-full h-full object-cover" />
                                                                     </div>
                                                                 </div>
                                                             </div>

@@ -17,6 +17,7 @@ import {
     Activity,
     Target
 } from 'lucide-react';
+import OptimizedImage from '../components/OptimizedImage';
 
 interface Question {
     id: number;
@@ -368,13 +369,14 @@ const Diagnostic: React.FC = () => {
                                             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                                             className="absolute inset-0 flex items-center justify-center p-8"
                                         >
-                                            <img
+                                            <OptimizedImage
                                                 src={result === 'gold'
                                                     ? '/goldmask-landing/producto/producto%201%20pcs.png'
-                                                    : '/avocado-landing/producto/avocado-producto.png'
-                                                }
+                                                    : '/avocado-landing/producto/avocado-producto.png'}
                                                 className="w-full h-full object-contain"
                                                 alt={result === 'gold' ? '24 Gold Mask' : 'Avocado Mask'}
+                                                loading="eager"
+                                                decoding="async"
                                             />
                                         </motion.div>
                                     </AnimatePresence>
