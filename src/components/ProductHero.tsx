@@ -56,10 +56,10 @@ const ProductHero: React.FC = () => {
               <img
                 src={productHeroImage}
                 alt={product.name}
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] origin-center [image-rendering:-webkit-optimize-contrast] grayscale-0 group-hover:grayscale-0"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] origin-center grayscale-0 group-hover:grayscale-0"
                 loading="eager"
                 fetchPriority="high"
-                decoding="sync"
+                decoding="async"
               />
             </div>
             <motion.div
@@ -185,7 +185,7 @@ const ProductHero: React.FC = () => {
                 <img
                   src={productCardImage}
                   alt={product.name}
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] origin-center [image-rendering:-webkit-optimize-contrast] grayscale-0 group-hover:grayscale-0"
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] origin-center grayscale-0 group-hover:grayscale-0"
                   loading="eager"
                   fetchPriority="high"
                   decoding="async"

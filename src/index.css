@@ -45,6 +45,14 @@
     -webkit-touch-callout: none;
   }
 
+  img,
+  video {
+    display: block;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
   body {
     @apply text-aphoria-black font-sans antialiased overflow-x-hidden;
     background-color: #FFFFFF;
