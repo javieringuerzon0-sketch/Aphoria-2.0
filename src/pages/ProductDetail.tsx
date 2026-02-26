@@ -143,10 +143,10 @@ const ProductDetail: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-white text-[#1A1A1A] font-sans selection:bg-aphoria-gold/20 selection:text-aphoria-black antialiased overflow-x-hidden">
+        <div className="min-h-screen text-[#1A1A1A] font-sans selection:bg-aphoria-gold/20 selection:text-aphoria-black antialiased overflow-x-hidden" style={{ backgroundColor: '#FFFFFF' }}>
 
-            <main className="pt-24 lg:pt-32">
-                <section className="max-w-7xl mx-auto px-6 lg:px-12">
+            <main className="pt-24 lg:pt-32" style={{ backgroundColor: '#FFFFFF' }}>
+                <section className="max-w-7xl mx-auto px-6 lg:px-12" style={{ backgroundColor: '#FFFFFF' }}>
 
                     {/* Breadcrumb */}
                     <nav className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-aphoria-mid mb-12">
@@ -164,7 +164,8 @@ const ProductDetail: React.FC = () => {
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                className="relative aspect-[4/5] flex items-center justify-center p-8 lg:p-12 bg-white rounded-2xl"
+                                className="relative aspect-[4/5] flex items-center justify-center p-8 lg:p-12"
+                                style={{ backgroundColor: '#FFFFFF' }}
                             >
                                 {/* Loading Skeleton - shows immediately to prevent white flash */}
                                 <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${productImgLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'} z-20`}>
