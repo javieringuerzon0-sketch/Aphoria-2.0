@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import { HERO_COPY } from '../constants';
 
 const Hero: React.FC = () => {
+  const [videoReady, setVideoReady] = useState(false);
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 800], [0, 200]);
   const opacity = useTransform(scrollY, [0, 400], [1, 0]);
@@ -32,7 +33,7 @@ const Hero: React.FC = () => {
 
 
   return (
-    <section className="relative h-screen w-full overflow-hidden flex items-end pb-24 md:pb-28">
+    <section className="relative h-screen w-full overflow-hidden flex items-end pb-24 md:pb-28 bg-black">
       {/* Cinematic Video Background - Maximum Quality */}
       <motion.div
         style={{ y }}
@@ -46,16 +47,24 @@ const Hero: React.FC = () => {
           muted
           loop
           playsInline
-          preload="metadata"
-          poster="/Hero%20video/hero-gold2.png"
+          preload="auto"
+          poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg=="
           className="w-full h-full object-cover object-center"
           style={{
             transform: 'translate3d(0,0,0)',
-            willChange: 'transform'
+            willChange: 'transform',
+            backgroundColor: '#000000'
           }}
+          onPlaying={() => setVideoReady(true)}
         >
           <source src="/Hero%20video/hero-video.mp4" type="video/mp4" />
         </video>
+
+        {/* Black overlay — hides gray first frame until video is ready */}
+        <div
+          className="absolute inset-0 z-10 pointer-events-none bg-black transition-opacity duration-300"
+          style={{ opacity: videoReady ? 0 : 1 }}
+        />
 
         {/* Bottom Gradient for Text Legibility */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent z-10 pointer-events-none"></div>

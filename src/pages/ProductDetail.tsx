@@ -486,11 +486,7 @@ const ProductDetail: React.FC = () => {
                                     playsInline
                                     preload="metadata"
                                     poster={currentProduct.galleryImg}
-<<<<<<< HEAD
                                     className="w-full h-full object-cover grayscale-[20%] brightness-110"
-=======
-                                    className="w-full h-full object-cover"
->>>>>>> fix-stable
                                 >
                                     <source src={currentProduct.video} type="video/mp4" />
                                 </video>

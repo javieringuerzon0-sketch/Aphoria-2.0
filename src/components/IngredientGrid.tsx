@@ -12,7 +12,7 @@ const IngredientGrid: React.FC = () => {
       subcopy: 'mt-5 max-w-md text-aphoria-mid text-[15px] leading-relaxed',
       chip: 'rounded-sm border border-aphoria-black/10 bg-white px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-aphoria-black',
       cta: 'inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-aphoria-black/70 hover:text-aphoria-black',
-      card: 'group relative rounded-lg border border-aphoria-black/10 bg-white p-8 transition-all duration-500 hover:-translate-y-2 hover:border-aphoria-black/30',
+      card: 'group relative rounded-lg border border-aphoria-black/10 bg-white p-8 transition-all duration-500 hover:border-aphoria-black/30',
       cardShadow: 'hover:shadow-[0_18px_40px_rgba(0,0,0,0.08)]',
       activeLabel: 'text-[10px] uppercase tracking-[0.3em] text-aphoria-black/50',
       mechanismLabel: 'text-[10px] uppercase tracking-[0.24em] text-aphoria-black/50',
@@ -31,7 +31,7 @@ const IngredientGrid: React.FC = () => {
       subcopy: 'mt-5 max-w-md text-aphoria-mid text-[15px] leading-relaxed',
       chip: 'rounded-full border border-aphoria-black/10 bg-white/60 px-4 py-2 text-[10px] uppercase tracking-[0.26em] text-aphoria-black',
       cta: 'inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-aphoria-black/80 hover:text-aphoria-black',
-      card: 'group relative rounded-2xl border border-aphoria-black/10 bg-white/70 p-8 backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-aphoria-gold/40',
+      card: 'group relative rounded-2xl border border-aphoria-black/10 bg-white/70 p-8 backdrop-blur transition-all duration-500 hover:border-aphoria-gold/40',
       cardShadow: 'shadow-[0_20px_50px_rgba(0,0,0,0.06)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)]',
       activeLabel: 'text-[10px] uppercase tracking-[0.3em] text-aphoria-gold',
       mechanismLabel: 'text-[10px] uppercase tracking-[0.24em] text-aphoria-mid',
@@ -50,7 +50,7 @@ const IngredientGrid: React.FC = () => {
       subcopy: 'mt-5 max-w-md text-aphoria-mid text-[15px] leading-relaxed',
       chip: 'rounded-full border border-aphoria-black/10 bg-white px-4 py-2 text-[10px] uppercase tracking-[0.26em] text-aphoria-black',
       cta: 'inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-aphoria-black/80 hover:text-aphoria-black',
-      card: 'group relative rounded-xl border border-aphoria-black/10 bg-white/90 p-8 transition-all duration-500 hover:-translate-y-2 hover:border-aphoria-black/25',
+      card: 'group relative rounded-xl border border-aphoria-black/10 bg-white/90 p-8 transition-all duration-500 hover:border-aphoria-black/25',
       cardShadow: 'shadow-[0_18px_40px_rgba(0,0,0,0.05)] hover:shadow-[0_26px_52px_rgba(0,0,0,0.1)]',
       activeLabel: 'text-[10px] uppercase tracking-[0.3em] text-aphoria-gold',
       mechanismLabel: 'text-[10px] uppercase tracking-[0.24em] text-aphoria-mid',
@@ -183,12 +183,8 @@ const IngredientGrid: React.FC = () => {
               const imgSrc = ingredientImages[item.benefitHeadline];
               const [isExpanded, setIsExpanded] = useState(false);
               return (
-                <motion.div
+                <div
                   key={item.name}
-                  initial={{ opacity: 0, y: 32 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "200px" }}
-                  transition={{ duration: 1, delay: index * 0.1 }}
                   className={`${styles.card} ${styles.cardShadow}`}
                   onClick={() => setIsExpanded(!isExpanded)}
                 >
@@ -196,10 +192,9 @@ const IngredientGrid: React.FC = () => {
                     <img
                       src={imgSrc}
                       alt={item.name}
-                      className="h-44 md:h-48 lg:h-52 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="h-44 md:h-48 lg:h-52 w-full object-cover"
                       loading="lazy"
                       decoding="async"
-                      style={{ transform: 'translateZ(0)' }}
                     />
                   </div>
                   <div className="flex items-center justify-between mb-6">
@@ -234,21 +229,14 @@ const IngredientGrid: React.FC = () => {
                     <div className={styles.ingredientName}>
                       {item.name}
                     </div>
-                    <div className={`mt-4 overflow-hidden transition-all duration-500 ${isExpanded ? 'max-h-24 opacity-100' : 'max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100'}`}>
+                    <div className="mt-4">
                       <div className="text-[10px] uppercase tracking-[0.28em] text-aphoria-mid mb-2">What you'll notice</div>
                       <div className="text-[13px] text-aphoria-mid">
                         {ingredientMeta[item.benefitHeadline]?.feel.join('. ')}.
                       </div>
                     </div>
-                    <a
-                      href="#protocol"
-                      className="mt-4 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-aphoria-black/70 hover:text-aphoria-black"
-                    >
-                      View regimen
-                      <span className="h-[1px] w-6 bg-aphoria-black/40"></span>
-                    </a>
                   </div>
-                </motion.div>
+                </div>
               )
             })}
           </div>

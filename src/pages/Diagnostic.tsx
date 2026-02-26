@@ -17,8 +17,6 @@ import {
     Activity,
     Target
 } from 'lucide-react';
-import { useCartStore } from '../store/useCartStore';
-import { PRODUCTS } from '../constants';
 
 interface Question {
     id: number;
@@ -182,21 +180,16 @@ const Diagnostic: React.FC = () => {
         setResult(null);
     };
 
-    const { addItem, checkout } = useCartStore();
+    const CHECKOUT_VARIANTS: Record<'gold' | 'avocado', string> = {
+        gold:    '42441499410475',
+        avocado: '42494908629035',
+    };
 
-    const handleViewProtocol = () => {
-        const handle = result === 'gold' ? '24-gold-mask' : 'avocado-mask';
-        const product = PRODUCTS.find(p => p.handle === handle);
-        if (!product) return;
-        const v = product.variants['1pc'];
-        addItem({
-            variantId: v.shopifyVariantId || `local-${v.id}`,
-            title: product.name,
-            variantTitle: v.name,
-            price: v.price,
-            img: product.galleryImg || v.img,
-        });
-        checkout();
+    const handleViewProtocol = (quizResult: 'gold' | 'avocado') => {
+        const variantId = CHECKOUT_VARIANTS[quizResult];
+        const storeDomain = 'r6duap-tx.myshopify.com';
+        const returnTo = encodeURIComponent(window.location.origin);
+        window.location.href = `https://${storeDomain}/cart/${variantId}:1?return_to=${returnTo}`;
     };
 
     const progress = (currentStep / (QUESTIONS.length)) * 100;
@@ -317,14 +310,13 @@ const Diagnostic: React.FC = () => {
                                             <Target size={14} /> Clinical Recommendation
                                         </span>
                                         <h2 className="text-[42px] md:text-[56px] font-brand font-light text-aphoria-black leading-[1.05] tracking-tight">
-                                            Your skin requires <span className="italic">{result === 'gold' ? 'Radiance Activation' : 'Barrier Integration'}.</span>
+                                            Your skin requires <span className="italic">Barrier Integration.</span>
                                         </h2>
                                     </div>
 
                                     <div className="space-y-6">
                                         <p className="text-[17px] text-aphoria-mid leading-relaxed font-light">
-                                            {result === 'gold' && "Our clinic-grade 24 Gold Mask will stimulate cellular energy and restore terminal luminosity. Precision formulated for restorative renewal."}
-                                            {result === 'avocado' && "The Avocado Protocol is indicated for cellular rehydration and lipid barrier replenishment. Calming reactive responses at the source."}
+                                            The Avocado Protocol is indicated for cellular rehydration and lipid barrier replenishment. Calming reactive responses at the source.
                                         </p>
 
                                         <div className="pt-8 border-t border-aphoria-black/10">
@@ -343,7 +335,7 @@ const Diagnostic: React.FC = () => {
 
                                     <div className="flex flex-col sm:flex-row gap-3 pt-4">
                                         <button
-                                            onClick={handleViewProtocol}
+                                            onClick={() => handleViewProtocol('avocado')}
                                             className="flex-1 inline-flex items-center justify-center gap-2.5 bg-aphoria-black text-white px-7 py-3.5 rounded-full text-[11px] uppercase tracking-[0.22em] font-semibold hover:bg-aphoria-green transition-all duration-500 active:scale-95"
                                         >
                                             View Protocol <ArrowRight size={14} />
@@ -366,27 +358,11 @@ const Diagnostic: React.FC = () => {
                                             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                                             className="absolute inset-0 flex items-center justify-center p-8"
                                         >
-                                            {result === 'gold' ? (
-                                                <img
-                                                    src="/recomendation/goldmask/goldmask-recomendation.png"
-                                                    className="w-full h-full object-contain"
-                                                    alt="Gold Mask Result"
-                                                    style={{
-                                                        mixBlendMode: 'multiply',
-                                                        filter: 'brightness(1.35) contrast(1.05) saturate(1.1)',
-                                                    }}
-                                                />
-                                            ) : (
-                                                <img
-                                                    src="/recomendation/avocado/avocado-recomendation.png"
-                                                    className="w-full h-full object-contain"
-                                                    alt="Avocado Mask Result"
-                                                    style={{
-                                                        mixBlendMode: 'multiply',
-                                                        filter: 'brightness(1.35) contrast(1.05) saturate(1.1)',
-                                                    }}
-                                                />
-                                            )}
+                                            <img
+                                                src="/avocado-landing/producto/avocado-producto.png"
+                                                className="w-full h-full object-contain"
+                                                alt="Avocado Mask Result"
+                                            />
                                         </motion.div>
                                     </AnimatePresence>
                                 </div>
