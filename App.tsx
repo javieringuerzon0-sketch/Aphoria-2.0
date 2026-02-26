@@ -1,5 +1,6 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import { Agentation } from 'agentation';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import TrustBar from './components/TrustBar';
@@ -72,6 +73,7 @@ function App() {
       <LiveNotifications />
       <StickyBar />
       <Agentation />
+      <Analytics />
     </div>
   );
 }
