@@ -215,7 +215,7 @@ const ProductGallery: React.FC = () => {
                       className="product-img-main z-10 group-hover:scale-[1.04]"
                       loading="eager"
                       fetchPriority="high"
-                      decoding="sync"
+                      decoding="async"
                     />
 
                     {/* Reflejo — imagen duplicada SIN filter, solo mask */}
@@ -304,7 +304,7 @@ const ProductGallery: React.FC = () => {
                       className="product-img-main z-10 group-hover:scale-[1.04]"
                       loading="eager"
                       fetchPriority="high"
-                      decoding="sync"
+                      decoding="async"
                     />
 
                     <div className="product-reflection">
@@ -469,7 +469,7 @@ const ProductGallery: React.FC = () => {
                         className="product-img-main z-10 transition-transform duration-700 group-hover/float:scale-105"
                         loading={index === 0 ? "eager" : "lazy"}
                         fetchPriority={index === 0 ? "high" : "auto"}
-                        decoding="sync"
+                        decoding="async"
                       />
 
                       {/* Reflection */}

@@ -81,7 +81,7 @@ function Home() {
     }, []);
 
     return (
-        <div className={`transition-opacity duration-300 ${isReady ? 'opacity-100' : 'opacity-0'}`}>
+        <div>
             <main>
                 <Hero />
                 <TrustBar />

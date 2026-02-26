@@ -82,7 +82,7 @@ const BeforeAfterHero: React.FC = () => {
               src={afterImage}
               alt="After results"
               className="h-full w-full object-cover"
-              loading="lazy"
+              loading="eager"
               decoding="async"
             />
             <div

@@ -188,7 +188,7 @@ const ProductHero: React.FC = () => {
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] origin-center [image-rendering:-webkit-optimize-contrast] grayscale-0 group-hover:grayscale-0"
                   loading="eager"
                   fetchPriority="high"
-                  decoding="sync"
+                  decoding="async"
                 />
               </div>
               <div className="mt-6 flex flex-wrap items-center gap-4">
