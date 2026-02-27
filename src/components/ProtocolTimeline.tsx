@@ -72,7 +72,7 @@ const ProtocolTimeline: React.FC<ProtocolTimelineProps> = ({ productHandle = '24
             title: product.name,
             variantTitle: v.name,
             price: v.price,
-            img: product.galleryImg || v.img,
+            img: v.img,
         });
         checkout();
     };

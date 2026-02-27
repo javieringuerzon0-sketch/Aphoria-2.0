@@ -24,7 +24,7 @@ const ProductHero: React.FC = () => {
       title: product.name,
       variantTitle: v.name,
       price: v.price,
-      img: product.galleryImg || v.img,
+      img: v.img,
     });
     openCart();
   };

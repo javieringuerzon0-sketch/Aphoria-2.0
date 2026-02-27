@@ -64,21 +64,21 @@ const ProductGallery: React.FC = () => {
 
   const addBundleAndCheckout = () => {
     const gv = goldMask.variants['1pc'];
-    addItem({ variantId: gv.shopifyVariantId || `local-${gv.id}`, title: goldMask.name, variantTitle: gv.name, price: gv.price, img: goldMask.galleryImg || gv.img });
+    addItem({ variantId: gv.shopifyVariantId || `local-${gv.id}`, title: goldMask.name, variantTitle: gv.name, price: gv.price, img: gv.img });
     const av = avocadoMask.variants['1pc'];
-    addItem({ variantId: av.shopifyVariantId || `local-${av.id}`, title: avocadoMask.name, variantTitle: av.name, price: av.price, img: avocadoMask.galleryImg || av.img });
+    addItem({ variantId: av.shopifyVariantId || `local-${av.id}`, title: avocadoMask.name, variantTitle: av.name, price: av.price, img: av.img });
     checkout(BUNDLE_DISCOUNT_CODE || undefined);
   };
 
   const addProductToCart = (product: Product) => {
     const v = product.variants['1pc'];
-    addItem({ variantId: v.shopifyVariantId || `local-${v.id}`, title: product.name, variantTitle: v.name, price: v.price, img: product.galleryImg || v.img });
+    addItem({ variantId: v.shopifyVariantId || `local-${v.id}`, title: product.name, variantTitle: v.name, price: v.price, img: v.img });
     openCart();
   };
 
   const buyProductNow = (product: Product) => {
     const v = product.variants['1pc'];
-    addItem({ variantId: v.shopifyVariantId || `local-${v.id}`, title: product.name, variantTitle: v.name, price: v.price, img: product.galleryImg || v.img });
+    addItem({ variantId: v.shopifyVariantId || `local-${v.id}`, title: product.name, variantTitle: v.name, price: v.price, img: v.img });
     checkout();
   };
 

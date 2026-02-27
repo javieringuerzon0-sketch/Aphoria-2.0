@@ -113,7 +113,7 @@ const CartDrawer: React.FC = () => {
                   >
                     {/* Image */}
                     <div className="w-20 h-20 rounded-xl bg-aphoria-bg flex-shrink-0 overflow-hidden">
-                      <OptimizedImage
+                      <img
                         src={item.img}
                         alt={item.title}
                         className="w-full h-full object-contain"
