@@ -21,17 +21,5 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["shopping", "lifestyle", "beauty"],
-  "screenshots": [
-    {
-      "src": "/screenshot-mobile.png",
-      "sizes": "750x1334",
-      "type": "image/png"
-    },
-    {
-      "src": "/screenshot-desktop.png",
-      "sizes": "1920x1080",
-      "type": "image/png"
-    }
-  ]
+  "categories": ["shopping", "lifestyle", "beauty"]
 }
