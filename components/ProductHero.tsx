@@ -8,8 +8,8 @@ const ProductHero: React.FC = () => {
   const ShopifyData = 'shopify-data' as any;
   const ShopifyMoney = 'shopify-money' as any;
   const product = FEATURED_PRODUCTS[0];
-  const productHeroImage = '/seccion%20gold%20mask/imagen-section.png';
-  const productCardImage = '/seccion%20gold%20mask/imagen-producto.png';
+  const productHeroImage = '/seccion%20gold%20mask/imagen-section.original.png';
+  const productCardImage = '/seccion%20gold%20mask/imagen-producto.original.png';
   const cardHeight = 'h-[520px] md:h-[620px]';
 
   return (

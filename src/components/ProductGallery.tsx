@@ -96,14 +96,21 @@ const ProductGallery: React.FC = () => {
         </div>
 
         {/* BUNDLE BOARD */}
-        <div className="mb-32 bg-white rounded-[32px] border border-aphoria-black/5 p-8 md:p-16 shadow-[0_20px_80px_rgba(0,0,0,0.03)] ring-1 ring-aphoria-black/5">
+        <div className="mb-32 bg-white rounded-[32px] border border-aphoria-black/5 p-8 md:p-16 shadow-[0_20px_80px_rgba(0,0,0,0.03)] ring-1 ring-aphoria-black/5 relative mt-6">
+          <div className="absolute -top-4 sm:-top-5 left-1/2 -translate-x-1/2 bg-aphoria-black text-white px-6 py-2.5 sm:py-3 rounded-full border border-aphoria-gold/20 shadow-xl flex items-center gap-3 z-10 w-max">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-aphoria-gold opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-aphoria-gold"></span>
+            </span>
+            <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.25em] font-bold text-aphoria-gold">Special Bundle Offer</span>
+          </div>
           <div className="grid lg:grid-cols-[1.5fr_0.5fr_1.5fr_1.8fr] gap-12 items-center">
 
             {/* Product 1 */}
-            <div className="flex flex-col items-center">
-              <div className="bundle-image-box">
+            <div className="flex flex-col items-center group">
+              <div className="bundle-image-box transition-transform duration-500 ease-out group-hover:scale-110 cursor-pointer">
                 <div className="product-image-container">
-                  <img src={goldMask.galleryImg} alt="Gold Mask" className="max-h-[220px]" />
+                  <img src="/bundlee/goldmask-bundle.png" alt="Gold Mask" className="max-h-[220px]" style={{ mixBlendMode: 'multiply' }} />
                 </div>
                 <div className="ground-shadow" />
               </div>
@@ -117,10 +124,10 @@ const ProductGallery: React.FC = () => {
             <div className="text-center text-[60px] font-light text-aphoria-gold/40">+</div>
 
             {/* Product 2 */}
-            <div className="flex flex-col items-center">
-              <div className="bundle-image-box">
+            <div className="flex flex-col items-center group">
+              <div className="bundle-image-box transition-transform duration-500 ease-out group-hover:scale-110 cursor-pointer">
                 <div className="product-image-container" style={{ animationDelay: '0.5s' }}>
-                  <img src={avocadoMask.galleryImg} alt="Avocado Mask" className="max-h-[200px]" />
+                  <img src="/bundlee/avocado-bundelle.png" alt="Avocado Mask" className="max-h-[200px]" style={{ mixBlendMode: 'multiply' }} />
                 </div>
                 <div className="ground-shadow" />
               </div>
@@ -176,11 +183,10 @@ const ProductGallery: React.FC = () => {
               transition={{ duration: 0.8, delay: index * 0.1 }}
               className="group bg-white rounded-[24px] border border-aphoria-black/5 p-8 md:p-12 shadow-sm hover:shadow-xl transition-all duration-500"
             >
-              <div className="relative aspect-square flex items-center justify-center mb-10">
+              <div className="relative overflow-hidden rounded-xl mb-10">
                 <div className="product-image-container">
-                  <OptimizedImage src={product.galleryImg} alt={product.name} className="max-h-[300px]" loading="lazy" decoding="async" />
+                  <OptimizedImage src={product.galleryImg} alt={product.name} className="w-full h-auto object-cover" loading="lazy" decoding="async" />
                 </div>
-                <div className="ground-shadow" />
                 <div className="absolute top-0 right-0">
                   <div className="bg-aphoria-bg px-3 py-1 rounded-full text-[9px] uppercase tracking-widest text-aphoria-mid border border-aphoria-black/5 font-bold">Bestseller</div>
                 </div>

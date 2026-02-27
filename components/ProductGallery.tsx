@@ -125,7 +125,7 @@ const ProductGallery: React.FC = () => {
       tagline: 'Radiance & Luminosity Treatment',
       description: 'Gold-infused luxury mask that brightens, firms, and restores youthful radiance. Visible glow in minutes.',
       benefits: ['Instant radiance', 'Firms & lifts', 'Reduces fine lines'],
-      image: '/productos/colection-gold2.png',
+      image: '/productos%20front/colection-gold2.original.png',
       price: 29.99,
       regularPrice: 59.99, // Inflated for better perceived value
       size: '50ml',
@@ -140,7 +140,7 @@ const ProductGallery: React.FC = () => {
       tagline: 'Deep Hydration & Nourishment',
       description: 'Rich in vitamins and essential fatty acids, this mask deeply nourishes, hydrates, and calms sensitive skin.',
       benefits: ['Deep hydration', 'Soothes irritation', 'Strengthens barrier'],
-      image: '/productos/seccion-avocado.png',
+      image: '/productos%20front/seccion-avocado.original.png',
       price: 33.99,
       regularPrice: 69.99, // Inflated for better perceived value
       size: '60 patch',

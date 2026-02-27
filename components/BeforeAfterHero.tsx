@@ -6,8 +6,8 @@ const BeforeAfterHero: React.FC = () => {
   const rafRef = useRef<number | null>(null);
   const targetRef = useRef(50);
   const currentRef = useRef(50);
-  const beforeImage = '/BEFORE-AFTER/BEFORE.jpg';
-  const afterImage = '/BEFORE-AFTER/AFTER.jpg';
+  const beforeImage = '/BEFORE-AFTER/BEFORE.original.jpg';
+  const afterImage = '/BEFORE-AFTER/AFTER.original.jpg';
 
   useEffect(() => {
     return () => {

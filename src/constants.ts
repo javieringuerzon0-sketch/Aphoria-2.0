@@ -59,8 +59,8 @@ export const PRODUCTS: Product[] = [
     usage: "Apply 2-3 times weekly for 15-20 minutes",
     recommended: "Best for dull, aging skin",
     perUsePrice: 1.07,
-    // HOMEPAGE GALLERY CARD IMAGE — NEVER CHANGE
-    galleryImg: '/goldmask-landing/producto/producto%201%20pcs.png',
+    // HOMEPAGE GALLERY CARD IMAGE
+    galleryImg: '/productos%20front/colection-gold2.original.png',
     benefits: ['Instant radiance', 'Firms & lifts', 'Reduces fine lines'],
     variants: {
       '1pc': {
@@ -68,8 +68,8 @@ export const PRODUCTS: Product[] = [
         price: 29.99,
         regularPrice: 59.99,
         id: 'REF_GOLD_S1',
-        // PRODUCT IMAGE for /product/24-gold-mask — NEVER CHANGE
-        img: '/goldmask-landing/producto/producto%201%20pcs.png',
+        // PRODUCT IMAGE for /product/24-gold-mask (1pc) — NEVER CHANGE
+        img: '/goldmask-landing/producto/goldmask-original.png',
         shopifyVariantId: 'gid://shopify/ProductVariant/42441499410475'
       },
       '2pcs': {
@@ -77,7 +77,8 @@ export const PRODUCTS: Product[] = [
         price: 36.99,
         regularPrice: 119.98,
         id: 'REF_GOLD_M2',
-        img: '/goldmask-landing/producto/producto%202%20pcs.png',
+        // PRODUCT IMAGE for /product/24-gold-mask (2pcs) — NEVER CHANGE
+        img: '/goldmask-landing/producto/goldmask-2pcs-white.png',
         shopifyVariantId: 'gid://shopify/ProductVariant/42441499377707'
       }
     },
@@ -145,8 +146,8 @@ export const PRODUCTS: Product[] = [
     usage: "Apply 2-3 times weekly for 15-20 minutes",
     recommended: "Best for dry, sensitive skin",
     perUsePrice: 1.21,
-    // HOMEPAGE GALLERY CARD IMAGE — NEVER CHANGE
-    galleryImg: '/avocado-landing/producto/avocado-producto.png',
+    // HOMEPAGE GALLERY CARD IMAGE
+    galleryImg: '/productos%20front/seccion-avocado.original.png',
     benefits: ['Deep hydration', 'Soothes irritation', 'Strengthens barrier'],
     variants: {
       '1pc': {
@@ -154,8 +155,8 @@ export const PRODUCTS: Product[] = [
         price: 33.99,
         regularPrice: 59.99,
         id: 'REF_AVO_S1',
-        // PRODUCT IMAGE for /product/avocado-mask
-        img: '/avocado-landing/producto/avocado-producto.png',
+        // PRODUCT IMAGE for /product/avocado-mask — NEVER CHANGE
+        img: '/avocado-landing/producto/avocado-original.png',
         shopifyVariantId: 'gid://shopify/ProductVariant/42494908629035'
       }
     },

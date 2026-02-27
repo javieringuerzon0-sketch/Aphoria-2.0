@@ -122,7 +122,7 @@ const ProtocolTimeline: React.FC<ProtocolTimelineProps> = ({ productHandle = '24
                             {/* Card Container - Premium Tall Format */}
                             <div className="relative rounded-[20px] mb-8 overflow-hidden bg-white shadow-[0_20px_40px_-5px_rgba(0,0,0,0.1)] border border-aphoria-black/5 group-hover:shadow-[0_30px_60px_-10px_rgba(198,161,91,0.25)] transition-shadow duration-500" style={{ paddingBottom: '133.33%' }}>
                                 {/* Image */}
-                                <OptimizedImage
+                                <img
                                     src={item.img}
                                     alt={item.title}
                                     loading="eager"
