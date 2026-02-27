@@ -94,7 +94,7 @@ const BeforeAfterHero: React.FC = () => {
                 src={beforeImage}
                 alt="Before results"
                 className="h-full w-full object-cover"
-                loading="lazy"
+                loading="eager"
                 decoding="async"
               />
             </div>

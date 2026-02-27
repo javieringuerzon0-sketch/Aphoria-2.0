@@ -21,10 +21,11 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({ src, alt, className, ..
   const loading = (rest as any).loading ?? 'lazy';
   const decoding = (rest as any).decoding ?? 'async';
 
-  // Skip <picture> for external URLs, unrecognized extensions, or .original files (no avif/webp variants exist)
+  // Local paths never have avif/webp variants — skip <picture> to avoid 404 flicker
   const isExternal = src.startsWith('http://') || src.startsWith('https://');
+  const isLocal = src.startsWith('/') || src.startsWith('./');
   const isOriginal = baseSrc.includes('.original.');
-  if (!hasExt || isExternal || isOriginal) {
+  if (!hasExt || isLocal || isOriginal || !isExternal) {
     return <img src={src} alt={alt} className={className} loading={loading} decoding={decoding} {...rest} />;
   }
 
