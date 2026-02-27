@@ -33,7 +33,7 @@ const ProductVideoHero: React.FC = () => {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="none"
         className="absolute inset-0 h-full w-full object-cover"
         style={{ imageRendering: '-webkit-optimize-contrast' }}
       >

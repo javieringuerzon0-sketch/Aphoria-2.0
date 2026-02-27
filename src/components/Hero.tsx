@@ -48,7 +48,7 @@ const Hero: React.FC = () => {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg=="
           className="w-full h-full object-cover object-center"
           style={{

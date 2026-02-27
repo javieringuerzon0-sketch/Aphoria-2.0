@@ -194,7 +194,7 @@ const IngredientGrid: React.FC = () => {
                       src={imgSrc}
                       alt={item.name}
                       className="h-44 md:h-48 lg:h-52 w-full object-cover"
-                      loading="eager"
+                      loading="lazy"
                       decoding="async"
                     />
                   </div>

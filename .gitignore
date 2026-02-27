@@ -31,8 +31,9 @@ dist-ssr
 .vercel
 .env*.local
 .gemini/
-*.txt
 *.html
 !index.html
-!index_html_savepoint.html
-!index_html_latest.html
+
+# Dev/utility scripts — not needed in production
+scripts/
+reset-images.mjs

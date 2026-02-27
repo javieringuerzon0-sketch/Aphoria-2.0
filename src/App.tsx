@@ -2,11 +2,13 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Agentation } from 'agentation';
 import Navbar from './components/Navbar';
+import ErrorBoundary from './components/ErrorBoundary';
 import CartDrawer from './components/CartDrawer';
 
 import ExitIntent from './components/ExitIntent';
 import LiveNotifications from './components/LiveNotifications';
 import StickyBar from './components/StickyBar';
+import CookieBanner from './components/CookieBanner';
 
 // Pages
 import Home from './pages/Home';
@@ -63,6 +65,7 @@ function AppInner() {
       )}
 
       <CartDrawer />
+      <CookieBanner />
       <Agentation />
     </div>
   );
@@ -70,9 +73,11 @@ function AppInner() {
 
 function App() {
   return (
-    <Router>
-      <AppInner />
-    </Router>
+    <ErrorBoundary>
+      <Router>
+        <AppInner />
+      </Router>
+    </ErrorBoundary>
   );
 }
 

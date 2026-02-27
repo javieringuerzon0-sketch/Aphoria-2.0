@@ -81,7 +81,7 @@ function Home() {
     }, []);
 
     return (
-        <div>
+        <div style={{ opacity: isReady ? 1 : 0, transition: isReady ? 'opacity 0.15s ease' : 'none' }}>
             <main>
                 <Hero />
                 <TrustBar />

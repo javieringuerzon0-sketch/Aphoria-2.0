@@ -25,6 +25,21 @@ import { useCartStore } from '../store/useCartStore';
 const ProductDetail: React.FC = () => {
     const { handle } = useParams<{ handle: string }>();
     const [quantity, setQuantity] = useState(1);
+    const [wishlisted, setWishlisted] = useState(() => {
+        try {
+            const saved = JSON.parse(localStorage.getItem('aphoria_wishlist') || '[]');
+            return saved.includes(handle);
+        } catch { return false; }
+    });
+
+    const toggleWishlist = () => {
+        const saved: string[] = JSON.parse(localStorage.getItem('aphoria_wishlist') || '[]');
+        const next = wishlisted
+            ? saved.filter((h: string) => h !== handle)
+            : [...saved, handle];
+        localStorage.setItem('aphoria_wishlist', JSON.stringify(next));
+        setWishlisted(!wishlisted);
+    };
 
     // Find the current product based on the handle
     const currentProduct: Product = PRODUCTS.find(p => p.handle === handle) || PRODUCTS[0];
@@ -36,6 +51,11 @@ const ProductDetail: React.FC = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
         document.title = `${currentProduct.name} | Aphoria Beauty Laboratory`;
+        // Sync wishlist state when navigating between products
+        try {
+            const saved = JSON.parse(localStorage.getItem('aphoria_wishlist') || '[]');
+            setWishlisted(saved.includes(handle));
+        } catch { setWishlisted(false); }
     }, [handle, currentProduct.name]);
 
     const { variants, ugc } = currentProduct;
@@ -175,6 +195,7 @@ const ProductDetail: React.FC = () => {
                                     style={{ mixBlendMode: 'multiply' }}
                                     loading="eager"
                                     decoding="async"
+                                    fetchPriority="high"
                                 />
 
                                 <div className="absolute top-8 left-8 bg-aphoria-black text-white px-5 py-2 rounded-full z-20 flex items-center gap-2 shadow-xl border border-white/10">
@@ -267,10 +288,11 @@ const ProductDetail: React.FC = () => {
                                 </button>
 
                                 <button
+                                    onClick={toggleWishlist}
                                     className="w-14 h-14 flex items-center justify-center border border-aphoria-black/10 rounded-full hover:border-aphoria-black transition-colors bg-white shadow-sm group"
-                                    aria-label="Add to favorites"
+                                    aria-label={wishlisted ? 'Remove from favorites' : 'Add to favorites'}
                                 >
-                                    <Heart size={18} className="text-aphoria-black/30 group-hover:text-red-900 transition-colors" />
+                                    <Heart size={18} className={`transition-colors ${wishlisted ? 'text-red-500 fill-red-500' : 'text-aphoria-black/30 group-hover:text-red-900'}`} />
                                 </button>
                             </div>
 

@@ -2,10 +2,24 @@ import React, { useState } from 'react';
 import { FaInstagram, FaPinterest, FaTiktok } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
 import { HiChevronDown } from 'react-icons/hi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const goToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+    if (location.pathname === '/') {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      navigate('/');
+      setTimeout(() => {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 350);
+    }
+  };
 
   const faqs = [
     {
@@ -66,7 +80,7 @@ const Footer: React.FC = () => {
               <Link to="/" className="hover:text-aphoria-gold transition-colors duration-200">
                 Home
               </Link>
-              <a href="/#ritual" className="hover:text-aphoria-gold transition-colors duration-200">
+              <a href="/#ritual" onClick={(e) => goToSection(e, 'ritual')} className="hover:text-aphoria-gold transition-colors duration-200">
                 Bundle
               </a>
               <Link to="/product/24-gold-mask" className="hover:text-aphoria-gold transition-colors duration-200">
@@ -75,13 +89,13 @@ const Footer: React.FC = () => {
               <Link to="/product/avocado-mask" className="hover:text-aphoria-gold transition-colors duration-200">
                 Avocado Mask
               </Link>
-              <a href="/#science" className="hover:text-aphoria-gold transition-colors duration-200">
+              <a href="/#science" onClick={(e) => goToSection(e, 'science')} className="hover:text-aphoria-gold transition-colors duration-200">
                 Science
               </a>
-              <a href="/#ritual" className="hover:text-aphoria-gold transition-colors duration-200">
+              <a href="/#ritual" onClick={(e) => goToSection(e, 'ritual')} className="hover:text-aphoria-gold transition-colors duration-200">
                 Ritual
               </a>
-              <a href="/#testimonials" className="hover:text-aphoria-gold transition-colors duration-200">
+              <a href="/#testimonials" onClick={(e) => goToSection(e, 'testimonials')} className="hover:text-aphoria-gold transition-colors duration-200">
                 Testimonials
               </a>
               <Link to="/contact" className="hover:text-aphoria-gold transition-colors duration-200">

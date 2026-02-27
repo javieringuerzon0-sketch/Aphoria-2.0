@@ -22,9 +22,9 @@ export default defineConfig(({ mode }) => {
     },
     publicDir: 'public', // Explicitly set public directory
     build: {
-      target: 'es2015',
+      target: 'es2020',
       cssCodeSplit: true,
-      assetsInlineLimit: 0, // Don't inline assets as data URLs
+      assetsInlineLimit: 4096,
       rollupOptions: {
         output: {
           manualChunks: {

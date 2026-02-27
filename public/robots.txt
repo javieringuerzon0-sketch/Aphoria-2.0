@@ -1,18 +1,11 @@
-# Aphoria - Robots.txt
+# Aphoria — robots.txt
 User-agent: *
 Allow: /
 
-# Sitemaps
-Sitemap: https://aphoria-2-0.vercel.app/sitemap.xml
+# Sitemap
+Sitemap: https://aphoriabeauty.com/sitemap.xml
 
-# Crawl-delay for bots
-Crawl-delay: 1
-
-# Block specific paths if needed
-# Disallow: /admin/
-# Disallow: /checkout/
-
-# Allow Google bots
+# Allow all major crawlers
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 0
@@ -20,12 +13,10 @@ Crawl-delay: 0
 User-agent: Googlebot-Image
 Allow: /
 
-# Allow Bing
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
 
-# Social media crawlers
 User-agent: facebookexternalhit
 Allow: /
 

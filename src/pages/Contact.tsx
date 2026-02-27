@@ -25,8 +25,14 @@ const Contact: React.FC = () => {
             `Name: ${formData.name}\nEmail: ${formData.email}\nProtocol: ${formData.protocol}\n\nMessage:\n${formData.message}`
         );
 
-        // Open mailto — this triggers the user's email client with the message pre-filled
-        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+        // Open mailto via a temporary link — avoids navigating away from the page
+        const link = document.createElement('a');
+        link.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
 
         // Show confirmation after a brief delay
         setTimeout(() => {

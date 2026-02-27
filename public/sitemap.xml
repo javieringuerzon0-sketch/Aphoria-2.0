@@ -4,34 +4,98 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://aphoria-2-0.vercel.app/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <loc>https://aphoriabeauty.com/</loc>
+    <lastmod>2026-02-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://aphoriabeauty.com/og-image.jpg</image:loc>
+      <image:title>Aphoria — Clinical Skincare</image:title>
+    </image:image>
   </url>
 
   <!-- 24 Gold Mask Product -->
   <url>
-    <loc>https://aphoria-2-0.vercel.app/product/24-gold-mask</loc>
-    <lastmod>2026-02-21</lastmod>
+    <loc>https://aphoriabeauty.com/product/24-gold-mask</loc>
+    <lastmod>2026-02-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://aphoriabeauty.com/goldmask-landing/producto/goldmask-original.png</image:loc>
+      <image:title>Aphoria 24 Gold Mask</image:title>
+    </image:image>
   </url>
 
   <!-- Avocado Mask Product -->
   <url>
-    <loc>https://aphoria-2-0.vercel.app/product/avocado-mask</loc>
-    <lastmod>2026-02-21</lastmod>
+    <loc>https://aphoriabeauty.com/product/avocado-mask</loc>
+    <lastmod>2026-02-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://aphoriabeauty.com/avocado-landing/producto/avocadomask-original.png</image:loc>
+      <image:title>Aphoria Avocado Mask</image:title>
+    </image:image>
+  </url>
+
+  <!-- Diagnostic -->
+  <url>
+    <loc>https://aphoriabeauty.com/diagnostic</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <!-- Contact -->
   <url>
-    <loc>https://aphoria-2-0.vercel.app/contact</loc>
-    <lastmod>2026-02-21</lastmod>
+    <loc>https://aphoriabeauty.com/contact</loc>
+    <lastmod>2026-02-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+
+  <!-- About -->
+  <url>
+    <loc>https://aphoriabeauty.com/about</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Legal Pages -->
+  <url>
+    <loc>https://aphoriabeauty.com/privacy-policy</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://aphoriabeauty.com/terms-of-service</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://aphoriabeauty.com/shipping-policy</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://aphoriabeauty.com/refund-policy</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://aphoriabeauty.com/cookie-policy</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
   </url>
 
 </urlset>

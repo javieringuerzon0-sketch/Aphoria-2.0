@@ -110,7 +110,7 @@ const ProductGallery: React.FC = () => {
             <div className="flex flex-col items-center group">
               <div className="bundle-image-box transition-transform duration-500 ease-out group-hover:scale-110 cursor-pointer">
                 <div className="product-image-container">
-                  <img src="/bundlee/goldmask-bundle.png" alt="Gold Mask" className="max-h-[220px]" style={{ mixBlendMode: 'multiply' }} />
+                  <img src="/bundlee/goldmask-bundle.png" alt="Gold Mask" className="max-h-[220px]" style={{ mixBlendMode: 'multiply' }} loading="lazy" decoding="async" />
                 </div>
                 <div className="ground-shadow" />
               </div>
@@ -127,7 +127,7 @@ const ProductGallery: React.FC = () => {
             <div className="flex flex-col items-center group">
               <div className="bundle-image-box transition-transform duration-500 ease-out group-hover:scale-110 cursor-pointer">
                 <div className="product-image-container" style={{ animationDelay: '0.5s' }}>
-                  <img src="/bundlee/avocado-bundelle.png" alt="Avocado Mask" className="max-h-[200px]" style={{ mixBlendMode: 'multiply' }} />
+                  <img src="/bundlee/avocado-bundelle.png" alt="Avocado Mask" className="max-h-[200px]" style={{ mixBlendMode: 'multiply' }} loading="lazy" decoding="async" />
                 </div>
                 <div className="ground-shadow" />
               </div>
