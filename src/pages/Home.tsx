@@ -85,7 +85,7 @@ function Home() {
             <main>
                 <Hero />
                 <TrustBar />
-                <Suspense fallback={<div className="h-screen bg-aphoria-bg" />}>
+                <Suspense fallback={<div className="min-h-screen" />}>
                     <Manifesto />
                     <ProductHero />
                     <ProductVideoHero />

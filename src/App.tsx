@@ -34,7 +34,7 @@ function AppInner() {
     <div className={`min-h-screen selection:bg-aphoria-green selection:text-white ${isProductPage ? 'bg-white' : 'bg-aphoria-bg'}`}>
       {!isThankYou && <Navbar />}
 
-      <Suspense fallback={<div className="h-screen bg-aphoria-bg" />}>
+      <Suspense fallback={<div className="min-h-screen" />}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product/:handle" element={<ProductDetail />} />
