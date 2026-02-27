@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Minus, Plus, ShoppingBag, Trash2, ArrowRight, Lock } from 'lucide-react';
+import { X, Minus, Plus, ShoppingBag, Trash2, ArrowRight, Lock, Tag, CheckCircle2 } from 'lucide-react';
 import { useCartStore } from '../store/useCartStore';
+import { DISCOUNTS } from '../constants';
 import OptimizedImage from './OptimizedImage';
 
 const FREE_SHIPPING_THRESHOLD = 50;
@@ -12,6 +13,34 @@ const CartDrawer: React.FC = () => {
   const total = totalItems();
   const shippingProgress = Math.min((sub / FREE_SHIPPING_THRESHOLD) * 100, 100);
   const remaining = Math.max(FREE_SHIPPING_THRESHOLD - sub, 0);
+
+  // ── Discount logic ──────────────────────────────────────────────
+  const [codeInput, setCodeInput] = useState('');
+  const [manualCode, setManualCode] = useState<string | null>(null);
+  const [codeError, setCodeError] = useState(false);
+
+  const hasGold = items.some(i => i.title.toLowerCase().includes('gold'));
+  const hasAvocado = items.some(i => i.title.toLowerCase().includes('avocado'));
+  const isBundleInCart = hasGold && hasAvocado;
+
+  // Auto bundle beats manual code
+  const activeDiscount = isBundleInCart ? DISCOUNTS.BUNDLE : (manualCode ?? undefined);
+  const BUNDLE_SAVINGS = 10;
+
+  const applyCode = () => {
+    const trimmed = codeInput.trim().toUpperCase();
+    if (!trimmed) return;
+    // Basic validation — accepts any non-empty string, Shopify will validate at checkout
+    setManualCode(trimmed);
+    setCodeError(false);
+    setCodeInput('');
+  };
+
+  const removeCode = () => {
+    setManualCode(null);
+    setCodeError(false);
+  };
+  // ────────────────────────────────────────────────────────────────
 
   return (
     <AnimatePresence>
@@ -170,15 +199,72 @@ const CartDrawer: React.FC = () => {
             {/* Footer */}
             {items.length > 0 && (
               <div className="border-t border-aphoria-black/8 px-6 py-6 space-y-4 bg-white">
+
+                {/* ── Bundle auto-discount banner ── */}
+                {isBundleInCart && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center gap-3 bg-aphoria-green/8 border border-aphoria-green/20 rounded-xl px-4 py-3"
+                  >
+                    <CheckCircle2 size={15} className="text-aphoria-green flex-shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <p className="text-[11px] font-bold text-aphoria-green uppercase tracking-[0.2em]">Bundle discount applied</p>
+                      <p className="text-[10px] text-aphoria-mid">Code <span className="font-mono font-bold text-aphoria-black">{DISCOUNTS.BUNDLE}</span> — saves you <span className="font-bold text-aphoria-green">${BUNDLE_SAVINGS}.00</span></p>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* ── Manual discount code input (only if no auto-bundle) ── */}
+                {!isBundleInCart && (
+                  <div>
+                    {manualCode ? (
+                      <motion.div
+                        initial={{ opacity: 0, y: -4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex items-center justify-between bg-aphoria-gold/8 border border-aphoria-gold/25 rounded-xl px-4 py-3"
+                      >
+                        <div className="flex items-center gap-2">
+                          <Tag size={13} className="text-aphoria-gold" />
+                          <span className="text-[11px] font-mono font-bold text-aphoria-black tracking-widest">{manualCode}</span>
+                          <span className="text-[10px] text-aphoria-green font-bold uppercase tracking-wide">Applied</span>
+                        </div>
+                        <button onClick={removeCode} className="text-aphoria-mid/50 hover:text-red-400 transition-colors" aria-label="Remove code">
+                          <X size={13} />
+                        </button>
+                      </motion.div>
+                    ) : (
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          value={codeInput}
+                          onChange={e => { setCodeInput(e.target.value.toUpperCase()); setCodeError(false); }}
+                          onKeyDown={e => e.key === 'Enter' && applyCode()}
+                          placeholder="Discount code"
+                          className="flex-1 bg-aphoria-bg border border-aphoria-black/10 rounded-full px-4 py-2.5 text-[11px] uppercase tracking-widest text-aphoria-black placeholder:text-aphoria-mid/50 focus:outline-none focus:border-aphoria-gold transition-colors font-mono"
+                          aria-label="Discount code"
+                        />
+                        <button
+                          onClick={applyCode}
+                          disabled={!codeInput.trim()}
+                          className="px-5 py-2.5 rounded-full bg-aphoria-black text-white text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-aphoria-gold hover:text-aphoria-black transition-all disabled:opacity-40"
+                        >
+                          Apply
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 {/* Subtotal */}
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between pt-1">
                   <span className="text-[11px] uppercase tracking-[0.3em] text-aphoria-mid font-semibold">Subtotal</span>
                   <span className="text-[20px] font-light text-aphoria-black tabular-nums">${sub.toFixed(2)}</span>
                 </div>
 
                 {/* Checkout CTA */}
                 <button
-                  onClick={() => checkout()}
+                  onClick={() => checkout(activeDiscount)}
                   disabled={isCheckingOut}
                   className="w-full flex items-center justify-center gap-3 bg-aphoria-black text-white rounded-full py-4 text-[11px] uppercase tracking-[0.28em] font-bold hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-500 shadow-lg disabled:opacity-60 disabled:cursor-not-allowed group"
                 >
@@ -186,7 +272,7 @@ const CartDrawer: React.FC = () => {
                     <span>Processing...</span>
                   ) : (
                     <>
-                      <span>Complete Order</span>
+                      <span>Complete Order{activeDiscount ? ' — Discount Applied' : ''}</span>
                       <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                     </>
                   )}

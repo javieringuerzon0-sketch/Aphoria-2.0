@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import OptimizedImage from './OptimizedImage';
 import { Link } from 'react-router-dom';
 import CountdownTimer from './CountdownTimer';
-import { PRODUCTS } from '../constants';
+import { PRODUCTS, DISCOUNTS } from '../constants';
 import { Product } from '../types';
 import { useCartStore } from '../store/useCartStore';
 
@@ -67,7 +67,7 @@ const ProductGallery: React.FC = () => {
     addItem({ variantId: gv.shopifyVariantId || `local-${gv.id}`, title: goldMask.name, variantTitle: gv.name, price: gv.price, img: gv.img });
     const av = avocadoMask.variants['1pc'];
     addItem({ variantId: av.shopifyVariantId || `local-${av.id}`, title: avocadoMask.name, variantTitle: av.name, price: av.price, img: av.img });
-    checkout(BUNDLE_DISCOUNT_CODE || undefined);
+    checkout(DISCOUNTS.BUNDLE);
   };
 
   const addProductToCart = (product: Product) => {
@@ -149,15 +149,25 @@ const ProductGallery: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-aphoria-bg/50 rounded-2xl p-4 mb-8">
+              <div className="bg-aphoria-bg/50 rounded-2xl p-4 mb-6">
                 <p className="text-[13px] text-aphoria-black leading-relaxed">⭐ <strong>Best Seller:</strong> 92% of customers see faster results when following the combined protocol.</p>
+              </div>
+
+              {/* Discount badge */}
+              <div className="flex items-center justify-center gap-2 mb-4 bg-aphoria-green/8 border border-aphoria-green/20 rounded-xl px-4 py-2.5">
+                <svg className="w-3.5 h-3.5 text-aphoria-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+                </svg>
+                <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-aphoria-green">Code </span>
+                <span className="text-[10px] font-mono font-bold text-aphoria-black tracking-widest">{DISCOUNTS.BUNDLE}</span>
+                <span className="text-[10px] text-aphoria-mid">— applied automatically at checkout</span>
               </div>
 
               <button
                 onClick={addBundleAndCheckout}
                 className="w-full bg-aphoria-black text-white rounded-full py-5 text-[12px] uppercase tracking-[0.25em] font-bold hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-300 shadow-xl"
               >
-                Add Kit - Save $10
+                Add Kit — Save $10 Instantly
               </button>
               <p className="text-[10px] text-aphoria-mid mt-4 text-center uppercase tracking-widest">Free Shipping • 60-Day Guarantee</p>
             </div>

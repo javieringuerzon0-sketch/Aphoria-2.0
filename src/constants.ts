@@ -1,5 +1,14 @@
 import { Ingredient, Product, ProtocolStep, Testimonial } from './types';
 
+// ─── Discount Codes ────────────────────────────────────────────────────────
+// These codes must exist in Shopify Admin → Discounts
+export const DISCOUNTS = {
+  // Applied automatically when both products are in cart
+  BUNDLE: 'APHORIA-BUNDLE',
+  // Applied automatically when paying through StickyBar CTA
+  STICKY_BUNDLE: 'APHORIA-BUNDLE',
+} as const;
+
 export const HERO_COPY = {
   h1: "You. In 28 Days. Radiant.",
   subheadline: "Join 10,000+ women who chose science over promises. Visible transformation, backed by clinical results. Money-back guaranteed.",

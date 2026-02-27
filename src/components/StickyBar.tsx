@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCartStore } from '../store/useCartStore';
 import OptimizedImage from './OptimizedImage';
-import { PRODUCTS } from '../constants';
+import { PRODUCTS, DISCOUNTS } from '../constants';
 
 const StickyBar: React.FC = () => {
   const [show, setShow] = useState(false);
@@ -41,8 +41,6 @@ const StickyBar: React.FC = () => {
   const bundleRegular = (goldMask?.variants['1pc'].price ?? 0) + (avocadoMask?.variants['1pc'].price ?? 0);
   const bundlePrice = bundleRegular - 10;
 
-  const BUNDLE_DISCOUNT_CODE = import.meta.env.VITE_BUNDLE_DISCOUNT_CODE || '';
-
   const addBundleAndCheckout = () => {
     const gold = PRODUCTS.find(p => p.handle === '24-gold-mask');
     const avocado = PRODUCTS.find(p => p.handle === 'avocado-mask');
@@ -54,7 +52,7 @@ const StickyBar: React.FC = () => {
       const v = avocado.variants['1pc'];
       addItem({ variantId: v.shopifyVariantId || `local-${v.id}`, title: avocado.name, variantTitle: v.name, price: v.price, img: v.img });
     }
-    checkout(BUNDLE_DISCOUNT_CODE || undefined);
+    checkout(DISCOUNTS.STICKY_BUNDLE);
   };
 
   return (
