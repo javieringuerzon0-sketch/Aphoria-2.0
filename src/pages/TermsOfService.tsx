@@ -213,7 +213,7 @@ const TermsOfService: React.FC = () => {
                   <p>Questions about these Terms of Service should be directed to our legal team:</p>
                   <div className="bg-white/80 border border-aphoria-black/8 rounded-2xl p-6 mt-4 space-y-2">
                     <p className="text-aphoria-black font-medium">Aphoria Beauty Laboratory</p>
-                    <p>Email: <a href="mailto:legal@aphoriabeauty.com" className="text-aphoria-gold hover:underline">legal@aphoriabeauty.com</a></p>
+                    <p>Email: <a href="mailto:support@aphoriabeauty.com" className="text-aphoria-gold hover:underline">support@aphoriabeauty.com</a></p>
                     <p>Support: <Link to="/contact" className="text-aphoria-gold hover:underline">Contact Form</Link></p>
                     <p>Response time: Within 2 business days</p>
                   </div>

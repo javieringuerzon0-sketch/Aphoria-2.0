@@ -163,7 +163,7 @@ const PrivacyPolicy: React.FC = () => {
                       </li>
                     ))}
                   </ul>
-                  <p>To exercise any of these rights, please contact us at <a href="mailto:privacy@aphoriabeauty.com" className="text-aphoria-gold hover:underline">privacy@aphoriabeauty.com</a>. We will respond within 30 days.</p>
+                  <p>To exercise any of these rights, please contact us at <a href="mailto:support@aphoriabeauty.com" className="text-aphoria-gold hover:underline">support@aphoriabeauty.com</a>. We will respond within 30 days.</p>
                 </div>
               </section>
 
@@ -191,7 +191,7 @@ const PrivacyPolicy: React.FC = () => {
                   9. Children's Privacy
                 </h2>
                 <div className="space-y-4 text-[15px] text-aphoria-mid leading-relaxed font-light">
-                  <p>Our website and products are not directed to individuals under the age of 16. We do not knowingly collect personal information from children. If we become aware that a child under 16 has provided us with personal information, we will take steps to delete such information immediately. If you believe we have inadvertently collected information from a child, please contact us at <a href="mailto:privacy@aphoriabeauty.com" className="text-aphoria-gold hover:underline">privacy@aphoriabeauty.com</a>.</p>
+                  <p>Our website and products are not directed to individuals under the age of 16. We do not knowingly collect personal information from children. If we become aware that a child under 16 has provided us with personal information, we will take steps to delete such information immediately. If you believe we have inadvertently collected information from a child, please contact us at <a href="mailto:support@aphoriabeauty.com" className="text-aphoria-gold hover:underline">support@aphoriabeauty.com</a>.</p>
                 </div>
               </section>
 
@@ -213,7 +213,7 @@ const PrivacyPolicy: React.FC = () => {
                   <p>If you have any questions, concerns, or requests regarding this Privacy Policy or your personal data, please contact our Data Protection team:</p>
                   <div className="bg-white/80 border border-aphoria-black/8 rounded-2xl p-6 mt-4 space-y-2">
                     <p className="text-aphoria-black font-medium">Aphoria Beauty Laboratory</p>
-                    <p>Email: <a href="mailto:privacy@aphoriabeauty.com" className="text-aphoria-gold hover:underline">privacy@aphoriabeauty.com</a></p>
+                    <p>Email: <a href="mailto:support@aphoriabeauty.com" className="text-aphoria-gold hover:underline">support@aphoriabeauty.com</a></p>
                     <p>Support: <Link to="/contact" className="text-aphoria-gold hover:underline">Contact Form</Link></p>
                     <p>Response time: Within 2 business days</p>
                   </div>

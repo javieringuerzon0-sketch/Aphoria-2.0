@@ -256,7 +256,7 @@ const CookiePolicy: React.FC = () => {
                   <p>If you have questions about our use of cookies or this policy, please contact us:</p>
                   <div className="bg-white/80 border border-aphoria-black/8 rounded-2xl p-6 mt-4 space-y-2">
                     <p className="text-aphoria-black font-medium">Aphoria Beauty Laboratory</p>
-                    <p>Email: <a href="mailto:privacy@aphoriabeauty.com" className="text-aphoria-gold hover:underline">privacy@aphoriabeauty.com</a></p>
+                    <p>Email: <a href="mailto:support@aphoriabeauty.com" className="text-aphoria-gold hover:underline">support@aphoriabeauty.com</a></p>
                     <p>Support: <Link to="/contact" className="text-aphoria-gold hover:underline">Contact Form</Link></p>
                   </div>
                 </div>
