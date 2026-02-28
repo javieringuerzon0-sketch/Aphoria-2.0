@@ -92,7 +92,7 @@ export const useCartStore = create<CartStore>()(
               return;
             }
 
-            const checkoutDomain = import.meta.env.VITE_SHOPIFY_CHECKOUT_DOMAIN || import.meta.env.VITE_SHOPIFY_STORE_DOMAIN as string;
+            const checkoutDomain = import.meta.env.VITE_SHOPIFY_STORE_DOMAIN as string;
             const base = import.meta.env.VITE_STORE_URL || window.location.origin;
             const returnTo = encodeURIComponent(base);
             let checkoutUrl = `https://${checkoutDomain}/cart/${cartLines}?return_to=${returnTo}`;
