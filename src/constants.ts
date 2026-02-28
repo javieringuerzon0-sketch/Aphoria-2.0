@@ -79,7 +79,7 @@ export const PRODUCTS: Product[] = [
         id: 'REF_GOLD_S1',
         // PRODUCT IMAGE for /product/24-gold-mask (1pc) — NEVER CHANGE
         img: '/goldmask-landing/producto/goldmask-original.png',
-        shopifyVariantId: 'gid://shopify/ProductVariant/42441499410475'
+        shopifyVariantId: 'gid://shopify/ProductVariant/43113257631787'
       },
       '2pcs': {
         name: 'Double Protocol Set',
@@ -88,7 +88,7 @@ export const PRODUCTS: Product[] = [
         id: 'REF_GOLD_M2',
         // PRODUCT IMAGE for /product/24-gold-mask (2pcs) — NEVER CHANGE
         img: '/goldmask-landing/producto/goldmask-2pcs-white.png',
-        shopifyVariantId: 'gid://shopify/ProductVariant/42441499377707'
+        shopifyVariantId: 'gid://shopify/ProductVariant/43113257599019'
       }
     },
     ugc: [
@@ -166,7 +166,7 @@ export const PRODUCTS: Product[] = [
         id: 'REF_AVO_S1',
         // PRODUCT IMAGE for /product/avocado-mask — NEVER CHANGE
         img: '/avocado-landing/producto/avocado-original.png',
-        shopifyVariantId: 'gid://shopify/ProductVariant/42494908629035'
+        shopifyVariantId: 'gid://shopify/ProductVariant/43113253601323'
       }
     },
     ugc: [

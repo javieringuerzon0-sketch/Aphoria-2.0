@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { isShopifyConfigured } from '../lib/shopify';
+import { isShopifyConfigured, storefrontFetch } from '../lib/shopify';
 
 export interface CartItem {
   variantId: string;
@@ -78,26 +78,29 @@ export const useCartStore = create<CartStore>()(
 
         try {
           if (isShopifyConfigured) {
-            // Build direct /cart/{variantId}:{qty} URL — instant redirect to payment
-            const cartLines = items
+            const lines = items
               .filter((i) => i.variantId.startsWith('gid://'))
-              .map((i) => {
-                const numericId = i.variantId.split('/').pop()!;
-                return `${numericId}:${i.quantity}`;
-              })
-              .join(',');
+              .map((i) => ({ quantity: i.quantity, merchandiseId: i.variantId }));
 
-            if (!cartLines) {
+            if (!lines.length) {
               alert('Please add Shopify Variant IDs in constants.ts to enable checkout.');
               return;
             }
 
-            const checkoutDomain = import.meta.env.VITE_SHOPIFY_STORE_DOMAIN as string;
-            const base = import.meta.env.VITE_STORE_URL || window.location.origin;
-            const returnTo = encodeURIComponent(base);
-            let checkoutUrl = `https://${checkoutDomain}/cart/${cartLines}?return_to=${returnTo}`;
-            if (discountCode) checkoutUrl += `&discount=${encodeURIComponent(discountCode)}`;
-            window.location.href = checkoutUrl;
+            const discountCodes = discountCode ? [discountCode] : [];
+            const data = await storefrontFetch<{ cartCreate: { cart: { checkoutUrl: string }; userErrors: { message: string }[] } }>(
+              `mutation cartCreate($input: CartInput!) {
+                cartCreate(input: $input) {
+                  cart { checkoutUrl }
+                  userErrors { message }
+                }
+              }`,
+              { input: { lines, ...(discountCodes.length ? { discountCodes } : {}) } }
+            );
+
+            const { cart, userErrors } = data.cartCreate;
+            if (userErrors.length) throw new Error(userErrors[0].message);
+            window.location.href = cart.checkoutUrl;
           } else {
             alert('Please add Shopify credentials to your .env file to enable checkout.');
           }
@@ -112,7 +115,7 @@ export const useCartStore = create<CartStore>()(
       subtotal: () => get().items.reduce((acc, i) => acc + i.price * i.quantity, 0),
     }),
     {
-      name: 'aphoria-cart',
+      name: 'aphoria-cart-v2',
       partialize: (state) => ({ items: state.items }),
     }
   )

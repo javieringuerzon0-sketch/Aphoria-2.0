@@ -18,6 +18,7 @@ import {
     Target
 } from 'lucide-react';
 import OptimizedImage from '../components/OptimizedImage';
+import { storefrontFetch } from '../lib/shopify';
 
 interface Question {
     id: number;
@@ -182,15 +183,28 @@ const Diagnostic: React.FC = () => {
     };
 
     const CHECKOUT_VARIANTS: Record<'gold' | 'avocado', string> = {
-        gold:    '42441499410475',
-        avocado: '42494908629035',
+        gold:    'gid://shopify/ProductVariant/43113257631787',
+        avocado: 'gid://shopify/ProductVariant/43113253601323',
     };
 
-    const handleViewProtocol = (quizResult: 'gold' | 'avocado') => {
-        const variantId = CHECKOUT_VARIANTS[quizResult];
-        const storeDomain = 'r6duap-tx.myshopify.com';
-        const returnTo = encodeURIComponent(window.location.origin);
-        window.location.href = `https://${storeDomain}/cart/${variantId}:1?return_to=${returnTo}`;
+    const handleViewProtocol = async (quizResult: 'gold' | 'avocado') => {
+        const merchandiseId = CHECKOUT_VARIANTS[quizResult];
+        try {
+            const data = await storefrontFetch<{ cartCreate: { cart: { checkoutUrl: string }; userErrors: { message: string }[] } }>(
+                `mutation cartCreate($input: CartInput!) {
+                    cartCreate(input: $input) {
+                        cart { checkoutUrl }
+                        userErrors { message }
+                    }
+                }`,
+                { input: { lines: [{ quantity: 1, merchandiseId }] } }
+            );
+            const { cart, userErrors } = data.cartCreate;
+            if (userErrors.length) throw new Error(userErrors[0].message);
+            window.location.href = cart.checkoutUrl;
+        } catch (err) {
+            console.error('Checkout error:', err);
+        }
     };
 
     const progress = (currentStep / (QUESTIONS.length)) * 100;

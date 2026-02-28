@@ -8,7 +8,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const { email } = req.body;
   if (!email) return res.status(400).json({ message: 'Email is required' });
 
-  const apiKey = process.env.OMNISEND_API_KEY;
+  const apiKey = process.env.OMNISEND_API_KEY?.trim();
   if (!apiKey) return res.status(500).json({ message: 'Newsletter not configured' });
 
   try {
