@@ -67,14 +67,14 @@ export const PRODUCTS: Product[] = [
     size: "50ml",
     usage: "Apply 2-3 times weekly for 15-20 minutes",
     recommended: "Best for dull, aging skin",
-    perUsePrice: 1.07,
+    perUsePrice: 1.39,
     // HOMEPAGE GALLERY CARD IMAGE
     galleryImg: '/productos%20front/colection-gold2.original.png',
     benefits: ['Instant radiance', 'Firms & lifts', 'Reduces fine lines'],
     variants: {
       '1pc': {
         name: '50g Clinical Tube',
-        price: 29.99,
+        price: 38.99,
         regularPrice: 59.99,
         id: 'REF_GOLD_S1',
         // PRODUCT IMAGE for /product/24-gold-mask (1pc) — NEVER CHANGE
@@ -83,7 +83,7 @@ export const PRODUCTS: Product[] = [
       },
       '2pcs': {
         name: 'Double Protocol Set',
-        price: 36.99,
+        price: 45.99,
         regularPrice: 119.98,
         id: 'REF_GOLD_M2',
         // PRODUCT IMAGE for /product/24-gold-mask (2pcs) — NEVER CHANGE
@@ -154,14 +154,14 @@ export const PRODUCTS: Product[] = [
     size: "60 patch",
     usage: "Apply 2-3 times weekly for 15-20 minutes",
     recommended: "Best for dry, sensitive skin",
-    perUsePrice: 1.21,
+    perUsePrice: 1.57,
     // HOMEPAGE GALLERY CARD IMAGE
     galleryImg: '/productos%20front/seccion-avocado.original.png',
     benefits: ['Deep hydration', 'Soothes irritation', 'Strengthens barrier'],
     variants: {
       '1pc': {
         name: '60 Patches',
-        price: 33.99,
+        price: 46.99,
         regularPrice: 59.99,
         id: 'REF_AVO_S1',
         // PRODUCT IMAGE for /product/avocado-mask — NEVER CHANGE

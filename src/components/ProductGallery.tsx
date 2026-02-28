@@ -55,7 +55,7 @@ const ProductGallery: React.FC = () => {
   const goldMask = products.find(p => p.handle === '24-gold-mask')!;
   const avocadoMask = products.find(p => p.handle === 'avocado-mask')!;
 
-  const bundlePrice = 53.98;
+  const bundlePrice = 75.98;
   const bundleRegular = goldMask.variants['1pc'].price + avocadoMask.variants['1pc'].price;
   const bundleSavings = (bundleRegular - bundlePrice).toFixed(2);
 
