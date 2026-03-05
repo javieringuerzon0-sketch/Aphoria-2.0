@@ -3,6 +3,7 @@ import { FaInstagram, FaPinterest, FaTiktok } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
 import { HiChevronDown } from 'react-icons/hi';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import Logo from './Logo';
 
 const Footer: React.FC = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -47,10 +48,8 @@ const Footer: React.FC = () => {
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 mb-16">
           {/* Left: Brand */}
           <div>
-            <Link to="/">
-              <h3 className="text-6xl md:text-7xl font-brand font-light text-aphoria-black tracking-tight mb-2">
-                Aphoria
-              </h3>
+            <Link to="/" className="inline-block transform transition-transform duration-300 hover:scale-105">
+              <Logo className="h-24 md:h-32 w-auto" />
             </Link>
             <p className="text-lg font-serif italic text-aphoria-mid/80">
               The Science of Transformation—

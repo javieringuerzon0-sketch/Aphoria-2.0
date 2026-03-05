@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { useUIStore } from '../store/useUIStore';
 import { useCartStore } from '../store/useCartStore';
+import Logo from './Logo';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -66,10 +67,9 @@ const Navbar: React.FC = () => {
           <div className="flex items-center gap-6">
             <Link
               to="/"
-              className={`font-brand text-[22px] md:text-[26px] font-medium uppercase tracking-[0.32em] leading-none transition-colors duration-300 ${brandTone}`}
-              style={{ textShadow: textGlow }}
+              className="group transition-transform duration-300 hover:scale-[1.02]"
             >
-              Aphoria
+              <Logo className={`h-11 md:h-14 w-auto ${brandTone}`} />
             </Link>
 
             {isProductPage && (
@@ -151,7 +151,7 @@ const Navbar: React.FC = () => {
             className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-xl flex flex-col p-8"
           >
             <div className="flex justify-between items-center mb-12">
-              <span className="font-brand text-[22px] font-medium uppercase tracking-[0.32em] text-white/95">Aphoria</span>
+              <Logo className="h-10 w-auto opacity-95" />
               <button
                 onClick={() => setIsMenuOpen(false)}
                 className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white hover:bg-white/10 transition-colors"
