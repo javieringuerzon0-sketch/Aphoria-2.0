@@ -10,11 +10,13 @@ export const DISCOUNTS = {
 } as const;
 
 export const HERO_COPY = {
-  h1: "You. In 28 Days. Radiant.",
-  subheadline: "Join 10,000+ women who chose science over promises. Visible transformation, backed by clinical results. Money-back guaranteed.",
-  ctaPrimary: "Get 60-Day Supply",
+  h1: "Your Skin. 28 Days. Transformed.",
+  subheadline: "10,247 verified women. One clinical protocol. Visible results — or your full money back. No questions.",
+  ctaPrimary: "Start My 28-Day Transformation",
   ctaSecondary: "See Clinical Results",
-  guarantee: "60-Day Money-Back Guarantee • Free Shipping • Dermatologist Tested"
+  guarantee: "60-Day Money-Back Guarantee • Free Shipping • Dermatologist Tested",
+  perUse: "As low as $1.39/use",
+  quizCta: "Not sure which mask? Take the 60-sec quiz"
 };
 
 export const MANIFESTO_COPY = {
@@ -106,7 +108,7 @@ export const PRODUCTS: Product[] = [
     accordions: [
       { title: "How to Use", content: "Apply a thin, even layer to cleansed skin. Leave for 15-20 minutes until the molecular synthesis is complete. Rinse with lukewarm water. Use 2-3 times per week for optimal dermal transformation." },
       { title: "Key Ingredients", content: "Aqua/Water, 24K Colloidal Gold, Snail Secretion Filtrate, Hydrolyzed Peptides, Hyaluronic Acid, Glycerin, Tocopherol." },
-      { title: "Shipping & Returns", content: "Sterile delivery protocol. Orders > $50 qualify for priority shipping. 30-day laboratory satisfaction guarantee." }
+      { title: "Shipping & Returns", content: "All orders ship within 24 hours. Free shipping on orders over $50. Protected by our 60-Day Money-Back Guarantee — no questions asked." }
     ],
     videoSection: {
       headline: "Beyond Cosmetics.",
@@ -184,7 +186,7 @@ export const PRODUCTS: Product[] = [
     accordions: [
       { title: "How to Use", content: "Apply a generous layer to clean skin. Relax for 15-20 minutes allowing the lipids to penetrate. Rinse gently or tissue off excess for overnight recovery. Use 2-3 times per week." },
       { title: "Key Ingredients", content: "Aqua/Water, Persea Gratissima (Avocado) Oil, Ceramide NP, Centella Asiatica, Hyaluronic Acid, Shea Butter, Tocopherol." },
-      { title: "Shipping & Returns", content: "Sterile delivery protocol. Orders > $50 qualify for priority shipping. 30-day laboratory satisfaction guarantee." }
+      { title: "Shipping & Returns", content: "All orders ship within 24 hours. Free shipping on orders over $50. Protected by our 60-Day Money-Back Guarantee — no questions asked." }
     ],
     videoSection: {
       headline: "Barrier Restoration.",
@@ -247,7 +249,7 @@ export const TRUST_SIGNALS = {
   guarantee: {
     headline: "60-Day Risk-Free Guarantee",
     copy: "Try Aphoria risk-free for 60 days. If you don't see visible improvement in your skin, we'll refund you—no questions asked.",
-    cta: "Start Your Trial"
+    cta: "Shop Risk-Free"
   },
   badges: [
     { icon: "✓", text: "Dermatologist Tested & Approved" },

@@ -15,6 +15,7 @@ import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Diagnostic from './pages/Diagnostic';
 import ThankYou from './pages/ThankYou';
+const ProductLanding = lazy(() => import('./pages/ProductLanding'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const ShippingPolicy = lazy(() => import('./pages/ShippingPolicy'));
@@ -30,11 +31,12 @@ const ProductDetail = lazy(() => import('./pages/ProductDetail'));
 function AppInner() {
   const location = useLocation();
   const isThankYou = location.pathname === '/thank-you';
+  const isLandingPage = location.pathname.startsWith('/lp/');
   const isProductPage = location.pathname.startsWith('/product/');
 
   return (
     <div className={`min-h-screen selection:bg-aphoria-green selection:text-white ${isProductPage ? 'bg-white' : 'bg-aphoria-bg'}`}>
-      {!isThankYou && <Navbar />}
+      {!isThankYou && !isLandingPage && <Navbar />}
 
       <Suspense fallback={<div className="min-h-screen" />}>
         <Routes>
@@ -49,11 +51,12 @@ function AppInner() {
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/cookie-policy" element={<CookiePolicy />} />
           <Route path="/about" element={<About />} />
+          <Route path="/lp/:handle" element={<ProductLanding />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
 
-      {!isThankYou && (
+      {!isThankYou && !isLandingPage && (
         <>
           <Suspense fallback={null}>
             <Footer />

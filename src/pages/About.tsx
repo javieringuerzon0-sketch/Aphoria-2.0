@@ -45,6 +45,9 @@ const About: React.FC = () => {
             src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/701df31a-c515-4c85-b9ef-cfd4c2dffecd_3840w.webp"
             alt="Aphoria — Luxury Skincare"
             className="w-full h-full object-cover object-center"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-aphoria-black via-aphoria-black/40 to-transparent" />
         </div>
@@ -98,10 +101,10 @@ const About: React.FC = () => {
             </div>
 
             <div className="relative">
-            <OptimizedImage
-              src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d88153dc-622e-48d1-82ba-7d211ab47712_3840w.webp"
-              alt="Aphoria skincare ritual"
-              className="w-full aspect-[4/5] object-cover rounded-3xl"
+            <img
+              src="/goldmask-landing/producto/goldmask-original.png"
+              alt="Aphoria 24K Gold Mask — clinical skincare"
+              className="w-full aspect-[4/5] object-contain rounded-3xl bg-aphoria-bg"
               loading="eager"
               decoding="async"
             />
@@ -138,6 +141,8 @@ const About: React.FC = () => {
                 src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a7ae8664-f3a5-4e39-9f0b-3e4cf4675e8a_3840w.webp"
                 alt="Aphoria laboratory — beauty science"
                 className="w-full aspect-[4/5] object-cover rounded-3xl"
+                loading="lazy"
+                decoding="async"
               />
               {/* Floating ingredient tag */}
               <div className="absolute top-8 -right-4 bg-white border border-aphoria-black/8 rounded-2xl p-5 shadow-xl max-w-[200px]">

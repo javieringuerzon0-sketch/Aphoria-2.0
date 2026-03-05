@@ -38,8 +38,9 @@ const StickyBar: React.FC = () => {
 
   const goldMask = PRODUCTS.find(p => p.handle === '24-gold-mask');
   const avocadoMask = PRODUCTS.find(p => p.handle === 'avocado-mask');
-  const bundleRegular = (goldMask?.variants['1pc'].price ?? 0) + (avocadoMask?.variants['1pc'].price ?? 0);
-  const bundlePrice = bundleRegular - 10;
+  const bundleFullRegular = (goldMask?.variants['1pc'].regularPrice ?? 0) + (avocadoMask?.variants['1pc'].regularPrice ?? 0);
+  const bundlePrice = 75.98;
+  const bundleSavings = Math.round(bundleFullRegular - bundlePrice);
 
   const addBundleAndCheckout = () => {
     const gold = PRODUCTS.find(p => p.handle === '24-gold-mask');
@@ -88,7 +89,6 @@ const StickyBar: React.FC = () => {
                     width={56}
                     height={56}
                     className="w-full h-full object-contain"
-                    style={{ mixBlendMode: 'multiply' }}
                     loading="eager"
                     decoding="async"
                   />
@@ -100,7 +100,6 @@ const StickyBar: React.FC = () => {
                     width={56}
                     height={56}
                     className="w-full h-full object-contain"
-                    style={{ mixBlendMode: 'multiply' }}
                     loading="eager"
                     decoding="async"
                   />
@@ -111,7 +110,7 @@ const StickyBar: React.FC = () => {
                   Limited Time Protocol
                 </p>
                 <p className="text-[15px] font-bold text-aphoria-black">
-                  Complete Transformation Kit • Save $10
+                  Complete Transformation Kit • Save ${bundleSavings}
                 </p>
               </div>
             </div>
@@ -122,7 +121,7 @@ const StickyBar: React.FC = () => {
                 Transformation Kit
               </p>
               <p className="text-[13px] font-bold text-aphoria-black">
-                Save $10 Today
+                Save ${bundleSavings} Today
               </p>
             </div>
 
@@ -131,10 +130,10 @@ const StickyBar: React.FC = () => {
               {/* Price */}
               <div className="text-right">
                 <span className="text-[12px] md:text-[14px] text-aphoria-mid line-through mr-2">
-                  ${bundleRegular.toFixed(2)}
+                  ${bundleFullRegular.toFixed(2)}
                 </span>
                 <span className="text-[20px] md:text-[28px] font-bold text-aphoria-black tabular-nums">
-                  ${bundlePrice.toFixed(2)}
+                  $75.98
                 </span>
               </div>
 
@@ -143,7 +142,7 @@ const StickyBar: React.FC = () => {
                 onClick={addBundleAndCheckout}
                 className="inline-flex items-center gap-2 md:gap-3 px-6 md:px-12 py-3 md:py-4 min-h-[44px] bg-aphoria-black text-white rounded-full text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-500 shadow-lg hover:shadow-xl group"
               >
-                Claim Offer
+                Lock In My Savings
                 <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>

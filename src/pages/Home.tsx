@@ -85,16 +85,14 @@ function Home() {
             <main>
                 <Hero />
                 <TrustBar />
-                <Suspense fallback={<div className="min-h-screen" />}>
-                    <Manifesto />
-                    <ProductHero />
-                    <ProductVideoHero />
-                    <IngredientGrid />
-                    <ProductGallery />
-                    <BeforeAfterHero />
-                    <Testimonials />
-                    <Newsletter />
-                </Suspense>
+                <Suspense fallback={null}><Manifesto /></Suspense>
+                    <Suspense fallback={null}><ProductHero /></Suspense>
+                    <Suspense fallback={null}><ProductVideoHero /></Suspense>
+                    <Suspense fallback={null}><IngredientGrid /></Suspense>
+                    <Suspense fallback={null}><ProductGallery /></Suspense>
+                    <Suspense fallback={null}><BeforeAfterHero /></Suspense>
+                    <Suspense fallback={null}><Testimonials /></Suspense>
+                    <Suspense fallback={null}><Newsletter /></Suspense>
             </main>
         </div>
     );

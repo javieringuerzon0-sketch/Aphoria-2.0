@@ -56,7 +56,8 @@ const ProductGallery: React.FC = () => {
   const avocadoMask = products.find(p => p.handle === 'avocado-mask')!;
 
   const bundlePrice = 75.98;
-  const bundleRegular = goldMask.variants['1pc'].price + avocadoMask.variants['1pc'].price;
+  // Show savings vs FULL regular prices (not sale prices) for maximum perceived value
+  const bundleRegular = goldMask.variants['1pc'].regularPrice + avocadoMask.variants['1pc'].regularPrice;
   const bundleSavings = (bundleRegular - bundlePrice).toFixed(2);
 
   const { addItem, open: openCart, checkout } = useCartStore();
@@ -110,7 +111,7 @@ const ProductGallery: React.FC = () => {
             <div className="flex flex-col items-center group">
               <div className="bundle-image-box transition-transform duration-500 ease-out group-hover:scale-110 cursor-pointer">
                 <div className="product-image-container">
-                  <img src="/bundlee/goldmask-bundle.png" alt="Gold Mask" className="max-h-[220px]" style={{ mixBlendMode: 'multiply' }} loading="lazy" decoding="async" />
+                  <img src="/bundlee/goldmask-bundle.png" alt="Gold Mask" className="max-h-[220px]" loading="lazy" decoding="async" />
                 </div>
                 <div className="ground-shadow" />
               </div>
@@ -127,7 +128,7 @@ const ProductGallery: React.FC = () => {
             <div className="flex flex-col items-center group">
               <div className="bundle-image-box transition-transform duration-500 ease-out group-hover:scale-110 cursor-pointer">
                 <div className="product-image-container" style={{ animationDelay: '0.5s' }}>
-                  <img src="/bundlee/avocado-bundelle.png" alt="Avocado Mask" className="max-h-[200px]" style={{ mixBlendMode: 'multiply' }} loading="lazy" decoding="async" />
+                  <img src="/bundlee/avocado-bundelle.png" alt="Avocado Mask" className="max-h-[200px]" loading="lazy" decoding="async" />
                 </div>
                 <div className="ground-shadow" />
               </div>
@@ -165,7 +166,7 @@ const ProductGallery: React.FC = () => {
                 onClick={addBundleAndCheckout}
                 className="w-full bg-aphoria-black text-white rounded-full py-5 text-[12px] uppercase tracking-[0.25em] font-bold hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-300 shadow-xl"
               >
-                Add Kit — Save $10 Instantly
+                Get The Kit — Save ${bundleSavings}
               </button>
               <p className="text-[10px] text-aphoria-mid mt-4 text-center uppercase tracking-widest">Free Shipping • 60-Day Guarantee</p>
             </div>

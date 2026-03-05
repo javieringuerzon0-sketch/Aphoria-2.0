@@ -70,30 +70,18 @@ const ProductHero: React.FC = () => {
               transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="mt-6 flex flex-wrap gap-3"
             >
-              <motion.div
-                animate={{ opacity: [0.85, 1, 0.85], scale: [1, 1.02, 1] }}
-                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-                className="inline-flex items-center gap-2 rounded-full border border-aphoria-black/10 bg-white/70 px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-aphoria-black/80 backdrop-blur"
-              >
+              <div className="inline-flex items-center gap-2 rounded-full border border-aphoria-black/10 bg-white/70 px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-aphoria-black/80 backdrop-blur">
                 <Truck className="h-3.5 w-3.5 text-aphoria-gold" />
                 Free shipping
-              </motion.div>
-              <motion.div
-                animate={{ opacity: [0.85, 1, 0.85], scale: [1, 1.02, 1] }}
-                transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-                className="inline-flex items-center gap-2 rounded-full border border-aphoria-black/10 bg-white/70 px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-aphoria-black/80 backdrop-blur"
-              >
+              </div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-aphoria-black/10 bg-white/70 px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-aphoria-black/80 backdrop-blur">
                 <RefreshCw className="h-3.5 w-3.5 text-aphoria-gold" />
                 30-day returns
-              </motion.div>
-              <motion.div
-                animate={{ opacity: [0.85, 1, 0.85], scale: [1, 1.02, 1] }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
-                className="inline-flex items-center gap-2 rounded-full border border-aphoria-black/10 bg-white/70 px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-aphoria-black/80 backdrop-blur"
-              >
+              </div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-aphoria-black/10 bg-white/70 px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-aphoria-black/80 backdrop-blur">
                 <ShieldCheck className="h-3.5 w-3.5 text-aphoria-gold" />
                 Secure checkout
-              </motion.div>
+              </div>
             </motion.div>
           </motion.div>
 

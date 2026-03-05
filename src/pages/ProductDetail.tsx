@@ -48,20 +48,71 @@ const ProductDetail: React.FC = () => {
     const initialVariantKey = Object.keys(currentProduct.variants)[0];
     const [selectedVariant, setSelectedVariant] = useState(initialVariantKey);
 
+    // Declare before useEffect so the dependency array can reference it
+    const { variants, ugc } = currentProduct;
+    const currentVariant: Variant = variants[selectedVariant] || variants[Object.keys(variants)[0]];
+
     useEffect(() => {
         window.scrollTo(0, 0);
         document.title = `${currentProduct.name} | Aphoria Beauty Laboratory`;
+
+        // Meta description
+        let metaDesc = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+        if (!metaDesc) { metaDesc = document.createElement('meta'); metaDesc.name = 'description'; document.head.appendChild(metaDesc); }
+        metaDesc.content = `${currentProduct.shortDesc} ${currentProduct.reviews.toLocaleString()}+ verified reviews. 60-Day Money-Back Guarantee. Free shipping over $50.`;
+
+        // OG tags
+        const setMeta = (prop: string, val: string, attr = 'property') => {
+            let el = document.querySelector<HTMLMetaElement>(`meta[${attr}="${prop}"]`);
+            if (!el) { el = document.createElement('meta'); el.setAttribute(attr, prop); document.head.appendChild(el); }
+            el.content = val;
+        };
+        setMeta('og:title', `${currentProduct.name} | Aphoria Beauty Laboratory`);
+        setMeta('og:description', `${currentProduct.shortDesc} ${currentProduct.reviews.toLocaleString()}+ verified reviews. 60-Day Money-Back Guarantee.`);
+        setMeta('og:image', `https://aphoriabeauty.com${currentVariant.img}`);
+        setMeta('og:url', `https://aphoriabeauty.com/product/${currentProduct.handle}`);
+        setMeta('og:type', 'product');
+        setMeta('twitter:card', 'summary_large_image', 'name');
+        setMeta('twitter:title', `${currentProduct.name} | Aphoria Beauty`, 'name');
+        setMeta('twitter:description', currentProduct.shortDesc, 'name');
+        setMeta('twitter:image', `https://aphoriabeauty.com${currentVariant.img}`, 'name');
+
+        // JSON-LD Product schema
+        const schema = {
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: currentProduct.name,
+            description: currentProduct.shortDesc,
+            image: `https://aphoriabeauty.com${currentVariant.img}`,
+            brand: { '@type': 'Brand', name: 'Aphoria Beauty' },
+            offers: {
+                '@type': 'Offer',
+                price: currentVariant.price,
+                priceCurrency: 'USD',
+                availability: 'https://schema.org/InStock',
+                url: `https://aphoriabeauty.com/product/${currentProduct.handle}`,
+                priceValidUntil: new Date(Date.now() + 30 * 86400000).toISOString().split('T')[0],
+            },
+            aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue: '4.9',
+                reviewCount: currentProduct.reviews,
+                bestRating: '5',
+                worstRating: '1',
+            },
+        };
+        let ldEl = document.getElementById('product-json-ld') as HTMLScriptElement | null;
+        if (!ldEl) { ldEl = document.createElement('script'); ldEl.id = 'product-json-ld'; ldEl.type = 'application/ld+json'; document.head.appendChild(ldEl); }
+        ldEl.textContent = JSON.stringify(schema);
+
         // Sync wishlist state when navigating between products
         try {
             const saved = JSON.parse(localStorage.getItem('aphoria_wishlist') || '[]');
             setWishlisted(saved.includes(handle));
         } catch { setWishlisted(false); }
-    }, [handle, currentProduct.name]);
 
-    const { variants, ugc } = currentProduct;
-
-    // Default variant
-    const currentVariant: Variant = variants[selectedVariant] || variants[Object.keys(variants)[0]];
+        return () => { document.getElementById('product-json-ld')?.remove(); };
+    }, [handle, currentProduct, currentVariant]);
 
     // Shuffle UGC only once on mount or handle change
     const [shuffledUgc, setShuffledUgc] = useState<Review[]>(ugc);
@@ -192,7 +243,6 @@ const ProductDetail: React.FC = () => {
                                     src={currentVariant.img}
                                     alt={currentProduct.name}
                                     className="w-full h-full object-contain relative z-10"
-                                    style={{ mixBlendMode: 'multiply' }}
                                     loading="eager"
                                     decoding="async"
                                     fetchPriority="high"

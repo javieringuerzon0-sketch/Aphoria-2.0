@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, FlaskConical } from 'lucide-react';
 import OptimizedImage from './OptimizedImage';
 import { HERO_COPY } from '../constants';
 
 const Hero: React.FC = () => {
   const [videoReady, setVideoReady] = useState(false);
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 800], [0, 200]);
   const opacity = useTransform(scrollY, [0, 400], [1, 0]);
   const stars = Array.from({ length: 5 });
-  const highlightWord = 'Cellular';
+  const highlightWord = 'Transformed.';
   const headingParts = HERO_COPY.h1.split(highlightWord);
   const clientImages = [
     {
@@ -36,10 +35,7 @@ const Hero: React.FC = () => {
   return (
     <section className="relative h-screen w-full overflow-hidden flex items-end pb-24 md:pb-28 bg-black">
       {/* Cinematic Video Background - Maximum Quality */}
-      <motion.div
-        style={{ y }}
-        className="absolute inset-0 z-0 bg-black"
-      >
+      <div className="absolute inset-0 z-0 bg-black">
         {/* Subtle Overlay - Premium contrast for text legibility */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/15 via-black/5 to-black/20 z-10 pointer-events-none"></div>
 
@@ -69,13 +65,13 @@ const Hero: React.FC = () => {
 
         {/* Bottom Gradient for Text Legibility */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent z-10 pointer-events-none"></div>
-      </motion.div>
+      </div>
 
       {/* Content Section - Professional Editorial Layout */}
       <div className="relative z-20 w-full max-w-[1360px] mx-auto px-6 md:px-12">
         <motion.div
-          initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
           className="relative max-w-lg"
         >
@@ -134,12 +130,12 @@ const Hero: React.FC = () => {
             </div>
             <div className="h-4 w-[1px] bg-white/30"></div>
             <div className="text-[11px] uppercase tracking-[0.22em] text-white/80">
-              <strong className="font-semibold">10,000+</strong> Women Trust Us
+              <strong className="font-semibold">10,247</strong> Verified Women
             </div>
           </motion.div>
 
           <p className="text-[9px] uppercase tracking-[0.24em] text-white/80 mb-4">
-            Cellular renewal, barrier repair, and visible firmness in 28 days.
+            Cellular renewal · barrier repair · visible firmness · 28 days
           </p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -179,7 +175,7 @@ const Hero: React.FC = () => {
             className="flex flex-col sm:flex-row items-start sm:items-center gap-3"
           >
             <Link
-              to="/product/avocado-mask"
+              to="/product/24-gold-mask"
               className="inline-flex items-center gap-3 px-12 py-4 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-500 shadow-lg hover:shadow-xl group"
               style={{ backgroundColor: '#0F3B2E', color: 'white' }}
               onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#C6A15B'; (e.currentTarget as HTMLAnchorElement).style.color = '#111111'; }}
@@ -191,6 +187,25 @@ const Hero: React.FC = () => {
             <a href="#science" className="rounded-full border border-white/30 bg-white/5 px-6 py-[12px] text-[9px] font-semibold uppercase tracking-[0.24em] text-white/90 backdrop-blur transition-all duration-500 hover:border-white/60 hover:text-white">
               {HERO_COPY.ctaSecondary}
             </a>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.7 }}
+            className="mt-3 flex flex-wrap items-center gap-4"
+          >
+            <span className="text-[10px] text-white/50 uppercase tracking-[0.2em]">
+              {HERO_COPY.perUse}
+            </span>
+            <span className="text-white/20">·</span>
+            <Link
+              to="/diagnostic"
+              className="flex items-center gap-1.5 text-[10px] text-aphoria-gold/80 hover:text-aphoria-gold transition-colors underline underline-offset-2"
+            >
+              <FlaskConical size={11} />
+              {HERO_COPY.quizCta} →
+            </Link>
           </motion.div>
 
           <motion.div

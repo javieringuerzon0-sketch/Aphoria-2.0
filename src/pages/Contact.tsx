@@ -68,9 +68,9 @@ const Contact: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-aphoria-bg pt-32 pb-20 px-6 overflow-hidden relative">
-            {/* Background elements */}
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-aphoria-gold/5 rounded-full blur-[120px] -mr-40 -mt-40" />
-            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-aphoria-green/5 rounded-full blur-[100px] -ml-20 -mb-20" />
+            {/* Background elements — using radial-gradient instead of blur for GPU performance */}
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] -mr-40 -mt-40 pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, rgba(198,161,91,0.08) 0%, transparent 70%)' }} />
+            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] -ml-20 -mb-20 pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, rgba(74,111,90,0.08) 0%, transparent 70%)' }} />
 
             <div className="max-w-[1280px] mx-auto relative z-10">
                 <header className="max-w-3xl mb-24">

@@ -93,7 +93,7 @@ const TrustBar: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Press/Media Section */}
+        {/* Certifications & Labs */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -102,16 +102,21 @@ const TrustBar: React.FC = () => {
           className="mt-16 pt-12 border-t border-aphoria-black/10"
         >
           <p className="text-center text-[10px] uppercase tracking-[0.28em] text-aphoria-mid mb-8">
-            As Featured In
+            Formulated & Tested To Standards
           </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500">
-            {/* Placeholder for press logos - replace with actual logos */}
-            <div className="text-[14px] font-serif italic text-aphoria-black">Vogue</div>
-            <div className="text-[14px] font-serif text-aphoria-black">Harper's Bazaar</div>
-            <div className="text-[14px] font-sans font-bold text-aphoria-black">WSJ</div>
-            <div className="text-[14px] font-serif italic text-aphoria-black">Elle</div>
-            <div className="text-[14px] font-sans text-aphoria-black">Monocle</div>
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+            {[
+              { label: 'Dermatologist\nTested', icon: '🔬' },
+              { label: 'Cruelty\nFree', icon: '🌿' },
+              { label: 'No Parabens\nNo Sulfates', icon: '✓' },
+              { label: 'Swiss Lab\nFormulated', icon: '⚗️' },
+              { label: 'Clinical Grade\nIngredients', icon: '💊' },
+            ].map((cert) => (
+              <div key={cert.label} className="flex flex-col items-center gap-2 text-center">
+                <span className="text-[20px]">{cert.icon}</span>
+                <span className="text-[9px] uppercase tracking-[0.2em] text-aphoria-mid font-semibold whitespace-pre-line leading-snug">{cert.label}</span>
+              </div>
+            ))}
           </div>
         </motion.div>
       </div>

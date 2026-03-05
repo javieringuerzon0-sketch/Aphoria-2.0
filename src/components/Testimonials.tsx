@@ -73,30 +73,34 @@ const Testimonials: React.FC = () => {
 
   const getCardStyle = (index: number) => {
     const diff = (index - activeIndex + testimonials.length) % testimonials.length;
+    const isVisible = diff === 0 || diff === 1 || diff === testimonials.length - 1;
 
     if (diff === 0) {
       // Center card (active)
       return {
         transform: 'translateX(0%) scale(1) rotateY(0deg)',
         opacity: 1,
-        zIndex: 30
+        zIndex: 30,
+        willChange: 'transform, opacity' as const
       };
     } else if (diff === 1 || diff === -4) {
       // Right card
       return {
         transform: 'translateX(35%) scale(0.85) rotateY(-12deg)',
         opacity: 0.6,
-        zIndex: 20
+        zIndex: 20,
+        willChange: 'transform, opacity' as const
       };
     } else if (diff === testimonials.length - 1 || diff === -1) {
       // Left card
       return {
         transform: 'translateX(-35%) scale(0.85) rotateY(12deg)',
         opacity: 0.6,
-        zIndex: 20
+        zIndex: 20,
+        willChange: 'transform, opacity' as const
       };
     } else {
-      // Hidden cards
+      // Hidden cards — no willChange to avoid GPU memory waste
       return {
         transform: 'translateX(0%) scale(0.7) rotateY(0deg)',
         opacity: 0,
@@ -135,8 +139,7 @@ const Testimonials: React.FC = () => {
                 className="absolute w-full max-w-md"
                 style={{
                   ...getCardStyle(index),
-                  transition: 'all 0.45s cubic-bezier(0.22, 1, 0.36, 1)',
-                  willChange: 'transform, opacity'
+                  transition: 'all 0.45s cubic-bezier(0.22, 1, 0.36, 1)'
                 }}
               >
                 <div className="bg-white rounded-2xl shadow-2xl p-8 border border-aphoria-black/5">

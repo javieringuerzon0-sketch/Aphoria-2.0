@@ -146,7 +146,6 @@ const CartDrawer: React.FC = () => {
                         src={item.img}
                         alt={item.title}
                         className="w-full h-full object-contain"
-                        style={{ mixBlendMode: 'multiply', filter: 'brightness(1.2)' }}
                       />
                     </div>
 
