@@ -67,9 +67,12 @@ const Navbar: React.FC = () => {
           <div className="flex items-center gap-6">
             <Link
               to="/"
-              className="group transition-transform duration-300 hover:scale-[1.02]"
+              className="group flex items-center gap-3 transition-transform duration-300 hover:scale-[1.02]"
             >
-              <Logo className={`h-11 md:h-14 w-auto ${brandTone}`} />
+              <Logo className={`h-10 md:h-12 w-auto ${brandTone}`} />
+              <span className={`font-brand text-[22px] md:text-[26px] font-medium uppercase tracking-[0.32em] leading-none transition-colors duration-300 ${brandTone}`} style={{ textShadow: textGlow }}>
+                Aphoria
+              </span>
             </Link>
 
             {isProductPage && (
@@ -151,7 +154,10 @@ const Navbar: React.FC = () => {
             className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-xl flex flex-col p-8"
           >
             <div className="flex justify-between items-center mb-12">
-              <Logo className="h-10 w-auto opacity-95" />
+              <div className="flex items-center gap-4">
+                <Logo className="h-10 w-auto opacity-95" />
+                <span className="font-brand text-[22px] font-medium uppercase tracking-[0.32em] text-white/95">Aphoria</span>
+              </div>
               <button
                 onClick={() => setIsMenuOpen(false)}
                 className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white hover:bg-white/10 transition-colors"
