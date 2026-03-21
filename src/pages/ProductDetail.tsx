@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -117,6 +117,14 @@ const ProductDetail: React.FC = () => {
         return () => { document.getElementById('product-json-ld')?.remove(); };
     }, [handle]); // eslint-disable-line react-hooks/exhaustive-deps
 
+    // Preload all variant images so switching is instant
+    useEffect(() => {
+        Object.values(variants).forEach(v => {
+            const img = new window.Image();
+            img.src = v.img;
+        });
+    }, [variants]);
+
     // Shuffle UGC only once on mount or handle change
     const [shuffledUgc, setShuffledUgc] = useState<Review[]>(ugc);
 
@@ -126,67 +134,6 @@ const ProductDetail: React.FC = () => {
         const newInitialVariant = Object.keys(currentProduct.variants)[0];
         setSelectedVariant(newInitialVariant);
     }, [ugc, currentProduct]);
-
-    // UGC drag-to-scroll + auto-scroll via rAF
-    const ugcTrackRef = useRef<HTMLDivElement>(null);
-    const isDragging = useRef(false);
-    const dragStartX = useRef(0);
-    const dragScrollLeft = useRef(0);
-    const autoScrollPos = useRef(0);
-    const rafRef = useRef<number | undefined>(undefined);
-
-    useEffect(() => {
-        const track = ugcTrackRef.current;
-        if (!track) return;
-        autoScrollPos.current = track.scrollLeft;
-
-        const tick = () => {
-            if (!isDragging.current) {
-                autoScrollPos.current += 0.7;
-                const half = track.scrollWidth / 2;
-                if (half > 0 && autoScrollPos.current >= half) {
-                    autoScrollPos.current = 0;
-                }
-                track.scrollLeft = autoScrollPos.current;
-            }
-            rafRef.current = requestAnimationFrame(tick);
-        };
-
-        rafRef.current = requestAnimationFrame(tick);
-        return () => { if (rafRef.current !== undefined) cancelAnimationFrame(rafRef.current); };
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-    const handleUgcMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-        isDragging.current = true;
-        dragStartX.current = e.pageX;
-        dragScrollLeft.current = ugcTrackRef.current?.scrollLeft ?? 0;
-    }, []);
-    const handleUgcMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-        if (!isDragging.current) return;
-        e.preventDefault();
-        const walk = (dragStartX.current - e.pageX) * 1.5;
-        if (ugcTrackRef.current) {
-            ugcTrackRef.current.scrollLeft = dragScrollLeft.current + walk;
-            autoScrollPos.current = ugcTrackRef.current.scrollLeft;
-        }
-    }, []);
-    const handleUgcDragEnd = useCallback(() => {
-        isDragging.current = false;
-        if (ugcTrackRef.current) autoScrollPos.current = ugcTrackRef.current.scrollLeft;
-    }, []);
-    const handleUgcTouchStart = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
-        isDragging.current = true;
-        dragStartX.current = e.touches[0].pageX;
-        dragScrollLeft.current = ugcTrackRef.current?.scrollLeft ?? 0;
-    }, []);
-    const handleUgcTouchMove = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
-        if (!isDragging.current) return;
-        const walk = (dragStartX.current - e.touches[0].pageX) * 1.5;
-        if (ugcTrackRef.current) {
-            ugcTrackRef.current.scrollLeft = dragScrollLeft.current + walk;
-            autoScrollPos.current = ugcTrackRef.current.scrollLeft;
-        }
-    }, []);
 
     const { addItem, open: openCart } = useCartStore();
 
@@ -380,81 +327,55 @@ const ProductDetail: React.FC = () => {
                             </p>
                         </div>
 
-                        {/* INFINITE MARQUEE CONTAINER */}
+                        {/* INFINITE MARQUEE — CSS-driven, GPU accelerated, zero JS */}
                         <div className="mask-fade-x relative w-full overflow-hidden">
                             <div
-                                ref={ugcTrackRef}
-                                className="overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing select-none"
-                                onMouseDown={handleUgcMouseDown}
-                                onMouseMove={handleUgcMouseMove}
-                                onMouseUp={handleUgcDragEnd}
-                                onMouseLeave={handleUgcDragEnd}
-                                onTouchStart={handleUgcTouchStart}
-                                onTouchMove={handleUgcTouchMove}
-                                onTouchEnd={handleUgcDragEnd}
+                                className="ugc-marquee flex py-10"
+                                onMouseEnter={e => (e.currentTarget.style.animationPlayState = 'paused')}
+                                onMouseLeave={e => (e.currentTarget.style.animationPlayState = 'running')}
                             >
-                                <div className="flex w-max py-10">
-                                    {/* Duplicate array for seamless loop using shuffled data */}
-                                    {[...shuffledUgc, ...shuffledUgc].map((item: any, i) => (
-                                        <div
-                                            key={`${item.id}-${i}`}
-                                            className="w-[300px] md:w-[360px] mx-5 flex-shrink-0 group cursor-pointer"
-                                        >
-                                            {/* STORY CARD */}
-                                            <div className="aspect-[9/16] relative rounded-[30px] overflow-hidden bg-gray-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] [transition-property:scale,box-shadow] duration-500 hover:scale-[1.02] hover:shadow-[0_40px_80px_-20px_rgba(198,161,91,0.2)]">
-
-                                                {/* IMAGE */}
-                                                <img
-                                                    src={item.img}
-                                                    alt={`Review by ${item.user}`}
-                                                    className="w-full h-full object-cover [transition-property:scale,filter] duration-700 group-hover:scale-105 group-hover:blur-sm"
-                                                    loading="lazy"
-                                                    decoding="async"
-                                                />
-
-                                                {/* GRADIENT OVERLAY & CONTENT CONTAINER */}
-                                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/60 transition-colors duration-500 flex flex-col justify-end p-8">
-
-                                                    {/* BLUR REVEAL TEXT (Centered when blurred) */}
-                                                    <div className="absolute inset-0 flex items-center justify-center p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
-                                                        <div className="text-center translate-y-4 group-hover:translate-y-0 [transition-property:translate] duration-500">
-                                                            <Quote size={24} className="text-aphoria-gold mx-auto mb-4" />
-                                                            <p className="text-white text-sm font-medium leading-relaxed italic">
-                                                                "{item.text}"
-                                                            </p>
-                                                        </div>
-                                                    </div>
-
-                                                    {/* USER INFO (Fades out when text appears) */}
-                                                    <div className="group-hover:opacity-0 transition-opacity duration-300">
-                                                        <div className="flex items-center gap-4 mb-2">
-                                                            <div className="p-[2px] rounded-full bg-gradient-to-tr from-aphoria-gold via-[#FFF4E0] to-aphoria-gold/50">
-                                                                <div className="p-[2px] rounded-full bg-black">
-                                                                    <div className="w-8 h-8 rounded-full bg-aphoria-bg overflow-hidden">
-                                                                        <img src={item.img} alt={item.user} className="w-full h-full object-cover" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div>
-                                                                <p className="text-white text-xs font-bold tracking-widest uppercase mb-0.5">{item.user}</p>
-                                                                <div className="flex items-center gap-2">
-                                                                    <span className="text-[10px] text-white/60">Verified</span>
-                                                                    {/* Star icons removed/simplified to avoid reference errors if Star not imported, or added imports */}
-                                                                    <span className="text-aphoria-gold text-[10px]">★★★★★</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                {[...shuffledUgc, ...shuffledUgc].map((item: any, i) => (
+                                    <div
+                                        key={`${item.id}-${i}`}
+                                        className="w-[300px] md:w-[360px] mx-5 flex-shrink-0 group cursor-pointer"
+                                    >
+                                        <div className="aspect-[9/16] relative rounded-[30px] overflow-hidden bg-gray-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] [transition-property:scale,box-shadow] duration-500 hover:scale-[1.02] hover:shadow-[0_40px_80px_-20px_rgba(198,161,91,0.2)]">
+                                            <img
+                                                src={item.img}
+                                                alt={`Review by ${item.user}`}
+                                                className="w-full h-full object-cover [transition-property:scale,filter] duration-700 group-hover:scale-105 group-hover:blur-sm"
+                                                loading="lazy"
+                                                decoding="async"
+                                            />
+                                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/60 transition-colors duration-500 flex flex-col justify-end p-8">
+                                                <div className="absolute inset-0 flex items-center justify-center p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
+                                                    <div className="text-center translate-y-4 group-hover:translate-y-0 [transition-property:translate] duration-500">
+                                                        <Quote size={24} className="text-aphoria-gold mx-auto mb-4" />
+                                                        <p className="text-white text-sm font-medium leading-relaxed italic">"{item.text}"</p>
                                                     </div>
                                                 </div>
-
-                                                {/* HOVER INTERACTION HINT */}
-                                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                                                    {/* Icon hidden or removed as requested if causing lag */}
+                                                <div className="group-hover:opacity-0 transition-opacity duration-300">
+                                                    <div className="flex items-center gap-4 mb-2">
+                                                        <div className="p-[2px] rounded-full bg-gradient-to-tr from-aphoria-gold via-[#FFF4E0] to-aphoria-gold/50">
+                                                            <div className="p-[2px] rounded-full bg-black">
+                                                                <div className="w-8 h-8 rounded-full bg-aphoria-bg overflow-hidden">
+                                                                    <img src={item.img} alt={item.user} className="w-full h-full object-cover" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <p className="text-white text-xs font-bold tracking-widest uppercase mb-0.5">{item.user}</p>
+                                                            <div className="flex items-center gap-2">
+                                                                <span className="text-[10px] text-white/60">Verified</span>
+                                                                <span className="text-aphoria-gold text-[10px]">★★★★★</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    ))}
-                                </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
 
