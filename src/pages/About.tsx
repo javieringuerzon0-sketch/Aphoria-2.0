@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import OptimizedImage from '../components/OptimizedImage';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
@@ -28,10 +28,23 @@ const stats = [
   { val: '100%', label: 'Cruelty-Free' },
 ];
 
+const ABOUT_HERO_URL = 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/701df31a-c515-4c85-b9ef-cfd4c2dffecd_3840w.webp';
+
 const About: React.FC = () => {
+  const [heroLoaded, setHeroLoaded] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = 'About Aphoria | Beauty Laboratory';
+    // Inject preload hint as early as possible so the browser
+    // can start fetching the hero image in parallel with JS execution
+    const preload = document.createElement('link');
+    preload.rel = 'preload';
+    preload.as = 'image';
+    preload.href = ABOUT_HERO_URL;
+    preload.fetchPriority = 'high';
+    document.head.prepend(preload);
+    return () => { document.head.removeChild(preload); };
   }, []);
 
   return (
@@ -39,15 +52,21 @@ const About: React.FC = () => {
 
       {/* ── HERO ── */}
       <section className="relative min-h-screen flex items-end pb-20 overflow-hidden">
-        {/* Background image */}
-        <div className="absolute inset-0">
+        {/* Background image — dark placeholder shows instantly while image fetches */}
+        <div className="absolute inset-0 bg-aphoria-black">
           <img
-            src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/701df31a-c515-4c85-b9ef-cfd4c2dffecd_3840w.webp"
+            src={ABOUT_HERO_URL}
             alt="Aphoria — Luxury Skincare"
             className="w-full h-full object-cover object-center"
             loading="eager"
             fetchPriority="high"
             decoding="async"
+            onLoad={() => setHeroLoaded(true)}
+            style={{
+              opacity: heroLoaded ? 1 : 0,
+              transition: 'opacity 0.6s ease',
+              willChange: 'opacity',
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-aphoria-black via-aphoria-black/40 to-transparent" />
         </div>
@@ -138,7 +157,7 @@ const About: React.FC = () => {
 
             <div className="relative order-2 lg:order-1">
               <img
-                src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a7ae8664-f3a5-4e39-9f0b-3e4cf4675e8a_3840w.webp"
+                src="/about-lab.png"
                 alt="Aphoria laboratory — beauty science"
                 className="w-full aspect-[4/5] object-cover rounded-3xl"
                 loading="lazy"

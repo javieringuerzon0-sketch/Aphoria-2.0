@@ -36,7 +36,7 @@ const Newsletter: React.FC = () => {
                 Member Exclusive
               </span>
               <h2 className="text-5xl lg:text-7xl font-brand font-light text-aphoria-black mb-6 leading-[0.9] tracking-tight">
-                Get 15% Off <br /> <span className="italic font-serif text-aphoria-gold">Your First Order.</span>
+                Get 10% Off <br /> <span className="italic font-serif text-aphoria-gold">Your First Order.</span>
               </h2>
               <p className="text-aphoria-mid/70 text-sm leading-relaxed max-w-sm mb-6">
                 Join 10,247 women in the Aphoria Inner Circle and get your discount code instantly — plus our free 28-Day Clinical Protocol PDF.
@@ -44,7 +44,7 @@ const Newsletter: React.FC = () => {
               {/* What you get */}
               <div className="space-y-3">
                 {[
-                  '15% off your first order (code sent instantly)',
+                  '10% off your first order (code sent instantly)',
                   'Free 28-Day Clinical Protocol PDF',
                   'Early access to new products',
                   'Member-only pricing & restocks',
@@ -71,11 +71,11 @@ const Newsletter: React.FC = () => {
                     <div className="w-2 h-2 rounded-full bg-aphoria-gold animate-pulse" />
                     <p className="text-xs font-bold uppercase tracking-widest">You're in. Welcome to Aphoria.</p>
                   </div>
-                  <p className="text-[13px] text-aphoria-mid mb-4">Your 15% discount code:</p>
+                  <p className="text-[13px] text-aphoria-mid mb-4">Your 10% discount code:</p>
                   <div className="flex items-center gap-3 bg-white border border-aphoria-gold/30 rounded-lg px-5 py-4">
-                    <span className="font-mono text-[22px] font-bold text-aphoria-black tracking-widest flex-1">APHORIA15</span>
+                    <span className="font-mono text-[22px] font-bold text-aphoria-black tracking-widest flex-1">APHORIA10</span>
                     <button
-                      onClick={() => navigator.clipboard?.writeText('APHORIA15')}
+                      onClick={() => navigator.clipboard?.writeText('APHORIA10')}
                       className="text-[10px] uppercase tracking-widest font-bold text-aphoria-gold hover:text-aphoria-black transition-colors"
                     >
                       Copy
@@ -98,7 +98,7 @@ const Newsletter: React.FC = () => {
                   <button
                     type="submit"
                     className="absolute right-0 top-1/2 -translate-y-1/2 text-aphoria-black/40 group-hover:text-aphoria-gold transition-colors duration-300"
-                    aria-label="Subscribe and get 15% off"
+                    aria-label="Subscribe and get 10% off"
                   >
                     <ChevronRight size={24} />
                   </button>

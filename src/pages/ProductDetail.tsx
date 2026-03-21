@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -50,7 +50,10 @@ const ProductDetail: React.FC = () => {
 
     // Declare before useEffect so the dependency array can reference it
     const { variants, ugc } = currentProduct;
-    const currentVariant: Variant = variants[selectedVariant] || variants[Object.keys(variants)[0]];
+    const currentVariant: Variant = useMemo(
+        () => variants[selectedVariant] || variants[Object.keys(variants)[0]],
+        [variants, selectedVariant]
+    );
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -112,7 +115,7 @@ const ProductDetail: React.FC = () => {
         } catch { setWishlisted(false); }
 
         return () => { document.getElementById('product-json-ld')?.remove(); };
-    }, [handle, currentProduct, currentVariant]);
+    }, [handle]); // eslint-disable-line react-hooks/exhaustive-deps
 
     // Shuffle UGC only once on mount or handle change
     const [shuffledUgc, setShuffledUgc] = useState<Review[]>(ugc);
@@ -123,21 +126,6 @@ const ProductDetail: React.FC = () => {
         const newInitialVariant = Object.keys(currentProduct.variants)[0];
         setSelectedVariant(newInitialVariant);
     }, [ugc, currentProduct]);
-
-    // Track hero image load to avoid white-flash before mix-blend-mode composites
-    const productImgRef = useRef<HTMLImageElement>(null);
-    const [productImgLoaded, setProductImgLoaded] = useState(false);
-    useEffect(() => {
-        // Reset state for the new variant/image
-        setProductImgLoaded(false);
-        // For cached images: onLoad fires during DOM commit (BEFORE this effect runs),
-        // so we must check .complete here and recover. React batches both calls → single render.
-        const el = productImgRef.current;
-        if (el && el.complete && el.naturalWidth > 0) {
-            setProductImgLoaded(true);
-        }
-    }, [selectedVariant, currentVariant.img]);
-
 
     // UGC drag-to-scroll + auto-scroll via rAF
     const ugcTrackRef = useRef<HTMLDivElement>(null);
@@ -166,7 +154,7 @@ const ProductDetail: React.FC = () => {
 
         rafRef.current = requestAnimationFrame(tick);
         return () => { if (rafRef.current !== undefined) cancelAnimationFrame(rafRef.current); };
-    }, [shuffledUgc]);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleUgcMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
         isDragging.current = true;
@@ -233,11 +221,7 @@ const ProductDetail: React.FC = () => {
 
                         {/* Gallery - 7 Columns (Fixed Background Removal) */}
                         <div className="lg:col-span-7 flex flex-col gap-6">
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                className="relative aspect-[4/5] flex items-center justify-center bg-white"
-                            >
+                            <div className="relative aspect-[4/5] flex items-center justify-center bg-white">
 
                                 <img
                                     src={currentVariant.img}
@@ -252,7 +236,7 @@ const ProductDetail: React.FC = () => {
                                     <Sparkles size={12} className="text-aphoria-gold" />
                                     <span className="text-[10px] font-bold tracking-[0.25em] uppercase">Laboratory grade</span>
                                 </div>
-                            </motion.div>
+                            </div>
                         </div>
 
                         {/* Info - 5 Columns */}
@@ -537,7 +521,7 @@ const ProductDetail: React.FC = () => {
                                 </div>
                             </div>
 
-                            <div className="relative aspect-square overflow-hidden rounded-[80px] shadow-[0_60px_120px_-30px_rgba(0,0,0,0.5)] border border-white/5 order-1 lg:order-2">
+                            <div className="relative aspect-square overflow-hidden rounded-[80px] shadow-[0_60px_120px_-30px_rgba(0,0,0,0.5)] border border-white/5 order-1 lg:order-2 isolate">
                                 <video
                                     key={currentProduct.video}
                                     autoPlay

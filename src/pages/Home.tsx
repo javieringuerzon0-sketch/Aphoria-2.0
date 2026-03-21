@@ -12,87 +12,47 @@ const Testimonials = lazy(() => import('../components/Testimonials'));
 const Newsletter = lazy(() => import('../components/Newsletter'));
 
 function Home() {
-    const [isReady, setIsReady] = React.useState(!window.location.hash);
-
     useEffect(() => {
-        if (window.location.hash) {
-            const targetId = window.location.hash.substring(1);
+        if (!window.location.hash) return;
 
-            const doScroll = () => {
-                const element = document.getElementById(targetId);
-                if (element) {
-                    // Use a slightly larger timeout to ensure layout is stable
-                    // but keep the page invisible until this happens
-                    window.scrollTo(0, element.offsetTop - 80); // Adjust for navbar height
+        const targetId = window.location.hash.substring(1);
 
-                    // Small delay to let browser finish the scroll jump before showing
-                    setTimeout(() => {
-                        setIsReady(true);
-                    }, 50);
-                    return true;
-                }
-                return false;
-            };
-
-            // Attempt immediate scroll
-            if (!doScroll()) {
-                // If the element isn't there (lazy loading), poll for it
-                const interval = setInterval(() => {
-                    if (doScroll()) clearInterval(interval);
-                }, 30);
-
-                // Safety timeout
-                setTimeout(() => {
-                    clearInterval(interval);
-                    setIsReady(true);
-                }, 1500);
-
-                return () => clearInterval(interval);
+        const doScroll = () => {
+            const element = document.getElementById(targetId);
+            if (element) {
+                window.scrollTo(0, element.offsetTop - 80);
+                return true;
             }
-        }
-
-        // Instant scroll for anchor links with passive listeners
-        const handleAnchorClick = (e: Event) => {
-            const anchor = e.currentTarget as HTMLAnchorElement;
-            const href = anchor.getAttribute('href');
-            if (!href || !href.startsWith('#') || href === '#') return;
-
-            const targetId = href.substring(1);
-            const target = document.getElementById(targetId);
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({
-                    behavior: 'auto',
-                    block: 'start'
-                });
-            }
+            return false;
         };
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', handleAnchorClick, { passive: false });
-        });
+        if (doScroll()) return;
 
-        // Cleanup
+        // Element not yet rendered (lazy loading) — poll without hiding the page
+        const interval = setInterval(() => {
+            if (doScroll()) clearInterval(interval);
+        }, 30);
+        const timeout = setTimeout(() => clearInterval(interval), 1500);
+
         return () => {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.removeEventListener('click', handleAnchorClick);
-            });
+            clearInterval(interval);
+            clearTimeout(timeout);
         };
     }, []);
 
     return (
-        <div style={{ opacity: isReady ? 1 : 0, transition: isReady ? 'opacity 0.15s ease' : 'none' }}>
+        <div className="bg-aphoria-bg">
             <main>
                 <Hero />
                 <TrustBar />
                 <Suspense fallback={null}><Manifesto /></Suspense>
-                    <Suspense fallback={null}><ProductHero /></Suspense>
-                    <Suspense fallback={null}><ProductVideoHero /></Suspense>
-                    <Suspense fallback={null}><IngredientGrid /></Suspense>
-                    <Suspense fallback={null}><ProductGallery /></Suspense>
-                    <Suspense fallback={null}><BeforeAfterHero /></Suspense>
-                    <Suspense fallback={null}><Testimonials /></Suspense>
-                    <Suspense fallback={null}><Newsletter /></Suspense>
+                <div className="below-fold"><Suspense fallback={null}><ProductHero /></Suspense></div>
+                <div className="below-fold"><Suspense fallback={null}><ProductVideoHero /></Suspense></div>
+                <div className="below-fold"><Suspense fallback={null}><IngredientGrid /></Suspense></div>
+                <div className="below-fold"><Suspense fallback={null}><ProductGallery /></Suspense></div>
+                <div className="below-fold"><Suspense fallback={null}><BeforeAfterHero /></Suspense></div>
+                <div className="below-fold"><Suspense fallback={null}><Testimonials /></Suspense></div>
+                <div className="below-fold"><Suspense fallback={null}><Newsletter /></Suspense></div>
             </main>
         </div>
     );

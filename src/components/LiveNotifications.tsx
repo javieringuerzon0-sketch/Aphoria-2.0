@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import OptimizedImage from './OptimizedImage';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -74,6 +74,7 @@ const LiveNotifications: React.FC = () => {
   const [current, setCurrent] = useState(0);
   const [show, setShow] = useState(false);
   const [stickyBarVisible, setStickyBarVisible] = useState(false);
+  const hideTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   useEffect(() => {
     // Check if sticky bar is visible
@@ -94,13 +95,14 @@ const LiveNotifications: React.FC = () => {
       setShow(true);
       setCurrent(prev => (prev + 1) % notifications.length);
 
-      // Ocultar después de 5 segundos
-      setTimeout(() => setShow(false), 5000);
+      // Ocultar después de 5 segundos — guardamos referencia para cleanup
+      hideTimeoutRef.current = setTimeout(() => setShow(false), 5000);
     }, 35000); // Mostrar cada 35 segundos
 
     return () => {
       clearTimeout(initialTimeout);
       clearInterval(interval);
+      clearTimeout(hideTimeoutRef.current);
       window.removeEventListener('scroll', checkStickyBar);
     };
   }, []);
@@ -121,7 +123,7 @@ const LiveNotifications: React.FC = () => {
           transition={{ type: 'spring', stiffness: 100, damping: 20 }}
           className="fixed bottom-6 left-6 z-50 max-w-sm hidden md:block"
         >
-          <div className="bg-white rounded-2xl shadow-2xl border border-aphoria-black/10 p-4 backdrop-blur-xl">
+          <div className="bg-white/95 rounded-2xl shadow-2xl border border-aphoria-black/10 p-4">
             <div className="flex items-start gap-3">
               {/* Customer Image */}
               {notification.image ? (

@@ -7,48 +7,6 @@ import { PRODUCTS, DISCOUNTS } from '../constants';
 import { Product } from '../types';
 import { useCartStore } from '../store/useCartStore';
 
-const STYLES = `
-  @keyframes appleFloat {
-    0%, 100% { transform: translateY(0px); }
-    50%       { transform: translateY(-15px); }
-  }
-
-  .product-image-container {
-    animation: appleFloat 6s ease-in-out infinite;
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .product-image-container img {
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.08));
-  }
-
-  .bundle-image-box {
-    width: 200px;
-    height: 240px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-
-  .ground-shadow {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70%;
-    height: 20px;
-    background: radial-gradient(ellipse, rgba(0,0,0,0.08) 0%, transparent 70%);
-    z-index: -1;
-  }
-`;
 
 const ProductGallery: React.FC = () => {
   const products = PRODUCTS;
@@ -85,8 +43,6 @@ const ProductGallery: React.FC = () => {
 
   return (
     <section id="bundle" className="relative py-24 md:py-32 bg-[#F9F9F7] px-6">
-      <style>{STYLES}</style>
-
       <div className="max-w-[1280px] mx-auto relative">
         <div className="text-center mb-20 max-w-2xl mx-auto">
           <span className="text-[11px] uppercase tracking-[0.3em] text-aphoria-gold font-bold">The Protocol</span>

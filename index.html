@@ -77,14 +77,13 @@
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
 
-  <!-- Preload critical fonts -->
+  <!-- Fonts: async load to unblock first paint — fallback via <noscript> -->
   <link rel="preload" as="style"
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@300;400;500;600&display=swap">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@300;400;500;600&display=swap"
-    rel="stylesheet" media="print" onload="this.media='all'">
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'" />
   <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap" />
   </noscript>
 
   <!-- Tailwind is handled by Vite Build -->
@@ -102,7 +101,7 @@
     }
 
     body {
-      background-color: var(--bg-primary);
+      background-color: #FFFFFF;
       color: #111111;
       font-family: 'Manrope', sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -117,14 +116,40 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    /* GPU acceleration for transforms */
-    [class*="transform"],
-    [class*="translate"],
-    [class*="scale"],
-    [class*="rotate"] {
+    /* GPU compositing layer for animated elements */
+    video, canvas {
       transform: translateZ(0);
       backface-visibility: hidden;
-      perspective: 1000px;
+      -webkit-backface-visibility: hidden;
+    }
+
+    /* Defer rendering of below-fold sections to reduce initial paint cost.
+       Especially impactful on mobile (saves ~300-600ms on mid-range devices).
+       contain-intrinsic-size is an estimated height to avoid layout shift. */
+    .below-fold {
+      content-visibility: auto;
+      contain-intrinsic-size: 0 700px;
+    }
+
+    /* Images: smooth decode, no layout blocking */
+    img {
+      content-visibility: auto;
+    }
+
+    /* Reduce paint complexity during scroll on iOS */
+    @media (max-width: 768px) {
+      * {
+        -webkit-backface-visibility: hidden;
+      }
+      /* Disable heavy hover effects on touch devices */
+      @media (hover: none) {
+        .group:hover .group-hover\:scale-110 {
+          transform: none !important;
+        }
+        .group:hover .group-hover\:blur-sm {
+          filter: none !important;
+        }
+      }
     }
 
     .no-scrollbar::-webkit-scrollbar {

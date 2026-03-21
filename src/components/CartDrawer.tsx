@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { X, Minus, Plus, ShoppingBag, Trash2, ArrowRight, Lock, Tag, CheckCircle2 } from 'lucide-react';
 import { useCartStore } from '../store/useCartStore';
 import { DISCOUNTS } from '../constants';
@@ -13,6 +13,19 @@ const CartDrawer: React.FC = () => {
   const total = totalItems();
   const shippingProgress = Math.min((sub / FREE_SHIPPING_THRESHOLD) * 100, 100);
   const remaining = Math.max(FREE_SHIPPING_THRESHOLD - sub, 0);
+
+  // ── Scroll lock — scrollbar-gutter:stable on html keeps layout stable ──
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+  // ────────────────────────────────────────────────────────────────
 
   // ── Discount logic ──────────────────────────────────────────────
   const [codeInput, setCodeInput] = useState('');
@@ -43,28 +56,24 @@ const CartDrawer: React.FC = () => {
   // ────────────────────────────────────────────────────────────────
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          {/* Overlay */}
+    <>
+          {/* Overlay — always mounted, no GPU flash */}
           <motion.div
-            key="overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={false}
+            animate={{ opacity: isOpen ? 1 : 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[80] bg-black/50 backdrop-blur-sm"
+            className="fixed inset-0 z-[80] bg-black/50"
+            style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
             onClick={close}
           />
 
-          {/* Drawer */}
+          {/* Drawer — always mounted, GPU layer pre-allocated */}
           <motion.div
-            key="drawer"
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
+            initial={false}
+            animate={{ x: isOpen ? 0 : '100%' }}
             transition={{ type: 'spring', stiffness: 320, damping: 36 }}
             className="fixed right-0 top-0 bottom-0 z-[90] w-full max-w-[420px] bg-white flex flex-col shadow-2xl"
+            style={{ willChange: 'transform' }}
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-5 border-b border-aphoria-black/8 bg-aphoria-black">
@@ -285,9 +294,7 @@ const CartDrawer: React.FC = () => {
               </div>
             )}
           </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+    </>
   );
 };
 

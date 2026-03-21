@@ -32,13 +32,12 @@ function AppInner() {
   const location = useLocation();
   const isThankYou = location.pathname === '/thank-you';
   const isLandingPage = location.pathname.startsWith('/lp/');
-  const isProductPage = location.pathname.startsWith('/product/');
 
   return (
-    <div className={`min-h-screen selection:bg-aphoria-green selection:text-white ${isProductPage ? 'bg-white' : 'bg-aphoria-bg'}`}>
+    <div className="min-h-screen bg-white selection:bg-aphoria-green selection:text-white">
       {!isThankYou && !isLandingPage && <Navbar />}
 
-      <Suspense fallback={<div className="min-h-screen" />}>
+      <Suspense fallback={<div className="min-h-screen" style={{ backgroundColor: '#FFFFFF' }} />}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product/:handle" element={<ProductDetail />} />
@@ -69,7 +68,9 @@ function AppInner() {
 
       <CartDrawer />
       <CookieBanner />
-      <Agentation />
+      <Suspense fallback={null}>
+        <Agentation />
+      </Suspense>
     </div>
   );
 }

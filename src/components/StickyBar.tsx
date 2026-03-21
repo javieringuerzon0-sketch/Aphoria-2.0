@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useCartStore } from '../store/useCartStore';
 import OptimizedImage from './OptimizedImage';
 import { PRODUCTS, DISCOUNTS } from '../constants';
@@ -57,20 +57,18 @@ const StickyBar: React.FC = () => {
   };
 
   return (
-    <AnimatePresence>
-      {show && (
         <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0 }}
+          initial={false}
+          animate={{ y: show ? 0 : 100, opacity: show ? 1 : 0 }}
           transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-          className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl border-t border-aphoria-black/10 shadow-[0_-10px_40px_rgba(0,0,0,0.1)]"
+          className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-aphoria-black/10 shadow-[0_-10px_40px_rgba(0,0,0,0.1)]"
+          style={{ pointerEvents: show ? 'auto' : 'none' }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 md:py-4 flex items-center justify-between gap-3 md:gap-6">
             {/* Close button for "pop-up" feel */}
             <button
               onClick={() => setShow(false)}
-              className="absolute -top-10 right-4 w-8 h-8 rounded-full bg-white/90 backdrop-blur shadow-lg flex items-center justify-center text-aphoria-black/40 hover:text-aphoria-black transition-colors border border-aphoria-black/5"
+              className="absolute -top-10 right-4 w-8 h-8 rounded-full bg-white shadow-lg flex items-center justify-center text-aphoria-black/40 hover:text-aphoria-black transition-colors border border-aphoria-black/5"
               aria-label="Close offer"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -172,8 +170,6 @@ const StickyBar: React.FC = () => {
             </div>
           </div>
         </motion.div>
-      )}
-    </AnimatePresence>
   );
 };
 

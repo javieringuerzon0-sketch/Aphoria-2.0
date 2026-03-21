@@ -8,8 +8,8 @@ const BeforeAfterHero: React.FC = () => {
   const targetRef = useRef(50);
   const currentRef = useRef(50);
   const rectRef = useRef<DOMRect | null>(null);
-  const beforeImage = '/BEFORE-AFTER/BEFORE.original.jpg';
-  const afterImage = '/BEFORE-AFTER/AFTER.original.jpg';
+  const beforeImage = '/BEFORE-AFTER/BEFORE-ORIGINAL.webp';
+  const afterImage = '/BEFORE-AFTER/AFTER-ORIGINAL.webp';
 
   useEffect(() => {
     const updateRect = () => {
@@ -86,7 +86,7 @@ const BeforeAfterHero: React.FC = () => {
               src={afterImage}
               alt="After results"
               className="absolute inset-0 h-full w-full object-cover"
-              loading="eager"
+              loading="lazy"
               decoding="async"
             />
 
@@ -99,7 +99,7 @@ const BeforeAfterHero: React.FC = () => {
                 src={beforeImage}
                 alt="Before results"
                 className="h-full w-full object-cover"
-                loading="eager"
+                loading="lazy"
                 decoding="async"
               />
             </div>

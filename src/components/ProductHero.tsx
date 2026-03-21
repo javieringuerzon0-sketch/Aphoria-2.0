@@ -11,8 +11,8 @@ const ProductHero: React.FC = () => {
   const ShopifyData = 'shopify-data' as any;
   const ShopifyMoney = 'shopify-money' as any;
   const product = FEATURED_PRODUCTS[0];
-  const productHeroImage = '/seccion%20gold%20mask/imagen-section.original.png';
-  const productCardImage = '/seccion%20gold%20mask/imagen-producto.original.png';
+  const productHeroImage = '/seccion%20gold%20mask/PROTOCOL%201.png';
+  const productCardImage = '/seccion%20gold%20mask/PROTOCOL%202.png';
   const cardHeight = 'h-[520px] md:h-[620px]';
 
   const { addItem, open: openCart } = useCartStore();
@@ -58,8 +58,7 @@ const ProductHero: React.FC = () => {
                 src={productHeroImage}
                 alt={product.name}
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] origin-center grayscale-0 group-hover:grayscale-0"
-                loading="eager"
-                fetchPriority="high"
+                loading="lazy"
                 decoding="async"
               />
             </div>
@@ -175,8 +174,7 @@ const ProductHero: React.FC = () => {
                   src={productCardImage}
                   alt={product.name}
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] origin-center grayscale-0 group-hover:grayscale-0"
-                  loading="eager"
-                  fetchPriority="high"
+                  loading="lazy"
                   decoding="async"
                 />
               </div>

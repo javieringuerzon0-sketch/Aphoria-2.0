@@ -157,7 +157,7 @@ const ProductGallery: React.FC = () => {
   const bundleDiscount = Math.round(((bundleRegular - bundlePrice) / bundleRegular) * 100); // 14%
 
   return (
-    <section id="ritual" className="relative py-20 md:py-28 bg-aphoria-bg px-6" style={{ willChange: 'transform' }}>
+    <section id="ritual" className="relative py-20 md:py-28 bg-aphoria-bg px-6">
       <style>{STYLES}</style>
 
       {/* Decorative accents */}

@@ -67,8 +67,8 @@ const IngredientGrid: React.FC = () => {
   const variant: keyof typeof VARIANTS = 'luxury';
   const styles = VARIANTS[variant];
   const ingredientImages: Record<string, string> = {
-    'Deep Hydration': '/clinical%20index/deep-hydratation.original.png',
-    'Radiance Activation': '/clinical%20index/radiance-ativation.original.png'
+    'Deep Hydration': '/clinical%20index/DEEP-HYDRATATION.jpeg',
+    'Radiance Activation': '/clinical%20index/RADIANCE-ACTIVATION.png'
   };
   const ingredientMeta: Record<
     string,
@@ -183,61 +183,74 @@ const IngredientGrid: React.FC = () => {
             {orderedIngredients.map((item, index) => {
               const imgSrc = ingredientImages[item.benefitHeadline];
               const [isExpanded, setIsExpanded] = useState(false);
+              const isGold = index === 1;
+              const cardLabels = ['Avocado Mask', '24 Gold Mask'];
               return (
-                <div
+                <motion.div
                   key={item.name}
-                  className={`${styles.card} ${styles.cardShadow}`}
+                  initial={{ opacity: 0, y: 28 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.9, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                  className="group relative rounded-2xl overflow-hidden bg-white shadow-[0_20px_60px_rgba(0,0,0,0.08)] hover:shadow-[0_32px_80px_rgba(0,0,0,0.14)] transition-all duration-500 cursor-pointer"
                   onClick={() => setIsExpanded(!isExpanded)}
                 >
-                  <div className="mb-6 overflow-hidden rounded-xl border border-white/60 bg-aphoria-bg/60">
+                  {/* Image — full natural height, no crop */}
+                  <div className="relative w-full overflow-hidden bg-aphoria-bg/40">
                     <OptimizedImage
                       src={imgSrc}
                       alt={item.name}
-                      className="h-44 md:h-48 lg:h-52 w-full object-cover"
+                      className="w-full h-auto block transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                       loading="lazy"
                       decoding="async"
                     />
-                  </div>
-                  <div className="flex items-center justify-between mb-6">
-                    <span className={styles.activeLabel}>Focus 0{index + 1}</span>
-                    <span className={styles.mechanismLabel}>Benefit</span>
-                  </div>
-
-                  <h3 className={styles.title}>
-                    {item.benefitHeadline}
-                  </h3>
-                  <p className={styles.body}>
-                    {ingredientMeta[item.benefitHeadline]?.summary}
-                  </p>
-
-                  <div className="mb-5 flex items-center justify-between text-[10px] uppercase tracking-[0.22em] text-aphoria-mid">
-                    <span>Result: {ingredientMeta[item.benefitHeadline]?.result}</span>
-                    <span>{ingredientMeta[item.benefitHeadline]?.timeline}</span>
-                  </div>
-
-                  <div className="mb-6 flex flex-wrap gap-2">
-                    {ingredientMeta[item.benefitHeadline]?.badges.map((badge) => (
-                      <span
-                        key={badge}
-                        className="rounded-full border border-aphoria-black/10 bg-white/70 px-3 py-1 text-[9px] uppercase tracking-[0.24em] text-aphoria-black/80"
-                      >
-                        {badge}
+                    {/* Gradient overlay bottom */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                    {/* Product badge */}
+                    <div className="absolute top-4 left-4 flex items-center gap-2">
+                      <span className={`text-[9px] uppercase tracking-[0.32em] font-medium px-3 py-1.5 rounded-full backdrop-blur-sm ${isGold ? 'bg-aphoria-gold/90 text-white' : 'bg-aphoria-green/90 text-white'}`}>
+                        {cardLabels[index]}
                       </span>
-                    ))}
+                    </div>
                   </div>
 
-                  <div className={`pt-6 border-t ${styles.divider}`}>
-                    <div className={styles.ingredientName}>
-                      {item.name}
+                  {/* Content */}
+                  <div className="p-7">
+                    <div className="flex items-start justify-between mb-4">
+                      <h3 className="text-[17px] font-medium text-aphoria-black tracking-tight leading-snug">
+                        {item.benefitHeadline}
+                      </h3>
+                      <span className={`text-[9px] uppercase tracking-[0.26em] mt-1 ml-4 whitespace-nowrap ${isGold ? 'text-aphoria-gold' : 'text-aphoria-green'}`}>
+                        {ingredientMeta[item.benefitHeadline]?.timeline}
+                      </span>
                     </div>
-                    <div className="mt-4">
-                      <div className="text-[10px] uppercase tracking-[0.28em] text-aphoria-mid mb-2">What you'll notice</div>
-                      <div className="text-[13px] text-aphoria-mid">
-                        {ingredientMeta[item.benefitHeadline]?.feel.join('. ')}.
+
+                    <p className="text-[13px] leading-relaxed text-aphoria-mid mb-5">
+                      {ingredientMeta[item.benefitHeadline]?.summary}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {ingredientMeta[item.benefitHeadline]?.badges.map((badge) => (
+                        <span
+                          key={badge}
+                          className={`rounded-full border px-3 py-1 text-[9px] uppercase tracking-[0.22em] ${isGold ? 'border-aphoria-gold/25 text-aphoria-gold bg-aphoria-gold/5' : 'border-aphoria-green/25 text-aphoria-green bg-aphoria-green/5'}`}
+                        >
+                          {badge}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="pt-5 border-t border-aphoria-black/8 flex items-center justify-between">
+                      <div>
+                        <div className="text-[9px] uppercase tracking-[0.3em] text-aphoria-mid mb-1">Result</div>
+                        <div className="text-[12px] text-aphoria-black font-medium">{ingredientMeta[item.benefitHeadline]?.result}</div>
+                      </div>
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1 ${isGold ? 'bg-aphoria-gold/10' : 'bg-aphoria-green/10'}`}>
+                        <span className={`text-[12px] ${isGold ? 'text-aphoria-gold' : 'text-aphoria-green'}`}>→</span>
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               )
             })}
           </div>

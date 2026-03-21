@@ -52,14 +52,15 @@ const Hero: React.FC = () => {
             willChange: 'transform',
             backgroundColor: '#000000'
           }}
+          onCanPlay={() => setVideoReady(true)}
           onPlaying={() => setVideoReady(true)}
         >
-          <source src="/Hero%20video/hero-video.mp4" type="video/mp4" />
+          <source src="/Hero%20video/APHORIA-HERO.mp4" type="video/mp4" />
         </video>
 
         {/* Black overlay — hides gray first frame until video is ready */}
         <div
-          className="absolute inset-0 z-10 pointer-events-none bg-black transition-opacity duration-300"
+          className="absolute inset-0 z-10 pointer-events-none bg-black transition-opacity duration-700"
           style={{ opacity: videoReady ? 0 : 1 }}
         />
 

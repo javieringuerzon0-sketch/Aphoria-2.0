@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { PRODUCTS, PROTOCOL_STEPS } from '../constants';
 
 interface ProtocolTimelineProps {
@@ -32,12 +31,8 @@ const ProtocolTimeline: React.FC<ProtocolTimelineProps> = ({ productHandle }) =>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-px md:bg-aphoria-black/5">
                     {steps.map((step, index) => (
-                        <motion.div
+                        <div
                             key={index}
-                            initial={{ opacity: 0, y: 32 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1, delay: index * 0.2 }}
                             className="bg-aphoria-bg md:p-12 flex flex-col items-start"
                         >
                             <span className="text-[11px] font-semibold text-aphoria-gold uppercase tracking-[0.16em] mb-4">
@@ -71,7 +66,7 @@ const ProtocolTimeline: React.FC<ProtocolTimelineProps> = ({ productHandle }) =>
                                     Target Activation
                                 </span>
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
             </div>

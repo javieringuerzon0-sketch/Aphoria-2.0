@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import { useCartStore } from '../store/useCartStore';
 import { PRODUCTS } from '../constants';
@@ -81,42 +80,21 @@ const ProtocolTimeline: React.FC<ProtocolTimelineProps> = ({ productHandle = '24
         <section className="py-24 lg:py-32 bg-[#FAF8F5] relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
                 <div className="text-center max-w-2xl mx-auto mb-20">
-                    <motion.span
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-[10px] font-bold uppercase tracking-[0.4em] text-aphoria-gold mb-4 block"
-                    >
+                    <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-aphoria-gold mb-4 block">
                         Clinical Protocol
-                    </motion.span>
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="text-4xl lg:text-5xl font-brand font-light text-aphoria-black mb-6"
-                    >
+                    </span>
+                    <h2 className="text-4xl lg:text-5xl font-brand font-light text-aphoria-black mb-6">
                         The 20-Minute Transformation
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="text-aphoria-mid/70 text-sm leading-relaxed"
-                    >
+                    </h2>
+                    <p className="text-aphoria-mid/70 text-sm leading-relaxed">
                         A simple, sensorial ritual designed to deliver immediate structural remodeling.
-                    </motion.p>
+                    </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
                     {steps.map((item, i) => (
-                        <motion.div
+                        <div
                             key={i}
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.2, duration: 0.8, ease: "easeOut" }}
                             className="group relative flex flex-col"
                         >
                             {/* Card Container - Premium Tall Format */}
@@ -153,7 +131,7 @@ const ProtocolTimeline: React.FC<ProtocolTimelineProps> = ({ productHandle = '24
                                     {item.desc}
                                 </p>
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
 
