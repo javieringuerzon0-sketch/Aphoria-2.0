@@ -72,7 +72,8 @@
   /* Cart scroll-lock — position:fixed on body freezes the viewport
      so NO scroll events fire → no cascade of re-renders → no flicker.
      html keeps overflow:hidden + scrollbar-gutter:stable = no layout shift. */
-  html.cart-open {
+  html.cart-open,
+  html.popup-open {
     overflow: hidden;
   }
   html.cart-open body {
@@ -83,11 +84,20 @@
     width: 100%;
     overflow-y: scroll;
   }
+  html.popup-open body {
+    position: fixed;
+    top: var(--popup-lock-y, 0);
+    left: 0;
+    right: 0;
+    width: 100%;
+    overflow-y: scroll;
+  }
 
-  /* Kill ALL CSS transitions on page elements while cart is open.
-     Cart drawer itself is exempt via data-cart-drawer attribute.
+  /* Kill ALL CSS transitions on page elements while cart/popup is open.
+     Cart drawer and exit popup are exempt via data attributes.
      Framer Motion animations are JS-driven so they are NOT affected. */
-  html.cart-open *:not([data-cart-drawer]) {
+  html.cart-open *:not([data-cart-drawer]),
+  html.popup-open *:not([data-exit-popup]) {
     transition-property: none !important;
   }
 
