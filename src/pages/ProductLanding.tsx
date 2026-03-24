@@ -10,7 +10,11 @@ const ProductLanding: React.FC = () => {
     const { handle } = useParams<{ handle: string }>();
     const product = PRODUCTS.find(p => p.handle === handle) || PRODUCTS[0];
     const variant = product.variants['1pc'];
-    const { addItem, open: openCart, totalItems, checkout } = useCartStore();
+    const addItem = useCartStore((s) => s.addItem);
+    const addItemAndOpen = useCartStore((s) => s.addItemAndOpen);
+    const openCart = useCartStore((s) => s.open);
+    const totalItems = useCartStore((s) => s.totalItems);
+    const checkout = useCartStore((s) => s.checkout);
     const cartCount = totalItems();
     const discount = Math.round((1 - variant.price / variant.regularPrice) * 100);
     const savings = (variant.regularPrice - variant.price).toFixed(2);
@@ -37,8 +41,7 @@ const ProductLanding: React.FC = () => {
     };
 
     const handleAddCart = () => {
-        addItem({ variantId: variant.shopifyVariantId || `local-${variant.id}`, title: product.name, variantTitle: variant.name, price: variant.price, img: variant.img });
-        openCart();
+        addItemAndOpen({ variantId: variant.shopifyVariantId || `local-${variant.id}`, title: product.name, variantTitle: variant.name, price: variant.price, img: variant.img });
     };
 
     return (

@@ -137,6 +137,11 @@ const ProductDetail: React.FC = () => {
     }, [ugc, currentProduct]);
 
     // Marquee: JS RAF-driven infinite scroll + drag
+    // Fix 5: Pause marquee RAF when cart is open (avoids layout thrashing)
+    const isCartOpen = useCartStore((s) => s.isOpen);
+    const isCartOpenRef = useRef(isCartOpen);
+    useEffect(() => { isCartOpenRef.current = isCartOpen; }, [isCartOpen]);
+
     const marqueeRef = useRef<HTMLDivElement>(null);
     const marqueeOffset = useRef(0);
     const isDragging = useRef(false);
@@ -150,14 +155,14 @@ const ProductDetail: React.FC = () => {
         if (!el) return;
         const SPEED = 0.6; // px per frame ~36px/s at 60fps
         const animate = () => {
-            if (!isDragging.current && !isHovered.current) {
+            if (!isDragging.current && !isHovered.current && !isCartOpenRef.current) {
                 marqueeOffset.current -= SPEED;
                 const halfWidth = el.scrollWidth / 2;
                 if (Math.abs(marqueeOffset.current) >= halfWidth) {
                     marqueeOffset.current = 0;
                 }
+                el.style.transform = `translate3d(${marqueeOffset.current}px, 0, 0)`;
             }
-            el.style.transform = `translate3d(${marqueeOffset.current}px, 0, 0)`;
             rafId.current = requestAnimationFrame(animate);
         };
         rafId.current = requestAnimationFrame(animate);
@@ -180,10 +185,11 @@ const ProductDetail: React.FC = () => {
         e.currentTarget.style.cursor = 'grab';
     };
 
-    const { addItem, open: openCart } = useCartStore();
+    // Fix 3+4: Single atomic update — 1 set() call instead of 2
+    const addItemAndOpen = useCartStore((s) => s.addItemAndOpen);
 
     const addToCart = () => {
-        addItem({
+        addItemAndOpen({
             variantId: currentVariant.shopifyVariantId || `local-${currentVariant.id}`,
             title: currentProduct.name,
             variantTitle: currentVariant.name,
@@ -191,7 +197,6 @@ const ProductDetail: React.FC = () => {
             quantity,
             img: currentVariant.img,
         });
-        openCart();
     };
 
     return (

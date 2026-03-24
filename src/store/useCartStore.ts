@@ -17,6 +17,7 @@ interface CartStore {
   isCheckingOut: boolean;
 
   addItem: (item: Omit<CartItem, 'quantity'> & { quantity?: number }) => void;
+  addItemAndOpen: (item: Omit<CartItem, 'quantity'> & { quantity?: number }) => void;
   removeItem: (variantId: string) => void;
   updateQuantity: (variantId: string, qty: number) => void;
   clearCart: () => void;
@@ -51,6 +52,26 @@ export const useCartStore = create<CartStore>()(
           });
         } else {
           set({ items: [...items, { ...incoming, quantity: qty }] });
+        }
+      },
+
+      // Atomic: add item + open cart in a single set() → only 1 re-render cycle
+      addItemAndOpen: (incoming) => {
+        const { items } = get();
+        const existing = items.find((i) => i.variantId === incoming.variantId);
+        const qty = incoming.quantity ?? 1;
+
+        if (existing) {
+          set({
+            items: items.map((i) =>
+              i.variantId === incoming.variantId
+                ? { ...i, quantity: i.quantity + qty }
+                : i
+            ),
+            isOpen: true,
+          });
+        } else {
+          set({ items: [...items, { ...incoming, quantity: qty }], isOpen: true });
         }
       },
 

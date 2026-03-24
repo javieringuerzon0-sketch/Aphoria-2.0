@@ -60,7 +60,9 @@ const ProtocolTimeline: React.FC<ProtocolTimelineProps> = ({ productHandle = '24
 
     const steps = protocols[productHandle] || protocols['24-gold-mask'];
 
-    const { addItem, checkout } = useCartStore();
+    // Fix 4: Selective selectors — functions are stable refs, no unnecessary re-renders
+    const addItem = useCartStore((s) => s.addItem);
+    const checkout = useCartStore((s) => s.checkout);
 
     const handleBeginProtocol = () => {
         const product = PRODUCTS.find(p => p.handle === productHandle);

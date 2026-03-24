@@ -84,6 +84,13 @@
     overflow-y: scroll;
   }
 
+  /* Kill ALL CSS transitions on page elements while cart is open.
+     Cart drawer itself is exempt via data-cart-drawer attribute.
+     Framer Motion animations are JS-driven so they are NOT affected. */
+  html.cart-open *:not([data-cart-drawer]) {
+    transition-property: none !important;
+  }
+
   /* Keyboard focus — visible only when navigating with keyboard, invisible for mouse */
   :focus-visible {
     outline: 2px solid #C6A15B;

@@ -73,8 +73,9 @@ const CartDrawer: React.FC = () => {
 
   return (
     <>
-          {/* Overlay — always mounted, visibility:hidden when closed skips compositing */}
+          {/* Overlay — always mounted, exempt from transition-kill via data-cart-drawer */}
           <motion.div
+            data-cart-drawer
             initial={false}
             animate={{ opacity: isOpen ? 1 : 0 }}
             transition={{ duration: 0.3 }}
@@ -86,8 +87,9 @@ const CartDrawer: React.FC = () => {
             onClick={close}
           />
 
-          {/* Drawer — always mounted, visibility:hidden when closed skips compositing */}
+          {/* Drawer — always mounted, exempt from transition-kill via data-cart-drawer */}
           <motion.div
+            data-cart-drawer
             initial={false}
             animate={{ x: isOpen ? 0 : '100%' }}
             transition={{ type: 'spring', stiffness: 320, damping: 36 }}

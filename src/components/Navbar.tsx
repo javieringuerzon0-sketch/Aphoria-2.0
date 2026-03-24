@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ShoppingBag } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { useUIStore } from '../store/useUIStore';
@@ -10,7 +10,10 @@ import Logo from './Logo';
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { scrolled, setScrolled } = useUIStore();
-  const { open: openCart, totalItems, checkout } = useCartStore();
+  // Fix 4: Selective selectors — only re-render when these specific values change
+  const openCart = useCartStore((s) => s.open);
+  const totalItems = useCartStore((s) => s.totalItems);
+  const checkout = useCartStore((s) => s.checkout);
   const cartCount = totalItems();
   const location = useLocation();
   const navigate = useNavigate();
@@ -62,7 +65,7 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${scrolled ? 'bg-aphoria-bg border-b border-aphoria-black/15 shadow-sm' : 'bg-transparent'}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,box-shadow] duration-500 ease-in-out ${scrolled ? 'bg-aphoria-bg border-b border-aphoria-black/15 shadow-sm' : 'bg-transparent'}`}>
         <div className="relative z-10 w-full px-6 md:px-12 py-5 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <Link
@@ -113,7 +116,7 @@ const Navbar: React.FC = () => {
 
             <button
               onClick={() => cartCount > 0 ? checkout() : openCart()}
-              className={`group relative overflow-hidden rounded-full border px-6 py-2.5 text-[10px] font-bold uppercase tracking-[0.28em] transition-all duration-500 hover:border-aphoria-gold ${buttonBorder} ${buttonText}`}
+              className={`group relative overflow-hidden rounded-full border px-6 py-2.5 text-[10px] font-bold uppercase tracking-[0.28em] transition-[color,border-color] duration-500 hover:border-aphoria-gold ${buttonBorder} ${buttonText}`}
             >
               <span className="relative z-10 transition-colors group-hover:text-white">Shop Now</span>
               <span
@@ -126,7 +129,7 @@ const Navbar: React.FC = () => {
           <div className="flex items-center gap-3 md:hidden">
             <button
               onClick={() => setIsMenuOpen(true)}
-              className={`inline-flex h-11 w-11 items-center justify-center rounded-full border bg-white/5 transition-all duration-300 hover:bg-white/10 ${buttonBorder} ${iconTone}`}
+              className={`inline-flex h-11 w-11 items-center justify-center rounded-full border bg-white/5 transition-colors duration-300 hover:bg-white/10 ${buttonBorder} ${iconTone}`}
               style={{ filter: (scrolled || !isDarkHeroPage) ? 'none' : 'drop-shadow(0 2px 10px rgba(0,0,0,0.5))' }}
               aria-label="Open menu"
               aria-expanded={isMenuOpen}
@@ -135,7 +138,7 @@ const Navbar: React.FC = () => {
             </button>
             <button
               onClick={openCart}
-              className={`inline-flex h-11 w-11 items-center justify-center rounded-full border bg-white/5 transition-all duration-300 hover:bg-white/10 ${buttonBorder} ${iconTone}`}
+              className={`inline-flex h-11 w-11 items-center justify-center rounded-full border bg-white/5 transition-colors duration-300 hover:bg-white/10 ${buttonBorder} ${iconTone}`}
               style={{ filter: (scrolled || !isDarkHeroPage) ? 'none' : 'drop-shadow(0 2px 10px rgba(0,0,0,0.5))' }}
               aria-label="View cart"
             >
@@ -145,54 +148,55 @@ const Navbar: React.FC = () => {
         </div>
       </nav>
 
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-xl flex flex-col p-8"
+      {/* Mobile menu — always mounted, no backdrop-blur, no AnimatePresence mount/unmount */}
+      <motion.div
+        initial={false}
+        animate={{ opacity: isMenuOpen ? 1 : 0, y: isMenuOpen ? 0 : -20 }}
+        transition={{ duration: 0.25 }}
+        className="fixed inset-0 z-[60] bg-black/95 flex flex-col p-8"
+        style={{
+          pointerEvents: isMenuOpen ? 'auto' : 'none',
+          visibility: isMenuOpen ? 'visible' : 'hidden',
+        }}
+      >
+        <div className="flex justify-between items-center mb-12">
+          <div className="flex items-center gap-4">
+            <Logo className="h-10 w-auto opacity-95" />
+            <span className="font-brand text-[22px] font-medium uppercase tracking-[0.32em] text-white/95">Aphoria</span>
+          </div>
+          <button
+            onClick={() => setIsMenuOpen(false)}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white hover:bg-white/10 transition-colors"
+            aria-label="Close menu"
           >
-            <div className="flex justify-between items-center mb-12">
-              <div className="flex items-center gap-4">
-                <Logo className="h-10 w-auto opacity-95" />
-                <span className="font-brand text-[22px] font-medium uppercase tracking-[0.32em] text-white/95">Aphoria</span>
-              </div>
-              <button
-                onClick={() => setIsMenuOpen(false)}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white hover:bg-white/10 transition-colors"
-                aria-label="Close menu"
-              >
-                <X size={22} strokeWidth={1.5} />
-              </button>
-            </div>
+            <X size={22} strokeWidth={1.5} />
+          </button>
+        </div>
 
-            <div className="flex flex-col text-[16px] font-medium uppercase tracking-[0.2em] text-white/85">
-              <Link to="/product/24-gold-mask" onClick={() => setIsMenuOpen(false)} className="py-3 border-b border-white/10 text-aphoria-gold">24 Gold Mask</Link>
-              <Link to="/product/avocado-mask" onClick={() => setIsMenuOpen(false)} className="py-3 border-b border-white/10 text-[#6aad6a]">Avocado Mask</Link>
-              <a href="/#science" onClick={(e) => { setIsMenuOpen(false); handleAnchorClick(e, '#science'); }} className="py-3 border-b border-white/10">Science</a>
-              <a href="/#ritual" onClick={(e) => { setIsMenuOpen(false); handleAnchorClick(e, '#ritual'); }} className="py-3 border-b border-white/10">Ritual</a>
-              <a href="/#bundle" onClick={(e) => { setIsMenuOpen(false); handleAnchorClick(e, '#bundle'); }} className="py-3 border-b border-white/10">Bundle</a>
-              <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="py-3">Contact</Link>
-            </div>
+        <div className="flex flex-col text-[16px] font-medium uppercase tracking-[0.2em] text-white/85">
+          <Link to="/product/24-gold-mask" onClick={() => setIsMenuOpen(false)} className="py-3 border-b border-white/10 text-aphoria-gold">24 Gold Mask</Link>
+          <Link to="/product/avocado-mask" onClick={() => setIsMenuOpen(false)} className="py-3 border-b border-white/10 text-[#6aad6a]">Avocado Mask</Link>
+          <a href="/#science" onClick={(e) => { setIsMenuOpen(false); handleAnchorClick(e, '#science'); }} className="py-3 border-b border-white/10">Science</a>
+          <a href="/#ritual" onClick={(e) => { setIsMenuOpen(false); handleAnchorClick(e, '#ritual'); }} className="py-3 border-b border-white/10">Ritual</a>
+          <a href="/#bundle" onClick={(e) => { setIsMenuOpen(false); handleAnchorClick(e, '#bundle'); }} className="py-3 border-b border-white/10">Bundle</a>
+          <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="py-3">Contact</Link>
+        </div>
 
-            <div className="mt-10 flex items-center gap-3">
-              <button
-                onClick={() => { openCart(); setIsMenuOpen(false); }}
-                className="flex-1 rounded-full border border-white/20 bg-transparent text-white px-3 py-3 min-h-[44px] text-center text-[11px] font-medium uppercase tracking-[0.2em] hover:bg-white/10 transition-colors"
-              >
-                View Cart
-              </button>
-              <button
-                onClick={() => { openCart(); setIsMenuOpen(false); }}
-                className="flex-1 rounded-full bg-white text-aphoria-black px-3 py-3 min-h-[44px] text-center text-[11px] font-medium uppercase tracking-[0.2em] hover:bg-white/90 transition-colors"
-              >
-                Shop Now
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        <div className="mt-10 flex items-center gap-3">
+          <button
+            onClick={() => { openCart(); setIsMenuOpen(false); }}
+            className="flex-1 rounded-full border border-white/20 bg-transparent text-white px-3 py-3 min-h-[44px] text-center text-[11px] font-medium uppercase tracking-[0.2em] hover:bg-white/10 transition-colors"
+          >
+            View Cart
+          </button>
+          <button
+            onClick={() => { openCart(); setIsMenuOpen(false); }}
+            className="flex-1 rounded-full bg-white text-aphoria-black px-3 py-3 min-h-[44px] text-center text-[11px] font-medium uppercase tracking-[0.2em] hover:bg-white/90 transition-colors"
+          >
+            Shop Now
+          </button>
+        </div>
+      </motion.div>
     </>
   );
 };

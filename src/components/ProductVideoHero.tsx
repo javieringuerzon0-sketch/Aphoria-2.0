@@ -11,7 +11,7 @@ const ProductVideoHero: React.FC = () => {
   const ShopifyMoney = 'shopify-money' as any;
   const product = FEATURED_PRODUCTS[1];
 
-  const { addItem, open: openCart } = useCartStore();
+  const addItemAndOpen = useCartStore((s) => s.addItemAndOpen);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -37,14 +37,13 @@ const ProductVideoHero: React.FC = () => {
 
   const addAvocadoToCart = () => {
     const v = product.variants['1pc'];
-    addItem({
+    addItemAndOpen({
       variantId: v.shopifyVariantId || `local-${v.id}`,
       title: product.name,
       variantTitle: v.name,
       price: v.price,
       img: v.img,
     });
-    openCart();
   };
   const videoSrc = '/section%20avocado/avocado-video.mp4';
 

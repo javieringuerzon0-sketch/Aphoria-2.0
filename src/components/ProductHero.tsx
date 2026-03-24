@@ -15,18 +15,17 @@ const ProductHero: React.FC = () => {
   const productCardImage = '/seccion%20gold%20mask/PROTOCOL%202.png';
   const cardHeight = 'h-[520px] md:h-[620px]';
 
-  const { addItem, open: openCart } = useCartStore();
+  const addItemAndOpen = useCartStore((s) => s.addItemAndOpen);
 
   const addGoldToCart = () => {
     const v = product.variants['1pc'];
-    addItem({
+    addItemAndOpen({
       variantId: v.shopifyVariantId || `local-${v.id}`,
       title: product.name,
       variantTitle: v.name,
       price: v.price,
       img: v.img,
     });
-    openCart();
   };
 
   return (

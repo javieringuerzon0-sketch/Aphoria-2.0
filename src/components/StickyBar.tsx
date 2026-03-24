@@ -34,7 +34,9 @@ const StickyBar: React.FC = () => {
     };
   }, []);
 
-  const { addItem, checkout } = useCartStore();
+  // Fix 4: Selective selectors — functions are stable refs, no unnecessary re-renders
+  const addItem = useCartStore((s) => s.addItem);
+  const checkout = useCartStore((s) => s.checkout);
 
   const goldMask = PRODUCTS.find(p => p.handle === '24-gold-mask');
   const avocadoMask = PRODUCTS.find(p => p.handle === 'avocado-mask');

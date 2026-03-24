@@ -18,7 +18,9 @@ const ProductGallery: React.FC = () => {
   const bundleRegular = goldMask.variants['1pc'].regularPrice + avocadoMask.variants['1pc'].regularPrice;
   const bundleSavings = (bundleRegular - bundlePrice).toFixed(2);
 
-  const { addItem, open: openCart, checkout } = useCartStore();
+  const addItem = useCartStore((s) => s.addItem);
+  const addItemAndOpen = useCartStore((s) => s.addItemAndOpen);
+  const checkout = useCartStore((s) => s.checkout);
   const BUNDLE_DISCOUNT_CODE = import.meta.env.VITE_BUNDLE_DISCOUNT_CODE || '';
 
   const addBundleAndCheckout = () => {
@@ -31,8 +33,7 @@ const ProductGallery: React.FC = () => {
 
   const addProductToCart = (product: Product) => {
     const v = product.variants['1pc'];
-    addItem({ variantId: v.shopifyVariantId || `local-${v.id}`, title: product.name, variantTitle: v.name, price: v.price, img: v.img });
-    openCart();
+    addItemAndOpen({ variantId: v.shopifyVariantId || `local-${v.id}`, title: product.name, variantTitle: v.name, price: v.price, img: v.img });
   };
 
   const buyProductNow = (product: Product) => {
