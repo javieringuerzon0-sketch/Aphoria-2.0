@@ -2,10 +2,10 @@
   "/about-lab.png": {
     "original": "/about-lab.png",
     "originalSize": 8900678,
-    "webp": "/about-lab.lossless.webp",
-    "webpSize": 4627154,
-    "avif": "/about-lab.lossless.avif",
-    "avifSize": 5475059,
+    "webp": "/about-lab.webp",
+    "webpSize": 338968,
+    "avif": "/about-lab.avif",
+    "avifSize": 402587,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAQFA//EAB4QAAICAgMBAQAAAAAAAAAAAAECABEDBBIhMQUT/8QAFwEBAQEBAAAAAAAAAAAAAAAAAQMAAv/EABkRAQEAAwEAAAAAAAAAAAAAAAABAhIhEf/aAAwDAQACEQMRAD8ArbGHHiwm+pEyqrNazX6O+c+EBTFddzwAPsgtJTiIAo6hM/0NQm4Pam2zAce5oquKNRbTZuQFywgBXyNnTMuEzkINQjDIt+CE51Oz/9k=",
     "width": 1792,
     "height": 2400
@@ -13,10 +13,10 @@
   "/android-chrome-192x192.png": {
     "original": "/android-chrome-192x192.png",
     "originalSize": 44913,
-    "webp": "/android-chrome-192x192.lossless.webp",
-    "webpSize": 34296,
-    "avif": "/android-chrome-192x192.lossless.avif",
-    "avifSize": 58667,
+    "webp": "/android-chrome-192x192.webp",
+    "webpSize": 13838,
+    "avif": "/android-chrome-192x192.avif",
+    "avifSize": 17032,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAQDBQf/xAAfEAACAgICAwEAAAAAAAAAAAABAgADBAURMRMhIlH/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAXEQEBAQEAAAAAAAAAAAAAAAAAARFB/9oADAMBAAIRAxEAPwCTT6VHQPaJfnaShqj4wAQJtqsmu2gBSBLMixaqyWI6mLbpx59k4xquZPyJVsL1fLcjqJsZ4GXdS3w3EqzNhkWJwz+oiEchiSeT3ERCv//Z",
     "width": 192,
     "height": 192
@@ -24,10 +24,10 @@
   "/android-chrome-512x512.png": {
     "original": "/android-chrome-512x512.png",
     "originalSize": 161320,
-    "webp": "/android-chrome-512x512.lossless.webp",
-    "webpSize": 108868,
-    "avif": "/android-chrome-512x512.lossless.avif",
-    "avifSize": 270444,
+    "webp": "/android-chrome-512x512.webp",
+    "webpSize": 57438,
+    "avif": "/android-chrome-512x512.avif",
+    "avifSize": 59706,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAQDBQf/xAAfEAACAwEAAgMBAAAAAAAAAAABAgADBAURMRMhIlH/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAXEQEBAQEAAAAAAAAAAAAAAAAAARFB/9oADAMBAAIRAxEAPwCTj8VHQPaJfu4lDVH4wAQJvydNdtACkSvRYtVZLEepi26cefacxquZP5Eq6F6vrcj1E2M8Gu6lvw3iVbOhosTwz/URCOQxJJJ9xEQr/9k=",
     "width": 512,
     "height": 512
@@ -35,10 +35,10 @@
   "/apple-touch-icon-114x114.png": {
     "original": "/apple-touch-icon-114x114.png",
     "originalSize": 20492,
-    "webp": "/apple-touch-icon-114x114.lossless.webp",
-    "webpSize": 16020,
-    "avif": "/apple-touch-icon-114x114.lossless.avif",
-    "avifSize": 24085,
+    "webp": "/apple-touch-icon-114x114.webp",
+    "webpSize": 6036,
+    "avif": "/apple-touch-icon-114x114.avif",
+    "avifSize": 7700,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAGQABAQADAQAAAAAAAAAAAAAAAAQCAwUH/8QAHxAAAgMBAAIDAQAAAAAAAAAAAQIAAwQFESETIjFR/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAEC/8QAFxEBAQEBAAAAAAAAAAAAAAAAAAERQf/aAAwDAQACEQMRAD8Ak4/FR0D2iX7uJQ1R+MAECbuVprtoAUiWaLFqrJYj8mLbpx59pzGq5k/kSroXq+tyPyJsYYNd1J+jeJVs6Gh08M/qIhHHYkkkn3ERCv/Z",
     "width": 114,
     "height": 114
@@ -46,10 +46,10 @@
   "/apple-touch-icon-120x120.png": {
     "original": "/apple-touch-icon-120x120.png",
     "originalSize": 22191,
-    "webp": "/apple-touch-icon-120x120.lossless.webp",
-    "webpSize": 17318,
-    "avif": "/apple-touch-icon-120x120.lossless.avif",
-    "avifSize": 26322,
+    "webp": "/apple-touch-icon-120x120.webp",
+    "webpSize": 6606,
+    "avif": "/apple-touch-icon-120x120.avif",
+    "avifSize": 8351,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAQDBQf/xAAgEAACAwACAQUAAAAAAAAAAAABAgADBAURMRMhIkFR/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAEC/8QAFxEBAQEBAAAAAAAAAAAAAAAAAAERQf/aAAwDAQACEQMRAD8Ak4fhUdA9ol+7hKGqPpgAgTbitNdtAAIlmixaqyWP1MW3Tjz7TmNVzJ+RKuQvV9bkeImxng13Ut8G6lW3kNDp0z+0RCOQxLHs+YiIV//Z",
     "width": 120,
     "height": 120
@@ -57,10 +57,10 @@
   "/apple-touch-icon-144x144.png": {
     "original": "/apple-touch-icon-144x144.png",
     "originalSize": 29178,
-    "webp": "/apple-touch-icon-144x144.lossless.webp",
-    "webpSize": 22018,
-    "avif": "/apple-touch-icon-144x144.lossless.avif",
-    "avifSize": 35106,
+    "webp": "/apple-touch-icon-144x144.webp",
+    "webpSize": 8830,
+    "avif": "/apple-touch-icon-144x144.avif",
+    "avifSize": 11100,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAQDBQf/xAAfEAACAwACAgMAAAAAAAAAAAABAgADBAURITETIlH/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAXEQEBAQEAAAAAAAAAAAAAAAAAARFB/9oADAMBAAIRAxEAPwCTh+FR0D2iX7uEoao/GACBNuK0120AAiWaLFqrJYj1MW3Tjz7TmNVzJ+RKuQvV9bkeomxng13Ut9G6lWzkNDp0z+IiEchiSeyfMREK/9k=",
     "width": 144,
     "height": 144
@@ -68,10 +68,10 @@
   "/apple-touch-icon-152x152.png": {
     "original": "/apple-touch-icon-152x152.png",
     "originalSize": 31782,
-    "webp": "/apple-touch-icon-152x152.lossless.webp",
-    "webpSize": 24978,
-    "avif": "/apple-touch-icon-152x152.lossless.avif",
-    "avifSize": 39385,
+    "webp": "/apple-touch-icon-152x152.webp",
+    "webpSize": 9630,
+    "avif": "/apple-touch-icon-152x152.avif",
+    "avifSize": 12172,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAQDBQf/xAAfEAACAgICAwEAAAAAAAAAAAABAgADBAURMRMhIlH/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAXEQEBAQEAAAAAAAAAAAAAAAAAARFB/9oADAMBAAIRAxEAPwCTT6VHQPaJfnaShqj4wAQJtqsmu2gAESzIsWqsliOpi26cefZOMarmT8iVbC9Xy3I6ibGeBl3Un4biVZmwyHThn9REI5DEk8nuIiFf/9k=",
     "width": 152,
     "height": 152
@@ -79,10 +79,10 @@
   "/apple-touch-icon-180x180.png": {
     "original": "/apple-touch-icon-180x180.png",
     "originalSize": 40902,
-    "webp": "/apple-touch-icon-180x180.lossless.webp",
-    "webpSize": 30588,
-    "avif": "/apple-touch-icon-180x180.lossless.avif",
-    "avifSize": 52147,
+    "webp": "/apple-touch-icon-180x180.webp",
+    "webpSize": 12440,
+    "avif": "/apple-touch-icon-180x180.avif",
+    "avifSize": 15350,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAQDBQf/xAAfEAACAwEAAgMBAAAAAAAAAAABAgADBAURMRMhIlH/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAXEQEBAQEAAAAAAAAAAAAAAAAAARFB/9oADAMBAAIRAxEAPwCTj8VHQPaJfu4lDVH4wAQJtydNdtAAIlmixaqyWI9TFt048+05jVcyfyJV0L1fW5HqJsZ4Nd1LfhvEq2dDRYnhn+oiEchiSST7iIhX/9k=",
     "width": 180,
     "height": 180
@@ -90,10 +90,10 @@
   "/apple-touch-icon-57x57.png": {
     "original": "/apple-touch-icon-57x57.png",
     "originalSize": 6533,
-    "webp": "/apple-touch-icon-57x57.lossless.webp",
-    "webpSize": 5098,
-    "avif": "/apple-touch-icon-57x57.lossless.avif",
-    "avifSize": 7632,
+    "webp": "/apple-touch-icon-57x57.webp",
+    "webpSize": 2070,
+    "avif": "/apple-touch-icon-57x57.avif",
+    "avifSize": 2801,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAQDBQf/xAAfEAACAwEAAgMBAAAAAAAAAAABAgADBAURMRMhIlH/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAXEQEBAQEAAAAAAAAAAAAAAAAAARFB/9oADAMBAAIRAxEAPwCTj8ZHUPaJfu4tDVH41APibcrTXbSApEs0WLVWSxHqYtunHn+nKabmT+RKuher63I9RNjPBrupP4bxKtnQ0OnhniIRx2YsSSfuIiFf/9k=",
     "width": 57,
     "height": 57
@@ -101,10 +101,10 @@
   "/apple-touch-icon-60x60.png": {
     "original": "/apple-touch-icon-60x60.png",
     "originalSize": 7162,
-    "webp": "/apple-touch-icon-60x60.lossless.webp",
-    "webpSize": 5564,
-    "avif": "/apple-touch-icon-60x60.lossless.avif",
-    "avifSize": 9239,
+    "webp": "/apple-touch-icon-60x60.webp",
+    "webpSize": 2248,
+    "avif": "/apple-touch-icon-60x60.avif",
+    "avifSize": 2948,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAQDBQf/xAAfEAACAwEAAgMBAAAAAAAAAAABAgADBAURIRMiMVH/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAXEQEBAQEAAAAAAAAAAAAAAAAAARFB/9oADAMBAAIRAxEAPwCTj8VHUPaJfu4tDVH41AIE25Wmu2kBSJZosWqsliPyYtunHn+nKabmT+RKuher63I/Imxng13Ut9G8Srb0NDp4Z/URCOOzEkkn3ERCv//Z",
     "width": 60,
     "height": 60
@@ -112,10 +112,10 @@
   "/apple-touch-icon-72x72.png": {
     "original": "/apple-touch-icon-72x72.png",
     "originalSize": 9686,
-    "webp": "/apple-touch-icon-72x72.lossless.webp",
-    "webpSize": 7566,
-    "avif": "/apple-touch-icon-72x72.lossless.avif",
-    "avifSize": 11630,
+    "webp": "/apple-touch-icon-72x72.webp",
+    "webpSize": 2984,
+    "avif": "/apple-touch-icon-72x72.avif",
+    "avifSize": 3857,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAQDBQf/xAAfEAACAwACAgMAAAAAAAAAAAABAgADBAURITETIlH/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAXEQEBAQEAAAAAAAAAAAAAAAAAARFB/9oADAMBAAIRAxEAPwCTh+GR1D2iX7uFoao/GvRAm3Faa7aQFIlmixaqyWI9TFt048/05TTcyfkSrkL1fW5HqJsZ4Nd1LfRupVt5DQ6dM/iIhHHZiSST5iIhX//Z",
     "width": 72,
     "height": 72
@@ -123,10 +123,10 @@
   "/apple-touch-icon-76x76.png": {
     "original": "/apple-touch-icon-76x76.png",
     "originalSize": 10595,
-    "webp": "/apple-touch-icon-76x76.lossless.webp",
-    "webpSize": 8260,
-    "avif": "/apple-touch-icon-76x76.lossless.avif",
-    "avifSize": 12753,
+    "webp": "/apple-touch-icon-76x76.webp",
+    "webpSize": 3260,
+    "avif": "/apple-touch-icon-76x76.avif",
+    "avifSize": 4217,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAQDBQf/xAAfEAACAwEAAgMBAAAAAAAAAAABAgADBAURIRMiMVH/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAXEQEBAQEAAAAAAAAAAAAAAAAAARFB/9oADAMBAAIRAxEAPwCTj8VHUPaJfu4tDVH41AIE25Wmu2kBSJZosWqsliPyYtunHn+nKarmT+RKuher63I/Imxng13Ut9G8Srb0NDp4Z/URCOOxLEkn3ERCv//Z",
     "width": 76,
     "height": 76
@@ -134,10 +134,10 @@
   "/apple-touch-icon.png": {
     "original": "/apple-touch-icon.png",
     "originalSize": 40902,
-    "webp": "/apple-touch-icon.lossless.webp",
-    "webpSize": 30588,
-    "avif": "/apple-touch-icon.lossless.avif",
-    "avifSize": 52147,
+    "webp": "/apple-touch-icon.webp",
+    "webpSize": 12440,
+    "avif": "/apple-touch-icon.avif",
+    "avifSize": 15350,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAQDBQf/xAAfEAACAwEAAgMBAAAAAAAAAAABAgADBAURMRMhIlH/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAXEQEBAQEAAAAAAAAAAAAAAAAAARFB/9oADAMBAAIRAxEAPwCTj8VHQPaJfu4lDVH4wAQJtydNdtAAIlmixaqyWI9TFt048+05jVcyfyJV0L1fW5HqJsZ4Nd1LfhvEq2dDRYnhn+oiEchiSST7iIhX/9k=",
     "width": 180,
     "height": 180
@@ -145,10 +145,10 @@
   "/avocado-landing/apply/activate.png": {
     "original": "/avocado-landing/apply/activate.png",
     "originalSize": 430429,
-    "webp": "/avocado-landing/apply/activate.lossless.webp",
-    "webpSize": 628096,
-    "avif": "/avocado-landing/apply/activate.lossless.avif",
-    "avifSize": 950225,
+    "webp": "/avocado-landing/apply/activate.webp",
+    "webpSize": 65438,
+    "avif": "/avocado-landing/apply/activate.avif",
+    "avifSize": 75976,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAASABQDASIAAhEBAxEB/8QAGQABAAIDAAAAAAAAAAAAAAAAAAIFAQME/8QAIBAAAgEEAQUAAAAAAAAAAAAAAAEDAgQRIRIFEyIyM//EABYBAQEBAAAAAAAAAAAAAAAAAAMEAv/EABsRAQEAAQUAAAAAAAAAAAAAAAABMQIDERIh/9oADAMBAAIRAxEAPwCUMNMcXFElHVStPZK4SjecnDVfKOXLeieZUXiReQxVdtZBVLrNePFaA/ZN4xft8VspZ/YALSbcw3Q/NAA2J//Z",
     "width": 1056,
     "height": 976
@@ -156,10 +156,10 @@
   "/avocado-landing/apply/apply.png": {
     "original": "/avocado-landing/apply/apply.png",
     "originalSize": 356309,
-    "webp": "/avocado-landing/apply/apply.lossless.webp",
-    "webpSize": 499726,
-    "avif": "/avocado-landing/apply/apply.lossless.avif",
-    "avifSize": 819785,
+    "webp": "/avocado-landing/apply/apply.webp",
+    "webpSize": 46826,
+    "avif": "/avocado-landing/apply/apply.avif",
+    "avifSize": 44541,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAASABQDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAEEBQID/8QAHxAAAgICAgMBAAAAAAAAAAAAAAECAwQRITESIjIz/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgP/xAAXEQEBAQEAAAAAAAAAAAAAAAAAASEx/9oADAMBAAIRAxEAPwDUzbYQXLM+erknE9s2p2NrfJVxYTqs9+id05nFuuLjBJgsLTWwMHFn7MixLw6ADTia/gACg1//2Q==",
     "width": 1056,
     "height": 976
@@ -167,10 +167,10 @@
   "/avocado-landing/apply/reveal.png": {
     "original": "/avocado-landing/apply/reveal.png",
     "originalSize": 1124940,
-    "webp": "/avocado-landing/apply/reveal.lossless.webp",
-    "webpSize": 430906,
-    "avif": "/avocado-landing/apply/reveal.lossless.avif",
-    "avifSize": 784065,
+    "webp": "/avocado-landing/apply/reveal.webp",
+    "webpSize": 66810,
+    "avif": "/avocado-landing/apply/reveal.avif",
+    "avifSize": 74721,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAASABQDASIAAhEBAxEB/8QAGgABAAMAAwAAAAAAAAAAAAAAAAEDBAIFBv/EAB8QAAMBAAIBBQAAAAAAAAAAAAABAgMEIREiMTM0Qf/EABYBAQEBAAAAAAAAAAAAAAAAAAECA//EABgRAQADAQAAAAAAAAAAAAAAAAABEkEh/9oADAMBAAIRAxEAPwCatb7N/hOGsxq5b6KOLaUte7M2qrXb0My1rMcejyuHHnygdRlVRCl12BsKSxcB9UXcH7FgEqxz1+RgAFv/2Q==",
     "width": 1056,
     "height": 976
@@ -178,10 +178,10 @@
   "/avocado-landing/producto/avocado-original.png": {
     "original": "/avocado-landing/producto/avocado-original.png",
     "originalSize": 606474,
-    "webp": "/avocado-landing/producto/avocado-original.lossless.webp",
-    "webpSize": 419766,
-    "avif": "/avocado-landing/producto/avocado-original.lossless.avif",
-    "avifSize": 413805,
+    "webp": "/avocado-landing/producto/avocado-original.webp",
+    "webpSize": 37996,
+    "avif": "/avocado-landing/producto/avocado-original.avif",
+    "avifSize": 21508,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAECAwUG/8QAHRAAAgICAwEAAAAAAAAAAAAAAAECEQMEBTFBEv/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/EABYRAQEBAAAAAAAAAAAAAAAAAAABIf/aAAwDAQACEQMRAD8A8rraktjo3ycXOEbsnQzKEaumbz2bTuRGbdcmUXGTT8BbLK8jYK0om10x9yfoAEAAD//Z",
     "width": 1024,
     "height": 1024
@@ -189,10 +189,10 @@
   "/avocado-landing/ugc/2d271056-d75b-4b1a-b38b-740b742bb662.jpg": {
     "original": "/avocado-landing/ugc/2d271056-d75b-4b1a-b38b-740b742bb662.jpg",
     "originalSize": 173307,
-    "webp": "/avocado-landing/ugc/2d271056-d75b-4b1a-b38b-740b742bb662.lossless.webp",
-    "webpSize": 423976,
-    "avif": "/avocado-landing/ugc/2d271056-d75b-4b1a-b38b-740b742bb662.lossless.avif",
-    "avifSize": 705193,
+    "webp": "/avocado-landing/ugc/2d271056-d75b-4b1a-b38b-740b742bb662.webp",
+    "webpSize": 39930,
+    "avif": "/avocado-landing/ugc/2d271056-d75b-4b1a-b38b-740b742bb662.avif",
+    "avifSize": 42113,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAASABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAUDAgT/xAAfEAACAgICAwEAAAAAAAAAAAAAAQMEAhETMQUSISP/xAAXAQEBAQEAAAAAAAAAAAAAAAACAwAB/8QAGBEBAQADAAAAAAAAAAAAAAAAAAECESH/2gAMAwEAAhEDEQA/AKfkM0s39JlaXjs7XTKVuq2ttnhyiUeSJXikm4pqXa3oHUHrxLYGDSwT7XSAOUsWkT/NAAwv/9k=",
     "width": 1056,
     "height": 976
@@ -200,10 +200,10 @@
   "/avocado-landing/ugc/38e7a424-0c82-4d78-95f4-038f2e13ae20.jpg": {
     "original": "/avocado-landing/ugc/38e7a424-0c82-4d78-95f4-038f2e13ae20.jpg",
     "originalSize": 195403,
-    "webp": "/avocado-landing/ugc/38e7a424-0c82-4d78-95f4-038f2e13ae20.lossless.webp",
-    "webpSize": 477254,
-    "avif": "/avocado-landing/ugc/38e7a424-0c82-4d78-95f4-038f2e13ae20.lossless.avif",
-    "avifSize": 808678,
+    "webp": "/avocado-landing/ugc/38e7a424-0c82-4d78-95f4-038f2e13ae20.webp",
+    "webpSize": 47702,
+    "avif": "/avocado-landing/ugc/38e7a424-0c82-4d78-95f4-038f2e13ae20.avif",
+    "avifSize": 53181,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAASABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAUEAgP/xAAeEAACAgICAwAAAAAAAAAAAAAAAQIEAxEzQRIhMf/EABYBAQEBAAAAAAAAAAAAAAAAAAIBA//EABgRAQEBAQEAAAAAAAAAAAAAAAABAhEh/9oADAMBAAIRAxEAPwD2vNbeyO5KFha7LNuCa30TM8IJeWvZlb61zOxpSTSYOMSnLGmBA32uIkWPqAJSy31+JAAov//Z",
     "width": 1056,
     "height": 976
@@ -211,10 +211,10 @@
   "/avocado-landing/ugc/6073b40b-22db-4d45-ac46-db77e08dc785.jpg": {
     "original": "/avocado-landing/ugc/6073b40b-22db-4d45-ac46-db77e08dc785.jpg",
     "originalSize": 207006,
-    "webp": "/avocado-landing/ugc/6073b40b-22db-4d45-ac46-db77e08dc785.lossless.webp",
-    "webpSize": 514954,
-    "avif": "/avocado-landing/ugc/6073b40b-22db-4d45-ac46-db77e08dc785.lossless.avif",
-    "avifSize": 839754,
+    "webp": "/avocado-landing/ugc/6073b40b-22db-4d45-ac46-db77e08dc785.webp",
+    "webpSize": 56502,
+    "avif": "/avocado-landing/ugc/6073b40b-22db-4d45-ac46-db77e08dc785.avif",
+    "avifSize": 64521,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAASABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAQFA//EAB8QAAICAQQDAAAAAAAAAAAAAAABAgMSBREhMwQyQf/EABYBAQEBAAAAAAAAAAAAAAAAAAEDAP/EABkRAQEAAwEAAAAAAAAAAAAAAAABAhExIf/aAAwDAQACEQMRAD8Av1SSXJk03Y3Lng1NQkrIsya6lu5Er1TGeNPOL+gnrhlDcCNOl3WySPowDUxX4/UgAIvX/9k=",
     "width": 1056,
     "height": 976
@@ -222,10 +222,10 @@
   "/avocado-landing/ugc/ca75aae7-e00b-49d6-a166-1d48fde59a70.jpg": {
     "original": "/avocado-landing/ugc/ca75aae7-e00b-49d6-a166-1d48fde59a70.jpg",
     "originalSize": 200573,
-    "webp": "/avocado-landing/ugc/ca75aae7-e00b-49d6-a166-1d48fde59a70.lossless.webp",
-    "webpSize": 490790,
-    "avif": "/avocado-landing/ugc/ca75aae7-e00b-49d6-a166-1d48fde59a70.lossless.avif",
-    "avifSize": 812276,
+    "webp": "/avocado-landing/ugc/ca75aae7-e00b-49d6-a166-1d48fde59a70.webp",
+    "webpSize": 52316,
+    "avif": "/avocado-landing/ugc/ca75aae7-e00b-49d6-a166-1d48fde59a70.avif",
+    "avifSize": 58697,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAASABQDASIAAhEBAxEB/8QAGAABAQADAAAAAAAAAAAAAAAAAAUBAwT/xAAgEAACAgEDBQAAAAAAAAAAAAAAAQIDBBESMSEjMkFR/8QAFgEBAQEAAAAAAAAAAAAAAAAAAQAD/8QAFxEBAQEBAAAAAAAAAAAAAAAAAAECIf/aAAwDAQACEQMRAD8AoZc1FPcQrJbMjVcMvZdasXUnWY1e1y+GVaScYTTSYFcU48gQo5fs4LH2WAFOWmrwABJ//9k=",
     "width": 1056,
     "height": 976
@@ -233,10 +233,10 @@
   "/avocado-landing/ugc/canvas-image-1765494737512.png": {
     "original": "/avocado-landing/ugc/canvas-image-1765494737512.png",
     "originalSize": 110614,
-    "webp": "/avocado-landing/ugc/canvas-image-1765494737512.lossless.webp",
-    "webpSize": 416622,
-    "avif": "/avocado-landing/ugc/canvas-image-1765494737512.lossless.avif",
-    "avifSize": 615171,
+    "webp": "/avocado-landing/ugc/canvas-image-1765494737512.webp",
+    "webpSize": 89718,
+    "avif": "/avocado-landing/ugc/canvas-image-1765494737512.avif",
+    "avifSize": 89706,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGgAAAQUBAAAAAAAAAAAAAAAAAAECBAUGA//EAB8QAAICAgIDAQAAAAAAAAAAAAECAAMEEQUxEhQhUf/EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAGBEBAQEBAQAAAAAAAAAAAAAAAAESESH/2gAMAwEAAhEDEQA/AJpQ1ruMG2iZ+YtNX2c8XKpdQS0jlWXxKFJIhJdZVkBHUIsBpnOWR7FGupVhLK3XRMu+TOsTY7lPisWsXyO/spArWcf5eom+4R2MdUrr8hFwX//Z",
     "width": 864,
     "height": 1184
@@ -244,10 +244,10 @@
   "/avocado-landing/ugc/canvas-image-1765519919814.png": {
     "original": "/avocado-landing/ugc/canvas-image-1765519919814.png",
     "originalSize": 88068,
-    "webp": "/avocado-landing/ugc/canvas-image-1765519919814.lossless.webp",
-    "webpSize": 440178,
-    "avif": "/avocado-landing/ugc/canvas-image-1765519919814.lossless.avif",
-    "avifSize": 680217,
+    "webp": "/avocado-landing/ugc/canvas-image-1765519919814.webp",
+    "webpSize": 55572,
+    "avif": "/avocado-landing/ugc/canvas-image-1765519919814.avif",
+    "avifSize": 61358,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAABAAFAQP/xAAdEAACAgMBAQEAAAAAAAAAAAABAgADBBESITET/8QAFQEBAQAAAAAAAAAAAAAAAAAAAwL/xAAXEQEBAQEAAAAAAAAAAAAAAAAAASEx/9oADAMBAAIRAxEAPwDaV0vpYoPYPDWz9j0fNzlthxVPPww2Pkv2WEi3VSY3NShq8osoJEogwsi1LAVhaAa7fm1kPbTH1IvG9Q+01yPZba+R5KEfxpRQv//Z",
     "width": 864,
     "height": 1184
@@ -255,10 +255,10 @@
   "/avocado-landing/ugc/canvas-image-1765520585278.png": {
     "original": "/avocado-landing/ugc/canvas-image-1765520585278.png",
     "originalSize": 134906,
-    "webp": "/avocado-landing/ugc/canvas-image-1765520585278.lossless.webp",
-    "webpSize": 567214,
-    "avif": "/avocado-landing/ugc/canvas-image-1765520585278.lossless.avif",
-    "avifSize": 851963,
+    "webp": "/avocado-landing/ugc/canvas-image-1765520585278.webp",
+    "webpSize": 109274,
+    "avif": "/avocado-landing/ugc/canvas-image-1765520585278.avif",
+    "avifSize": 110897,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAQBAgMF/8QAIBAAAgIBBAMBAAAAAAAAAAAAAQIAAxEEEiEiExUxI//EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAGREAAwEBAQAAAAAAAAAAAAAAAAERAhIh/9oADAMBAAIRAxEAPwDR0dV4masytjMd1SFE45nIqsd9ViTfjKZVQ0+oKtiEa9aLO277CKApX9GpLMc5iNYZLCSs6qjqBIuRdnwRvKoVtyFavIUGGhIrJCwj5RPpn//Z",
     "width": 864,
     "height": 1184
@@ -266,10 +266,10 @@
   "/avocado-landing/ugc/canvas-image-1765520637566.png": {
     "original": "/avocado-landing/ugc/canvas-image-1765520637566.png",
     "originalSize": 87229,
-    "webp": "/avocado-landing/ugc/canvas-image-1765520637566.lossless.webp",
-    "webpSize": 423580,
-    "avif": "/avocado-landing/ugc/canvas-image-1765520637566.lossless.avif",
-    "avifSize": 629132,
+    "webp": "/avocado-landing/ugc/canvas-image-1765520637566.webp",
+    "webpSize": 58580,
+    "avif": "/avocado-landing/ugc/canvas-image-1765520637566.avif",
+    "avifSize": 65795,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAUCAwQG/8QAIBAAAgIBBAMBAAAAAAAAAAAAAAECAwQFERIxEyEiUf/EABcBAQEBAQAAAAAAAAAAAAAAAAIDAAH/xAAZEQACAwEAAAAAAAAAAAAAAAAAAQIRIVH/2gAMAwEAAhEDEQA/AOlvl46XJdivG1Hnc65rYa5CUqmmxJCmKy03+hbpijG0OOO/sCyMflAMAp1C6yNny9kY7LpKKmuy3U292Z+6EQfS8Ulhrq1C5QQEMdLxL0B3TOj/2Q==",
     "width": 864,
     "height": 1184
@@ -277,10 +277,10 @@
   "/avocado-landing/ugc/f61e9033-3d46-4143-a26b-8b9b59ccd0a6.jpg": {
     "original": "/avocado-landing/ugc/f61e9033-3d46-4143-a26b-8b9b59ccd0a6.jpg",
     "originalSize": 180700,
-    "webp": "/avocado-landing/ugc/f61e9033-3d46-4143-a26b-8b9b59ccd0a6.lossless.webp",
-    "webpSize": 468554,
-    "avif": "/avocado-landing/ugc/f61e9033-3d46-4143-a26b-8b9b59ccd0a6.lossless.avif",
-    "avifSize": 794191,
+    "webp": "/avocado-landing/ugc/f61e9033-3d46-4143-a26b-8b9b59ccd0a6.webp",
+    "webpSize": 40804,
+    "avif": "/avocado-landing/ugc/f61e9033-3d46-4143-a26b-8b9b59ccd0a6.avif",
+    "avifSize": 40273,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAASABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAUEA//EAB4QAAICAgMBAQAAAAAAAAAAAAABAgMFEQQyMyEx/8QAFwEAAwEAAAAAAAAAAAAAAAAAAAECA//EABkRAQADAQEAAAAAAAAAAAAAAAABAjERIf/aAAwDAQACEQMRAD8Ap5FpWbkQci0+rKOUslYtr4TORU3UnvbM5lpWGriKToi2DhTzHXWo6/AHg5Klk/JE2XmgBW1VMY5dmABKf//Z",
     "width": 1056,
     "height": 976
@@ -288,10 +288,10 @@
   "/avocado-landing/ugc/freepik__-platform-freepik-ai-image-generator-model-mystic-__2280.jpeg": {
     "original": "/avocado-landing/ugc/freepik__-platform-freepik-ai-image-generator-model-mystic-__2280.jpeg",
     "originalSize": 3037343,
-    "webp": "/avocado-landing/ugc/freepik__-platform-freepik-ai-image-generator-model-mystic-__2280.lossless.webp",
-    "webpSize": 3653590,
-    "avif": "/avocado-landing/ugc/freepik__-platform-freepik-ai-image-generator-model-mystic-__2280.lossless.avif",
-    "avifSize": 4567291,
+    "webp": "/avocado-landing/ugc/freepik__-platform-freepik-ai-image-generator-model-mystic-__2280.webp",
+    "webpSize": 284518,
+    "avif": "/avocado-landing/ugc/freepik__-platform-freepik-ai-image-generator-model-mystic-__2280.avif",
+    "avifSize": 299798,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAQBBQYC/8QAIBAAAQQCAgMBAAAAAAAAAAAAAQACAwQRIQUSEyJCgf/EABYBAQEBAAAAAAAAAAAAAAAAAAECAP/EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAwDAQACEQMRAD8A0PJHBWcmsyR2cfKtb1wSn12kJgzrkjai3VSHorAMYKEvCW+MZICEYyRXLG5O0ANcMPGE+AC8gjSrOUPSVoboKsEqstSSRzua06QuLJzL+IQX/9k=",
     "width": 1792,
     "height": 2400
@@ -299,10 +299,10 @@
   "/avocado-landing/ugc/freepik__-platform-freepik-ai-image-generator-model-sofiabr__2285.png": {
     "original": "/avocado-landing/ugc/freepik__-platform-freepik-ai-image-generator-model-sofiabr__2285.png",
     "originalSize": 8915453,
-    "webp": "/avocado-landing/ugc/freepik__-platform-freepik-ai-image-generator-model-sofiabr__2285.lossless.webp",
-    "webpSize": 4694302,
-    "avif": "/avocado-landing/ugc/freepik__-platform-freepik-ai-image-generator-model-sofiabr__2285.lossless.avif",
-    "avifSize": 5474532,
+    "webp": "/avocado-landing/ugc/freepik__-platform-freepik-ai-image-generator-model-sofiabr__2285.webp",
+    "webpSize": 336586,
+    "avif": "/avocado-landing/ugc/freepik__-platform-freepik-ai-image-generator-model-sofiabr__2285.avif",
+    "avifSize": 420501,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMEBQL/xAAgEAACAgEEAwEAAAAAAAAAAAAAAQIDEQQFEiETIkEx/8QAFgEBAQEAAAAAAAAAAAAAAAAAAwIB/8QAHREAAgICAwEAAAAAAAAAAAAAAAEREgIDEyExQf/aAAwDAQACEQMRAD8AsnukY/Rct44/DCVV1mG8mpRp4eNSsXaJex+MzHXKkpW6WyWVF4AV5ox6jFYAuGRfEnt5LPWGFF3q1YzrVt8yCbfIKJ7Ft8L04vtMCKMnx/QFuFxI/9k=",
     "width": 1792,
     "height": 2400
@@ -310,10 +310,10 @@
   "/avocado-landing/ugc/freepik__beautiful27yearold-woman-jade-green-hydrogel-eye-p__2287.png": {
     "original": "/avocado-landing/ugc/freepik__beautiful27yearold-woman-jade-green-hydrogel-eye-p__2287.png",
     "originalSize": 7354323,
-    "webp": "/avocado-landing/ugc/freepik__beautiful27yearold-woman-jade-green-hydrogel-eye-p__2287.lossless.webp",
-    "webpSize": 3689452,
-    "avif": "/avocado-landing/ugc/freepik__beautiful27yearold-woman-jade-green-hydrogel-eye-p__2287.lossless.avif",
-    "avifSize": 4015111,
+    "webp": "/avocado-landing/ugc/freepik__beautiful27yearold-woman-jade-green-hydrogel-eye-p__2287.webp",
+    "webpSize": 219320,
+    "avif": "/avocado-landing/ugc/freepik__beautiful27yearold-woman-jade-green-hydrogel-eye-p__2287.avif",
+    "avifSize": 229491,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAUBAwQC/8QAHxAAAgICAwADAAAAAAAAAAAAAQIAAwQSESFREyIx/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgMB/8QAGBEBAQADAAAAAAAAAAAAAAAAAAECESH/2gAMAwEAAhEDEQA/AHjnmliImoybkztSfqTG7OoQqDFgTXKDH85gt6eM3D5ayyg+wkVZS/GOITQJbbCwGpnFza1j0yisnVe5bb3rJrNuPYq0gMe4TE54I48hGna//9k=",
     "width": 1792,
     "height": 2400
@@ -321,10 +321,10 @@
   "/avocado-landing/ugc/freepik__creame-una-variacion-para-esta-imagen-sorpreneme-i__2281.jpeg": {
     "original": "/avocado-landing/ugc/freepik__creame-una-variacion-para-esta-imagen-sorpreneme-i__2281.jpeg",
     "originalSize": 8193036,
-    "webp": "/avocado-landing/ugc/freepik__creame-una-variacion-para-esta-imagen-sorpreneme-i__2281.lossless.webp",
-    "webpSize": 11495214,
-    "avif": "/avocado-landing/ugc/freepik__creame-una-variacion-para-esta-imagen-sorpreneme-i__2281.lossless.avif",
-    "avifSize": 17143183,
+    "webp": "/avocado-landing/ugc/freepik__creame-una-variacion-para-esta-imagen-sorpreneme-i__2281.webp",
+    "webpSize": 1018096,
+    "avif": "/avocado-landing/ugc/freepik__creame-una-variacion-para-esta-imagen-sorpreneme-i__2281.avif",
+    "avifSize": 1012397,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGgAAAQUBAAAAAAAAAAAAAAAAAAECBAUGA//EACIQAAICAQMEAwAAAAAAAAAAAAEDAAIFBBESExQhQTE0Uf/EABcBAAMBAAAAAAAAAAAAAAAAAAACAwH/xAAbEQACAgMBAAAAAAAAAAAAAAAAAQIDESExEv/aAAwDAQACEQMRAD8AnYjVMt4ZvGZXIGt+l6M7KYpQOw8ynyBL2ch+yCm+MsqxRjLNHMe4SXpnXomtSfiEMmYHanTtFzxHiVjrlV9jNU4DpmZPIfYMexJcGobb2HeEQgldDQE1EJLyEo7P/9k=",
     "width": 3544,
     "height": 4728
@@ -332,10 +332,10 @@
   "/avocado-landing/ugc/freepik__young-woman-with-jade-green-aphoria-eye-patches-ap__2286.png": {
     "original": "/avocado-landing/ugc/freepik__young-woman-with-jade-green-aphoria-eye-patches-ap__2286.png",
     "originalSize": 8527306,
-    "webp": "/avocado-landing/ugc/freepik__young-woman-with-jade-green-aphoria-eye-patches-ap__2286.lossless.webp",
-    "webpSize": 4412112,
-    "avif": "/avocado-landing/ugc/freepik__young-woman-with-jade-green-aphoria-eye-patches-ap__2286.lossless.avif",
-    "avifSize": 5416181,
+    "webp": "/avocado-landing/ugc/freepik__young-woman-with-jade-green-aphoria-eye-patches-ap__2286.webp",
+    "webpSize": 184634,
+    "avif": "/avocado-landing/ugc/freepik__young-woman-with-jade-green-aphoria-eye-patches-ap__2286.avif",
+    "avifSize": 248192,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGgAAAgIDAAAAAAAAAAAAAAAAAAQFBgECA//EACAQAAICAgICAwAAAAAAAAAAAAECAAMEEQUSEzEhI0H/xAAXAQEAAwAAAAAAAAAAAAAAAAACAAED/8QAGBEBAAMBAAAAAAAAAAAAAAAAAAECERL/2gAMAwEAAhEDEQA/AFjyfizOp9TtewtcOPRidnHlszf5uSQoKrrUz0+WqJtQYTIDqNdTCRRS/M637WSOPmIVDOJXnJ7xuljoDfxDB2WZLaHUEKIRPHH0iEQP/9k=",
     "width": 1792,
     "height": 2400
@@ -343,10 +343,10 @@
   "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (10).png": {
     "original": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (10).png",
     "originalSize": 390069,
-    "webp": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (10).lossless.webp",
-    "webpSize": 562192,
-    "avif": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (10).lossless.avif",
-    "avifSize": 886010,
+    "webp": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (10).webp",
+    "webpSize": 51782,
+    "avif": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (10).avif",
+    "avifSize": 56792,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAASABQDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAIDBAH/xAAdEAACAwADAQEAAAAAAAAAAAAAAQIDBBExMxIy/8QAFwEAAwEAAAAAAAAAAAAAAAAAAAEDAv/EABkRAQEBAAMAAAAAAAAAAAAAAAABEQIhQf/aAAwDAQACEQMRAD8Ax0WyvUYyObc6palHssxRXwmWa4u3hInapOPSNV8XWuewQjmcY8MBpZU8XgaKf2AZ9ULvRgACf//Z",
     "width": 1056,
     "height": 976
@@ -354,10 +354,10 @@
   "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (12).png": {
     "original": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (12).png",
     "originalSize": 350915,
-    "webp": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (12).lossless.webp",
-    "webpSize": 495312,
-    "avif": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (12).lossless.avif",
-    "avifSize": 799822,
+    "webp": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (12).webp",
+    "webpSize": 41568,
+    "avif": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (12).avif",
+    "avifSize": 43702,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAASABQDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAECAwT/xAAfEAACAgIBBQAAAAAAAAAAAAAAAQIDBBEyBRITQWH/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQP/xAAXEQEBAQEAAAAAAAAAAAAAAAAAQQEx/9oADAMBAAIRAxEAPwC2XLS0ju6ZZ460pezm7FetmsYuCXwzaRfKipXNgicnJ7ARnhcTSzkAXOJUgAD/2Q==",
     "width": 1056,
     "height": 976
@@ -365,10 +365,10 @@
   "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (2).png": {
     "original": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (2).png",
     "originalSize": 376406,
-    "webp": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (2).lossless.webp",
-    "webpSize": 506726,
-    "avif": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (2).lossless.avif",
-    "avifSize": 869889,
+    "webp": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (2).webp",
+    "webpSize": 46622,
+    "avif": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (2).avif",
+    "avifSize": 48663,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAASABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAMEAQL/xAAeEAACAQUBAQEAAAAAAAAAAAAAAQIDBBEhMRIyUf/EABYBAQEBAAAAAAAAAAAAAAAAAAIBA//EABkRAQACAwAAAAAAAAAAAAAAAAABEQISIf/aAAwDAQACEQMRAD8AvUuYW7ab2RhcyqzyuGWvSdabbL2MN+fwF2etN8VoHrzjWQUOsUOs5bfcgAQ1yUbeesADB//Z",
     "width": 1056,
     "height": 976
@@ -376,10 +376,10 @@
   "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (5).png": {
     "original": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (5).png",
     "originalSize": 424353,
-    "webp": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (5).lossless.webp",
-    "webpSize": 619602,
-    "avif": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (5).lossless.avif",
-    "avifSize": 955865,
+    "webp": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (5).webp",
+    "webpSize": 64448,
+    "avif": "/avocado-landing/ugc/grok-image-9d1e4fe9-b0f6-4c6b-87d9-a772323e961d (5).avif",
+    "avifSize": 71881,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAASABQDASIAAhEBAxEB/8QAGQABAQEAAwAAAAAAAAAAAAAAAAQDAgUG/8QAIRAAAgIBAwUBAAAAAAAAAAAAAAECAxIEBTEREyEyNHH/xAAXAQADAQAAAAAAAAAAAAAAAAAAAQID/8QAFhEBAQEAAAAAAAAAAAAAAAAAABFB/9oADAMBAAIRAxEAPwDbV6hylgyem7tXYyfg4bhNx1KS5Jp5SvSZmvHoI4yimuAT1JxrS6gdEQ7n9sf0zu+iAAydnH1QAJU//9k=",
     "width": 1056,
     "height": 976
@@ -387,10 +387,10 @@
   "/avocado-landing/ugc/section-imagen 2.jpg": {
     "original": "/avocado-landing/ugc/section-imagen 2.jpg",
     "originalSize": 250411,
-    "webp": "/avocado-landing/ugc/section-imagen 2.lossless.webp",
-    "webpSize": 554438,
-    "avif": "/avocado-landing/ugc/section-imagen 2.lossless.avif",
-    "avifSize": 915177,
+    "webp": "/avocado-landing/ugc/section-imagen 2.webp",
+    "webpSize": 79032,
+    "avif": "/avocado-landing/ugc/section-imagen 2.avif",
+    "avifSize": 91524,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAASABQDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAMEBQH/xAAgEAACAgICAgMAAAAAAAAAAAAAAQIRAyEEMQUSExQz/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgMB/8QAGBEBAQEBAQAAAAAAAAAAAAAAAAECMSH/2gAMAwEAAhEDEQA/AI8ji5K+ibLhx/XuK3Q5fEpa0cxRl8VPolapmMtt29A1Fw4yV0BD6u+S7I4fkgAXqmeLMEvVaABjX//Z",
     "width": 1056,
     "height": 976
@@ -398,10 +398,10 @@
   "/BEFORE-AFTER/AFTER-ORIGINAL.png": {
     "original": "/BEFORE-AFTER/AFTER-ORIGINAL.png",
     "originalSize": 101558712,
-    "webp": "/BEFORE-AFTER/AFTER-ORIGINAL.lossless.webp",
-    "webpSize": 47075710,
-    "avif": "/BEFORE-AFTER/AFTER-ORIGINAL.lossless.avif",
-    "avifSize": 113557796,
+    "webp": "/BEFORE-AFTER/AFTER-ORIGINAL.webp",
+    "webpSize": 796012,
+    "avif": "/BEFORE-AFTER/AFTER-ORIGINAL.avif",
+    "avifSize": 11044063,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMEBQL/xAAfEAACAgICAwEAAAAAAAAAAAABAgADBBETIRIxQTL/xAAVAQEBAAAAAAAAAAAAAAAAAAACA//EABcRAQEBAQAAAAAAAAAAAAAAAAABAiH/2gAMAwEAAhEDEQA/ANS6/SEqdzCeu5snn+bjce50fjsOwZdcB4gL9htLOVOPaXqUn3CdY9eqhCIGTlUNTauu46wlguvYlmeBreu5FR23cjavIYuS6romERb+zCPqfH//2Q==",
     "width": 7168,
     "height": 9600
@@ -409,10 +409,10 @@
   "/BEFORE-AFTER/BEFORE-ORIGINAL.png": {
     "original": "/BEFORE-AFTER/BEFORE-ORIGINAL.png",
     "originalSize": 28011460,
-    "webp": "/BEFORE-AFTER/BEFORE-ORIGINAL.lossless.webp",
-    "webpSize": 14404242,
-    "avif": "/BEFORE-AFTER/BEFORE-ORIGINAL.lossless.avif",
-    "avifSize": 15517103,
+    "webp": "/BEFORE-AFTER/BEFORE-ORIGINAL.webp",
+    "webpSize": 366898,
+    "avif": "/BEFORE-AFTER/BEFORE-ORIGINAL.avif",
+    "avifSize": 342036,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAUBAgMG/8QAHhAAAgICAwEBAAAAAAAAAAAAAQIAAwQRBRIxISL/xAAWAQEBAQAAAAAAAAAAAAAAAAACAQD/xAAZEQADAQEBAAAAAAAAAAAAAAAAARESIUH/2gAMAwEAAhEDEQA/AHHIWDFGzDDtGRV2EOWCP79mWDZXTUfuob2CnKTbYy2ECEh7A7Fh5CTRcsyz0dXJbeouRy9oQE6nSZiKyfobitakFmwoEufTaLCvoANwlbCQ/sIGxpH/2Q==",
     "width": 3584,
     "height": 4800
@@ -420,10 +420,10 @@
   "/bundlee/avocado-bundelle.png": {
     "original": "/bundlee/avocado-bundelle.png",
     "originalSize": 606474,
-    "webp": "/bundlee/avocado-bundelle.lossless.webp",
-    "webpSize": 419766,
-    "avif": "/bundlee/avocado-bundelle.lossless.avif",
-    "avifSize": 413805,
+    "webp": "/bundlee/avocado-bundelle.webp",
+    "webpSize": 37996,
+    "avif": "/bundlee/avocado-bundelle.avif",
+    "avifSize": 21508,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAECAwUG/8QAHRAAAgICAwEAAAAAAAAAAAAAAAECEQMEBTFBEv/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/EABYRAQEBAAAAAAAAAAAAAAAAAAABIf/aAAwDAQACEQMRAD8A8rraktjo3ycXOEbsnQzKEaumbz2bTuRGbdcmUXGTT8BbLK8jYK0om10x9yfoAEAAD//Z",
     "width": 1024,
     "height": 1024
@@ -431,10 +431,10 @@
   "/bundlee/goldmask-bundle.png": {
     "original": "/bundlee/goldmask-bundle.png",
     "originalSize": 1112939,
-    "webp": "/bundlee/goldmask-bundle.lossless.webp",
-    "webpSize": 673024,
-    "avif": "/bundlee/goldmask-bundle.lossless.avif",
-    "avifSize": 887293,
+    "webp": "/bundlee/goldmask-bundle.webp",
+    "webpSize": 82262,
+    "avif": "/bundlee/goldmask-bundle.avif",
+    "avifSize": 42667,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAMBBv/EABgQAQEBAQEAAAAAAAAAAAAAAAABAhED/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AOOxO6kU9vOYk4ni81FffXZAQAAbbaAMAB//2Q==",
     "width": 2500,
     "height": 2500
@@ -442,10 +442,10 @@
   "/clinical index/DEEP-HYDRATATION.jpeg": {
     "original": "/clinical index/DEEP-HYDRATATION.jpeg",
     "originalSize": 3736437,
-    "webp": "/clinical index/DEEP-HYDRATATION.lossless.webp",
-    "webpSize": 4398862,
-    "avif": "/clinical index/DEEP-HYDRATATION.lossless.avif",
-    "avifSize": 5836582,
+    "webp": "/clinical index/DEEP-HYDRATATION.webp",
+    "webpSize": 385776,
+    "avif": "/clinical index/DEEP-HYDRATATION.avif",
+    "avifSize": 528489,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAABQQABv/EAB4QAAICAgMBAQAAAAAAAAAAAAECAAMEIRESIzFB/8QAFwEAAwEAAAAAAAAAAAAAAAAAAAECA//EABgRAAMBAQAAAAAAAAAAAAAAAAABAhEh/9oADAMBAAIRAxEAPwBm+1aE5kCZq5JNbfZNk3W319vyQ4ZY5qk64Mm614OJ5oscFidCaNVFTWDqaZlnP0P2xx2ElfytDLLmAGHoQ5iSu42uhL4N4+R5DkzQVbHA0xmiA//Z",
     "width": 1792,
     "height": 2400
@@ -453,10 +453,10 @@
   "/clinical index/RADIANCE-ACTIVATION.png": {
     "original": "/clinical index/RADIANCE-ACTIVATION.png",
     "originalSize": 9300690,
-    "webp": "/clinical index/RADIANCE-ACTIVATION.lossless.webp",
-    "webpSize": 4747022,
-    "avif": "/clinical index/RADIANCE-ACTIVATION.lossless.avif",
-    "avifSize": 5777542,
+    "webp": "/clinical index/RADIANCE-ACTIVATION.webp",
+    "webpSize": 369532,
+    "avif": "/clinical index/RADIANCE-ACTIVATION.avif",
+    "avifSize": 468486,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAQCAwUG/8QAHRAAAgIDAQEBAAAAAAAAAAAAAQIAAwQRMRIhgf/EABcBAQEBAQAAAAAAAAAAAAAAAAMEAAH/xAAYEQADAQEAAAAAAAAAAAAAAAAAARESMf/aAAwDAQACEQMRAD8Ak1HlNnkQzMZLKz5X9mv7Vq9N2I5dwrpI1JK6UxQ5eyhlcjUI07ksfkI+mFlGw9zCzbH5Kr7VyCAJRlE+uwxOwoN1kmxgTyEdAGoTU7D/2Q==",
     "width": 1792,
     "height": 2400
@@ -464,10 +464,10 @@
   "/favicon-16x16.png": {
     "original": "/favicon-16x16.png",
     "originalSize": 822,
-    "webp": "/favicon-16x16.lossless.webp",
-    "webpSize": 694,
-    "avif": "/favicon-16x16.lossless.avif",
-    "avifSize": 1465,
+    "webp": "/favicon-16x16.webp",
+    "webpSize": 354,
+    "avif": "/favicon-16x16.avif",
+    "avifSize": 765,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAQABADASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAABAD/xAAZEAACAwEAAAAAAAAAAAAAAAABAwACBRH/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAv/EABYRAQEBAAAAAAAAAAAAAAAAAAARIf/aAAwDAQACEQMRAD8AsvHVRQLB0w23lLossWORGXsKsoBh4YXb1V3WVrPZO0f/2Q==",
     "width": 16,
     "height": 16
@@ -475,10 +475,10 @@
   "/favicon-32x32.png": {
     "original": "/favicon-32x32.png",
     "originalSize": 2509,
-    "webp": "/favicon-32x32.lossless.webp",
-    "webpSize": 1850,
-    "avif": "/favicon-32x32.lossless.avif",
-    "avifSize": 3436,
+    "webp": "/favicon-32x32.webp",
+    "webpSize": 898,
+    "avif": "/favicon-32x32.avif",
+    "avifSize": 1367,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAGQABAQADAQAAAAAAAAAAAAAAAAQCAwUH/8QAIBAAAgMAAgEFAAAAAAAAAAAAAQIAAwQFERITITFBUf/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/EABcRAQEBAQAAAAAAAAAAAAAAAAABEUH/2gAMAwEAAhEDEQA/AJeH4ZGUPaJfu4Wh6j6ajvqbuL0120jxIleixaqyWP1MW3Tjz/TlNNzJ+RKuQvV9bkfETYw4/XdUwCN1K92/Q6dF4iEcVmJYkn3iIhX/2Q==",
     "width": 32,
     "height": 32
@@ -486,10 +486,10 @@
   "/goldmask-landing/apply/activate.png": {
     "original": "/goldmask-landing/apply/activate.png",
     "originalSize": 1427806,
-    "webp": "/goldmask-landing/apply/activate.lossless.webp",
-    "webpSize": 956468,
-    "avif": "/goldmask-landing/apply/activate.lossless.avif",
-    "avifSize": 1046025,
+    "webp": "/goldmask-landing/apply/activate.webp",
+    "webpSize": 52516,
+    "avif": "/goldmask-landing/apply/activate.avif",
+    "avifSize": 59348,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAALABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMFBP/EABsQAAICAwEAAAAAAAAAAAAAAAECAAMEESET/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgED/8QAFREBAQAAAAAAAAAAAAAAAAAAABH/2gAMAwEAAhEDEQA/AKTZihPMDZi8YedpdhyZ8QA5HeyneoFB5M5TsJtuVnJEJLLHZ7CUX//Z",
     "width": 1344,
     "height": 768
@@ -497,10 +497,10 @@
   "/goldmask-landing/apply/apply.png": {
     "original": "/goldmask-landing/apply/apply.png",
     "originalSize": 1538977,
-    "webp": "/goldmask-landing/apply/apply.lossless.webp",
-    "webpSize": 1004260,
-    "avif": "/goldmask-landing/apply/apply.lossless.avif",
-    "avifSize": 1112488,
+    "webp": "/goldmask-landing/apply/apply.webp",
+    "webpSize": 80672,
+    "avif": "/goldmask-landing/apply/apply.avif",
+    "avifSize": 96144,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAALABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAMBAgT/xAAdEAACAgIDAQAAAAAAAAAAAAAAAQIDBCEFERI0/8QAFAEBAAAAAAAAAAAAAAAAAAAAA//EABkRAQACAwAAAAAAAAAAAAAAAAACEgFBUf/aAAwDAQACEQMRAD8AZx/qiHmY6+SdEtk2RXb0Z8jWMwY42WXDMabVK6egK4fzxAWw6v/Z",
     "width": 1344,
     "height": 768
@@ -508,10 +508,10 @@
   "/goldmask-landing/apply/reveal.png": {
     "original": "/goldmask-landing/apply/reveal.png",
     "originalSize": 1352171,
-    "webp": "/goldmask-landing/apply/reveal.lossless.webp",
-    "webpSize": 895436,
-    "avif": "/goldmask-landing/apply/reveal.lossless.avif",
-    "avifSize": 972743,
+    "webp": "/goldmask-landing/apply/reveal.webp",
+    "webpSize": 34486,
+    "avif": "/goldmask-landing/apply/reveal.avif",
+    "avifSize": 31337,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAALABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABAAF/8QAHhAAAQMFAQEAAAAAAAAAAAAAAQACAwQREiFRIzH/xAAWAQEBAQAAAAAAAAAAAAAAAAACAAH/xAAXEQEBAQEAAAAAAAAAAAAAAAAAAREh/9oADAMBAAIRAxEAPwBVX6uufqFHHeU8WrUNGJNkKEAv2hYcvB5aVz3kgaUtXEcUrGa//9k=",
     "width": 1344,
     "height": 768
@@ -519,10 +519,10 @@
   "/goldmask-landing/producto/goldmask-2pcs-white.png": {
     "original": "/goldmask-landing/producto/goldmask-2pcs-white.png",
     "originalSize": 1516926,
-    "webp": "/goldmask-landing/producto/goldmask-2pcs-white.lossless.webp",
-    "webpSize": 660228,
-    "avif": "/goldmask-landing/producto/goldmask-2pcs-white.lossless.avif",
-    "avifSize": 1049382,
+    "webp": "/goldmask-landing/producto/goldmask-2pcs-white.webp",
+    "webpSize": 97870,
+    "avif": "/goldmask-landing/producto/goldmask-2pcs-white.avif",
+    "avifSize": 103596,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAGQABAQEAAwAAAAAAAAAAAAAAAAQBAgUG/8QAIRAAAgICAQQDAAAAAAAAAAAAAQIAAwQRMQUGEiETImH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A7brmZbjOvxnkyG7qeQhq0T9pZ3DWWZNDfuQZVLeVHqB6fFYvQjNyRE3FGsdB+RAzIpS3XmNzg+PUxXa8cREClRpQBERA/9k=",
     "width": 1888,
     "height": 1888
@@ -530,10 +530,10 @@
   "/goldmask-landing/producto/goldmask-original.png": {
     "original": "/goldmask-landing/producto/goldmask-original.png",
     "originalSize": 1112939,
-    "webp": "/goldmask-landing/producto/goldmask-original.lossless.webp",
-    "webpSize": 673024,
-    "avif": "/goldmask-landing/producto/goldmask-original.lossless.avif",
-    "avifSize": 887293,
+    "webp": "/goldmask-landing/producto/goldmask-original.webp",
+    "webpSize": 82262,
+    "avif": "/goldmask-landing/producto/goldmask-original.avif",
+    "avifSize": 42667,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAMBBv/EABgQAQEBAQEAAAAAAAAAAAAAAAABAhED/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AOOxO6kU9vOYk4ni81FffXZAQAAbbaAMAB//2Q==",
     "width": 2500,
     "height": 2500
@@ -541,10 +541,10 @@
   "/goldmask-landing/ugc/canvas-image-1765489180063.png": {
     "original": "/goldmask-landing/ugc/canvas-image-1765489180063.png",
     "originalSize": 134165,
-    "webp": "/goldmask-landing/ugc/canvas-image-1765489180063.lossless.webp",
-    "webpSize": 579398,
-    "avif": "/goldmask-landing/ugc/canvas-image-1765489180063.lossless.avif",
-    "avifSize": 917315,
+    "webp": "/goldmask-landing/ugc/canvas-image-1765489180063.webp",
+    "webpSize": 107128,
+    "avif": "/goldmask-landing/ugc/canvas-image-1765489180063.avif",
+    "avifSize": 111756,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAIDBAUB/8QAHxAAAgICAgMBAAAAAAAAAAAAAQIAAxESITEEE0FR/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgH/xAAXEQEBAQEAAAAAAAAAAAAAAAABABES/9oADAMBAAIRAxEAPwCtaWX5EbdVywk/kMA4xJ7NLKB+wYkzGyjYc9QlxakxyIRcsOi4+jpvmOXVae5nbEUjmIztp2Yg2u5aSasucwlagn1DmEGssL//2Q==",
     "width": 864,
     "height": 1184
@@ -552,10 +552,10 @@
   "/goldmask-landing/ugc/canvas-image-1765490110626.png": {
     "original": "/goldmask-landing/ugc/canvas-image-1765490110626.png",
     "originalSize": 104850,
-    "webp": "/goldmask-landing/ugc/canvas-image-1765490110626.lossless.webp",
-    "webpSize": 491502,
-    "avif": "/goldmask-landing/ugc/canvas-image-1765490110626.lossless.avif",
-    "avifSize": 787760,
+    "webp": "/goldmask-landing/ugc/canvas-image-1765490110626.webp",
+    "webpSize": 72594,
+    "avif": "/goldmask-landing/ugc/canvas-image-1765490110626.avif",
+    "avifSize": 79165,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAQP/xAAhEAACAgEDBQEAAAAAAAAAAAABAgADEQQTIQUSIjEyNP/EABcBAQADAAAAAAAAAAAAAAAAAAIAAQP/xAAXEQEBAQEAAAAAAAAAAAAAAAABABES/9oADAMBAAIRAxEAPwBnUEhi8yi/vU5jGpqG0STJL27WcHmZsw0qQs4hF6Az1BifcJI2al7bSEU+5ybptgAZjmd6f0CVbPkSw0kuUEu9fiM8QlF60LfIhBkur//Z",
     "width": 864,
     "height": 1184
@@ -563,10 +563,10 @@
   "/goldmask-landing/ugc/canvas-image-1765519474195.png": {
     "original": "/goldmask-landing/ugc/canvas-image-1765519474195.png",
     "originalSize": 99996,
-    "webp": "/goldmask-landing/ugc/canvas-image-1765519474195.lossless.webp",
-    "webpSize": 511886,
-    "avif": "/goldmask-landing/ugc/canvas-image-1765519474195.lossless.avif",
-    "avifSize": 720279,
+    "webp": "/goldmask-landing/ugc/canvas-image-1765519474195.webp",
+    "webpSize": 69008,
+    "avif": "/goldmask-landing/ugc/canvas-image-1765519474195.avif",
+    "avifSize": 74474,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIDAQT/xAAfEAADAAICAwEBAAAAAAAAAAAAAQIDEQQhEjFBIzL/xAAYAQADAQEAAAAAAAAAAAAAAAABAgMABP/EABgRAAIDAAAAAAAAAAAAAAAAAAABAhEh/9oADAMBAAIRAxEAPwDeRG76OaY/dRX0plyU7WiVzbyza+HPLMLRVqy+XjeN6TAZ5fLsDaAgm9rZS7SSTCUtonyv7QzSbHjkBun6AWfQBonZ/9k=",
     "width": 864,
     "height": 1184
@@ -574,10 +574,10 @@
   "/goldmask-landing/ugc/canvas-image-1765519592416.png": {
     "original": "/goldmask-landing/ugc/canvas-image-1765519592416.png",
     "originalSize": 116990,
-    "webp": "/goldmask-landing/ugc/canvas-image-1765519592416.lossless.webp",
-    "webpSize": 504846,
-    "avif": "/goldmask-landing/ugc/canvas-image-1765519592416.lossless.avif",
-    "avifSize": 764641,
+    "webp": "/goldmask-landing/ugc/canvas-image-1765519592416.webp",
+    "webpSize": 88064,
+    "avif": "/goldmask-landing/ugc/canvas-image-1765519592416.avif",
+    "avifSize": 91180,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMEBQH/xAAgEAACAgICAgMAAAAAAAAAAAABAgADBBEFIRITIiMx/8QAFwEAAwEAAAAAAAAAAAAAAAAAAAIDAf/EABkRAAMBAQEAAAAAAAAAAAAAAAABEQISIf/aAAwDAQACEQMRAD8AbnV/YZPXQ1uxKs20e4iKxbh5FRJaUHz6S2YxViIS8632IQpsFZq/NmJkODk1o7lj+TvNOysdMRMKtm2ezKNViJw3n5dAxAEJhQhwg7Z//9k=",
     "width": 864,
     "height": 1184
@@ -585,10 +585,10 @@
   "/goldmask-landing/ugc/canvas-image-1765519661800.png": {
     "original": "/goldmask-landing/ugc/canvas-image-1765519661800.png",
     "originalSize": 85314,
-    "webp": "/goldmask-landing/ugc/canvas-image-1765519661800.lossless.webp",
-    "webpSize": 387872,
-    "avif": "/goldmask-landing/ugc/canvas-image-1765519661800.lossless.avif",
-    "avifSize": 631679,
+    "webp": "/goldmask-landing/ugc/canvas-image-1765519661800.webp",
+    "webpSize": 50864,
+    "avif": "/goldmask-landing/ugc/canvas-image-1765519661800.avif",
+    "avifSize": 55957,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAjABQDASIAAhEBAxEB/8QAGgAAAgMBAQAAAAAAAAAAAAAAAAMCBAUBBv/EAB8QAAMAAgICAwAAAAAAAAAAAAABAgMRBCESEyIxMv/EABYBAQEBAAAAAAAAAAAAAAAAAAIABP/EABsRAQACAgMAAAAAAAAAAAAAAAABAgMRITNB/9oADAMBAAIRAxEAPwBkcjFb0W/QnO0edhubRr4ORUOVT6YOC1JlY9VoB16b2gLSY2Pju9Uh2THaqCfByTPH232dvP8ALbD6rZK01ErUb8VsCEZpcoBJi8Km+t9FrP8AgACw5u0mLrx+2AANtf/Z",
     "width": 768,
     "height": 1344
@@ -596,10 +596,10 @@
   "/goldmask-landing/ugc/canvas-image-1765519809768.png": {
     "original": "/goldmask-landing/ugc/canvas-image-1765519809768.png",
     "originalSize": 91601,
-    "webp": "/goldmask-landing/ugc/canvas-image-1765519809768.lossless.webp",
-    "webpSize": 443292,
-    "avif": "/goldmask-landing/ugc/canvas-image-1765519809768.lossless.avif",
-    "avifSize": 676683,
+    "webp": "/goldmask-landing/ugc/canvas-image-1765519809768.webp",
+    "webpSize": 57462,
+    "avif": "/goldmask-landing/ugc/canvas-image-1765519809768.avif",
+    "avifSize": 64425,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAAAAEFAwIE/8QAIRAAAgIBBAIDAAAAAAAAAAAAAAECAyEEEjEzERMUI0H/xAAVAQEBAAAAAAAAAAAAAAAAAAADAv/EABgRAQEBAQEAAAAAAAAAAAAAAAABAhEh/9oADAMBAAIRAxEAPwC7FrnzgynrK5S9a5PHornPdCTyONUXc3+h28XJ1Yo60A6F9SAtKFbV8e97XyOMnF85Z3re5GK7kFouVai2aqWANqEvUgEkHb6//9k=",
     "width": 864,
     "height": 1184
@@ -607,10 +607,10 @@
   "/goldmask-landing/ugc/freepik__-ugcphotographyvariations-id-goldugcen01-category-__2294.png": {
     "original": "/goldmask-landing/ugc/freepik__-ugcphotographyvariations-id-goldugcen01-category-__2294.png",
     "originalSize": 8687991,
-    "webp": "/goldmask-landing/ugc/freepik__-ugcphotographyvariations-id-goldugcen01-category-__2294.lossless.webp",
-    "webpSize": 4514824,
-    "avif": "/goldmask-landing/ugc/freepik__-ugcphotographyvariations-id-goldugcen01-category-__2294.lossless.avif",
-    "avifSize": 5450463,
+    "webp": "/goldmask-landing/ugc/freepik__-ugcphotographyvariations-id-goldugcen01-category-__2294.webp",
+    "webpSize": 251984,
+    "avif": "/goldmask-landing/ugc/freepik__-ugcphotographyvariations-id-goldugcen01-category-__2294.avif",
+    "avifSize": 323755,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIEBQP/xAAfEAACAgIDAAMAAAAAAAAAAAAAAQIDBCEREjEFEzP/xAAXAQADAQAAAAAAAAAAAAAAAAABAgME/8QAGREAAwADAAAAAAAAAAAAAAAAAAECESEx/9oADAMBAAIRAxEAPwDTu5pk0TRyVOfFi0HydzjkcJ6Jk4ye/SdPDHmco0VbWlrwCJaAIguVFW29kzlHj7Bq9jtJS8J100Tw5zz4Vy6tbQGZl/vIB09Emtn/2Q==",
     "width": 1792,
     "height": 2400
@@ -618,10 +618,10 @@
   "/goldmask-landing/ugc/freepik__-ugcphotographyvariations-id-goldugcen01-category-__2295.png": {
     "original": "/goldmask-landing/ugc/freepik__-ugcphotographyvariations-id-goldugcen01-category-__2295.png",
     "originalSize": 9120471,
-    "webp": "/goldmask-landing/ugc/freepik__-ugcphotographyvariations-id-goldugcen01-category-__2295.lossless.webp",
-    "webpSize": 4758776,
-    "avif": "/goldmask-landing/ugc/freepik__-ugcphotographyvariations-id-goldugcen01-category-__2295.lossless.avif",
-    "avifSize": 5774740,
+    "webp": "/goldmask-landing/ugc/freepik__-ugcphotographyvariations-id-goldugcen01-category-__2295.webp",
+    "webpSize": 372858,
+    "avif": "/goldmask-landing/ugc/freepik__-ugcphotographyvariations-id-goldugcen01-category-__2295.avif",
+    "avifSize": 520018,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAMBAgQG/8QAIBAAAgICAgIDAAAAAAAAAAAAAQIABAMREjEhQRQiI//EABYBAQEBAAAAAAAAAAAAAAAAAAIBA//EABgRAQEBAQEAAAAAAAAAAAAAAAABAhEh/9oADAMBAAIRAxEAPwBGWx+nH3IdHGiR3LLi5XN62I28/HQEzt9OTs6QEbUJpwkHGN9wiBuw11VCAPMVlqB1LHsTVX9y7j6NJqFmuWsWHxZSg6EIy4q/IbxCVK//2Q==",
     "width": 1792,
     "height": 2400
@@ -629,10 +629,10 @@
   "/goldmask-landing/ugc/freepik__beautiful-woman-in-her-early-30s-smiling-while-hol__2296.png": {
     "original": "/goldmask-landing/ugc/freepik__beautiful-woman-in-her-early-30s-smiling-while-hol__2296.png",
     "originalSize": 8397776,
-    "webp": "/goldmask-landing/ugc/freepik__beautiful-woman-in-her-early-30s-smiling-while-hol__2296.lossless.webp",
-    "webpSize": 4402334,
-    "avif": "/goldmask-landing/ugc/freepik__beautiful-woman-in-her-early-30s-smiling-while-hol__2296.lossless.avif",
-    "avifSize": 5045214,
+    "webp": "/goldmask-landing/ugc/freepik__beautiful-woman-in-her-early-30s-smiling-while-hol__2296.webp",
+    "webpSize": 267436,
+    "avif": "/goldmask-landing/ugc/freepik__beautiful-woman-in-her-early-30s-smiling-while-hol__2296.avif",
+    "avifSize": 321455,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAQF/8QAHRAAAgIDAQEBAAAAAAAAAAAAAAECAwQRIQUSI//EABUBAQEAAAAAAAAAAAAAAAAAAAMC/8QAGBEBAQEBAQAAAAAAAAAAAAAAAAERAiH/2gAMAwEAAhEDEQA/ALPQslVkai9FmNmqWP8AM5dMz0o2XXKSJ4fbsUeoPfSSbG1G3SBD+i4Cx6os7InlFKe0ugB0nI5vYAKRX//Z",
     "width": 2048,
     "height": 2048
@@ -640,10 +640,10 @@
   "/goldmask-landing/ugc/freepik__modelo-identica-mostrando-mi-producto-de-forma-nat__2308.png": {
     "original": "/goldmask-landing/ugc/freepik__modelo-identica-mostrando-mi-producto-de-forma-nat__2308.png",
     "originalSize": 7158924,
-    "webp": "/goldmask-landing/ugc/freepik__modelo-identica-mostrando-mi-producto-de-forma-nat__2308.lossless.webp",
-    "webpSize": 3609962,
-    "avif": "/goldmask-landing/ugc/freepik__modelo-identica-mostrando-mi-producto-de-forma-nat__2308.lossless.avif",
-    "avifSize": 3920616,
+    "webp": "/goldmask-landing/ugc/freepik__modelo-identica-mostrando-mi-producto-de-forma-nat__2308.webp",
+    "webpSize": 164812,
+    "avif": "/goldmask-landing/ugc/freepik__modelo-identica-mostrando-mi-producto-de-forma-nat__2308.avif",
+    "avifSize": 175096,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAUCAwYE/8QAHxAAAQMEAwEAAAAAAAAAAAAAAQACAwQFESESEzFS/8QAFwEBAAMAAAAAAAAAAAAAAAAAAwABAv/EABcRAQEBAQAAAAAAAAAAAAAAAAABESH/2gAMAwEAAhEDEQA/AC3vyC5yjNT90/MeKsSGnh89V1DN2DaLSSafUTAKZoQp0pHSNoSDZy4lrY96wuW2zNkdxacIu7jwO0utLiJTgrGcJK1TZXMGA5CWdj/ooVJX/9k=",
     "width": 1792,
     "height": 2400
@@ -651,10 +651,10 @@
   "/goldmask-landing/ugc/freepik__photorealistic-image-of-sofia-in-amodern-white-bat__2315.png": {
     "original": "/goldmask-landing/ugc/freepik__photorealistic-image-of-sofia-in-amodern-white-bat__2315.png",
     "originalSize": 27979829,
-    "webp": "/goldmask-landing/ugc/freepik__photorealistic-image-of-sofia-in-amodern-white-bat__2315.lossless.webp",
-    "webpSize": 14309356,
-    "avif": "/goldmask-landing/ugc/freepik__photorealistic-image-of-sofia-in-amodern-white-bat__2315.lossless.avif",
-    "avifSize": 15363834,
+    "webp": "/goldmask-landing/ugc/freepik__photorealistic-image-of-sofia-in-amodern-white-bat__2315.webp",
+    "webpSize": 345850,
+    "avif": "/goldmask-landing/ugc/freepik__photorealistic-image-of-sofia-in-amodern-white-bat__2315.avif",
+    "avifSize": 313741,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAAAAQFAwEG/8QAHhAAAQQDAQEBAAAAAAAAAAAAAQACAxEEITESE1H/xAAVAQEBAAAAAAAAAAAAAAAAAAACAf/EABgRAAMBAQAAAAAAAAAAAAAAAAABEQIh/9oADAMBAAIRAxEAPwD0U8X6lmzxsf8AM9KeyiA0qEfLswEmtotwqVKpjN64hbMc0tFFCUIJZE5dCXDiguMskpq7tXcMB2I30L0ushjDrDAo80Sc4ZY32ELQTtCcquISgaf/2Q==",
     "width": 3584,
     "height": 4800
@@ -662,10 +662,10 @@
   "/goldmask-landing/ugc/freepik__photorealistic-image-of-sofia-taking-amirror-selfi__2317.png": {
     "original": "/goldmask-landing/ugc/freepik__photorealistic-image-of-sofia-taking-amirror-selfi__2317.png",
     "originalSize": 8390420,
-    "webp": "/goldmask-landing/ugc/freepik__photorealistic-image-of-sofia-taking-amirror-selfi__2317.lossless.webp",
-    "webpSize": 4500516,
-    "avif": "/goldmask-landing/ugc/freepik__photorealistic-image-of-sofia-taking-amirror-selfi__2317.lossless.avif",
-    "avifSize": 5293559,
+    "webp": "/goldmask-landing/ugc/freepik__photorealistic-image-of-sofia-taking-amirror-selfi__2317.webp",
+    "webpSize": 155716,
+    "avif": "/goldmask-landing/ugc/freepik__photorealistic-image-of-sofia-taking-amirror-selfi__2317.avif",
+    "avifSize": 192128,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGgAAAgIDAAAAAAAAAAAAAAAAAAQCBgEDBf/EAB8QAAEEAgIDAAAAAAAAAAAAAAEAAgMRBDEFEhMhQv/EABUBAQEAAAAAAAAAAAAAAAAAAAEC/8QAFhEBAQEAAAAAAAAAAAAAAAAAABEh/9oADAMBAAIRAxEAPwDp48roz6WyfJe9tFJZcnhqiowZBleG3am7DMplsJcLQnogOgQqiVW5NuW801ppLceMyGcdmmldTGw7aFB0MY+AiKqOOSYW3tCzrSEiP//Z",
     "width": 1792,
     "height": 2400
@@ -673,10 +673,10 @@
   "/goldmask-landing/ugc/freepik__photorealistic-image-of-the-model-aphoriaaphoria-o__2322.png": {
     "original": "/goldmask-landing/ugc/freepik__photorealistic-image-of-the-model-aphoriaaphoria-o__2322.png",
     "originalSize": 8397949,
-    "webp": "/goldmask-landing/ugc/freepik__photorealistic-image-of-the-model-aphoriaaphoria-o__2322.lossless.webp",
-    "webpSize": 4397412,
-    "avif": "/goldmask-landing/ugc/freepik__photorealistic-image-of-the-model-aphoriaaphoria-o__2322.lossless.avif",
-    "avifSize": 5315687,
+    "webp": "/goldmask-landing/ugc/freepik__photorealistic-image-of-the-model-aphoriaaphoria-o__2322.webp",
+    "webpSize": 170650,
+    "avif": "/goldmask-landing/ugc/freepik__photorealistic-image-of-the-model-aphoriaaphoria-o__2322.avif",
+    "avifSize": 206609,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAQL/xAAgEAACAgEDBQAAAAAAAAAAAAABAgADEQQSIiExMkFx/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgH/xAAZEQADAAMAAAAAAAAAAAAAAAAAARECEiH/2gAMAwEAAhEDEQA/AK2oGLPkyq9LG2DuJurPMxXT7FuLE4hbjhUqqOEsDiE6Fit1EIgiN7PgkiJc3bAzL4RWXkoM4qpr3+AgePR7RQVpqYVgQlUoo9QiCf/Z",
     "width": 1792,
     "height": 2400
@@ -684,10 +684,10 @@
   "/goldmask-landing/ugc/freepik__platform-freepik-ai-image-generatormodel-mysticasp__2311.png": {
     "original": "/goldmask-landing/ugc/freepik__platform-freepik-ai-image-generatormodel-mysticasp__2311.png",
     "originalSize": 9335137,
-    "webp": "/goldmask-landing/ugc/freepik__platform-freepik-ai-image-generatormodel-mysticasp__2311.lossless.webp",
-    "webpSize": 4871236,
-    "avif": "/goldmask-landing/ugc/freepik__platform-freepik-ai-image-generatormodel-mysticasp__2311.lossless.avif",
-    "avifSize": 5505561,
+    "webp": "/goldmask-landing/ugc/freepik__platform-freepik-ai-image-generatormodel-mysticasp__2311.webp",
+    "webpSize": 452084,
+    "avif": "/goldmask-landing/ugc/freepik__platform-freepik-ai-image-generatormodel-mysticasp__2311.avif",
+    "avifSize": 557231,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAQCAwYF/8QAHhAAAgICAwEBAAAAAAAAAAAAAQIAAwQREiExEzL/xAAYAQACAwAAAAAAAAAAAAAAAAAAAQIDBP/EABsRAAICAwEAAAAAAAAAAAAAAAABEUECAyES/9oADAMBAAIRAxEAPwC3E4mnZMmliO/ETmrkBKToxbHyitu9+mTx2NYqBwrNH8hCLpkkqDuEs9MXDL2WEELvqW0vWHXcXv8A3IL7M9BcGhS6viO4TjB216YQlj4f/9k=",
     "width": 1792,
     "height": 2400
@@ -695,10 +695,10 @@
   "/goldmask-landing/ugc/freepik__platform-freepik-ai-image-generatormodel-mysticasp__42520.png": {
     "original": "/goldmask-landing/ugc/freepik__platform-freepik-ai-image-generatormodel-mysticasp__42520.png",
     "originalSize": 8765693,
-    "webp": "/goldmask-landing/ugc/freepik__platform-freepik-ai-image-generatormodel-mysticasp__42520.lossless.webp",
-    "webpSize": 4639672,
-    "avif": "/goldmask-landing/ugc/freepik__platform-freepik-ai-image-generatormodel-mysticasp__42520.lossless.avif",
-    "avifSize": 5798790,
+    "webp": "/goldmask-landing/ugc/freepik__platform-freepik-ai-image-generatormodel-mysticasp__42520.webp",
+    "webpSize": 250002,
+    "avif": "/goldmask-landing/ugc/freepik__platform-freepik-ai-image-generatormodel-mysticasp__42520.avif",
+    "avifSize": 373262,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAMCBAUG/8QAIBAAAwAABgMBAAAAAAAAAAAAAAECAwQREhMxISJBQv/EABYBAQEBAAAAAAAAAAAAAAAAAAMBAP/EABoRAQEAAgMAAAAAAAAAAAAAAAABAhESITH/2gAMAwEAAhEDEQA/AOa5aUpIsTLqUIhzU6FvL2klIsraReXp/ANaNmxdABcuzcXM6tLwOy2Jo+xP4I4T9xZ6LbV56XTAqNsCWRd1/9k=",
     "width": 1792,
     "height": 2400
@@ -706,10 +706,10 @@
   "/goldmask-landing/ugc/freepik__platform-freepik-ai-imagegeneratormodel-mysticaspe__2307.png": {
     "original": "/goldmask-landing/ugc/freepik__platform-freepik-ai-imagegeneratormodel-mysticaspe__2307.png",
     "originalSize": 9177553,
-    "webp": "/goldmask-landing/ugc/freepik__platform-freepik-ai-imagegeneratormodel-mysticaspe__2307.lossless.webp",
-    "webpSize": 4870806,
-    "avif": "/goldmask-landing/ugc/freepik__platform-freepik-ai-imagegeneratormodel-mysticaspe__2307.lossless.avif",
-    "avifSize": 5969957,
+    "webp": "/goldmask-landing/ugc/freepik__platform-freepik-ai-imagegeneratormodel-mysticaspe__2307.webp",
+    "webpSize": 410596,
+    "avif": "/goldmask-landing/ugc/freepik__platform-freepik-ai-imagegeneratormodel-mysticaspe__2307.avif",
+    "avifSize": 539660,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAMBAgQG/8QAGxAAAgIDAQAAAAAAAAAAAAAAAAECIQMREjH/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/EABYRAQEBAAAAAAAAAAAAAAAAAAARQf/aAAwDAQACEQMRAD8A5HHHZecHGmGF8tNjc8umRcZWrAl+gVDsfLjbsiuvRAJsFMlpyAoAH//Z",
     "width": 1792,
     "height": 2400
@@ -717,10 +717,10 @@
   "/goldmask-landing/ugc/freepik__pplatform-freepik-ai-image-generatormodel-mysticas__2313.png": {
     "original": "/goldmask-landing/ugc/freepik__pplatform-freepik-ai-image-generatormodel-mysticas__2313.png",
     "originalSize": 9079205,
-    "webp": "/goldmask-landing/ugc/freepik__pplatform-freepik-ai-image-generatormodel-mysticas__2313.lossless.webp",
-    "webpSize": 4842504,
-    "avif": "/goldmask-landing/ugc/freepik__pplatform-freepik-ai-image-generatormodel-mysticas__2313.lossless.avif",
-    "avifSize": 5815955,
+    "webp": "/goldmask-landing/ugc/freepik__pplatform-freepik-ai-image-generatormodel-mysticas__2313.webp",
+    "webpSize": 324146,
+    "avif": "/goldmask-landing/ugc/freepik__pplatform-freepik-ai-image-generatormodel-mysticas__2313.avif",
+    "avifSize": 442357,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGQAAAwADAAAAAAAAAAAAAAAAAAQFAgMG/8QAHhAAAwACAgMBAAAAAAAAAAAAAAECAxEEIRITMUH/xAAWAQEBAQAAAAAAAAAAAAAAAAACAQD/xAAaEQACAwEBAAAAAAAAAAAAAAAAAQISIUER/9oADAMBAAIRAxEAPwDlVj2jO8DiUx6eG1OzRyKSSj9BbcGo5op4APRx05TAtkSrH7zqOPt/SNnyq8m0Ncpv1fSZvsEF0UnwrYq3C7ATi68V2BKm9P/Z",
     "width": 1792,
     "height": 2400
@@ -728,10 +728,10 @@
   "/goldmask-landing/ugc/freepik__woman-between-25-and-35-years-old-with-healthy-glo__2298.png": {
     "original": "/goldmask-landing/ugc/freepik__woman-between-25-and-35-years-old-with-healthy-glo__2298.png",
     "originalSize": 8574240,
-    "webp": "/goldmask-landing/ugc/freepik__woman-between-25-and-35-years-old-with-healthy-glo__2298.lossless.webp",
-    "webpSize": 4461620,
-    "avif": "/goldmask-landing/ugc/freepik__woman-between-25-and-35-years-old-with-healthy-glo__2298.lossless.avif",
-    "avifSize": 5256607,
+    "webp": "/goldmask-landing/ugc/freepik__woman-between-25-and-35-years-old-with-healthy-glo__2298.webp",
+    "webpSize": 279832,
+    "avif": "/goldmask-landing/ugc/freepik__woman-between-25-and-35-years-old-with-healthy-glo__2298.avif",
+    "avifSize": 365499,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIDBQT/xAAfEAACAgEFAQEAAAAAAAAAAAABAgADIQQREhNBIjH/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAwDAQACEQMRAD8A3LqMgGIKEZuIOZXW2AIWBmRXe4uDZ/ZFuGTXc+m4ttCW7FcBifISgjUvaDyyIy6dFJ3EuihRgbRLYYS9A8MI6H5hEP/Z",
     "width": 1792,
     "height": 2400
@@ -739,10 +739,10 @@
   "/mstile-144x144.png": {
     "original": "/mstile-144x144.png",
     "originalSize": 29178,
-    "webp": "/mstile-144x144.lossless.webp",
-    "webpSize": 22018,
-    "avif": "/mstile-144x144.lossless.avif",
-    "avifSize": 35106,
+    "webp": "/mstile-144x144.webp",
+    "webpSize": 8830,
+    "avif": "/mstile-144x144.avif",
+    "avifSize": 11100,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAQDBQf/xAAfEAACAwACAgMAAAAAAAAAAAABAgADBAURITETIlH/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAXEQEBAQEAAAAAAAAAAAAAAAAAARFB/9oADAMBAAIRAxEAPwCTh+FR0D2iX7uEoao/GACBNuK0120AAiWaLFqrJYj1MW3Tjz7TmNVzJ+RKuQvV9bkeomxng13Ut9G6lWzkNDp0z+IiEchiSeyfMREK/9k=",
     "width": 144,
     "height": 144
@@ -750,10 +750,10 @@
   "/og-image.jpg": {
     "original": "/og-image.jpg",
     "originalSize": 80450,
-    "webp": "/og-image.lossless.webp",
-    "webpSize": 153044,
-    "avif": "/og-image.lossless.avif",
-    "avifSize": 217034,
+    "webp": "/og-image.webp",
+    "webpSize": 36128,
+    "avif": "/og-image.avif",
+    "avifSize": 36660,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAKABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIDBv/EABkQAAMBAQEAAAAAAAAAAAAAAAABAiEDMf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A1nRtThHjdVWl34LK0gcAAD//2Q==",
     "width": 1200,
     "height": 630
@@ -761,10 +761,10 @@
   "/productos front/COLECION-AVOCADOMASK (1).png": {
     "original": "/productos front/COLECION-AVOCADOMASK (1).png",
     "originalSize": 5705956,
-    "webp": "/productos front/COLECION-AVOCADOMASK (1).lossless.webp",
-    "webpSize": 2527298,
-    "avif": "/productos front/COLECION-AVOCADOMASK (1).lossless.avif",
-    "avifSize": 2743081,
+    "webp": "/productos front/COLECION-AVOCADOMASK (1).webp",
+    "webpSize": 72186,
+    "avif": "/productos front/COLECION-AVOCADOMASK (1).avif",
+    "avifSize": 70843,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGQAAAwADAAAAAAAAAAAAAAAAAAEDAgUG/8QAHRAAAwACAwEBAAAAAAAAAAAAAAECAxEEITETIv/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAFREBAQAAAAAAAAAAAAAAAAAAABH/2gAMAwEAAhEDEQA/AONn0rle5RnxIl1+i/J+a6lBK14DpdgFWw1phkrdekUxthCb7AQBX//Z",
     "width": 1792,
     "height": 2400
@@ -772,10 +772,10 @@
   "/productos front/COLECION-GOLDMASK.png": {
     "original": "/productos front/COLECION-GOLDMASK.png",
     "originalSize": 7531029,
-    "webp": "/productos front/COLECION-GOLDMASK.lossless.webp",
-    "webpSize": 4042580,
-    "avif": "/productos front/COLECION-GOLDMASK.lossless.avif",
-    "avifSize": 4436787,
+    "webp": "/productos front/COLECION-GOLDMASK.webp",
+    "webpSize": 76786,
+    "avif": "/productos front/COLECION-GOLDMASK.avif",
+    "avifSize": 83078,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGQAAAwADAAAAAAAAAAAAAAAAAAECAwQG/8QAGxAAAwEBAAMAAAAAAAAAAAAAAAECAxESIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A5ec/Ii83LMmN+yHvSdAa3AKf0AGnxittsEFAQAwA/9k=",
     "width": 1792,
     "height": 2400
@@ -783,10 +783,10 @@
   "/recomendation/avocado/avocado-recomendation.png": {
     "original": "/recomendation/avocado/avocado-recomendation.png",
     "originalSize": 606474,
-    "webp": "/recomendation/avocado/avocado-recomendation.lossless.webp",
-    "webpSize": 419766,
-    "avif": "/recomendation/avocado/avocado-recomendation.lossless.avif",
-    "avifSize": 413805,
+    "webp": "/recomendation/avocado/avocado-recomendation.webp",
+    "webpSize": 37996,
+    "avif": "/recomendation/avocado/avocado-recomendation.avif",
+    "avifSize": 21508,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAECAwUG/8QAHRAAAgICAwEAAAAAAAAAAAAAAAECEQMEBTFBEv/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/EABYRAQEBAAAAAAAAAAAAAAAAAAABIf/aAAwDAQACEQMRAD8A8rraktjo3ycXOEbsnQzKEaumbz2bTuRGbdcmUXGTT8BbLK8jYK0om10x9yfoAEAAD//Z",
     "width": 1024,
     "height": 1024
@@ -794,10 +794,10 @@
   "/recomendation/goldmask/goldmask-original.png": {
     "original": "/recomendation/goldmask/goldmask-original.png",
     "originalSize": 1112939,
-    "webp": "/recomendation/goldmask/goldmask-original.lossless.webp",
-    "webpSize": 673024,
-    "avif": "/recomendation/goldmask/goldmask-original.lossless.avif",
-    "avifSize": 887293,
+    "webp": "/recomendation/goldmask/goldmask-original.webp",
+    "webpSize": 82262,
+    "avif": "/recomendation/goldmask/goldmask-original.avif",
+    "avifSize": 42667,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAUABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAMBBv/EABgQAQEBAQEAAAAAAAAAAAAAAAABAhED/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AOOxO6kU9vOYk4ni81FffXZAQAAbbaAMAB//2Q==",
     "width": 2500,
     "height": 2500
@@ -805,10 +805,10 @@
   "/seccion gold mask/PROTOCOL 1.png": {
     "original": "/seccion gold mask/PROTOCOL 1.png",
     "originalSize": 8999234,
-    "webp": "/seccion gold mask/PROTOCOL 1.lossless.webp",
-    "webpSize": 4685378,
-    "avif": "/seccion gold mask/PROTOCOL 1.lossless.avif",
-    "avifSize": 5863109,
+    "webp": "/seccion gold mask/PROTOCOL 1.webp",
+    "webpSize": 286470,
+    "avif": "/seccion gold mask/PROTOCOL 1.avif",
+    "avifSize": 432942,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMFBAH/xAAhEAACAQQCAgMAAAAAAAAAAAAAAQMCBBEhEhMFFCJBUf/EABYBAQEBAAAAAAAAAAAAAAAAAAEDAv/EABkRAQADAQEAAAAAAAAAAAAAAAABESESMf/aAAwDAQACEQMRAD8Aq3thTDE6iJDEppXsreZvk4eKZCt5X2LiRuLU5xSdjVnQHfbkX0AsET0KdYzkzx2/XLsLap/o2dvBifVonGjsjWm0BDrkr5v5MBFP/9k=",
     "width": 1792,
     "height": 2400
@@ -816,10 +816,10 @@
   "/seccion gold mask/PROTOCOL 2.png": {
     "original": "/seccion gold mask/PROTOCOL 2.png",
     "originalSize": 9157018,
-    "webp": "/seccion gold mask/PROTOCOL 2.lossless.webp",
-    "webpSize": 4627174,
-    "avif": "/seccion gold mask/PROTOCOL 2.lossless.avif",
-    "avifSize": 5719806,
+    "webp": "/seccion gold mask/PROTOCOL 2.webp",
+    "webpSize": 399196,
+    "avif": "/seccion gold mask/PROTOCOL 2.avif",
+    "avifSize": 481882,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAbABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMFBgT/xAAgEAACAgICAgMAAAAAAAAAAAABAgADBCERMQUSFEFS/8QAFwEBAQEBAAAAAAAAAAAAAAAAAwIAAf/EABkRAQEBAQEBAAAAAAAAAAAAAAEAEQIhEv/aAAwDAQACEQMRAD8A1GTaEqYg7kjBzna9hYdTjv8AJNsMe5PbJK8kHZgfSznHlrflVfoQmOGVaPswndaMJF9xZ+Ys2FmEblgBuoqgc2iZPZuXSqU1K1YJEI9APQahLyBb/9k=",
     "width": 1792,
     "height": 2400
@@ -827,10 +827,10 @@
   "/testimonio/1.png": {
     "original": "/testimonio/1.png",
     "originalSize": 133136,
-    "webp": "/testimonio/1.lossless.webp",
-    "webpSize": 50270,
-    "avif": "/testimonio/1.lossless.avif",
-    "avifSize": 145824,
+    "webp": "/testimonio/1.webp",
+    "webpSize": 28386,
+    "avif": "/testimonio/1.avif",
+    "avifSize": 26446,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAKABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAMBBAb/xAAeEAACAgMAAwEAAAAAAAAAAAABAgADBAURElKBkf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwBmswMCzEVnK+RjLtfrwp4VmZoscVDjsPslrH92/YCc6qtMlgnOQlW0kuekwgf/2Q==",
     "width": 965,
     "height": 472
@@ -838,10 +838,10 @@
   "/testimonio/2.png": {
     "original": "/testimonio/2.png",
     "originalSize": 72344,
-    "webp": "/testimonio/2.lossless.webp",
-    "webpSize": 31834,
-    "avif": "/testimonio/2.lossless.avif",
-    "avifSize": 109353,
+    "webp": "/testimonio/2.webp",
+    "webpSize": 25818,
+    "avif": "/testimonio/2.avif",
+    "avifSize": 20199,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAQG/8QAGxAAAQUBAQAAAAAAAAAAAAAAAAECAwQRBTH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8Api6VBIkRc0nt9Ck6JyNzcAAyFhyOmcrfNAAH/9k=",
     "width": 1109,
     "height": 425
@@ -849,10 +849,10 @@
   "/testimonio/imagen.png": {
     "original": "/testimonio/imagen.png",
     "originalSize": 154347,
-    "webp": "/testimonio/imagen.lossless.webp",
-    "webpSize": 71816,
-    "avif": "/testimonio/imagen.lossless.avif",
-    "avifSize": 211152,
+    "webp": "/testimonio/imagen.webp",
+    "webpSize": 44452,
+    "avif": "/testimonio/imagen.avif",
+    "avifSize": 37690,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAALABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEG/8QAGBAAAwEBAAAAAAAAAAAAAAAAAAECMRH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AyErpXLElbYFnAJwAf//Z",
     "width": 1410,
     "height": 810
@@ -860,10 +860,10 @@
   "/twitter-image.jpg": {
     "original": "/twitter-image.jpg",
     "originalSize": 80538,
-    "webp": "/twitter-image.lossless.webp",
-    "webpSize": 153206,
-    "avif": "/twitter-image.lossless.avif",
-    "avifSize": 218748,
+    "webp": "/twitter-image.webp",
+    "webpSize": 36124,
+    "avif": "/twitter-image.avif",
+    "avifSize": 36783,
     "lqip": "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAKABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIDBv/EABkQAAMBAQEAAAAAAAAAAAAAAAABAiEDMf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A1nRtThHjdVWl34LK0gcAAD//2Q==",
     "width": 1200,
     "height": 630

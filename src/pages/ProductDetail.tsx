@@ -395,7 +395,7 @@ const ProductDetail: React.FC = () => {
                                                 src={item.img}
                                                 alt={`Review by ${item.user}`}
                                                 className="w-full h-full object-cover [transition-property:scale,filter] duration-700 group-hover:scale-105 group-hover:blur-sm"
-                                                loading="eager"
+                                                loading="lazy"
                                                 decoding="async"
                                             />
                                             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/60 transition-colors duration-500 flex flex-col justify-end p-8">

@@ -1,7 +1,9 @@
-# Exclude source PNG files that have WebP/AVIF alternatives
 # AFTER-ORIGINAL.png is 97 MiB (101.7 MB decimal) — exceeds Vercel's 100 MB file limit
-# Browsers use AFTER-ORIGINAL.lossless.webp (780 KB) served via <picture> element
+# Browsers use AFTER-ORIGINAL.webp (780 KB) or AFTER-ORIGINAL.avif (10.5 MB) via <picture>
 public/BEFORE-AFTER/AFTER-ORIGINAL.png
 
-# Exclude large unneeded source assets
+# Local-only scripts (optimization runs locally, not on Vercel)
 scripts/
+
+# Stale local build output
+dist/
