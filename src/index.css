@@ -69,6 +69,12 @@
     scrollbar-gutter: stable;
   }
 
+  /* Cart scroll-lock — applied on html (which owns scrollbar-gutter:stable)
+     to prevent layout shift / flash when the cart drawer opens */
+  html.cart-open {
+    overflow: hidden;
+  }
+
   /* Keyboard focus — visible only when navigating with keyboard, invisible for mouse */
   :focus-visible {
     outline: 2px solid #C6A15B;

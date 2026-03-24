@@ -14,15 +14,17 @@ const CartDrawer: React.FC = () => {
   const shippingProgress = Math.min((sub / FREE_SHIPPING_THRESHOLD) * 100, 100);
   const remaining = Math.max(FREE_SHIPPING_THRESHOLD - sub, 0);
 
-  // ── Scroll lock — scrollbar-gutter:stable on html keeps layout stable ──
+  // ── Scroll lock — toggle class on html (owns scrollbar-gutter:stable)
+  //    so NO layout shift / flash is triggered on product pages ──────
   useEffect(() => {
+    const html = document.documentElement;
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      html.classList.add('cart-open');
     } else {
-      document.body.style.overflow = '';
+      html.classList.remove('cart-open');
     }
     return () => {
-      document.body.style.overflow = '';
+      html.classList.remove('cart-open');
     };
   }, [isOpen]);
   // ────────────────────────────────────────────────────────────────
