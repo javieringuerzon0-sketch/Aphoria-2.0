@@ -68,9 +68,11 @@ function AppInner() {
 
       <CartDrawer />
       <CookieBanner />
-      <Suspense fallback={null}>
-        <Agentation />
-      </Suspense>
+      {window.location.hostname === 'localhost' && (
+        <Suspense fallback={null}>
+          <Agentation />
+        </Suspense>
+      )}
     </div>
   );
 }
