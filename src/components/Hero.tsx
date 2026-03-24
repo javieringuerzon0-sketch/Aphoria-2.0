@@ -1,14 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ChevronRight, FlaskConical } from 'lucide-react';
 import OptimizedImage from './OptimizedImage';
 import { HERO_COPY } from '../constants';
 
 const Hero: React.FC = () => {
   const [videoReady, setVideoReady] = useState(false);
-  const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
+
+  // Lightweight scroll indicator fade — replaces useScroll() + useTransform()
+  useEffect(() => {
+    const el = scrollIndicatorRef.current;
+    if (!el) return;
+    let raf: number;
+    const onScroll = () => {
+      raf = requestAnimationFrame(() => {
+        const opacity = Math.max(0, 1 - window.scrollY / 400);
+        el.style.opacity = String(opacity);
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
   const stars = Array.from({ length: 5 });
   const highlightWord = 'Transformed.';
   const headingParts = HERO_COPY.h1.split(highlightWord);
@@ -269,12 +286,10 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Scroll Indicator - Premium Animated */}
-      <motion.div
-        style={{ opacity }}
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, delay: 1, ease: [0.22, 1, 0.36, 1] }}
+      <div
+        ref={scrollIndicatorRef}
         className="absolute bottom-12 right-12 z-20 flex flex-col items-center gap-4"
+        style={{ opacity: 1, transition: 'opacity 0.1s linear' }}
       >
         <div className="h-20 w-[2px] bg-gradient-to-b from-white/40 to-white/10 relative overflow-hidden rounded-full">
           <motion.div
@@ -284,7 +299,7 @@ const Hero: React.FC = () => {
           />
         </div>
         <span className="text-[9px] text-white/50 uppercase tracking-[0.25em] [writing-mode:vertical-lr] font-semibold">Scroll</span>
-      </motion.div>
+      </div>
     </section>
   );
 };

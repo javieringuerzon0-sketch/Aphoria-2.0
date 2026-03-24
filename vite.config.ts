@@ -24,7 +24,7 @@ export default defineConfig(({ mode }) => {
     build: {
       target: 'es2020',
       cssCodeSplit: true,
-      assetsInlineLimit: 4096,
+      assetsInlineLimit: 8192,
       rollupOptions: {
         output: {
           manualChunks: {

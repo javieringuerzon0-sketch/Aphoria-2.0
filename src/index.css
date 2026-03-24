@@ -163,15 +163,16 @@
   }
 }
 
-/* Skeleton loading animation */
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
+/* Skeleton loading animation — background-position slide (GPU-composited) */
+@keyframes skeletonShimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
 
-  100% {
-    transform: translateX(100%);
-  }
+/* Legacy shimmer (transform-based, kept for compatibility) */
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 .skeleton-pulse {
@@ -239,6 +240,18 @@
   height: 20px;
   background: radial-gradient(ellipse, rgba(0,0,0,0.08) 0%, transparent 70%);
   z-index: -1;
+}
+
+/* Disable backdrop-blur on mobile for GPU performance */
+@media (max-width: 768px) {
+  .backdrop-blur,
+  .backdrop-blur-sm,
+  .backdrop-blur-md,
+  .backdrop-blur-xl,
+  .backdrop-blur-2xl {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
 }
 
 /* Shopify Cart Styling */

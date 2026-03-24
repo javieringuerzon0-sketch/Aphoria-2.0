@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { RefreshCw, ShieldCheck, Truck, ChevronRight } from 'lucide-react';
@@ -12,6 +12,28 @@ const ProductVideoHero: React.FC = () => {
   const product = FEATURED_PRODUCTS[1];
 
   const { addItem, open: openCart } = useCartStore();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // IntersectionObserver: play when visible, pause when not
+  useEffect(() => {
+    const video = videoRef.current;
+    const section = sectionRef.current;
+    if (!video || !section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   const addAvocadoToCart = () => {
     const v = product.variants['1pc'];
@@ -27,13 +49,13 @@ const ProductVideoHero: React.FC = () => {
   const videoSrc = '/section%20avocado/avocado-video.mp4';
 
   return (
-    <section id="signature-video" className="relative h-screen min-h-[720px] w-full overflow-hidden">
+    <section ref={sectionRef} id="signature-video" className="relative h-screen min-h-[720px] w-full overflow-hidden">
       <video
-        autoPlay
+        ref={videoRef}
         muted
         loop
         playsInline
-        preload="none"
+        preload="metadata"
         className="absolute inset-0 h-full w-full object-cover"
         style={{ imageRendering: '-webkit-optimize-contrast' }}
       >

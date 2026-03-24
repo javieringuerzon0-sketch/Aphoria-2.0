@@ -81,24 +81,24 @@ const StickyBar: React.FC = () => {
               {/* Product thumbnails */}
               <div className="flex items-center gap-1">
                 <div className="w-14 h-14 rounded-lg bg-white border border-aphoria-black/8 flex items-center justify-center overflow-hidden shadow-sm">
-                  <img
+                  <OptimizedImage
                     src="/bundlee/goldmask-bundle.png"
                     alt="24 Gold Mask"
                     width={56}
                     height={56}
                     className="w-full h-full object-contain"
-                    loading="eager"
+                    loading="lazy"
                     decoding="async"
                   />
                 </div>
                 <div className="w-14 h-14 rounded-lg bg-white border border-aphoria-black/8 flex items-center justify-center overflow-hidden shadow-sm">
-                  <img
+                  <OptimizedImage
                     src="/bundlee/avocado-bundelle.png"
                     alt="Avocado Mask"
                     width={56}
                     height={56}
                     className="w-full h-full object-contain"
-                    loading="eager"
+                    loading="lazy"
                     decoding="async"
                   />
                 </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import Hero from '../components/Hero';
 import TrustBar from '../components/TrustBar';
+import SkeletonSection from '../components/SkeletonSection';
 // Lazy load components below the fold
 const Manifesto = lazy(() => import('../components/Manifesto'));
 const ProductHero = lazy(() => import('../components/ProductHero'));
@@ -45,14 +46,14 @@ function Home() {
             <main>
                 <Hero />
                 <TrustBar />
-                <Suspense fallback={null}><Manifesto /></Suspense>
-                <div className="below-fold"><Suspense fallback={null}><ProductHero /></Suspense></div>
-                <div className="below-fold"><Suspense fallback={null}><ProductVideoHero /></Suspense></div>
-                <div className="below-fold"><Suspense fallback={null}><IngredientGrid /></Suspense></div>
-                <div className="below-fold"><Suspense fallback={null}><ProductGallery /></Suspense></div>
-                <div className="below-fold"><Suspense fallback={null}><BeforeAfterHero /></Suspense></div>
-                <div className="below-fold"><Suspense fallback={null}><Testimonials /></Suspense></div>
-                <div className="below-fold"><Suspense fallback={null}><Newsletter /></Suspense></div>
+                <Suspense fallback={<SkeletonSection height="300px" />}><Manifesto /></Suspense>
+                <div className="below-fold"><Suspense fallback={<SkeletonSection height="100vh" />}><ProductHero /></Suspense></div>
+                <div className="below-fold"><Suspense fallback={<SkeletonSection height="100vh" />}><ProductVideoHero /></Suspense></div>
+                <div className="below-fold"><Suspense fallback={<SkeletonSection height="600px" />}><IngredientGrid /></Suspense></div>
+                <div className="below-fold"><Suspense fallback={<SkeletonSection height="600px" />}><ProductGallery /></Suspense></div>
+                <div className="below-fold"><Suspense fallback={<SkeletonSection height="600px" />}><BeforeAfterHero /></Suspense></div>
+                <div className="below-fold"><Suspense fallback={<SkeletonSection height="500px" />}><Testimonials /></Suspense></div>
+                <div className="below-fold"><Suspense fallback={<SkeletonSection height="300px" />}><Newsletter /></Suspense></div>
             </main>
         </div>
     );

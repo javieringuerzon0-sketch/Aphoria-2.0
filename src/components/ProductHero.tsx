@@ -1,6 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import OptimizedImage from './OptimizedImage';
+import FadeInView from './FadeInView';
 import { Link } from 'react-router-dom';
 import { RefreshCw, ShieldCheck, Truck, ChevronRight } from 'lucide-react';
 import { FEATURED_PRODUCTS } from '../constants';
@@ -46,13 +46,7 @@ const ProductHero: React.FC = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-          <motion.div
-            initial={{ opacity: 0, y: 32 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-            className="relative"
-          >
+          <FadeInView className="relative">
             <div className={`group relative overflow-hidden rounded-2xl bg-white cursor-pointer ${cardHeight}`}>
               <OptimizedImage
                 src={productHeroImage}
@@ -62,13 +56,7 @@ const ProductHero: React.FC = () => {
                 decoding="async"
               />
             </div>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-6 flex flex-wrap gap-3"
-            >
+            <FadeInView delay={100} className="mt-6 flex flex-wrap gap-3">
               <div className="inline-flex items-center gap-2 rounded-full border border-aphoria-black/10 bg-white/70 px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-aphoria-black/80 backdrop-blur">
                 <Truck className="h-3.5 w-3.5 text-aphoria-gold" />
                 Free shipping
@@ -81,18 +69,12 @@ const ProductHero: React.FC = () => {
                 <ShieldCheck className="h-3.5 w-3.5 text-aphoria-gold" />
                 Secure checkout
               </div>
-            </motion.div>
-          </motion.div>
+            </FadeInView>
+          </FadeInView>
 
           <ShopifyContext type="product" handle={product.handle}>
             <template>
-              <motion.div
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full"
-              >
+              <FadeInView delay={120} className="w-full">
                 <div className={`rounded-2xl bg-aphoria-bg/40 p-8 ${cardHeight} flex flex-col justify-between`}>
                   <div>
                     <span className="text-[10px] uppercase tracking-[0.32em] text-aphoria-gold">Signature Protocol</span>
@@ -165,7 +147,7 @@ const ProductHero: React.FC = () => {
                     See clinical results
                   </Link>
                 </div>
-              </motion.div>
+              </FadeInView>
             </template>
 
             <div shopify-loading-placeholder className="rounded-2xl bg-white/80">

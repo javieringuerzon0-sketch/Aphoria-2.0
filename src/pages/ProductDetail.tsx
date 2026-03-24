@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -135,6 +135,50 @@ const ProductDetail: React.FC = () => {
         setSelectedVariant(newInitialVariant);
     }, [ugc, currentProduct]);
 
+    // Marquee: JS RAF-driven infinite scroll + drag
+    const marqueeRef = useRef<HTMLDivElement>(null);
+    const marqueeOffset = useRef(0);
+    const isDragging = useRef(false);
+    const dragStartX = useRef(0);
+    const dragStartOffset = useRef(0);
+    const isHovered = useRef(false);
+    const rafId = useRef<number>(0);
+
+    useEffect(() => {
+        const el = marqueeRef.current;
+        if (!el) return;
+        const SPEED = 0.6; // px per frame ~36px/s at 60fps
+        const animate = () => {
+            if (!isDragging.current && !isHovered.current) {
+                marqueeOffset.current -= SPEED;
+                const halfWidth = el.scrollWidth / 2;
+                if (Math.abs(marqueeOffset.current) >= halfWidth) {
+                    marqueeOffset.current = 0;
+                }
+            }
+            el.style.transform = `translate3d(${marqueeOffset.current}px, 0, 0)`;
+            rafId.current = requestAnimationFrame(animate);
+        };
+        rafId.current = requestAnimationFrame(animate);
+        return () => { if (rafId.current) cancelAnimationFrame(rafId.current); };
+    }, []);
+
+    const onMarqueePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+        isDragging.current = true;
+        dragStartX.current = e.clientX;
+        dragStartOffset.current = marqueeOffset.current;
+        e.currentTarget.setPointerCapture(e.pointerId);
+        e.currentTarget.style.cursor = 'grabbing';
+    };
+    const onMarqueePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+        if (!isDragging.current) return;
+        marqueeOffset.current = dragStartOffset.current + (e.clientX - dragStartX.current);
+    };
+    const onMarqueePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+        isDragging.current = false;
+        e.currentTarget.style.cursor = 'grab';
+    };
+
     const { addItem, open: openCart } = useCartStore();
 
     const addToCart = () => {
@@ -170,7 +214,7 @@ const ProductDetail: React.FC = () => {
                         <div className="lg:col-span-7 flex flex-col gap-6">
                             <div className="relative aspect-[4/5] flex items-center justify-center bg-white">
 
-                                <img
+                                <OptimizedImage
                                     src={currentVariant.img}
                                     alt={currentProduct.name}
                                     className="w-full h-full object-contain relative z-10"
@@ -327,24 +371,31 @@ const ProductDetail: React.FC = () => {
                             </p>
                         </div>
 
-                        {/* INFINITE MARQUEE — CSS-driven, GPU accelerated, zero JS */}
+                        {/* INFINITE MARQUEE — JS RAF + drag, GPU composited */}
                         <div className="mask-fade-x relative w-full overflow-hidden">
                             <div
-                                className="ugc-marquee flex py-10"
-                                onMouseEnter={e => (e.currentTarget.style.animationPlayState = 'paused')}
-                                onMouseLeave={e => (e.currentTarget.style.animationPlayState = 'running')}
+                                ref={marqueeRef}
+                                className="flex py-10 will-change-transform"
+                                style={{ cursor: 'grab' }}
+                                onMouseEnter={() => { isHovered.current = true; }}
+                                onMouseLeave={() => { isHovered.current = false; }}
+                                onPointerDown={onMarqueePointerDown}
+                                onPointerMove={onMarqueePointerMove}
+                                onPointerUp={onMarqueePointerUp}
+                                onPointerCancel={onMarqueePointerUp}
                             >
-                                {[...shuffledUgc, ...shuffledUgc].map((item: any, i) => (
+                                {[...shuffledUgc.slice(0, 8), ...shuffledUgc.slice(0, 8)].map((item: any, i) => (
                                     <div
                                         key={`${item.id}-${i}`}
-                                        className="w-[300px] md:w-[360px] mx-5 flex-shrink-0 group cursor-pointer"
+                                        className="w-[300px] md:w-[360px] mx-5 flex-shrink-0 group"
+                                        style={{ pointerEvents: 'none' }}
                                     >
                                         <div className="aspect-[9/16] relative rounded-[30px] overflow-hidden bg-gray-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] [transition-property:scale,box-shadow] duration-500 hover:scale-[1.02] hover:shadow-[0_40px_80px_-20px_rgba(198,161,91,0.2)]">
-                                            <img
+                                            <OptimizedImage
                                                 src={item.img}
                                                 alt={`Review by ${item.user}`}
                                                 className="w-full h-full object-cover [transition-property:scale,filter] duration-700 group-hover:scale-105 group-hover:blur-sm"
-                                                loading="lazy"
+                                                loading="eager"
                                                 decoding="async"
                                             />
                                             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/60 transition-colors duration-500 flex flex-col justify-end p-8">

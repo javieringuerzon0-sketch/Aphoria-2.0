@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
+import FadeInView from './FadeInView';
 import { subscribeToNewsletter } from '../services/newsletterService';
 
 const Newsletter: React.FC = () => {
@@ -27,11 +27,7 @@ const Newsletter: React.FC = () => {
 
           {/* Left Side: Text */}
           <div className="max-w-xl text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
+            <FadeInView>
               <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-aphoria-gold mb-8 block">
                 Member Exclusive
               </span>
@@ -41,7 +37,6 @@ const Newsletter: React.FC = () => {
               <p className="text-aphoria-mid/70 text-sm leading-relaxed max-w-sm mb-6">
                 Join 10,247 women in the Aphoria Inner Circle and get your discount code instantly — plus our free 28-Day Clinical Protocol PDF.
               </p>
-              {/* What you get */}
               <div className="space-y-3">
                 {[
                   '10% off your first order (code sent instantly)',
@@ -55,15 +50,18 @@ const Newsletter: React.FC = () => {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </FadeInView>
           </div>
 
           {/* Right Side: Form */}
           <div className="w-full pb-4">
             {status === 'success' ? (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
+              <div
+                style={{
+                  opacity: 1,
+                  transform: 'translateY(0)',
+                  animation: 'fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+                }}
                 className="space-y-4"
               >
                 <div className="bg-aphoria-gold/10 text-aphoria-black border border-aphoria-gold/20 p-6 rounded-sm">
@@ -83,7 +81,7 @@ const Newsletter: React.FC = () => {
                   </div>
                   <p className="text-[11px] text-aphoria-mid mt-3">Apply this code at checkout. The 28-Day Protocol PDF is on its way to your inbox.</p>
                 </div>
-              </motion.div>
+              </div>
             ) : (
               <div>
                 <form onSubmit={handleSubmit} className="relative group mb-4">

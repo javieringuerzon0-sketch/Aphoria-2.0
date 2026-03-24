@@ -1,17 +1,12 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import FadeInView from './FadeInView';
 import { MANIFESTO_COPY } from '../constants';
 
 const Manifesto: React.FC = () => {
   return (
     <section id="about" className="py-24 md:py-32 px-6 bg-aphoria-bg flex flex-col items-center">
       <div className="max-w-[640px] text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-10%" }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <FadeInView>
           <h2 className="text-[11px] font-semibold uppercase tracking-[0.12em] text-aphoria-gold mb-12">
             {MANIFESTO_COPY.h2}
           </h2>
@@ -24,7 +19,7 @@ const Manifesto: React.FC = () => {
               Clinical Integrity • Architectural Precision
             </span>
           </div>
-        </motion.div>
+        </FadeInView>
       </div>
     </section>
   );

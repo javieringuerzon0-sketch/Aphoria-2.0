@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import OptimizedImage from './OptimizedImage';
+import FadeInView from './FadeInView';
 import { SCIENCE_INGREDIENTS } from '../constants';
 
 const IngredientGrid: React.FC = () => {
@@ -109,12 +109,7 @@ const IngredientGrid: React.FC = () => {
       <div className="max-w-[1360px] mx-auto relative">
         <div className="grid lg:grid-cols-[1.05fr_2fr] gap-16 lg:gap-20">
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-            >
+            <FadeInView>
               <span className={styles.badge}>Clinical Index</span>
               <h2 className={styles.heading}>
                 Formulation Intelligence
@@ -176,7 +171,7 @@ const IngredientGrid: React.FC = () => {
                   <div className="text-[12px] text-aphoria-black">Comfort, luminosity</div>
                 </div>
               </div>
-            </motion.div>
+            </FadeInView>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -186,12 +181,9 @@ const IngredientGrid: React.FC = () => {
               const isGold = index === 1;
               const cardLabels = ['Avocado Mask', '24 Gold Mask'];
               return (
-                <motion.div
+                <FadeInView
                   key={item.name}
-                  initial={{ opacity: 0, y: 28 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.9, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                  delay={index * 120}
                   className="group relative rounded-2xl overflow-hidden bg-white shadow-[0_20px_60px_rgba(0,0,0,0.08)] hover:shadow-[0_32px_80px_rgba(0,0,0,0.14)] transition-all duration-500 cursor-pointer"
                   onClick={() => setIsExpanded(!isExpanded)}
                 >
@@ -250,7 +242,7 @@ const IngredientGrid: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </FadeInView>
               )
             })}
           </div>

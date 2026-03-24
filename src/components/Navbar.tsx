@@ -168,6 +168,8 @@ const Navbar: React.FC = () => {
             </div>
 
             <div className="flex flex-col text-[16px] font-medium uppercase tracking-[0.2em] text-white/85">
+              <Link to="/product/24-gold-mask" onClick={() => setIsMenuOpen(false)} className="py-3 border-b border-white/10 text-aphoria-gold">24 Gold Mask</Link>
+              <Link to="/product/avocado-mask" onClick={() => setIsMenuOpen(false)} className="py-3 border-b border-white/10 text-[#6aad6a]">Avocado Mask</Link>
               <a href="/#science" onClick={(e) => { setIsMenuOpen(false); handleAnchorClick(e, '#science'); }} className="py-3 border-b border-white/10">Science</a>
               <a href="/#ritual" onClick={(e) => { setIsMenuOpen(false); handleAnchorClick(e, '#ritual'); }} className="py-3 border-b border-white/10">Ritual</a>
               <a href="/#bundle" onClick={(e) => { setIsMenuOpen(false); handleAnchorClick(e, '#bundle'); }} className="py-3 border-b border-white/10">Bundle</a>

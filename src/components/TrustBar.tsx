@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion';
+import React from 'react';
 import { ShieldCheck, Truck, Leaf, Award } from 'lucide-react';
+import FadeInView from './FadeInView';
 import { TRUST_SIGNALS } from '../constants';
 
 const TrustBar: React.FC = () => {
@@ -8,13 +9,7 @@ const TrustBar: React.FC = () => {
   return (
     <section className="relative py-12 md:py-16 bg-gradient-to-b from-white to-aphoria-bg/30 border-t border-b border-aphoria-black/5">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6"
-        >
+        <FadeInView className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
           {TRUST_SIGNALS.badges.map((badge, index) => {
             const Icon = icons[index];
             const colors = [
@@ -25,14 +20,7 @@ const TrustBar: React.FC = () => {
             ][index];
 
             return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative group"
-              >
+              <FadeInView key={index} delay={index * 80} className="relative group">
                 {/* Card Container */}
                 <div className="flex flex-col items-center text-center p-6 rounded-2xl border border-aphoria-black/5 bg-white hover:border-aphoria-black/10 transition-all duration-500 hover:shadow-lg hover:-translate-y-1">
                   {/* Glow Effect */}
@@ -41,8 +29,6 @@ const TrustBar: React.FC = () => {
                   {/* Icon Container */}
                   <div className={`mb-4 relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${colors.bg} border ${colors.border} ${colors.text} transition-all duration-500 group-hover:scale-110 shadow-lg ${colors.shadow} group-hover:shadow-xl`}>
                     <Icon className="w-7 h-7" strokeWidth={1.8} />
-
-                    {/* Shine effect */}
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </div>
 
@@ -51,19 +37,13 @@ const TrustBar: React.FC = () => {
                     {badge.text}
                   </p>
                 </div>
-              </motion.div>
+              </FadeInView>
             );
           })}
-        </motion.div>
+        </FadeInView>
 
         {/* Guarantee Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-12 pt-12 border-t border-aphoria-black/10"
-        >
+        <FadeInView delay={320} className="mt-12 pt-12 border-t border-aphoria-black/10">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-6" style={{ background: 'linear-gradient(135deg, #C6A15B, #0F3B2E)' }}>
               <svg className="w-8 h-8" style={{ color: 'white' }} fill="currentColor" viewBox="0 0 20 20">
@@ -74,15 +54,12 @@ const TrustBar: React.FC = () => {
                 />
               </svg>
             </div>
-
             <h3 className="text-2xl md:text-3xl font-brand font-light text-aphoria-black tracking-tight mb-4">
               {TRUST_SIGNALS.guarantee.headline}
             </h3>
-
             <p className="text-[15px] md:text-[16px] text-aphoria-mid leading-relaxed mb-8 max-w-2xl mx-auto">
               {TRUST_SIGNALS.guarantee.copy}
             </p>
-
             <a
               href="#ritual"
               className="inline-flex items-center gap-2 rounded-full bg-aphoria-green px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.26em] text-white shadow-[0_12px_28px_rgba(15,59,46,0.25)] transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_16px_36px_rgba(15,59,46,0.35)]"
@@ -91,16 +68,10 @@ const TrustBar: React.FC = () => {
               {TRUST_SIGNALS.guarantee.cta}
             </a>
           </div>
-        </motion.div>
+        </FadeInView>
 
         {/* Certifications & Labs */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-16 pt-12 border-t border-aphoria-black/10"
-        >
+        <FadeInView delay={480} className="mt-16 pt-12 border-t border-aphoria-black/10">
           <p className="text-center text-[10px] uppercase tracking-[0.28em] text-aphoria-mid mb-8">
             Formulated & Tested To Standards
           </p>
@@ -118,7 +89,7 @@ const TrustBar: React.FC = () => {
               </div>
             ))}
           </div>
-        </motion.div>
+        </FadeInView>
       </div>
     </section>
   );
