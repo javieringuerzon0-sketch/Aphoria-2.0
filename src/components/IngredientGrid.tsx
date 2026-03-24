@@ -76,14 +76,14 @@ const IngredientGrid: React.FC = () => {
   > = {
     'Deep Hydration': {
       result: 'Soft, hydrated skin',
-      timeline: '1-2 weeks',
+      timeline: 'From day 1',
       badges: ['Dryness relief', 'Comfort boost'],
       feel: ['Locks in moisture', 'Keeps skin calm'],
       summary: 'Daily hydration that keeps skin supple and comfortable from morning to night.'
     },
     'Radiance Activation': {
       result: 'Healthy glow',
-      timeline: '1-3 weeks',
+      timeline: 'Instant',
       badges: ['Tone brightening', 'Glow boost'],
       feel: ['Brightens dullness', 'Evens tone'],
       summary: 'Brings back radiance and helps your complexion look more even and luminous.'
@@ -167,7 +167,7 @@ const IngredientGrid: React.FC = () => {
                   <div className="text-[12px] text-aphoria-black">Dullness, dehydration</div>
                 </div>
                 <div className="rounded-xl border border-aphoria-black/10 bg-white/70 p-4">
-                  <div className="text-[10px] uppercase tracking-[0.3em] text-aphoria-mid mb-2">After 28 days</div>
+                  <div className="text-[10px] uppercase tracking-[0.3em] text-aphoria-mid mb-2">After 30 days</div>
                   <div className="text-[12px] text-aphoria-black">Comfort, luminosity</div>
                 </div>
               </div>

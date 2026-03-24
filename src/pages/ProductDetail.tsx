@@ -17,6 +17,7 @@ import {
 import ProtocolTimeline from '../components/ProtocolTimeline';
 import OptimizedImage from '../components/OptimizedImage';
 import Newsletter from '../components/Newsletter';
+import ReviewsSection from '../components/ReviewsSection';
 
 import { PRODUCTS } from '../constants';
 import { Product, Variant, Review } from '../types';
@@ -476,7 +477,7 @@ const ProductDetail: React.FC = () => {
                                         onClick={addToCart}
                                         className="inline-flex items-center gap-3 px-12 py-4 bg-white border border-aphoria-black/10 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-aphoria-black hover:text-white hover:border-aphoria-black transition-all duration-500 shadow-sm hover:shadow-xl group w-full sm:w-auto justify-center"
                                     >
-                                        INITIATE RADIANCE
+                                        GET MY GLOW NOW
                                         <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
                                     </button>
                                 </div>
@@ -488,7 +489,7 @@ const ProductDetail: React.FC = () => {
                                     </span>
                                     <span className="flex items-center gap-2">
                                         <CheckCircle size={12} className="text-aphoria-gold" />
-                                        30-Day Guarantee
+                                        30-Day Money-Back
                                     </span>
                                 </div>
                             </div>
@@ -515,6 +516,8 @@ const ProductDetail: React.FC = () => {
                     </div>
                 </section>
 
+
+                <ReviewsSection productHandle={currentProduct.handle} totalReviews={currentProduct.reviews} />
 
                 <ProtocolTimeline productHandle={handle} />
 

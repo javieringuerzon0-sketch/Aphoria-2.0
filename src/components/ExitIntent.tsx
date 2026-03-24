@@ -9,20 +9,65 @@ const ExitIntent: React.FC = () => {
 
   useEffect(() => {
     const hasShown = sessionStorage.getItem('aphoria-exit-shown');
+    if (hasShown) return;
 
+    // Desktop: mouseleave
     const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY < 10 && !hasShown && !show) {
+      if (e.clientY < 10 && !show) {
         setShow(true);
         sessionStorage.setItem('aphoria-exit-shown', 'true');
       }
     };
 
-    // Solo en desktop
+    // Mobile: rapid scroll-up near top of page (exit intent signal)
+    let lastScrollY = window.scrollY;
+    let scrollUpDistance = 0;
+    const SCROLL_THRESHOLD = 300; // px of rapid upward scroll
+    const TOP_ZONE = 600; // only trigger when near top of page
+    let mobileTimer: ReturnType<typeof setTimeout> | null = null;
+
+    const handleMobileScroll = () => {
+      const currentY = window.scrollY;
+      const delta = lastScrollY - currentY;
+
+      if (delta > 0 && currentY < TOP_ZONE) {
+        // Scrolling up near top
+        scrollUpDistance += delta;
+        if (scrollUpDistance > SCROLL_THRESHOLD && !show) {
+          setShow(true);
+          sessionStorage.setItem('aphoria-exit-shown', 'true');
+        }
+      } else {
+        scrollUpDistance = 0;
+      }
+      lastScrollY = currentY;
+    };
+
+    // Also trigger after 45 seconds of inactivity on mobile (idle = about to leave)
+    const handleMobileIdle = () => {
+      if (mobileTimer) clearTimeout(mobileTimer);
+      mobileTimer = setTimeout(() => {
+        if (!sessionStorage.getItem('aphoria-exit-shown') && !show) {
+          setShow(true);
+          sessionStorage.setItem('aphoria-exit-shown', 'true');
+        }
+      }, 45000);
+    };
+
     if (window.innerWidth >= 768) {
       document.addEventListener('mouseleave', handleMouseLeave);
+    } else {
+      window.addEventListener('scroll', handleMobileScroll, { passive: true });
+      window.addEventListener('touchstart', handleMobileIdle, { passive: true });
+      handleMobileIdle(); // Start idle timer
     }
 
-    return () => document.removeEventListener('mouseleave', handleMouseLeave);
+    return () => {
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('scroll', handleMobileScroll);
+      window.removeEventListener('touchstart', handleMobileIdle);
+      if (mobileTimer) clearTimeout(mobileTimer);
+    };
   }, [show]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -126,7 +171,7 @@ const ExitIntent: React.FC = () => {
                       <svg className="w-4 h-4 text-aphoria-gold" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
-                      60-Day Guarantee
+                      30-Day Guarantee
                     </div>
                     <span className="text-aphoria-black/20">•</span>
                     <div className="flex items-center gap-1.5">
