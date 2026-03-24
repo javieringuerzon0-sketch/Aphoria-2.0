@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "optimize": "node scripts/optimize-all-images.mjs",
-    "prebuild": "node scripts/optimize-all-images.mjs"
+    "optimize": "node scripts/optimize-all-images.mjs"
   },
   "dependencies": {
     "@shopify/hydrogen-react": "^2026.1.0",
