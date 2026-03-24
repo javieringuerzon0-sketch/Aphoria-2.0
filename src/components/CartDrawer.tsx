@@ -280,7 +280,7 @@ const CartDrawer: React.FC = () => {
                     <span>Processing...</span>
                   ) : (
                     <>
-                      <span>Complete Order{activeDiscount ? ' — Discount Applied' : ''}</span>
+                      <span>Secure My Transformation{activeDiscount ? ' — Discount Applied' : ''}</span>
                       <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                     </>
                   )}
@@ -289,7 +289,7 @@ const CartDrawer: React.FC = () => {
                 {/* Trust */}
                 <div className="flex items-center justify-center gap-1.5 text-[9px] uppercase tracking-[0.22em] text-aphoria-mid">
                   <Lock size={9} />
-                  Secure checkout · 60-Day Guarantee
+                  Secure checkout · 30-Day Guarantee
                 </div>
               </div>
             )}

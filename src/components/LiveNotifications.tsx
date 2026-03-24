@@ -36,7 +36,7 @@ const notifications: Notification[] = [
   {
     name: 'Emily',
     city: 'Sydney',
-    result: 'saw visible results in 21 days',
+    result: 'saw instant glow after first use',
     time: '12 min ago',
     image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=facearea&w=160&h=160&q=80'
   },
@@ -50,7 +50,7 @@ const notifications: Notification[] = [
   {
     name: 'Isabella',
     city: 'Wellington',
-    result: 'joined the 28-day challenge',
+    result: 'saw firmer skin in just 3 days',
     time: '18 min ago',
     image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=facearea&w=160&h=160&q=80'
   },

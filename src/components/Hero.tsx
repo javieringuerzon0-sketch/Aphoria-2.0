@@ -51,7 +51,7 @@ const Hero: React.FC = () => {
     };
   }, []);
   const stars = Array.from({ length: 5 });
-  const highlightWord = 'Transformed.';
+  const highlightWord = 'Younger in 30 Days.';
   const headingParts = HERO_COPY.h1.split(highlightWord);
   const clientImages = [
     {
@@ -120,9 +120,9 @@ const Hero: React.FC = () => {
         >
           <div className="flex flex-wrap items-center gap-4 mb-5">
             <div className="inline-flex items-center gap-3 rounded-full border border-aphoria-gold/30 bg-white/5 px-4 py-2 text-[8px] uppercase tracking-[0.3em] text-white/85 backdrop-blur">
-              Clinical Protocol
+              Instant Results
               <span className="h-[1px] w-6 bg-aphoria-gold/50"></span>
-              28 Days
+              30-Day Protocol
             </div>
           </div>
           <motion.h1
@@ -178,7 +178,7 @@ const Hero: React.FC = () => {
           </motion.div>
 
           <p className="hidden md:block text-[9px] uppercase tracking-[0.24em] text-white/80 mb-4">
-            Cellular renewal · barrier repair · visible firmness · 28 days
+            Instant radiance · barrier repair · visible firmness · from day one
           </p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -206,7 +206,7 @@ const Hero: React.FC = () => {
             <svg className="w-5 h-5 text-aphoria-gold" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
-            <span className="font-medium">60-Day Money-Back</span>
+            <span className="font-medium">30-Day Money-Back</span>
             <span className="text-white/60">•</span>
             <span className="font-medium">Free Shipping</span>
           </motion.div>
@@ -224,7 +224,7 @@ const Hero: React.FC = () => {
               onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#C6A15B'; (e.currentTarget as HTMLAnchorElement).style.color = '#111111'; }}
               onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#0F3B2E'; (e.currentTarget as HTMLAnchorElement).style.color = 'white'; }}
             >
-              Get 60-Day Supply
+              Start My Transformation
               <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform ml-2" />
             </Link>
             <a href="#science" className="rounded-full border border-white/30 bg-white/5 px-6 py-[12px] text-[9px] font-semibold uppercase tracking-[0.24em] text-white/90 backdrop-blur transition-all duration-500 hover:border-white/60 hover:text-white">

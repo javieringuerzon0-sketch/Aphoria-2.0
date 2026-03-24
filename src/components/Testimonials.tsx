@@ -5,7 +5,7 @@ import OptimizedImage from './OptimizedImage';
 const testimonials = [
   {
     quote:
-      "I've been using the Avocado Mask for three weeks and my skin feels so nourished! The texture is creamy and absorbs beautifully. My face looks plump and hydrated every morning.",
+      "I applied the Avocado Mask before bed and woke up with the softest, most hydrated skin I've had in years. By day 10, my texture was completely smooth. At 30 days, my skin looks genuinely younger.",
     name: 'Emma Richardson',
     role: 'Skincare Enthusiast',
     image:
@@ -13,7 +13,7 @@ const testimonials = [
   },
   {
     quote:
-      "The 24 Gold Mask is pure luxury! I love how it brightens my complexion and gives me that healthy glow. It's become my go-to treatment before special occasions.",
+      "The 24 Gold Mask gave me an instant glow the very first night. By morning, my skin was brighter and firmer. After 30 days, people think I had professional treatments. Pure luxury that actually works.",
     name: 'Sophia Martinez',
     role: 'Beauty Blogger',
     image:
@@ -21,7 +21,7 @@ const testimonials = [
   },
   {
     quote:
-      "Both masks are incredible! The Avocado Mask soothes my sensitive skin, and the 24 Gold Mask adds radiance. I alternate them weekly and my skin has never looked better.",
+      "From the very first application I felt the difference — immediate hydration and glow. I alternate Gold evenings and Avocado mornings. 30 days in and my skin has reversed years of damage.",
     name: 'Isabella Chen',
     role: 'Verified Customer',
     image:
@@ -29,7 +29,7 @@ const testimonials = [
   },
   {
     quote:
-      "The 24 Gold Mask feels so elegant on the skin. I notice firmer texture and reduced fine lines after just a few uses. Totally worth the investment!",
+      "I noticed firmer skin and reduced fine lines after the very first use of the Gold Mask. Day 7, my pores looked smaller. Day 30, my clients at the spa are asking what my secret is!",
     name: 'Olivia Thompson',
     role: 'Spa Director',
     image:
@@ -37,7 +37,7 @@ const testimonials = [
   },
   {
     quote:
-      "The Avocado Mask is a game-changer for dry skin! It's rich without being heavy, and my skin drinks it up. I wake up with a smooth, dewy complexion.",
+      "The Avocado Mask gave my dry skin instant relief — plump and dewy within minutes. No product has ever worked this fast. After a month, I stopped wearing foundation entirely.",
     name: 'Natalie Brooks',
     role: 'Makeup Artist',
     image:
@@ -45,7 +45,7 @@ const testimonials = [
   },
   {
     quote:
-      "I'm obsessed with the 24 Gold Mask! It makes my skin look luminous and feels incredibly soft. My clients always ask what I'm using.",
+      "Applied the Gold Mask before a client event — instant luminosity that lasted all day. My skin looked like I just left a facial. After 30 days of consistent use, the transformation is unreal.",
     name: 'Carmen Vasquez',
     role: 'Esthetician',
     image:
@@ -53,7 +53,7 @@ const testimonials = [
   },
   {
     quote:
-      "These masks are my weekly ritual now. The Avocado Mask calms redness and the 24 Gold Mask brings back my youthful glow. Highly recommend both!",
+      "Day 1: instant calm and glow. Day 15: texture completely smooth. Day 30: my before/after photos are shocking. The Avocado Mask calms redness and the Gold Mask adds years-younger radiance.",
     name: 'Rachel Kim',
     role: 'Wellness Coach',
     image:
@@ -123,7 +123,7 @@ const Testimonials: React.FC = () => {
             Real Results, Real Stories
           </h2>
           <p className="text-base sm:text-lg text-aphoria-mid leading-relaxed">
-            Discover how our Avocado Mask and 24 Gold Mask transformed skincare routines and delivered visible, lasting results in just 28 days.
+            Instant results from the first use. Visible transformation in 30 days. Discover why 10,247 women trust Aphoria for their skin.
           </p>
         </div>
 

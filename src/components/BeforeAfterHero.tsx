@@ -69,7 +69,7 @@ const BeforeAfterHero: React.FC = () => {
               Visible change with consistent ritual
             </h3>
             <p className="mt-3 text-[12px] uppercase tracking-[0.26em] text-aphoria-mid">
-              Results after 28 days • Verified client
+              Instant glow — full transformation at 30 days • Verified client
             </p>
           </div>
 
@@ -142,7 +142,7 @@ const BeforeAfterHero: React.FC = () => {
               to="/product/avocado-mask"
               className="rounded-full bg-aphoria-black px-8 py-[14px] text-[11px] font-semibold uppercase tracking-[0.26em] text-white transition-all duration-500 hover:-translate-y-[2px] hover:opacity-95"
             >
-              Start the 28-day protocol
+              Start My Glow Today
             </Link>
             <a
               href="#science"
