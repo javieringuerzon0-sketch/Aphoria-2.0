@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { motion } from 'framer-motion';
 import { X, Minus, Plus, ShoppingBag, Trash2, ArrowRight, Lock, Tag, CheckCircle2 } from 'lucide-react';
 import { useCartStore } from '../store/useCartStore';
@@ -14,17 +14,31 @@ const CartDrawer: React.FC = () => {
   const shippingProgress = Math.min((sub / FREE_SHIPPING_THRESHOLD) * 100, 100);
   const remaining = Math.max(FREE_SHIPPING_THRESHOLD - sub, 0);
 
-  // ── Scroll lock — toggle class on html (owns scrollbar-gutter:stable)
-  //    so NO layout shift / flash is triggered on product pages ──────
-  useEffect(() => {
+  // ── Scroll lock — position:fixed on body prevents scroll-event cascade
+  //    useLayoutEffect = synchronous, runs BEFORE the browser paints ─────
+  useLayoutEffect(() => {
     const html = document.documentElement;
     if (isOpen) {
+      // Capture scroll position BEFORE locking
+      const scrollY = window.scrollY;
+      html.style.setProperty('--scroll-lock-y', `-${scrollY}px`);
       html.classList.add('cart-open');
     } else {
+      // Read saved scroll BEFORE removing the lock
+      const raw = html.style.getPropertyValue('--scroll-lock-y');
+      const savedY = raw ? Math.abs(parseInt(raw, 10)) : 0;
+      // Remove lock
       html.classList.remove('cart-open');
+      html.style.removeProperty('--scroll-lock-y');
+      // Restore scroll after layout recalculates
+      if (savedY) window.scrollTo(0, savedY);
     }
     return () => {
+      const raw = html.style.getPropertyValue('--scroll-lock-y');
+      const savedY = raw ? Math.abs(parseInt(raw, 10)) : 0;
       html.classList.remove('cart-open');
+      html.style.removeProperty('--scroll-lock-y');
+      if (savedY) window.scrollTo(0, savedY);
     };
   }, [isOpen]);
   // ────────────────────────────────────────────────────────────────
@@ -59,23 +73,29 @@ const CartDrawer: React.FC = () => {
 
   return (
     <>
-          {/* Overlay — always mounted, no GPU flash */}
+          {/* Overlay — always mounted, visibility:hidden when closed skips compositing */}
           <motion.div
             initial={false}
             animate={{ opacity: isOpen ? 1 : 0 }}
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-[80] bg-black/50"
-            style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
+            style={{
+              pointerEvents: isOpen ? 'auto' : 'none',
+              visibility: isOpen ? 'visible' : 'hidden',
+            }}
             onClick={close}
           />
 
-          {/* Drawer — always mounted, GPU layer pre-allocated */}
+          {/* Drawer — always mounted, visibility:hidden when closed skips compositing */}
           <motion.div
             initial={false}
             animate={{ x: isOpen ? 0 : '100%' }}
             transition={{ type: 'spring', stiffness: 320, damping: 36 }}
             className="fixed right-0 top-0 bottom-0 z-[90] w-full max-w-[420px] bg-white flex flex-col shadow-2xl"
-            style={{ willChange: 'transform' }}
+            style={{
+              willChange: 'transform',
+              visibility: isOpen ? 'visible' : 'hidden',
+            }}
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-5 border-b border-aphoria-black/8 bg-aphoria-black">
@@ -145,10 +165,8 @@ const CartDrawer: React.FC = () => {
                 items.map((item) => (
                   <motion.div
                     key={item.variantId}
-                    layout
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={false}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, x: 30 }}
                     className="flex gap-4 py-4 border-b border-aphoria-black/6 last:border-0"
                   >
                     {/* Image */}

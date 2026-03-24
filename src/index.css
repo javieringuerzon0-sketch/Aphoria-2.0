@@ -69,10 +69,19 @@
     scrollbar-gutter: stable;
   }
 
-  /* Cart scroll-lock — applied on html (which owns scrollbar-gutter:stable)
-     to prevent layout shift / flash when the cart drawer opens */
+  /* Cart scroll-lock — position:fixed on body freezes the viewport
+     so NO scroll events fire → no cascade of re-renders → no flicker.
+     html keeps overflow:hidden + scrollbar-gutter:stable = no layout shift. */
   html.cart-open {
     overflow: hidden;
+  }
+  html.cart-open body {
+    position: fixed;
+    top: var(--scroll-lock-y, 0);
+    left: 0;
+    right: 0;
+    width: 100%;
+    overflow-y: scroll;
   }
 
   /* Keyboard focus — visible only when navigating with keyboard, invisible for mouse */
