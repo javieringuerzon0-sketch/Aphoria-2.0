@@ -29,8 +29,8 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({ src, alt, className, lq
 
   const isExternal = src.startsWith('http://') || src.startsWith('https://');
 
-  // For images already in modern formats or non-image files → plain img
-  if (isAlreadyModern || (!hasImageExt && !isExternal)) {
+  // For images already in modern formats, non-image files, or external URLs → plain img
+  if (isAlreadyModern || isExternal || !hasImageExt) {
     return <img src={src} alt={alt} className={className} loading={loading} decoding={decoding} style={style} {...rest} />;
   }
 
