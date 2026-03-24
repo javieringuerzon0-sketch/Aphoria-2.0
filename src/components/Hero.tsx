@@ -8,6 +8,30 @@ import { HERO_COPY } from '../constants';
 const Hero: React.FC = () => {
   const [videoReady, setVideoReady] = useState(false);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Force autoplay on mobile — some browsers block autoplay even with muted attribute
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const tryPlay = () => {
+      v.play().catch(() => {
+        // Retry on first user interaction if autoplay was blocked
+        const handler = () => {
+          v.play().catch(() => {});
+          document.removeEventListener('touchstart', handler);
+          document.removeEventListener('click', handler);
+        };
+        document.addEventListener('touchstart', handler, { once: true, passive: true });
+        document.addEventListener('click', handler, { once: true });
+      });
+    };
+    if (v.readyState >= 3) {
+      tryPlay();
+    } else {
+      v.addEventListener('canplay', tryPlay, { once: true });
+    }
+  }, []);
 
   // Lightweight scroll indicator fade — replaces useScroll() + useTransform()
   useEffect(() => {
@@ -57,11 +81,12 @@ const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-black/15 via-black/5 to-black/20 z-10 pointer-events-none"></div>
 
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg=="
           className="w-full h-full object-cover object-center"
           style={{
@@ -152,14 +177,14 @@ const Hero: React.FC = () => {
             </div>
           </motion.div>
 
-          <p className="text-[9px] uppercase tracking-[0.24em] text-white/80 mb-4">
+          <p className="hidden md:block text-[9px] uppercase tracking-[0.24em] text-white/80 mb-4">
             Cellular renewal · barrier repair · visible firmness · 28 days
           </p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="text-[13px] md:text-[15px] lg:text-[16px] font-normal leading-[1.6] mb-8 max-w-md"
+            className="text-[13px] md:text-[15px] lg:text-[16px] font-normal leading-[1.6] mb-4 md:mb-8 max-w-md"
             style={{
               color: '#FFFFFF',
               opacity: 0.95,
@@ -176,7 +201,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-aphoria-gold/40 bg-white/10 px-5 py-3 text-[11px] uppercase tracking-[0.24em] text-white backdrop-blur-sm"
+            className="hidden md:inline-flex mb-6 items-center gap-2.5 rounded-full border border-aphoria-gold/40 bg-white/10 px-5 py-3 text-[11px] uppercase tracking-[0.24em] text-white backdrop-blur-sm"
           >
             <svg className="w-5 h-5 text-aphoria-gold" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -211,7 +236,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.7 }}
-            className="mt-3 flex flex-wrap items-center gap-4"
+            className="mt-3 hidden md:flex flex-wrap items-center gap-4"
           >
             <span className="text-[10px] text-white/50 uppercase tracking-[0.2em]">
               {HERO_COPY.perUse}
@@ -230,7 +255,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-8 flex flex-wrap items-center gap-5"
+            className="mt-8 hidden md:flex flex-wrap items-center gap-5"
           >
             <div className="flex items-center gap-3">
               <div className="flex -space-x-2">
@@ -252,7 +277,7 @@ const Hero: React.FC = () => {
             </div>
           </motion.div>
 
-          <div className="mt-8 overflow-hidden">
+          <div className="mt-8 overflow-hidden hidden md:block">
             <div className="whitespace-nowrap text-[10px] uppercase tracking-[0.26em] text-white/65">
               <span className="inline-block animate-[marquee_18s_linear_infinite]">
                 Barrier repair / Collagen support / Clinical grade / Dermal resilience / Sensitive-skin safe /
@@ -267,7 +292,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-10 flex flex-wrap gap-3"
+            className="mt-10 hidden md:flex flex-wrap gap-3"
           >
             <div className="rounded-2xl border border-white/15 bg-white/5 px-5 py-3 backdrop-blur">
               <div className="text-[9px] uppercase tracking-[0.28em] text-white/70 mb-2">Regimen</div>
@@ -288,7 +313,7 @@ const Hero: React.FC = () => {
       {/* Scroll Indicator - Premium Animated */}
       <div
         ref={scrollIndicatorRef}
-        className="absolute bottom-12 right-12 z-20 flex flex-col items-center gap-4"
+        className="absolute bottom-12 right-12 z-20 hidden md:flex flex-col items-center gap-4"
         style={{ opacity: 1, transition: 'opacity 0.1s linear' }}
       >
         <div className="h-20 w-[2px] bg-gradient-to-b from-white/40 to-white/10 relative overflow-hidden rounded-full">
