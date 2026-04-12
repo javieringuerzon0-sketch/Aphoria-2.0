@@ -13,7 +13,7 @@ const ProductGallery: React.FC = () => {
   const goldMask = products.find(p => p.handle === '24-gold-mask')!;
   const avocadoMask = products.find(p => p.handle === 'avocado-mask')!;
 
-  const bundlePrice = 75.98;
+  const bundlePrice = 77.40;
   // Show savings vs FULL regular prices (not sale prices) for maximum perceived value
   const bundleRegular = goldMask.variants['1pc'].regularPrice + avocadoMask.variants['1pc'].regularPrice;
   const bundleSavings = (bundleRegular - bundlePrice).toFixed(2);
@@ -68,7 +68,7 @@ const ProductGallery: React.FC = () => {
             <div className="flex flex-col items-center group">
               <div className="bundle-image-box transition-transform duration-500 ease-out group-hover:scale-110 cursor-pointer">
                 <div className="product-image-container">
-                  <OptimizedImage src="/bundlee/goldmask-bundle.png" alt="Gold Mask" className="max-h-[220px]" loading="lazy" decoding="async" />
+                  <OptimizedImage src="/bundlee/goldmask-bundle.webp" alt="Gold Mask" className="max-h-[220px]" loading="lazy" decoding="async" />
                 </div>
                 <div className="ground-shadow" />
               </div>
@@ -85,7 +85,7 @@ const ProductGallery: React.FC = () => {
             <div className="flex flex-col items-center group">
               <div className="bundle-image-box transition-transform duration-500 ease-out group-hover:scale-110 cursor-pointer">
                 <div className="product-image-container" style={{ animationDelay: '0.5s' }}>
-                  <OptimizedImage src="/bundlee/avocado-bundelle.png" alt="Avocado Mask" className="max-h-[200px]" loading="lazy" decoding="async" />
+                  <OptimizedImage src="/bundlee/avocado-bundelle.webp" alt="Avocado Mask" className="max-h-[200px]" loading="lazy" decoding="async" />
                 </div>
                 <div className="ground-shadow" />
               </div>
@@ -116,7 +116,7 @@ const ProductGallery: React.FC = () => {
                 <svg className="w-3.5 h-3.5 text-aphoria-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
                 </svg>
-                <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-aphoria-green">$10 discount applied automatically at checkout</span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-aphoria-green">10% discount applied automatically at checkout</span>
               </div>
 
               <button

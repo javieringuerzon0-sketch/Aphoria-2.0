@@ -16,21 +16,21 @@ const ProtocolTimeline: React.FC<ProtocolTimelineProps> = ({ productHandle = '24
                 title: "Apply",
                 desc: "Spread a thin, even layer of the golden gel across cleansed skin. The cooling sensation is immediate.",
                 badge: "Topical",
-                img: "/goldmask-landing/apply/apply.png"
+                img: "/goldmask-landing/apply/apply.webp"
             },
             {
                 step: "02",
                 title: "Activate",
                 desc: "Relax for 20 minutes. As the mask dries, you'll feel a tightening effect—this is the 24K nano-particles working.",
                 badge: "Binding",
-                img: "/goldmask-landing/apply/activate.png"
+                img: "/goldmask-landing/apply/activate.webp"
             },
             {
                 step: "03",
                 title: "Reveal",
                 desc: "Rinse with lukewarm water to reveal instantly firmer, brighter, and more radiant skin. The glow lasts up to 72 hours.",
                 badge: "Radiance",
-                img: "/goldmask-landing/apply/reveal.png"
+                img: "/goldmask-landing/apply/reveal.webp"
             }
         ],
         'avocado-mask': [
@@ -39,21 +39,21 @@ const ProtocolTimeline: React.FC<ProtocolTimelineProps> = ({ productHandle = '24
                 title: "Apply",
                 desc: "Generously coat cleansed skin with the rich ceramide cream. Feel the instant soothing hydration.",
                 badge: "Nourish",
-                img: "/avocado-landing/apply/apply.png"
+                img: "/avocado-landing/apply/apply.webp"
             },
             {
                 step: "02",
                 title: "Recover",
                 desc: "Allow 15-20 minutes for the lipid complex to rebuild your moisture barrier. The cream will absorb significantly.",
                 badge: "Repair",
-                img: "/avocado-landing/apply/activate.png"
+                img: "/avocado-landing/apply/activate.webp"
             },
             {
                 step: "03",
                 title: "Finish",
                 desc: "Gently rinse or tissue off excess. Your skin is left soft, calm, and structurally resilient.",
                 badge: "Restore",
-                img: "/avocado-landing/apply/reveal.png"
+                img: "/avocado-landing/apply/reveal.webp"
             }
         ]
     };

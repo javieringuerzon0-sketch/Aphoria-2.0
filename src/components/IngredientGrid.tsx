@@ -67,8 +67,8 @@ const IngredientGrid: React.FC = () => {
   const variant: keyof typeof VARIANTS = 'luxury';
   const styles = VARIANTS[variant];
   const ingredientImages: Record<string, string> = {
-    'Deep Hydration': '/clinical%20index/DEEP-HYDRATATION.jpeg',
-    'Radiance Activation': '/clinical%20index/RADIANCE-ACTIVATION.png'
+    'Deep Hydration': '/clinical%20index/DEEP-HYDRATATION.webp',
+    'Radiance Activation': '/clinical%20index/RADIANCE-ACTIVATION.webp'
   };
   const ingredientMeta: Record<
     string,

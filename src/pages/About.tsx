@@ -111,7 +111,7 @@ const About: React.FC = () => {
                   Aphoria was founded with a single conviction: <strong className="text-aphoria-black font-medium">visible skin transformation requires clinical precision, not cosmetic poetry.</strong>
                 </p>
                 <p>
-                  Our formulations are engineered around four high-performance actives — each selected for its proven mechanism of action at the cellular level. Every concentration is calibrated. Every protocol is designed for measurable, lasting results in 28 days.
+                  Our formulations are engineered around four high-performance actives — each selected for its proven mechanism of action at the cellular level. Every concentration is calibrated. Results are immediate — you feel the difference in minutes. After 28 days of consistent use, the transformation is undeniable.
                 </p>
                 <p>
                   This is not wellness theater. This is dermatology, refined.
@@ -129,7 +129,7 @@ const About: React.FC = () => {
             />
               <div className="absolute -bottom-6 -left-6 bg-aphoria-black text-white rounded-2xl p-6 shadow-2xl">
                 <p className="text-aphoria-gold font-brand text-3xl font-light">28 Days</p>
-                <p className="text-white/60 text-[12px] font-light mt-1">To visible transformation</p>
+                <p className="text-white/60 text-[12px] font-light mt-1">Incredible results — felt in minutes</p>
               </div>
             </div>
           </div>
@@ -157,7 +157,7 @@ const About: React.FC = () => {
 
             <div className="relative order-2 lg:order-1">
               <img
-                src="/about-lab.png"
+                src="/about-lab.webp"
                 alt="Aphoria laboratory — beauty science"
                 className="w-full aspect-[4/5] object-cover rounded-3xl"
                 loading="lazy"
@@ -185,7 +185,7 @@ const About: React.FC = () => {
                   From that question, we identified four high-performance actives — Avocado Ceramides, Hydrolyzed Collagen Peptides, Snail Secretion Filtrate, and 24K Colloidal Gold — each targeting a distinct mechanism of skin physiology.
                 </p>
                 <p>
-                  The result: two flagship formulations that deliver measurable transformation in 28 days, validated across thousands of real-world protocols.
+                  The result: two flagship formulations that deliver immediate, visible results from the very first application — and incredible transformation after 28 days of consistent use, validated across thousands of real-world protocols.
                 </p>
               </div>
               <Link

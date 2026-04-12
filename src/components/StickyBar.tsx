@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useCartStore } from '../store/useCartStore';
 import OptimizedImage from './OptimizedImage';
 import { PRODUCTS, DISCOUNTS } from '../constants';
+import { pixel } from '../lib/metaPixel';
 
 const StickyBar: React.FC = () => {
   const [show, setShow] = useState(false);
@@ -41,7 +42,7 @@ const StickyBar: React.FC = () => {
   const goldMask = PRODUCTS.find(p => p.handle === '24-gold-mask');
   const avocadoMask = PRODUCTS.find(p => p.handle === 'avocado-mask');
   const bundleFullRegular = (goldMask?.variants['1pc'].regularPrice ?? 0) + (avocadoMask?.variants['1pc'].regularPrice ?? 0);
-  const bundlePrice = 75.98;
+  const bundlePrice = 77.40;
   const bundleSavings = Math.round(bundleFullRegular - bundlePrice);
 
   const addBundleAndCheckout = () => {
@@ -49,12 +50,15 @@ const StickyBar: React.FC = () => {
     const avocado = PRODUCTS.find(p => p.handle === 'avocado-mask');
     if (gold) {
       const v = gold.variants['1pc'];
+      pixel.addToCart(gold.name, v.price);
       addItem({ variantId: v.shopifyVariantId || `local-${v.id}`, title: gold.name, variantTitle: v.name, price: v.price, img: v.img });
     }
     if (avocado) {
       const v = avocado.variants['1pc'];
+      pixel.addToCart(avocado.name, v.price);
       addItem({ variantId: v.shopifyVariantId || `local-${v.id}`, title: avocado.name, variantTitle: v.name, price: v.price, img: v.img });
     }
+    pixel.initiateCheckout(bundlePrice, 2);
     checkout(DISCOUNTS.STICKY_BUNDLE);
   };
 
@@ -84,7 +88,7 @@ const StickyBar: React.FC = () => {
               <div className="flex items-center gap-1">
                 <div className="w-14 h-14 rounded-lg bg-white border border-aphoria-black/8 flex items-center justify-center overflow-hidden shadow-sm">
                   <OptimizedImage
-                    src="/bundlee/goldmask-bundle.png"
+                    src="/bundlee/goldmask-bundle.webp"
                     alt="24 Gold Mask"
                     width={56}
                     height={56}
@@ -95,7 +99,7 @@ const StickyBar: React.FC = () => {
                 </div>
                 <div className="w-14 h-14 rounded-lg bg-white border border-aphoria-black/8 flex items-center justify-center overflow-hidden shadow-sm">
                   <OptimizedImage
-                    src="/bundlee/avocado-bundelle.png"
+                    src="/bundlee/avocado-bundelle.webp"
                     alt="Avocado Mask"
                     width={56}
                     height={56}
@@ -133,7 +137,7 @@ const StickyBar: React.FC = () => {
                   ${bundleFullRegular.toFixed(2)}
                 </span>
                 <span className="text-[20px] md:text-[28px] font-bold text-aphoria-black tabular-nums">
-                  $75.98
+                  $77.40
                 </span>
               </div>
 
