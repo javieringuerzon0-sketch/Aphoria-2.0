@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useCartStore } from '../store/useCartStore';
+import { pixel } from '../lib/metaPixel';
 
 const ThankYou: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -9,9 +10,11 @@ const ThankYou: React.FC = () => {
   const total = searchParams.get('total');
   const { clearCart } = useCartStore();
 
-  // Clear cart as soon as the thank-you page mounts
+  // Clear cart and fire Purchase pixel event on mount
   useEffect(() => {
     clearCart();
+    const value = total ? parseFloat(total) : 0;
+    pixel.purchase(value);
   }, [clearCart]);
 
   return (
@@ -135,7 +138,7 @@ const ThankYou: React.FC = () => {
           transition={{ delay: 1, duration: 0.8 }}
           className="mt-10 text-[10px] uppercase tracking-[0.26em] text-aphoria-mid/60"
         >
-          60-Day Money-Back Guarantee · Free Shipping · Secure Checkout
+          30-Day Money-Back Guarantee · Free Shipping · Secure Checkout
         </motion.p>
       </motion.div>
     </div>

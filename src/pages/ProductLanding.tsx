@@ -4,17 +4,16 @@ import { motion } from 'framer-motion';
 import { ShoppingBag, ShieldCheck, Star, ChevronRight, CheckCircle, Truck, RefreshCw } from 'lucide-react';
 import { PRODUCTS } from '../constants';
 import { useCartStore } from '../store/useCartStore';
+import { pixel } from '../lib/metaPixel';
 import CartDrawer from '../components/CartDrawer';
 
 const ProductLanding: React.FC = () => {
     const { handle } = useParams<{ handle: string }>();
     const product = PRODUCTS.find(p => p.handle === handle) || PRODUCTS[0];
     const variant = product.variants['1pc'];
-    const addItem = useCartStore((s) => s.addItem);
     const addItemAndOpen = useCartStore((s) => s.addItemAndOpen);
     const openCart = useCartStore((s) => s.open);
     const totalItems = useCartStore((s) => s.totalItems);
-    const checkout = useCartStore((s) => s.checkout);
     const cartCount = totalItems();
     const discount = Math.round((1 - variant.price / variant.regularPrice) * 100);
     const savings = (variant.regularPrice - variant.price).toFixed(2);
@@ -27,20 +26,22 @@ const ProductLanding: React.FC = () => {
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
-    // Meta
+    // Meta tags + ViewContent pixel
     useEffect(() => {
         document.title = `${product.name} — ${discount}% Off | Aphoria Beauty`;
         let metaDesc = document.querySelector<HTMLMetaElement>('meta[name="description"]');
         if (!metaDesc) { metaDesc = document.createElement('meta'); metaDesc.name = 'description'; document.head.appendChild(metaDesc); }
-        metaDesc.content = `${product.shortDesc} ${product.reviews.toLocaleString()}+ verified reviews. 60-Day Money-Back Guarantee.`;
-    }, [product, discount]);
+        metaDesc.content = `${product.shortDesc} ${product.reviews.toLocaleString()}+ verified reviews. 30-Day Money-Back Guarantee.`;
+        pixel.viewContent(product.name, variant.price);
+    }, [product, discount, variant.price]);
 
     const handleBuyNow = () => {
-        addItem({ variantId: variant.shopifyVariantId || `local-${variant.id}`, title: product.name, variantTitle: variant.name, price: variant.price, img: variant.img });
-        checkout();
+        pixel.addToCart(product.name, variant.price);
+        addItemAndOpen({ variantId: variant.shopifyVariantId || `local-${variant.id}`, title: product.name, variantTitle: variant.name, price: variant.price, img: variant.img });
     };
 
     const handleAddCart = () => {
+        pixel.addToCart(product.name, variant.price);
         addItemAndOpen({ variantId: variant.shopifyVariantId || `local-${variant.id}`, title: product.name, variantTitle: variant.name, price: variant.price, img: variant.img });
     };
 
@@ -161,7 +162,7 @@ const ProductLanding: React.FC = () => {
                         <div className="flex flex-wrap items-center justify-center gap-6 py-5 border-t border-b border-aphoria-black/8 mb-6">
                             <div className="flex items-center gap-2 text-[11px] text-aphoria-mid">
                                 <ShieldCheck size={15} className="text-aphoria-gold" />
-                                60-Day Guarantee
+                                30-Day Guarantee
                             </div>
                             <div className="flex items-center gap-2 text-[11px] text-aphoria-mid">
                                 <Truck size={15} className="text-aphoria-gold" />
@@ -218,7 +219,7 @@ const ProductLanding: React.FC = () => {
                 {/* ── Protocol Steps ── */}
                 <section className="py-14 px-6 max-w-5xl mx-auto">
                     <h2 className="text-[28px] font-brand font-light text-aphoria-black text-center mb-12 tracking-tight">
-                        3 Steps. 28 Days. Visible Results.
+                        3 Steps. Instant Results. Incredible at 28 Days.
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {product.protocolSteps.map((step) => (
@@ -256,7 +257,7 @@ const ProductLanding: React.FC = () => {
                         {discount}% Off — Today Only
                     </span>
                     <h2 className="text-[32px] lg:text-[40px] font-brand font-light text-white mb-4 tracking-tight">
-                        Start Your 28-Day Transformation
+                        Feel It in Minutes. Incredible at 28 Days.
                     </h2>
                     <p className="text-white/50 text-[14px] mb-8 max-w-md mx-auto">
                         {product.shortDesc}
@@ -269,7 +270,7 @@ const ProductLanding: React.FC = () => {
                         <ChevronRight size={16} />
                     </button>
                     <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-[11px] text-white/40">
-                        <span className="flex items-center gap-1.5"><ShieldCheck size={13} className="text-aphoria-gold" /> 60-Day Money Back</span>
+                        <span className="flex items-center gap-1.5"><ShieldCheck size={13} className="text-aphoria-gold" /> 30-Day Money Back</span>
                         <span className="flex items-center gap-1.5"><Truck size={13} className="text-aphoria-gold" /> Free Shipping</span>
                     </div>
                 </section>

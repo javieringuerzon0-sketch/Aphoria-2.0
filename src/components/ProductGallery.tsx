@@ -20,15 +20,16 @@ const ProductGallery: React.FC = () => {
 
   const addItem = useCartStore((s) => s.addItem);
   const addItemAndOpen = useCartStore((s) => s.addItemAndOpen);
+  const openCart = useCartStore((s) => s.open);
   const checkout = useCartStore((s) => s.checkout);
   const BUNDLE_DISCOUNT_CODE = import.meta.env.VITE_BUNDLE_DISCOUNT_CODE || '';
 
-  const addBundleAndCheckout = () => {
+  const addBundleAndOpen = () => {
     const gv = goldMask.variants['1pc'];
     addItem({ variantId: gv.shopifyVariantId || `local-${gv.id}`, title: goldMask.name, variantTitle: gv.name, price: gv.price, img: gv.img });
     const av = avocadoMask.variants['1pc'];
     addItem({ variantId: av.shopifyVariantId || `local-${av.id}`, title: avocadoMask.name, variantTitle: av.name, price: av.price, img: av.img });
-    checkout(DISCOUNTS.BUNDLE);
+    openCart();
   };
 
   const addProductToCart = (product: Product) => {
@@ -120,12 +121,12 @@ const ProductGallery: React.FC = () => {
               </div>
 
               <button
-                onClick={addBundleAndCheckout}
+                onClick={addBundleAndOpen}
                 className="w-full bg-aphoria-black text-white rounded-full py-5 text-[12px] uppercase tracking-[0.25em] font-bold hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-300 shadow-xl"
               >
                 Get The Kit — Save ${bundleSavings}
               </button>
-              <p className="text-[10px] text-aphoria-mid mt-4 text-center uppercase tracking-widest">Free Shipping • 60-Day Guarantee</p>
+              <p className="text-[10px] text-aphoria-mid mt-4 text-center uppercase tracking-widest">Free Shipping • 30-Day Guarantee</p>
             </div>
 
           </div>

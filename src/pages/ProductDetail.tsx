@@ -63,7 +63,7 @@ const ProductDetail: React.FC = () => {
         // Meta description
         let metaDesc = document.querySelector<HTMLMetaElement>('meta[name="description"]');
         if (!metaDesc) { metaDesc = document.createElement('meta'); metaDesc.name = 'description'; document.head.appendChild(metaDesc); }
-        metaDesc.content = `${currentProduct.shortDesc} ${currentProduct.reviews.toLocaleString()}+ verified reviews. 60-Day Money-Back Guarantee. Free shipping over $50.`;
+        metaDesc.content = `${currentProduct.shortDesc} ${currentProduct.reviews.toLocaleString()}+ verified reviews. 30-Day Money-Back Guarantee. Free shipping over $50.`;
 
         // OG tags
         const setMeta = (prop: string, val: string, attr = 'property') => {
@@ -72,7 +72,7 @@ const ProductDetail: React.FC = () => {
             el.content = val;
         };
         setMeta('og:title', `${currentProduct.name} | Aphoria Beauty Laboratory`);
-        setMeta('og:description', `${currentProduct.shortDesc} ${currentProduct.reviews.toLocaleString()}+ verified reviews. 60-Day Money-Back Guarantee.`);
+        setMeta('og:description', `${currentProduct.shortDesc} ${currentProduct.reviews.toLocaleString()}+ verified reviews. 30-Day Money-Back Guarantee.`);
         setMeta('og:image', `https://aphoriabeauty.com${currentVariant.img}`);
         setMeta('og:url', `https://aphoriabeauty.com/product/${currentProduct.handle}`);
         setMeta('og:type', 'product');

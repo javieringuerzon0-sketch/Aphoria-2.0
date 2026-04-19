@@ -29,7 +29,7 @@ const eligible = [
 
 const notEligible = [
   'Products purchased through third-party retailers (Amazon, eBay, etc.)',
-  'Products returned after 60 days from purchase date',
+  'Products returned after 30 days from purchase date',
   'Products that have been more than 50% used',
   'Orders placed with fraudulent payment methods',
 ];
@@ -37,7 +37,7 @@ const notEligible = [
 const faqs = [
   {
     q: 'Can I return a product I\'ve already opened?',
-    a: 'Yes — we understand skincare needs time to work. If you\'ve opened a product but are not satisfied after trying it, you may return it within 60 days provided the product is at least 50% full. For lightly used products (1–2 applications), we accept returns unconditionally within the 60-day window.',
+    a: 'Yes — we understand skincare needs time to work. If you\'ve opened a product but are not satisfied after trying it, you may return it within 30 days provided the product is at least 50% full. For lightly used products (1–2 applications), we accept returns unconditionally within the 30-day window.',
   },
   {
     q: 'What if my product arrived damaged or broken?',
@@ -52,8 +52,8 @@ const faqs = [
     a: 'For international returns, the customer is responsible for return shipping costs unless the product arrived damaged or defective. We recommend using a tracked shipping method and keeping your receipt, as we cannot be responsible for returns lost in transit.',
   },
   {
-    q: 'I\'m past the 60-day window — what can you do?',
-    a: 'While our formal guarantee covers 60 days, we review every case individually. If you\'ve had an exceptional circumstance, contact us — we genuinely want you to be satisfied and will do what we can to help.',
+    q: 'I\'m past the 30-day window — what can you do?',
+    a: 'While our formal guarantee covers 30 days, we review every case individually. If you\'ve had an exceptional circumstance, contact us — we genuinely want you to be satisfied and will do what we can to help.',
   },
   {
     q: 'Will I receive a refund or store credit?',
@@ -85,12 +85,12 @@ const RefundPolicy: React.FC = () => {
             <div>
               <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-aphoria-gold block mb-4">Our Guarantee</span>
               <h1 className="text-5xl lg:text-6xl font-brand font-light tracking-tight text-aphoria-black leading-[0.95] mb-6">
-                60-Day<br />
+                30-Day<br />
                 <span className="italic text-aphoria-gold">Money-Back.</span><br />
                 No Questions Asked.
               </h1>
               <p className="text-aphoria-mid text-base font-light leading-relaxed mb-8 max-w-lg">
-                We are confident in the efficacy of every Aphoria formulation. If you don't see visible results within 60 days, we will refund you in full — completely hassle-free.
+                We are confident in the efficacy of every Aphoria formulation. If you don't see visible results within 30 days, we will refund you in full — completely hassle-free.
               </p>
               <div className="flex flex-wrap gap-4">
                 <div className="flex items-center gap-2 text-[12px] font-medium text-aphoria-black">
@@ -114,7 +114,7 @@ const RefundPolicy: React.FC = () => {
               />
               <div className="relative z-10">
                 <RefreshCw size={32} className="text-aphoria-gold mb-6" />
-                <p className="text-4xl font-brand font-light text-aphoria-gold mb-2">60 Days</p>
+                <p className="text-4xl font-brand font-light text-aphoria-gold mb-2">30 Days</p>
                 <p className="text-white/60 text-sm font-light mb-8">Risk-Free Trial Period</p>
                 <div className="space-y-3">
                   {['No lengthy forms', 'No return fees (USA)', 'No judgment', 'Full refund, always'].map(item => (
@@ -199,7 +199,7 @@ const RefundPolicy: React.FC = () => {
             <div>
               <h3 className="text-lg font-medium text-aphoria-black mb-2">Damaged or Defective Items — Always Covered</h3>
               <p className="text-[15px] text-aphoria-mid font-light leading-relaxed max-w-2xl">
-                If your Aphoria product arrives damaged, broken, or not as described, we will replace it or issue a full refund immediately — regardless of how much product has been used, and regardless of the 60-day window. Simply email us a photo within 7 days of delivery. Your safety and satisfaction are non-negotiable.
+                If your Aphoria product arrives damaged, broken, or not as described, we will replace it or issue a full refund immediately — regardless of how much product has been used, and regardless of the 30-day window. Simply email us a photo within 7 days of delivery. Your safety and satisfaction are non-negotiable.
               </p>
             </div>
           </div>

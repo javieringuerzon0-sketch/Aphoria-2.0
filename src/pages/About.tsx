@@ -236,7 +236,7 @@ const About: React.FC = () => {
             <span className="italic text-aphoria-gold">Transformed.</span>
           </h2>
           <p className="text-white/40 text-base font-light max-w-lg mx-auto mb-12">
-            Join 10,000+ women who chose clinical science over empty promises. 60-day money-back guarantee. No risk, only results.
+            Join 10,000+ women who chose clinical science over empty promises. 30-day money-back guarantee. No risk, only results.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

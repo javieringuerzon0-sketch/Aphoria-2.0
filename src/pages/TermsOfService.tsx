@@ -120,7 +120,7 @@ const TermsOfService: React.FC = () => {
                   5. Returns & Refunds
                 </h2>
                 <div className="space-y-4 text-[15px] text-aphoria-mid leading-relaxed font-light">
-                  <p><strong className="text-aphoria-black font-medium">60-Day Money-Back Guarantee:</strong> We stand behind the efficacy of our formulations. If you are not satisfied with your results within 60 days of your purchase date, contact our team for a full refund — no questions asked.</p>
+                  <p><strong className="text-aphoria-black font-medium">30-Day Money-Back Guarantee:</strong> We stand behind the efficacy of our formulations. If you are not satisfied with your results within 30 days of your purchase date, contact our team for a full refund — no questions asked.</p>
                   <p>To initiate a return or refund request, contact us at <a href="mailto:support@aphoriabeauty.com" className="text-aphoria-gold hover:underline">support@aphoriabeauty.com</a> with your order number. Once approved, refunds are processed within 5–10 business days to your original payment method.</p>
                   <p>Products that are damaged, counterfeit, or not purchased directly from Aphoria Beauty Laboratory are not eligible for our guarantee. We reserve the right to limit or refuse refunds in cases of suspected abuse of this policy.</p>
                 </div>
