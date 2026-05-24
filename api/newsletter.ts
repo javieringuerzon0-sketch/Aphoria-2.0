@@ -8,14 +8,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const { email } = req.body;
+  const { email, firstName } = req.body;
   if (!email) return res.status(400).json({ message: 'Email is required' });
 
   const apiKey = process.env.OMNISEND_API_KEY?.trim();
   if (!apiKey) return res.status(500).json({ message: 'Newsletter not configured' });
 
   try {
-    // 1. Create / update contact in Omnisend
+    // Create / update contact in Omnisend (v3 identifiers format)
+    // sendWelcomeEmail: true triggers the Welcome Series automation in Omnisend
     const contactRes = await fetch('https://api.omnisend.com/v3/contacts', {
       method: 'POST',
       headers: {
@@ -23,9 +24,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         'X-API-KEY': apiKey,
       },
       body: JSON.stringify({
-        email,
-        status: 'subscribed',
-        statusDate: new Date().toISOString(),
+        identifiers: [
+          {
+            type: 'email',
+            id: email,
+            channels: {
+              email: {
+                status: 'subscribed',
+                statusDate: new Date().toISOString(),
+              },
+            },
+          },
+        ],
+        ...(firstName && { firstName }),
+        sendWelcomeEmail: true,
         tags: ['newsletter', 'website', 'newsletter-welcome'],
         customProperties: {
           discount_code: DISCOUNT_CODE,

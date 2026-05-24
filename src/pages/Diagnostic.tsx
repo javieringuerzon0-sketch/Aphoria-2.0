@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     ChevronRight,
@@ -18,7 +19,6 @@ import {
     Target
 } from 'lucide-react';
 import OptimizedImage from '../components/OptimizedImage';
-import { storefrontFetch } from '../lib/shopify';
 
 interface Question {
     id: number;
@@ -137,6 +137,7 @@ const QUESTIONS: Question[] = [
 ];
 
 const Diagnostic: React.FC = () => {
+    const navigate = useNavigate();
     const [currentStep, setCurrentStep] = useState(0);
     const [answers, setAnswers] = useState<string[]>([]);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -182,29 +183,13 @@ const Diagnostic: React.FC = () => {
         setResult(null);
     };
 
-    const CHECKOUT_VARIANTS: Record<'gold' | 'avocado', string> = {
-        gold:    'gid://shopify/ProductVariant/43113257631787',
-        avocado: 'gid://shopify/ProductVariant/43113253601323',
+    const PRODUCT_HANDLES: Record<'gold' | 'avocado', string> = {
+        gold: '24-gold-mask',
+        avocado: 'avocado-mask',
     };
 
-    const handleViewProtocol = async (quizResult: 'gold' | 'avocado') => {
-        const merchandiseId = CHECKOUT_VARIANTS[quizResult];
-        try {
-            const data = await storefrontFetch<{ cartCreate: { cart: { checkoutUrl: string }; userErrors: { message: string }[] } }>(
-                `mutation cartCreate($input: CartInput!) {
-                    cartCreate(input: $input) {
-                        cart { checkoutUrl }
-                        userErrors { message }
-                    }
-                }`,
-                { input: { lines: [{ quantity: 1, merchandiseId }] } }
-            );
-            const { cart, userErrors } = data.cartCreate;
-            if (userErrors.length) throw new Error(userErrors[0].message);
-            window.location.href = cart.checkoutUrl;
-        } catch (err) {
-            console.error('Checkout error:', err);
-        }
+    const handleViewProtocol = (quizResult: 'gold' | 'avocado') => {
+        navigate(`/product/${PRODUCT_HANDLES[quizResult]}`);
     };
 
     const progress = (currentStep / (QUESTIONS.length)) * 100;
@@ -352,7 +337,7 @@ const Diagnostic: React.FC = () => {
                                                 </div>
                                                 <div className="bg-aphoria-bg/40 p-5 rounded-[24px] border border-aphoria-black/5 flex flex-col gap-1">
                                                     <div className="text-[20px] font-bold text-aphoria-black">28 Days</div>
-                                                    <div className="text-[10px] uppercase tracking-wider text-aphoria-mid font-semibold">Cycle Results</div>
+                                                    <div className="text-[10px] uppercase tracking-wider text-aphoria-mid font-semibold">Incredible Results</div>
                                                 </div>
                                             </div>
                                         </div>

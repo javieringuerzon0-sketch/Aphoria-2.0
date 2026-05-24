@@ -1,8 +1,9 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { isShopifyConfigured, storefrontFetch } from '../lib/shopify';
+import { pixel } from '../lib/metaPixel';
 
 export interface CartItem {
+  /** Internal SKU (e.g. "REF_GOLD_S1") — used as cart key, line reference, and Omnisend SKU */
   variantId: string;
   title: string;
   variantTitle: string;
@@ -98,35 +99,41 @@ export const useCartStore = create<CartStore>()(
         set({ isCheckingOut: true });
 
         try {
-          if (isShopifyConfigured) {
-            const lines = items
-              .filter((i) => i.variantId.startsWith('gid://'))
-              .map((i) => ({ quantity: i.quantity, merchandiseId: i.variantId }));
+          const email = (typeof window !== 'undefined') ? localStorage.getItem('omnisend_email') || undefined : undefined;
 
-            if (!lines.length) {
-              alert('Please add Shopify Variant IDs in constants.ts to enable checkout.');
-              return;
-            }
+          const res = await fetch('/api/stripe-create-checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              items: items.map((i) => ({
+                sku: i.variantId,
+                name: `${i.title} — ${i.variantTitle}`.trim(),
+                price: i.price,
+                quantity: i.quantity,
+                img: i.img,
+              })),
+              email,
+              discountCode,
+            }),
+          });
 
-            const discountCodes = discountCode ? [discountCode] : [];
-            const data = await storefrontFetch<{ cartCreate: { cart: { checkoutUrl: string }; userErrors: { message: string }[] } }>(
-              `mutation cartCreate($input: CartInput!) {
-                cartCreate(input: $input) {
-                  cart { checkoutUrl }
-                  userErrors { message }
-                }
-              }`,
-              { input: { lines, ...(discountCodes.length ? { discountCodes } : {}) } }
-            );
-
-            const { cart, userErrors } = data.cartCreate;
-            if (userErrors.length) throw new Error(userErrors[0].message);
-            window.location.href = cart.checkoutUrl;
-          } else {
-            alert('Please add Shopify credentials to your .env file to enable checkout.');
+          if (!res.ok) {
+            const errText = await res.text().catch(() => '');
+            throw new Error(`Checkout request failed (${res.status}): ${errText}`);
           }
+
+          const data = await res.json() as { url?: string; error?: string };
+          if (data.error || !data.url) {
+            throw new Error(data.error || 'No checkout URL returned from Stripe');
+          }
+
+          // Fire InitiateCheckout right before leaving our domain
+          pixel.initiateCheckout(get().subtotal(), get().totalItems());
+
+          window.location.href = data.url;
         } catch (err) {
           console.error('Checkout error:', err);
+          alert('We could not start the checkout. Please try again in a moment.');
         } finally {
           set({ isCheckingOut: false });
         }

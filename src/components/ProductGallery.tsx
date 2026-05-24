@@ -13,7 +13,7 @@ const ProductGallery: React.FC = () => {
   const goldMask = products.find(p => p.handle === '24-gold-mask')!;
   const avocadoMask = products.find(p => p.handle === 'avocado-mask')!;
 
-  const bundlePrice = 77.40;
+  const bundlePrice = 99.99;
   // Show savings vs FULL regular prices (not sale prices) for maximum perceived value
   const bundleRegular = goldMask.variants['1pc'].regularPrice + avocadoMask.variants['1pc'].regularPrice;
   const bundleSavings = (bundleRegular - bundlePrice).toFixed(2);
@@ -26,20 +26,20 @@ const ProductGallery: React.FC = () => {
 
   const addBundleAndOpen = () => {
     const gv = goldMask.variants['1pc'];
-    addItem({ variantId: gv.shopifyVariantId || `local-${gv.id}`, title: goldMask.name, variantTitle: gv.name, price: gv.price, img: gv.img });
+    addItem({ variantId: gv.id, title: goldMask.name, variantTitle: gv.name, price: gv.price, img: gv.img });
     const av = avocadoMask.variants['1pc'];
-    addItem({ variantId: av.shopifyVariantId || `local-${av.id}`, title: avocadoMask.name, variantTitle: av.name, price: av.price, img: av.img });
+    addItem({ variantId: av.id, title: avocadoMask.name, variantTitle: av.name, price: av.price, img: av.img });
     openCart();
   };
 
   const addProductToCart = (product: Product) => {
     const v = product.variants['1pc'];
-    addItemAndOpen({ variantId: v.shopifyVariantId || `local-${v.id}`, title: product.name, variantTitle: v.name, price: v.price, img: v.img });
+    addItemAndOpen({ variantId: v.id, title: product.name, variantTitle: v.name, price: v.price, img: v.img });
   };
 
   const buyProductNow = (product: Product) => {
     const v = product.variants['1pc'];
-    addItem({ variantId: v.shopifyVariantId || `local-${v.id}`, title: product.name, variantTitle: v.name, price: v.price, img: v.img });
+    addItem({ variantId: v.id, title: product.name, variantTitle: v.name, price: v.price, img: v.img });
     checkout();
   };
 
@@ -148,11 +148,21 @@ const ProductGallery: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
-              className="group bg-white rounded-[24px] border border-aphoria-black/5 p-8 md:p-12 shadow-sm hover:shadow-xl transition-all duration-500"
+              className="group bg-white rounded-[24px] border border-aphoria-black/5 p-6 md:p-12 shadow-sm hover:shadow-xl transition-all duration-500"
             >
-              <div className="relative overflow-hidden rounded-xl mb-10">
-                <div className="product-image-container">
-                  <OptimizedImage src={product.galleryImg} alt={product.name} className="w-full h-auto object-cover" loading="lazy" decoding="async" />
+              {/* Imagen del producto. En mobile fijamos h-[260px] para que la
+                  imagen y el bloque de copy + CTA entren juntos en el viewport
+                  y no queden separados en distintos scrolls. En md+ vuelve al
+                  comportamiento original (altura auto). */}
+              <div className="relative overflow-hidden rounded-xl mb-6 md:mb-10 h-[260px] md:h-auto">
+                <div className="product-image-container h-full md:h-auto">
+                  <OptimizedImage
+                    src={product.galleryImg}
+                    alt={product.name}
+                    className="w-full h-full md:h-auto object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
                 <div className="absolute top-0 right-0">
                   <div className="bg-aphoria-bg px-3 py-1 rounded-full text-[9px] uppercase tracking-widest text-aphoria-mid border border-aphoria-black/5 font-bold">Bestseller</div>

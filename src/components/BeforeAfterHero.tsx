@@ -19,9 +19,41 @@ const BeforeAfterHero: React.FC = () => {
     };
     updateRect();
     window.addEventListener('resize', updateRect, { passive: true });
+    window.addEventListener('scroll', updateRect, { passive: true });
     return () => {
       window.removeEventListener('resize', updateRect);
+      window.removeEventListener('scroll', updateRect);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
+  // Imperative touch listeners with passive:false so we can preventDefault and
+  // STOP the browser from hijacking horizontal swipes into vertical scroll. This
+  // is what makes the divider follow the finger from the very first touch, no
+  // tap-on-the-line required. React's onTouch* are passive by default and can't
+  // call preventDefault — that's why the slider felt unresponsive on mobile.
+  useEffect(() => {
+    const el = beforeAfterRef.current;
+    if (!el) return;
+
+    const handleTouch = (e: TouchEvent) => {
+      if (e.touches.length === 0) return;
+      e.preventDefault();
+      const x = e.touches[0].clientX;
+      const rect = rectRef.current ?? el.getBoundingClientRect();
+      const raw = ((x - rect.left) / rect.width) * 100;
+      const percent = Math.max(0, Math.min(100, raw));
+      targetRef.current = percent;
+      if (!rafRef.current) {
+        rafRef.current = requestAnimationFrame(animateBeforeAfter);
+      }
+    };
+
+    el.addEventListener('touchstart', handleTouch, { passive: false });
+    el.addEventListener('touchmove', handleTouch, { passive: false });
+    return () => {
+      el.removeEventListener('touchstart', handleTouch);
+      el.removeEventListener('touchmove', handleTouch);
     };
   }, []);
 
@@ -78,8 +110,6 @@ const BeforeAfterHero: React.FC = () => {
             className="relative h-[70vh] md:h-[80vh] w-full overflow-hidden rounded-2xl border border-aphoria-black/10 bg-white cursor-col-resize select-none"
             style={{ ['--ba' as any]: 50, touchAction: 'none' }}
             onMouseMove={(e) => updateBeforeAfter(e.clientX)}
-            onTouchMove={(e) => updateBeforeAfter(e.touches[0].clientX)}
-            onTouchStart={(e) => updateBeforeAfter(e.touches[0].clientX)}
           >
             {/* After image — base layer, always full */}
             <img
@@ -139,7 +169,7 @@ const BeforeAfterHero: React.FC = () => {
 
           <div className="mt-10 flex items-center justify-center gap-4">
             <Link
-              to="/product/avocado-mask"
+              to="/product/24-gold-mask"
               className="rounded-full bg-aphoria-black px-8 py-[14px] text-[11px] font-semibold uppercase tracking-[0.26em] text-white transition-all duration-500 hover:-translate-y-[2px] hover:opacity-95"
             >
               Start My Glow Today

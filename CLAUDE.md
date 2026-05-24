@@ -25,12 +25,12 @@ The following image and video paths are **permanently locked**. Do NOT modify, r
 - `/clinical%20index/radiance-ativation.original.png`
 
 ### ProtocolTimeline Images
-- `/goldmask-landing/apply/activate.png`
-- `/goldmask-landing/apply/apply.png`
-- `/goldmask-landing/apply/reveal.png`
-- `/avocado-landing/apply/activate.png`
-- `/avocado-landing/apply/apply.png`
-- `/avocado-landing/apply/reveal.png`
+- `/goldmask-landing/apply/activate.webp`
+- `/goldmask-landing/apply/apply.webp`
+- `/goldmask-landing/apply/reveal.webp`
+- `/avocado-landing/apply/activate.webp` (Avocado Eye Mask jar series — replaced 2026-05-22, originals in _OLD_BACKUP_2026-05-22)
+- `/avocado-landing/apply/apply.webp` (Avocado Eye Mask jar series — replaced 2026-05-22)
+- `/avocado-landing/apply/reveal.webp` (Avocado Eye Mask jar series — replaced 2026-05-22)
 
 ### Product Videos
 - `/goldmask-landing/video/video-producto.mp4`

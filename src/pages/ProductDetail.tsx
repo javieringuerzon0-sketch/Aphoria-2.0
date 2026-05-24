@@ -18,10 +18,166 @@ import ProtocolTimeline from '../components/ProtocolTimeline';
 import OptimizedImage from '../components/OptimizedImage';
 import Newsletter from '../components/Newsletter';
 import ReviewsSection from '../components/ReviewsSection';
+import ShuffleReviews from '../components/landing/ShuffleReviews';
+import UGCReviewModal from '../components/landing/UGCReviewModal';
+import CircularTestimonials from '../components/landing/CircularTestimonials';
+import RitualMethodology from '../components/landing/RitualMethodology';
 
 import { PRODUCTS } from '../constants';
 import { Product, Variant, Review } from '../types';
 import { useCartStore } from '../store/useCartStore';
+
+// ──────────────────────────────────────────────────────────────────────────
+// PRODUCT-SPECIFIC TESTIMONIALS — edit per handle, do not merge sets.
+// Each product has its own 11 unique testimonials + matching imagery so the
+// /product/24-gold-mask and /product/avocado-mask URLs stay fully isolated.
+// ──────────────────────────────────────────────────────────────────────────
+
+// 24 Gold Mask — 11 testimonials about radiance / lift / firming.
+const GOLD_TESTIMONIALS = [
+    {
+        quote: "After one application of the 24K Gold Mask, my skin looked like I had just left a clinical facial. Twenty minutes — that's all it took.",
+        name: 'Lucía Morán',
+        designation: 'Spa Therapist • Verified Buyer',
+        src: '/goldmask-landing/ugc-aphoria-standard/standard-01.webp',
+    },
+    {
+        quote: "I travel constantly and dehydrated skin used to ruin every trip. This mask gave me back the kind of glow I thought only existed in editorials.",
+        name: 'Camille Renard',
+        designation: 'Travel Editor • Verified Buyer',
+        src: '/goldmask-landing/ugc-aphoria-standard/standard-02.webp',
+    },
+    {
+        quote: "My dermatologist asked what I was using. I told her — and she ordered one for herself. Aphoria's 24K formula is the real deal.",
+        name: 'Sofía Delgado',
+        designation: 'Fashion Stylist • Verified Buyer',
+        src: '/goldmask-landing/ugc-aphoria-standard/standard-03.webp',
+    },
+    {
+        quote: "I have sensitive, reactive skin. The Gold Mask is the first treatment in years that lifted my tone without a single flare-up.",
+        name: 'Imani Okafor',
+        designation: 'Yoga Instructor • Verified Buyer',
+        src: '/goldmask-landing/ugc-aphoria-standard/standard-04.webp',
+    },
+    {
+        quote: "I was a sceptic. Twenty-eight days later, the fine lines around my eyes had visibly softened. I now buy two at a time.",
+        name: 'Élise Martín',
+        designation: 'Architect • Verified Buyer',
+        src: '/goldmask-landing/ugc-aphoria-standard/standard-05.webp',
+    },
+    {
+        quote: "The texture alone is worth it — silky, cooling, weightless. By day three my skin looked like I had slept ten hours every night.",
+        name: 'Valentina Russo',
+        designation: 'Brand Director • Verified Buyer',
+        src: '/goldmask-landing/ugc-aphoria-standard/standard-06.webp',
+    },
+    {
+        quote: "I've tried every luxury mask on the market. This is the only one where I can see the result the moment I rinse it off.",
+        name: 'Helena Castillo',
+        designation: 'Skincare Editor • Verified Buyer',
+        src: '/goldmask-landing/ugc-aphoria-standard/standard-07.webp',
+    },
+    {
+        quote: "My pores look refined, my texture is smoother, and the radiance lasts a full week. Aphoria has replaced three products in my routine.",
+        name: 'Naïma Bensaïd',
+        designation: 'Beauty Consultant • Verified Buyer',
+        src: '/goldmask-landing/ugc-aphoria-standard/standard-08.webp',
+    },
+    {
+        quote: "I bought this for the bottle and stayed for the science. Twenty minutes a week, and my skin behaves like it did in my twenties.",
+        name: 'Beatriz Almeida',
+        designation: 'Photographer • Verified Buyer',
+        src: '/goldmask-landing/ugc-aphoria-standard/standard-09.webp',
+    },
+    {
+        quote: "I rarely write reviews. I am writing this one because the 24K Gold Mask deserves it — my skin tone has never looked this even, this lit-from-within.",
+        name: 'Claire Whitfield',
+        designation: 'Wine Importer • Verified Buyer',
+        src: '/goldmask-landing/ugc-aphoria-standard/standard-10.webp',
+    },
+    {
+        quote: "The first time I peeled it off I genuinely gasped. My skin looked filtered, in real life. This is the closest thing to a non-invasive treatment I've found.",
+        name: 'Amara Johnson',
+        designation: 'Wellness Founder • Verified Buyer',
+        src: '/goldmask-landing/ugc-aphoria-standard/standard-11.webp',
+    },
+];
+
+// Avocado Ceramide Mask — 11 testimonials about deep hydration / barrier repair / soothing.
+const AVOCADO_TESTIMONIALS = [
+    {
+        quote: "My skin barrier was a disaster after retinol. The Avocado Ceramide Mask repaired it in eight days. I have stopped reaching for anything else.",
+        name: 'Anaïs Lefèvre',
+        designation: 'Dermatology Nurse • Verified Buyer',
+        src: '/avocado-landing/ugc-aphoria-standard/avocado-standard-01.webp',
+    },
+    {
+        quote: "I wake up with skin that feels nourished, not greasy. The ceramide complex absorbs cleanly and the avocado leaves a quiet, lasting softness.",
+        name: 'Mariana Costa',
+        designation: 'Yoga Teacher • Verified Buyer',
+        src: '/avocado-landing/ugc-aphoria-standard/avocado-standard-02.webp',
+    },
+    {
+        quote: "Sensitive, eczema-prone skin has been my battle for years. This is the first mask that hydrates deeply without triggering a flare-up.",
+        name: 'Soraya Boutaleb',
+        designation: 'Architect • Verified Buyer',
+        src: '/avocado-landing/ugc-aphoria-standard/avocado-standard-03.webp',
+    },
+    {
+        quote: "I expected another marketing promise. I got fourteen days of plump, calm, glowing skin instead. The redness around my nose is finally gone.",
+        name: 'Élodie Marchand',
+        designation: 'Marketing Director • Verified Buyer',
+        src: '/avocado-landing/ugc-aphoria-standard/avocado-standard-04.webp',
+    },
+    {
+        quote: "The texture melts in like silk. It does what a hundred-dollar serum claims to do, and it does it before I finish my morning coffee.",
+        name: 'Yara Haddad',
+        designation: 'Pilates Instructor • Verified Buyer',
+        src: '/avocado-landing/ugc-aphoria-standard/avocado-standard-05.webp',
+    },
+    {
+        quote: "Dehydration lines around my eyes have visibly softened. My makeup sits better. I keep two jars now — one at home, one in my travel bag.",
+        name: 'Camille Dubois',
+        designation: 'Flight Attendant • Verified Buyer',
+        src: '/avocado-landing/ugc-aphoria-standard/avocado-standard-06.webp',
+    },
+    {
+        quote: "Winter destroys my skin every year. This is the first season my cheeks have not cracked. The ceramides actually do the work they promise.",
+        name: 'Ingrid Halvorsen',
+        designation: 'Editor • Verified Buyer',
+        src: '/avocado-landing/ugc-aphoria-standard/avocado-standard-07.webp',
+    },
+    {
+        quote: "I have combination skin that hates everything. The Avocado Ceramide Mask balanced both my oily T-zone and my dry cheeks in under two weeks.",
+        name: 'Priya Raghavan',
+        designation: 'Stylist • Verified Buyer',
+        src: '/avocado-landing/ugc-aphoria-standard/avocado-standard-08.webp',
+    },
+    {
+        quote: "After my third round of retinoids I needed real repair, not another exfoliant. This delivered. My barrier feels stronger than it has in years.",
+        name: 'Beatriz Rosa',
+        designation: 'Photographer • Verified Buyer',
+        src: '/avocado-landing/ugc-aphoria-standard/avocado-standard-09.webp',
+    },
+    {
+        quote: "I am 47, and my reflection actually surprises me now. The hydration lasts well into the next day, and the dewiness is real — not a filter.",
+        name: 'Hannah Whitfield',
+        designation: 'Antique Curator • Verified Buyer',
+        src: '/avocado-landing/ugc-aphoria-standard/avocado-standard-10.webp',
+    },
+    {
+        quote: "I bought it on instinct. I keep it on rotation because the calm it gives my skin is unmatched. Nothing has come close in fifteen years of skincare.",
+        name: 'Naomi Adesanya',
+        designation: 'Sound Engineer • Verified Buyer',
+        src: '/avocado-landing/ugc-aphoria-standard/avocado-standard-11.webp',
+    },
+];
+
+// Dispatch by product handle. Falls back to Gold if an unknown handle slips through.
+const TESTIMONIALS_BY_HANDLE: Record<string, typeof GOLD_TESTIMONIALS> = {
+    '24-gold-mask': GOLD_TESTIMONIALS,
+    'avocado-mask': AVOCADO_TESTIMONIALS,
+};
 
 const ProductDetail: React.FC = () => {
     const { handle } = useParams<{ handle: string }>();
@@ -63,7 +219,7 @@ const ProductDetail: React.FC = () => {
         // Meta description
         let metaDesc = document.querySelector<HTMLMetaElement>('meta[name="description"]');
         if (!metaDesc) { metaDesc = document.createElement('meta'); metaDesc.name = 'description'; document.head.appendChild(metaDesc); }
-        metaDesc.content = `${currentProduct.shortDesc} ${currentProduct.reviews.toLocaleString()}+ verified reviews. 30-Day Money-Back Guarantee. Free shipping over $50.`;
+        metaDesc.content = `${currentProduct.shortDesc} ${currentProduct.reviews.toLocaleString()}+ verified reviews. 30-Day Money-Back Guarantee. Free shipping worldwide.`;
 
         // OG tags
         const setMeta = (prop: string, val: string, attr = 'property') => {
@@ -142,6 +298,12 @@ const ProductDetail: React.FC = () => {
     const isCartOpenRef = useRef(isCartOpen);
     useEffect(() => { isCartOpenRef.current = isCartOpen; }, [isCartOpen]);
 
+    // UGC interactivity: modal + focus/dim hover
+    const [selectedReview, setSelectedReview] = useState<Review | null>(null);
+    const [hoveredReviewKey, setHoveredReviewKey] = useState<string | null>(null);
+    const isReviewHoveredRef = useRef(false);
+    useEffect(() => { isReviewHoveredRef.current = hoveredReviewKey !== null; }, [hoveredReviewKey]);
+
     const marqueeRef = useRef<HTMLDivElement>(null);
     const marqueeOffset = useRef(0);
     const isDragging = useRef(false);
@@ -155,7 +317,7 @@ const ProductDetail: React.FC = () => {
         if (!el) return;
         const SPEED = 0.6; // px per frame ~36px/s at 60fps
         const animate = () => {
-            if (!isDragging.current && !isHovered.current && !isCartOpenRef.current) {
+            if (!isDragging.current && !isHovered.current && !isCartOpenRef.current && !isReviewHoveredRef.current) {
                 marqueeOffset.current -= SPEED;
                 const halfWidth = el.scrollWidth / 2;
                 if (Math.abs(marqueeOffset.current) >= halfWidth) {
@@ -169,8 +331,10 @@ const ProductDetail: React.FC = () => {
         return () => { if (rafId.current) cancelAnimationFrame(rafId.current); };
     }, []);
 
+    const dragMoved = useRef(false);
     const onMarqueePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
         isDragging.current = true;
+        dragMoved.current = false;
         dragStartX.current = e.clientX;
         dragStartOffset.current = marqueeOffset.current;
         e.currentTarget.setPointerCapture(e.pointerId);
@@ -178,19 +342,23 @@ const ProductDetail: React.FC = () => {
     };
     const onMarqueePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
         if (!isDragging.current) return;
-        marqueeOffset.current = dragStartOffset.current + (e.clientX - dragStartX.current);
+        const dx = e.clientX - dragStartX.current;
+        if (Math.abs(dx) > 5) dragMoved.current = true;
+        marqueeOffset.current = dragStartOffset.current + dx;
     };
     const onMarqueePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
         isDragging.current = false;
         e.currentTarget.style.cursor = 'grab';
     };
+    // Used by individual cards to know if a click was actually a drag
+    const wasDraggedRecently = () => dragMoved.current;
 
     // Fix 3+4: Single atomic update — 1 set() call instead of 2
     const addItemAndOpen = useCartStore((s) => s.addItemAndOpen);
 
     const addToCart = () => {
         addItemAndOpen({
-            variantId: currentVariant.shopifyVariantId || `local-${currentVariant.id}`,
+            variantId: currentVariant.id,
             title: currentProduct.name,
             variantTitle: currentVariant.name,
             price: currentVariant.price,
@@ -218,7 +386,11 @@ const ProductDetail: React.FC = () => {
 
                         {/* Gallery - 7 Columns (Fixed Background Removal) */}
                         <div className="lg:col-span-7 flex flex-col gap-6">
-                            <div className="relative aspect-[4/5] flex items-center justify-center bg-white">
+                            {/* On mobile we add top padding so the badge has
+                                breathing room above the product image and
+                                doesn't appear pinned to the jar. Desktop keeps
+                                the original tight layout. */}
+                            <div className="relative aspect-[4/5] flex items-center justify-center bg-white pt-14 lg:pt-0">
 
                                 <OptimizedImage
                                     src={currentVariant.img}
@@ -229,7 +401,10 @@ const ProductDetail: React.FC = () => {
                                     fetchPriority="high"
                                 />
 
-                                <div className="absolute top-8 left-8 bg-aphoria-black text-white px-5 py-2 rounded-full z-20 flex items-center gap-2 shadow-xl border border-white/10">
+                                {/* Mobile: badge centered horizontally and
+                                    raised away from the product. Desktop:
+                                    pinned to top-left as before. */}
+                                <div className="absolute top-3 left-1/2 -translate-x-1/2 lg:top-8 lg:left-8 lg:translate-x-0 bg-aphoria-black text-white px-5 py-2 rounded-full z-20 flex items-center gap-2 shadow-xl border border-white/10 whitespace-nowrap">
                                     <Sparkles size={12} className="text-aphoria-gold" />
                                     <span className="text-[10px] font-bold tracking-[0.25em] uppercase">Laboratory grade</span>
                                 </div>
@@ -246,7 +421,7 @@ const ProductDetail: React.FC = () => {
                                     </span>
                                 </div>
 
-                                <h1 className="text-6xl font-brand font-light tracking-tight text-aphoria-black mb-6 leading-[0.9]">
+                                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-brand font-light tracking-tight text-aphoria-black mb-6 leading-[0.9]">
                                     {currentProduct.name}
                                 </h1>
                                 <div className="flex items-baseline gap-5 mb-8">
@@ -357,9 +532,14 @@ const ProductDetail: React.FC = () => {
                 </section>
 
 
-                {/* SOCIAL PROOF WALL - INFINITE MARQUEE */}
-                <section className="mt-0 pt-32 pb-32 bg-[#FAF8F5] relative overflow-hidden">
-                    {/* Dynamic Background Typography */}
+                {/* THE APHORIA STANDARD — Circular 3D testimonials carousel */}
+                <motion.section
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                    className="mt-0 pt-32 pb-32 bg-[#FAF8F5] relative overflow-hidden">
+
                     <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none">
                         <span className="text-[20vw] font-brand font-bold text-aphoria-black/[0.02] whitespace-nowrap tracking-tighter leading-none">
                             REAL RESULTS • CLINICAL PROOF
@@ -367,7 +547,7 @@ const ProductDetail: React.FC = () => {
                     </div>
 
                     <div className="max-w-[1920px] mx-auto relative z-10">
-                        <div className="mb-20 px-6 lg:px-12 flex flex-col items-center text-center">
+                        <div className="mb-12 md:mb-16 px-6 lg:px-12 flex flex-col items-center text-center">
                             <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-aphoria-gold mb-6 animate-pulse">Community Verified</span>
                             <h2 className="text-5xl lg:text-7xl font-brand font-light tracking-tight text-aphoria-black leading-[0.9] mb-6">
                                 The Aphoria <span className="italic text-aphoria-gold">Standard.</span>
@@ -377,161 +557,56 @@ const ProductDetail: React.FC = () => {
                             </p>
                         </div>
 
-                        {/* INFINITE MARQUEE — JS RAF + drag, GPU composited */}
-                        <div className="mask-fade-x relative w-full overflow-hidden">
-                            <div
-                                ref={marqueeRef}
-                                className="flex py-10 will-change-transform"
-                                style={{ cursor: 'grab' }}
-                                onMouseEnter={() => { isHovered.current = true; }}
-                                onMouseLeave={() => { isHovered.current = false; }}
-                                onPointerDown={onMarqueePointerDown}
-                                onPointerMove={onMarqueePointerMove}
-                                onPointerUp={onMarqueePointerUp}
-                                onPointerCancel={onMarqueePointerUp}
-                            >
-                                {[...shuffledUgc.slice(0, 8), ...shuffledUgc.slice(0, 8)].map((item: any, i) => (
-                                    <div
-                                        key={`${item.id}-${i}`}
-                                        className="w-[300px] md:w-[360px] mx-5 flex-shrink-0 group"
-                                        style={{ pointerEvents: 'none' }}
-                                    >
-                                        <div className="aspect-[9/16] relative rounded-[30px] overflow-hidden bg-gray-100 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] [transition-property:scale,box-shadow] duration-500 hover:scale-[1.02] hover:shadow-[0_40px_80px_-20px_rgba(198,161,91,0.2)]">
-                                            <OptimizedImage
-                                                src={item.img}
-                                                alt={`Review by ${item.user}`}
-                                                className="w-full h-full object-cover [transition-property:scale,filter] duration-700 group-hover:scale-105 group-hover:blur-sm"
-                                                loading="lazy"
-                                                decoding="async"
-                                            />
-                                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/60 transition-colors duration-500 flex flex-col justify-end p-8">
-                                                <div className="absolute inset-0 flex items-center justify-center p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
-                                                    <div className="text-center translate-y-4 group-hover:translate-y-0 [transition-property:translate] duration-500">
-                                                        <Quote size={24} className="text-aphoria-gold mx-auto mb-4" />
-                                                        <p className="text-white text-sm font-medium leading-relaxed italic">"{item.text}"</p>
-                                                    </div>
-                                                </div>
-                                                <div className="group-hover:opacity-0 transition-opacity duration-300">
-                                                    <div className="flex items-center gap-4 mb-2">
-                                                        <div className="p-[2px] rounded-full bg-gradient-to-tr from-aphoria-gold via-[#FFF4E0] to-aphoria-gold/50">
-                                                            <div className="p-[2px] rounded-full bg-black">
-                                                                <div className="w-8 h-8 rounded-full bg-aphoria-bg overflow-hidden">
-                                                                    <img src={item.img} alt={item.user} className="w-full h-full object-cover" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <p className="text-white text-xs font-bold tracking-widest uppercase mb-0.5">{item.user}</p>
-                                                            <div className="flex items-center gap-2">
-                                                                <span className="text-[10px] text-white/60">Verified</span>
-                                                                <span className="text-aphoria-gold text-[10px]">★★★★★</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="mt-16 text-center">
-                            <Link to="/#testimonials" className="text-[10px] font-bold uppercase tracking-[0.3em] text-aphoria-mid hover:text-aphoria-black transition-colors border-b border-aphoria-mid/30 pb-1 hover:border-aphoria-black">
-                                See All Reviews
-                            </Link>
-                        </div>
+                        <CircularTestimonials
+                            testimonials={TESTIMONIALS_BY_HANDLE[currentProduct.handle] ?? GOLD_TESTIMONIALS}
+                            autoplay={true}
+                        />
                     </div>
-                </section>
+                </motion.section>
 
-                {/* VIDEO SALES SECTION */}
-                <section className="py-20 lg:py-40 bg-[#111] relative overflow-hidden">
-                    {/* Soft gradient transition */}
-                    <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#FAF8F5] to-transparent z-10 pointer-events-none" />
+                {/* RITUAL METHODOLOGY — Three-step video grid (replaces Video Sales) */}
+                <RitualMethodology productHandle={currentProduct.handle} />
 
-                    <div className="absolute inset-0 opacity-20 blur-[100px] bg-aphoria-gold/30 animate-pulse" />
+                <motion.div
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                >
+                    <ShuffleReviews productHandle={currentProduct.handle} />
+                </motion.div>
 
-                    <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                            <div className="space-y-12 order-2 lg:order-1">
-                                <div className="space-y-6">
-                                    <h2 className="text-5xl lg:text-7xl font-brand font-light tracking-tight text-white leading-[0.9]">
-                                        {currentProduct.videoSection?.headline.split(' ')[0]} <br />
-                                        <span className="text-aphoria-gold">{currentProduct.videoSection?.headline.split(' ').slice(1).join(' ')}</span>
-                                    </h2>
-                                    <div className="flex flex-wrap gap-8 border-l border-aphoria-gold pl-6 py-2">
-                                        {currentProduct.videoSection?.stats.map((stat: any, i: number) => (
-                                            <div key={i}>
-                                                <span className="block text-3xl text-white font-light tabular-nums">{stat.val}</span>
-                                                <span className="text-[9px] font-bold uppercase tracking-widest text-aphoria-gold/80">{stat.label}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
+                <motion.div
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                >
+                    <ProtocolTimeline productHandle={handle} />
+                </motion.div>
 
-                                <p className="text-lg font-light text-white/40 leading-relaxed max-w-xl">
-                                    {currentProduct.videoSection?.desc}
-                                </p>
-
-                                <div className="space-y-4">
-                                    <div className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.2em] text-red-400 animate-pulse">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                                        High Demand — Limited stock available
-                                    </div>
-                                    <button
-                                        onClick={addToCart}
-                                        className="inline-flex items-center gap-3 px-12 py-4 bg-white border border-aphoria-black/10 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-aphoria-black hover:text-white hover:border-aphoria-black transition-all duration-500 shadow-sm hover:shadow-xl group w-full sm:w-auto justify-center"
-                                    >
-                                        GET MY GLOW NOW
-                                        <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                                    </button>
-                                </div>
-
-                                <div className="flex items-center gap-6 text-[10px] font-medium uppercase tracking-[0.2em] text-white/40">
-                                    <span className="flex items-center gap-2">
-                                        <CheckCircle size={12} className="text-aphoria-gold" />
-                                        Ships within 24h
-                                    </span>
-                                    <span className="flex items-center gap-2">
-                                        <CheckCircle size={12} className="text-aphoria-gold" />
-                                        30-Day Money-Back
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div className="relative aspect-square overflow-hidden rounded-[80px] shadow-[0_60px_120px_-30px_rgba(0,0,0,0.5)] border border-white/5 order-1 lg:order-2 isolate">
-                                <video
-                                    key={currentProduct.video}
-                                    autoPlay
-                                    muted
-                                    loop
-                                    playsInline
-                                    preload="metadata"
-                                    poster={currentProduct.galleryImg}
-                                    className="w-full h-full object-cover grayscale-[20%] brightness-110"
-                                >
-                                    <source src={currentProduct.video} type="video/mp4" />
-                                </video>
-                                <div className="absolute bottom-10 left-10 flex items-center gap-3 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
-                                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                                    <span className="text-[9px] font-bold text-white/90 tracking-[0.2em] uppercase">Live Feed • 84 Viewing</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-
-                <ReviewsSection productHandle={currentProduct.handle} totalReviews={currentProduct.reviews} />
-
-                <ProtocolTimeline productHandle={handle} />
-
-                <Newsletter />
+                <motion.div
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                >
+                    <Newsletter />
+                </motion.div>
 
                 <footer className="py-8 bg-[#FAF8F5] text-center border-t border-aphoria-black/5">
                     <p className="text-[9px] font-bold uppercase tracking-[0.8em] text-aphoria-black/40">APHORIA BEAUTY LABORATORY — 2026</p>
                 </footer>
             </main>
+
+            <UGCReviewModal
+                review={selectedReview}
+                productName={currentProduct.name}
+                productPrice={currentVariant.price}
+                productImg={currentVariant.img}
+                onClose={() => setSelectedReview(null)}
+                onShopClick={addToCart}
+            />
         </div>
     );
 };

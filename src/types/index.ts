@@ -10,10 +10,11 @@ export interface Variant {
   name: string;
   price: number;
   regularPrice: number;
+  /** Internal SKU — used as cart key and order line reference (e.g. "REF_GOLD_S1") */
   id: string;
   img: string;
-  /** Shopify Storefront GID — e.g. "gid://shopify/ProductVariant/12345678" */
-  shopifyVariantId?: string;
+  /** CJDropshipping product variant VID — used by /api/paypal-webhook to create the fulfillment order in CJ. */
+  cjVariantVid?: string;
 }
 
 export interface Review {

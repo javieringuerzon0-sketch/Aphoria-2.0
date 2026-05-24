@@ -37,9 +37,33 @@ const Navbar: React.FC = () => {
 
 
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
+    const id = target.replace('#', '');
     if (location.pathname !== '/') {
       e.preventDefault();
       navigate('/' + target);
+      return;
+    }
+    // Already on home: scroll manually (handles lazy-loaded sections so first click works)
+    e.preventDefault();
+    const scrollToTarget = () => {
+      const el = document.getElementById(id);
+      if (!el) return false;
+      window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+      window.history.replaceState(null, '', target);
+      return true;
+    };
+    if (scrollToTarget()) return;
+    const interval = setInterval(() => {
+      if (scrollToTarget()) clearInterval(interval);
+    }, 30);
+    setTimeout(() => clearInterval(interval), 1500);
+  };
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (window.location.hash) window.history.replaceState(null, '', '/');
     }
   };
 
@@ -65,11 +89,18 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,box-shadow] duration-500 ease-in-out ${scrolled ? 'bg-aphoria-bg border-b border-aphoria-black/15 shadow-sm' : 'bg-transparent'}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,box-shadow] duration-500 ease-in-out ${
+        // Dark-hero pages (/ and /about) keep the navbar transparent until scrolled.
+        // Every other page always has the solid bg so copy never bleeds through.
+        scrolled || !isDarkHeroPage
+          ? 'bg-aphoria-bg border-b border-aphoria-black/15 shadow-sm'
+          : 'bg-transparent'
+      }`}>
         <div className="relative z-10 w-full px-6 md:px-12 py-5 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <Link
               to="/"
+              onClick={handleLogoClick}
               className="group flex items-center gap-3 transition-transform duration-300 hover:scale-[1.02]"
             >
               <Logo className={`h-10 md:h-12 w-auto ${brandTone}`} />
@@ -91,7 +122,6 @@ const Navbar: React.FC = () => {
           <div className="hidden md:flex items-center gap-10" style={{ textShadow: textGlow }}>
             <Link to="/product/24-gold-mask" className={`text-[11px] font-bold uppercase tracking-[0.22em] text-aphoria-gold hover:text-aphoria-black transition-colors duration-300`}>Gold Mask</Link>
             <Link to="/product/avocado-mask" className={`text-[11px] font-bold uppercase tracking-[0.22em] text-aphoria-green hover:text-aphoria-black transition-colors duration-300`}>Avocado Mask</Link>
-            <a href="/#science" onClick={(e) => handleAnchorClick(e, '#science')} className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Science</a>
             <a href="/#ritual" onClick={(e) => handleAnchorClick(e, '#ritual')} className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Ritual</a>
             <a href="/#bundle" onClick={(e) => handleAnchorClick(e, '#bundle')} className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Bundle</a>
             <Link to="/contact" className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300 ${linkTone}`}>Contact</Link>
@@ -176,7 +206,6 @@ const Navbar: React.FC = () => {
         <div className="flex flex-col text-[16px] font-medium uppercase tracking-[0.2em] text-white/85">
           <Link to="/product/24-gold-mask" onClick={() => setIsMenuOpen(false)} className="py-3 border-b border-white/10 text-aphoria-gold">24 Gold Mask</Link>
           <Link to="/product/avocado-mask" onClick={() => setIsMenuOpen(false)} className="py-3 border-b border-white/10 text-[#6aad6a]">Avocado Mask</Link>
-          <a href="/#science" onClick={(e) => { setIsMenuOpen(false); handleAnchorClick(e, '#science'); }} className="py-3 border-b border-white/10">Science</a>
           <a href="/#ritual" onClick={(e) => { setIsMenuOpen(false); handleAnchorClick(e, '#ritual'); }} className="py-3 border-b border-white/10">Ritual</a>
           <a href="/#bundle" onClick={(e) => { setIsMenuOpen(false); handleAnchorClick(e, '#bundle'); }} className="py-3 border-b border-white/10">Bundle</a>
           <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="py-3">Contact</Link>

@@ -1,47 +1,22 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ChevronRight, FlaskConical } from 'lucide-react';
-import OptimizedImage from './OptimizedImage';
+import { ChevronRight, ChevronDown } from 'lucide-react';
 import { HERO_COPY } from '../constants';
 
+// Premium beauty hero — single visual focus, single primary CTA.
+// Reference: Augustinus Bader / La Mer / Sisley 2026 visual language.
 const Hero: React.FC = () => {
-  const [videoReady, setVideoReady] = useState(false);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Force autoplay on mobile — some browsers block autoplay even with muted attribute
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    const tryPlay = () => {
-      v.play().catch(() => {
-        // Retry on first user interaction if autoplay was blocked
-        const handler = () => {
-          v.play().catch(() => {});
-          document.removeEventListener('touchstart', handler);
-          document.removeEventListener('click', handler);
-        };
-        document.addEventListener('touchstart', handler, { once: true, passive: true });
-        document.addEventListener('click', handler, { once: true });
-      });
-    };
-    if (v.readyState >= 3) {
-      tryPlay();
-    } else {
-      v.addEventListener('canplay', tryPlay, { once: true });
-    }
-  }, []);
-
-  // Lightweight scroll indicator fade — replaces useScroll() + useTransform()
+  // Subtle fade of the scroll cue as the user starts scrolling
   useEffect(() => {
     const el = scrollIndicatorRef.current;
     if (!el) return;
-    let raf: number;
+    let raf = 0;
     const onScroll = () => {
       raf = requestAnimationFrame(() => {
-        const opacity = Math.max(0, 1 - window.scrollY / 400);
-        el.style.opacity = String(opacity);
+        el.style.opacity = String(Math.max(0, 1 - window.scrollY / 320));
       });
     };
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -50,97 +25,84 @@ const Hero: React.FC = () => {
       cancelAnimationFrame(raf);
     };
   }, []);
-  const stars = Array.from({ length: 5 });
-  const highlightWord = 'Younger in 30 Days.';
+
+  const highlightWord = 'Younger from Day One.';
   const headingParts = HERO_COPY.h1.split(highlightWord);
-  const clientImages = [
-    {
-      src: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&w=160&h=160&q=80",
-      alt: "Cliente verificada 1"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=facearea&w=160&h=160&q=80",
-      alt: "Cliente verificada 2"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?auto=format&fit=facearea&w=160&h=160&q=80",
-      alt: "Cliente verificada 3"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=facearea&w=160&h=160&q=80",
-      alt: "Cliente verificada 4"
-    }
+
+  // Three credentialing pills — rendered with proper glassmorphism + hover lift.
+  const pills: { label: string; value: string }[] = [
+    { label: 'Regimen', value: 'Night + Day' },
+    { label: 'Formula', value: 'Clinical Grade' },
+    { label: 'Result', value: 'Visible Renewal' },
   ];
 
-
   return (
-    <section className="relative h-screen w-full overflow-hidden flex items-end pb-24 md:pb-28 bg-black">
-      {/* Cinematic Video Background - Maximum Quality */}
+    <section className="relative h-screen min-h-[640px] w-full overflow-hidden flex items-end pb-10 md:pb-28 bg-black">
+      {/* Hero image — 2K WebP, no video. Object position keeps the model's face
+          on the right third while the copy lives on the left. */}
       <div className="absolute inset-0 z-0 bg-black">
-        {/* Subtle Overlay - Premium contrast for text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/15 via-black/5 to-black/20 z-10 pointer-events-none"></div>
-
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg=="
-          className="w-full h-full object-cover object-center"
+        <img
+          src="/hero/hero-main.webp"
+          alt="Aphoria Beauty — clinical skincare"
+          className="absolute inset-0 h-full w-full object-cover"
           style={{
-            transform: 'translate3d(0,0,0)',
-            willChange: 'transform',
-            backgroundColor: '#000000'
+            objectPosition: '60% center',
+            // Subtle in-browser sharpening + warmth — preserves 2K source quality,
+            // just lifts the contrast and saturation a notch so the image reads crisp.
+            filter: 'contrast(1.06) saturate(1.08) brightness(1.03)',
+            imageRendering: '-webkit-optimize-contrast',
           }}
-          onCanPlay={() => setVideoReady(true)}
-          onPlaying={() => setVideoReady(true)}
-        >
-          <source src="/Hero%20video/APHORIA-HERO.mp4" type="video/mp4" />
-        </video>
-
-        {/* Black overlay — hides gray first frame until video is ready */}
-        <div
-          className="absolute inset-0 z-10 pointer-events-none bg-black transition-opacity duration-700"
-          style={{ opacity: videoReady ? 0 : 1 }}
+          fetchPriority="high"
+          decoding="async"
         />
 
-        {/* Bottom Gradient for Text Legibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent z-10 pointer-events-none"></div>
+        {/* Editorial overlay — only a soft darken on the lower-left where copy sits.
+            Reduced from /65 to /40 so the source image stays crisp and luminous. */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-black/8 to-transparent" />
+        {/* Subtle bottom fade for the CTA area — softened from /50 to /30 */}
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/30 to-transparent" />
       </div>
 
-      {/* Content Section - Professional Editorial Layout */}
+      {/* Content */}
       <div className="relative z-20 w-full max-w-[1360px] mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-          className="relative max-w-lg"
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="relative max-w-xl"
         >
-          <div className="flex flex-wrap items-center gap-4 mb-5">
-            <div className="inline-flex items-center gap-3 rounded-full border border-aphoria-gold/30 bg-white/5 px-4 py-2 text-[8px] uppercase tracking-[0.3em] text-white/85 backdrop-blur">
-              Instant Results
-              <span className="h-[1px] w-6 bg-aphoria-gold/50"></span>
-              30-Day Protocol
-            </div>
-          </div>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+          {/* Eyebrow badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="font-brand text-[26px] md:text-[36px] lg:text-[42px] font-medium leading-[1.18] tracking-[-0.01em] mb-3"
+            transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-flex items-center gap-3 mb-4 md:mb-7"
+          >
+            <span className="h-[1px] w-6 md:w-8 bg-aphoria-gold/70" />
+            <span className="text-[9px] md:text-[10px] uppercase tracking-[0.32em] md:tracking-[0.36em] text-white/85">
+              Signature Treatment
+            </span>
+            <span className="hidden md:inline-block h-[3px] w-[3px] rounded-full bg-aphoria-gold/70" />
+            <span className="hidden md:inline-block text-[10px] uppercase tracking-[0.36em] text-white/65">
+              Clinical Formula
+            </span>
+          </motion.div>
+
+          {/* Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="font-brand text-[26px] md:text-[52px] lg:text-[60px] font-light leading-[1.1] md:leading-[1.05] tracking-[-0.02em] mb-3 md:mb-6"
             style={{
-              color: '#F5EFE6',
-              textShadow: '0 2px 20px rgba(0,0,0,0.5), 0 4px 40px rgba(0,0,0,0.3)',
-              WebkitFontSmoothing: 'antialiased',
-              MozOsxFontSmoothing: 'grayscale'
+              color: '#F6EFE3',
+              textShadow: '0 2px 24px rgba(0,0,0,0.45)',
             }}
           >
             {headingParts.length > 1 ? (
               <>
                 {headingParts[0]}
-                <span className="text-aphoria-gold">{highlightWord}</span>
+                <span className="italic text-aphoria-gold font-extralight">{highlightWord}</span>
                 {headingParts.slice(1).join(highlightWord)}
               </>
             ) : (
@@ -148,182 +110,116 @@ const Hero: React.FC = () => {
             )}
           </motion.h1>
 
-          {/* Social Proof - MOVED UP */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-wrap items-center gap-4 mb-4"
-          >
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-[2px] text-aphoria-gold">
-                {stars.map((_, index) => (
-                  <svg
-                    key={index}
-                    viewBox="0 0 24 24"
-                    className="h-4 w-4"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 2l2.83 6.02 6.64.57-5 4.33 1.5 6.5L12 16.9 6.03 19.4l1.5-6.5-5-4.33 6.64-.57L12 2z" />
-                  </svg>
-                ))}
-              </div>
-              <div className="text-[12px] font-medium text-white">4.9</div>
-            </div>
-            <div className="h-4 w-[1px] bg-white/30"></div>
-            <div className="text-[11px] uppercase tracking-[0.22em] text-white/80">
-              <strong className="font-semibold">10,247</strong> Verified Women
-            </div>
-          </motion.div>
-
-          <p className="hidden md:block text-[9px] uppercase tracking-[0.24em] text-white/80 mb-4">
-            Instant radiance · barrier repair · visible firmness · from day one
-          </p>
+          {/* Subhead — single line, calm */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="text-[13px] md:text-[15px] lg:text-[16px] font-normal leading-[1.6] mb-4 md:mb-8 max-w-md"
-            style={{
-              color: '#FFFFFF',
-              opacity: 0.95,
-              textShadow: '0 2px 15px rgba(0,0,0,0.4)',
-              WebkitFontSmoothing: 'antialiased',
-              MozOsxFontSmoothing: 'grayscale'
-            }}
+            transition={{ duration: 1, delay: 0.32, ease: [0.22, 1, 0.36, 1] }}
+            className="text-[13px] md:text-[17px] font-light leading-[1.5] md:leading-[1.55] text-white/90 max-w-lg mb-5 md:mb-8"
+            style={{ textShadow: '0 2px 16px rgba(0,0,0,0.4)' }}
           >
-            {HERO_COPY.subheadline}
+            Clinical results from day one — or your money back.
           </motion.p>
 
-          {/* Guarantee Badge - MOVED UP & ENHANCED */}
+          {/* Primary CTA — single point of action */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="hidden md:inline-flex mb-6 items-center gap-2.5 rounded-full border border-aphoria-gold/40 bg-white/10 px-5 py-3 text-[11px] uppercase tracking-[0.24em] text-white backdrop-blur-sm"
-          >
-            <svg className="w-5 h-5 text-aphoria-gold" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span className="font-medium">30-Day Money-Back</span>
-            <span className="text-white/60">•</span>
-            <span className="font-medium">Free Shipping</span>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col sm:flex-row items-start sm:items-center gap-3"
+            transition={{ duration: 1, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col items-start gap-4"
           >
             <Link
               to="/product/24-gold-mask"
-              className="inline-flex items-center gap-3 px-12 py-4 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-500 shadow-lg hover:shadow-xl group"
-              style={{ backgroundColor: '#0F3B2E', color: 'white' }}
-              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#C6A15B'; (e.currentTarget as HTMLAnchorElement).style.color = '#111111'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#0F3B2E'; (e.currentTarget as HTMLAnchorElement).style.color = 'white'; }}
+              className="primary-cta-glow group inline-flex items-center gap-3 md:gap-4 rounded-full bg-aphoria-gold px-7 md:px-10 py-[14px] md:py-[18px] text-[10px] md:text-[11px] font-semibold uppercase tracking-[0.24em] md:tracking-[0.28em] text-aphoria-black shadow-[0_18px_50px_-12px_rgba(198,161,91,0.6)] transition-all duration-500 hover:shadow-[0_24px_60px_-12px_rgba(198,161,91,0.85)] hover:-translate-y-0.5"
             >
               Start My Transformation
-              <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform ml-2" />
+              <ChevronRight
+                size={15}
+                className="transition-transform duration-500 group-hover:translate-x-1"
+              />
             </Link>
-            <a href="#science" className="rounded-full border border-white/30 bg-white/5 px-6 py-[12px] text-[9px] font-semibold uppercase tracking-[0.24em] text-white/90 backdrop-blur transition-all duration-500 hover:border-white/60 hover:text-white">
-              {HERO_COPY.ctaSecondary}
+
+            <a
+              href="#science"
+              className="group inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-white/80 hover:text-aphoria-gold transition-colors duration-500"
+            >
+              <span className="border-b border-white/30 group-hover:border-aphoria-gold transition-colors duration-500 pb-0.5">
+                Learn the science
+              </span>
+              <ChevronRight size={11} className="opacity-70 group-hover:translate-x-0.5 transition-transform duration-500" />
             </a>
           </motion.div>
 
+          {/* Social proof — one calm line */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.7 }}
-            className="mt-3 hidden md:flex flex-wrap items-center gap-4"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-9 flex items-center gap-4 text-white/85"
           >
-            <span className="text-[10px] text-white/50 uppercase tracking-[0.2em]">
-              {HERO_COPY.perUse}
+            <div className="flex items-center gap-[3px] text-aphoria-gold">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <svg key={i} viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2l2.83 6.02 6.64.57-5 4.33 1.5 6.5L12 16.9 6.03 19.4l1.5-6.5-5-4.33 6.64-.57L12 2z" />
+                </svg>
+              ))}
+            </div>
+            <span className="text-[11px] font-medium tracking-wide">4.9</span>
+            <span className="h-3 w-[1px] bg-white/25" />
+            <span className="text-[10px] uppercase tracking-[0.24em] text-white/70">
+              <strong className="font-semibold text-white/90">10,247</strong>{' '}
+              Verified Women
             </span>
-            <span className="text-white/20">·</span>
-            <Link
-              to="/diagnostic"
-              className="flex items-center gap-1.5 text-[10px] text-aphoria-gold/80 hover:text-aphoria-gold transition-colors underline underline-offset-2"
-            >
-              <FlaskConical size={11} />
-              {HERO_COPY.quizCta} →
-            </Link>
           </motion.div>
 
+          {/* Credentialing pills — real glassmorphism + hover lift */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-8 hidden md:flex flex-wrap items-center gap-5"
+            transition={{ duration: 1, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-12 hidden md:grid grid-cols-3 gap-4 max-w-lg"
           >
-            <div className="flex items-center gap-3">
-              <div className="flex -space-x-2">
-                {clientImages.map((client, index) => (
-                  <OptimizedImage
-                    key={client.src}
-                    src={client.src}
-                    alt={client.alt}
-                    width={32}
-                    height={32}
-                    className="h-8 w-8 rounded-full border border-white/30 object-cover"
-                    style={{ zIndex: 4 - index }}
-                    loading="eager"
-                    decoding="async"
-                  />
-                ))}
-              </div>
-              <div className="text-[10px] uppercase tracking-[0.22em] text-white/70">Verified women clients</div>
-            </div>
-          </motion.div>
-
-          <div className="mt-8 overflow-hidden hidden md:block">
-            <div className="whitespace-nowrap text-[10px] uppercase tracking-[0.26em] text-white/65">
-              <span className="inline-block animate-[marquee_18s_linear_infinite]">
-                Barrier repair / Collagen support / Clinical grade / Dermal resilience / Sensitive-skin safe /
-              </span>
-              <span className="inline-block animate-[marquee_18s_linear_infinite] ml-6">
-                Barrier repair / Collagen support / Clinical grade / Dermal resilience / Sensitive-skin safe /
-              </span>
-            </div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-10 hidden md:flex flex-wrap gap-3"
-          >
-            <div className="rounded-2xl border border-white/15 bg-white/5 px-5 py-3 backdrop-blur">
-              <div className="text-[9px] uppercase tracking-[0.28em] text-white/70 mb-2">Regimen</div>
-              <div className="text-[15px] font-medium text-white">Night + Day</div>
-            </div>
-            <div className="rounded-2xl border border-white/15 bg-white/5 px-5 py-3 backdrop-blur">
-              <div className="text-[9px] uppercase tracking-[0.28em] text-white/70 mb-2">Formula</div>
-              <div className="text-[15px] font-medium text-white">Clinical Grade</div>
-            </div>
-            <div className="rounded-2xl border border-white/15 bg-white/5 px-5 py-3 backdrop-blur">
-              <div className="text-[9px] uppercase tracking-[0.28em] text-white/70 mb-2">Result</div>
-              <div className="text-[15px] font-medium text-white">Visible Renewal</div>
-            </div>
+            {pills.map((p, i) => (
+              <motion.div
+                key={p.label}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.78 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{ y: -4 }}
+                className="group relative overflow-hidden rounded-2xl px-5 py-4 cursor-default transition-all duration-500
+                           border border-white/20 bg-white/[0.08] backdrop-blur-xl
+                           shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_18px_36px_-18px_rgba(0,0,0,0.6)]
+                           hover:border-aphoria-gold/50 hover:bg-white/[0.12]
+                           hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_24px_50px_-18px_rgba(198,161,91,0.45)]"
+              >
+                {/* gold inner glow on hover */}
+                <span className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{ background: 'radial-gradient(120% 80% at 50% 0%, rgba(198,161,91,0.18), transparent 70%)' }} />
+                <div className="relative z-10">
+                  <div className="text-[9px] uppercase tracking-[0.3em] text-white/65 mb-2">{p.label}</div>
+                  <div className="text-[15px] font-medium text-white tracking-tight transition-colors duration-500 group-hover:text-aphoria-gold">
+                    {p.value}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Scroll Indicator - Premium Animated */}
+      {/* Scroll cue — minimal, centered, no longer a vertical bar */}
       <div
         ref={scrollIndicatorRef}
-        className="absolute bottom-12 right-12 z-20 hidden md:flex flex-col items-center gap-4"
-        style={{ opacity: 1, transition: 'opacity 0.1s linear' }}
+        className="absolute bottom-7 left-1/2 -translate-x-1/2 z-20 hidden md:flex flex-col items-center gap-2 text-white/55"
+        style={{ transition: 'opacity 0.2s linear' }}
       >
-        <div className="h-20 w-[2px] bg-gradient-to-b from-white/40 to-white/10 relative overflow-hidden rounded-full">
-          <motion.div
-            animate={{ y: ["-100%", "100%"] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", repeatDelay: 0.5 }}
-            className="absolute inset-0 bg-gradient-to-b from-white/0 via-white to-white/0"
-          />
-        </div>
-        <span className="text-[9px] text-white/50 uppercase tracking-[0.25em] [writing-mode:vertical-lr] font-semibold">Scroll</span>
+        <span className="text-[9px] uppercase tracking-[0.4em]">Scroll</span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <ChevronDown size={14} />
+        </motion.div>
       </div>
     </section>
   );

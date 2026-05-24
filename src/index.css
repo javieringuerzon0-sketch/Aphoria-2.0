@@ -108,6 +108,36 @@
     border-radius: 3px;
   }
 
+  /* MOBILE TAP FEEDBACK — replaces desktop :hover (which doesn't exist on touch).
+     Applies a subtle press effect to ALL anchors and buttons site-wide on
+     touch devices, so every CTA feels responsive without us having to
+     hand-edit each component. Desktop is untouched (the `(hover: none) and
+     (pointer: coarse)` query excludes mouse devices). */
+  @media (hover: none) and (pointer: coarse) {
+    a:active,
+    button:active,
+    [role="button"]:active {
+      transform: scale(0.97);
+      filter: brightness(1.08);
+      transition: transform 80ms ease-out, filter 80ms ease-out;
+    }
+  }
+
+  /* PRIMARY CTA glow — applied only to elements with the `primary-cta-glow`
+     class (Lock In My Savings sticky bar + Hero Start My Transformation).
+     Sutile, slow box-shadow breath every 5s so the eye is drawn but not
+     distracted. We intentionally do NOT honor prefers-reduced-motion here
+     because Chrome mobile + battery saver toggles that flag without the
+     user realising, which would silently kill the glow that's meant to
+     signal "this is the primary action". */
+  @keyframes primaryCtaGlow {
+    0%, 100% { box-shadow: 0 8px 24px rgba(198, 161, 91, 0.18), 0 0 0 0 rgba(198, 161, 91, 0.0); }
+    50%      { box-shadow: 0 8px 32px rgba(198, 161, 91, 0.32), 0 0 0 6px rgba(198, 161, 91, 0.08); }
+  }
+  .primary-cta-glow {
+    animation: primaryCtaGlow 5s ease-in-out infinite;
+  }
+
   /* Respect reduced-motion preference */
   @media (prefers-reduced-motion: reduce) {
 
@@ -286,23 +316,3 @@
   }
 }
 
-/* Shopify Cart Styling */
-shopify-cart::part(dialog) {
-  border: none;
-  background: #FFFFFF;
-  max-width: 450px;
-  height: 100vh;
-  margin-right: 0;
-  box-shadow: -10px 0 50px rgba(0, 0, 0, 0.05);
-}
-
-shopify-cart::part(primary-button) {
-  background-color: var(--brand-primary);
-  border-radius: 2px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 13px;
-  padding: 18px;
-  color: white;
-}

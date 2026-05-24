@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useCartStore } from '../store/useCartStore';
 import OptimizedImage from './OptimizedImage';
-import { PRODUCTS, DISCOUNTS } from '../constants';
+import { PRODUCTS } from '../constants';
 import { pixel } from '../lib/metaPixel';
 
 const StickyBar: React.FC = () => {
@@ -37,29 +37,28 @@ const StickyBar: React.FC = () => {
 
   // Fix 4: Selective selectors — functions are stable refs, no unnecessary re-renders
   const addItem = useCartStore((s) => s.addItem);
-  const checkout = useCartStore((s) => s.checkout);
+  const openCart = useCartStore((s) => s.open);
 
   const goldMask = PRODUCTS.find(p => p.handle === '24-gold-mask');
   const avocadoMask = PRODUCTS.find(p => p.handle === 'avocado-mask');
   const bundleFullRegular = (goldMask?.variants['1pc'].regularPrice ?? 0) + (avocadoMask?.variants['1pc'].regularPrice ?? 0);
-  const bundlePrice = 77.40;
+  const bundlePrice = 99.99;
   const bundleSavings = Math.round(bundleFullRegular - bundlePrice);
 
-  const addBundleAndCheckout = () => {
+  const addBundleAndOpen = () => {
     const gold = PRODUCTS.find(p => p.handle === '24-gold-mask');
     const avocado = PRODUCTS.find(p => p.handle === 'avocado-mask');
     if (gold) {
       const v = gold.variants['1pc'];
       pixel.addToCart(gold.name, v.price);
-      addItem({ variantId: v.shopifyVariantId || `local-${v.id}`, title: gold.name, variantTitle: v.name, price: v.price, img: v.img });
+      addItem({ variantId: v.id, title: gold.name, variantTitle: v.name, price: v.price, img: v.img });
     }
     if (avocado) {
       const v = avocado.variants['1pc'];
       pixel.addToCart(avocado.name, v.price);
-      addItem({ variantId: v.shopifyVariantId || `local-${v.id}`, title: avocado.name, variantTitle: v.name, price: v.price, img: v.img });
+      addItem({ variantId: v.id, title: avocado.name, variantTitle: v.name, price: v.price, img: v.img });
     }
-    pixel.initiateCheckout(bundlePrice, 2);
-    checkout(DISCOUNTS.STICKY_BUNDLE);
+    openCart();
   };
 
   return (
@@ -137,14 +136,14 @@ const StickyBar: React.FC = () => {
                   ${bundleFullRegular.toFixed(2)}
                 </span>
                 <span className="text-[20px] md:text-[28px] font-bold text-aphoria-black tabular-nums">
-                  $77.40
+                  ${bundlePrice.toFixed(2)}
                 </span>
               </div>
 
               {/* CTA Button */}
               <button
-                onClick={addBundleAndCheckout}
-                className="inline-flex items-center gap-2 md:gap-3 px-6 md:px-12 py-3 md:py-4 min-h-[44px] bg-aphoria-black text-white rounded-full text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-500 shadow-lg hover:shadow-xl group"
+                onClick={addBundleAndOpen}
+                className="primary-cta-glow inline-flex items-center gap-2 md:gap-3 px-6 md:px-12 py-3 md:py-4 min-h-[44px] bg-aphoria-black text-white rounded-full text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-500 shadow-lg hover:shadow-xl group"
               >
                 Lock In My Savings
                 <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

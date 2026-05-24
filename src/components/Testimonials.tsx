@@ -1,229 +1,239 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 
-import OptimizedImage from './OptimizedImage';
-// Defined outside component — array is stable, never recreated on re-render
-const testimonials = [
+// Single-card horizontal testimonial slider — square image overlaps a wider
+// text panel on the right. Adapted from the design reference; recolored to
+// the Aphoria palette and wired to framer-motion spring transitions.
+interface Testimonial {
+  image: string;
+  quote: string;
+  name: string;
+  role: string;
+  rating: number;
+}
+
+const testimonials: Testimonial[] = [
   {
-    quote:
-      "I applied the Avocado Mask before bed and woke up with the softest, most hydrated skin I've had in years. By day 10, my texture was completely smooth. At 30 days, my skin looks genuinely younger.",
-    name: 'Emma Richardson',
-    role: 'Skincare Enthusiast',
-    image:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&w=160&h=160&q=80'
-  },
-  {
-    quote:
-      "The 24 Gold Mask gave me an instant glow the very first night. By morning, my skin was brighter and firmer. After 30 days, people think I had professional treatments. Pure luxury that actually works.",
-    name: 'Sophia Martinez',
-    role: 'Beauty Blogger',
-    image:
-      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=facearea&w=160&h=160&q=80'
-  },
-  {
-    quote:
-      "From the very first application I felt the difference — immediate hydration and glow. I alternate Gold evenings and Avocado mornings. 30 days in and my skin has reversed years of damage.",
-    name: 'Isabella Chen',
-    role: 'Verified Customer',
-    image:
-      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=facearea&w=160&h=160&q=80'
-  },
-  {
-    quote:
-      "I noticed firmer skin and reduced fine lines after the very first use of the Gold Mask. Day 7, my pores looked smaller. Day 30, my clients at the spa are asking what my secret is!",
-    name: 'Olivia Thompson',
-    role: 'Spa Director',
-    image:
-      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=facearea&w=160&h=160&q=80'
-  },
-  {
+    image: '/testimonios-slider/img-01.webp',
     quote:
       "The Avocado Mask gave my dry skin instant relief — plump and dewy within minutes. No product has ever worked this fast. After a month, I stopped wearing foundation entirely.",
     name: 'Natalie Brooks',
     role: 'Makeup Artist',
-    image:
-      'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=facearea&w=160&h=160&q=80'
+    rating: 5,
   },
   {
+    image: '/testimonios-slider/img-02.webp',
+    quote:
+      "From the very first application I felt the difference — immediate hydration and glow. I alternate Gold evenings and Avocado mornings. 30 days in and my skin has reversed years of damage.",
+    name: 'Isabella Chen',
+    role: 'Verified Customer',
+    rating: 5,
+  },
+  {
+    image: '/testimonios-slider/img-03.webp',
+    quote:
+      "The 24 Gold Mask gave me an instant glow the very first night. By morning, my skin was brighter and firmer. After 30 days, people think I had professional treatments. Pure luxury that actually works.",
+    name: 'Sophia Martinez',
+    role: 'Beauty Blogger',
+    rating: 5,
+  },
+  {
+    image: '/testimonios-slider/img-04.webp',
     quote:
       "Applied the Gold Mask before a client event — instant luminosity that lasted all day. My skin looked like I just left a facial. After 30 days of consistent use, the transformation is unreal.",
     name: 'Carmen Vasquez',
     role: 'Esthetician',
-    image:
-      'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=facearea&w=160&h=160&q=80'
+    rating: 5,
   },
   {
+    image: '/testimonios-slider/img-05.webp',
     quote:
-      "Day 1: instant calm and glow. Day 15: texture completely smooth. Day 30: my before/after photos are shocking. The Avocado Mask calms redness and the Gold Mask adds years-younger radiance.",
-    name: 'Rachel Kim',
-    role: 'Wellness Coach',
-    image:
-      'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=facearea&w=160&h=160&q=80'
-  }
+      "I noticed firmer skin and reduced fine lines after the very first use of the Gold Mask. Day 7, my pores looked smaller. Day 30, my clients at the spa are asking what my secret is!",
+    name: 'Olivia Thompson',
+    role: 'Spa Director',
+    rating: 5,
+  },
 ];
 
+const StarRating: React.FC<{ rating: number; className?: string }> = ({ rating, className = '' }) => (
+  <div className={`flex items-center gap-1 ${className}`}>
+    {Array.from({ length: 5 }).map((_, i) => {
+      const filled = i < rating;
+      // lucide-react sets fill="none" as an SVG attribute, which overrides any
+      // Tailwind fill-* class. Pass the fill prop directly so filled stars
+      // render solid gold instead of as outlines.
+      return (
+        <Star
+          key={i}
+          className={`h-4 w-4 ${filled ? 'text-aphoria-gold' : 'text-aphoria-mid/40'}`}
+          fill={filled ? 'currentColor' : 'none'}
+        />
+      );
+    })}
+  </div>
+);
+
 const Testimonials: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
 
+  const handleNext = useCallback(() => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  }, []);
+
+  const handlePrevious = useCallback(() => {
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  }, []);
+
+  // Autoplay — pauses on manual interaction by resetting the timer each time
+  // the index changes (the effect re-runs on currentIndex update).
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % testimonials.length);
+    const id = setInterval(() => {
+      setDirection(1);
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
     }, 7000);
-    return () => clearInterval(interval);
-  }, [testimonials.length]);
+    return () => clearInterval(id);
+  }, [currentIndex]);
 
-  const getCardStyle = (index: number) => {
-    const diff = (index - activeIndex + testimonials.length) % testimonials.length;
-    const isVisible = diff === 0 || diff === 1 || diff === testimonials.length - 1;
+  // Preload ALL testimonial images on mount so every slide change is instant.
+  // Without this, mobile users see the text panel arrive ~400ms before the
+  // image because each <img> only starts downloading when it mounts.
+  useEffect(() => {
+    testimonials.forEach((t) => {
+      const img = new window.Image();
+      img.src = t.image;
+    });
+  }, []);
 
-    if (diff === 0) {
-      // Center card (active)
-      return {
-        transform: 'translateX(0%) scale(1) rotateY(0deg)',
-        opacity: 1,
-        zIndex: 30,
-        willChange: 'transform, opacity' as const
-      };
-    } else if (diff === 1 || diff === -4) {
-      // Right card
-      return {
-        transform: 'translateX(35%) scale(0.85) rotateY(-12deg)',
-        opacity: 0.6,
-        zIndex: 20,
-        willChange: 'transform, opacity' as const
-      };
-    } else if (diff === testimonials.length - 1 || diff === -1) {
-      // Left card
-      return {
-        transform: 'translateX(-35%) scale(0.85) rotateY(12deg)',
-        opacity: 0.6,
-        zIndex: 20,
-        willChange: 'transform, opacity' as const
-      };
-    } else {
-      // Hidden cards — no willChange to avoid GPU memory waste
-      return {
-        transform: 'translateX(0%) scale(0.7) rotateY(0deg)',
-        opacity: 0,
-        zIndex: 10
-      };
-    }
+  const current = testimonials[currentIndex];
+
+  // Tighter spring → image and text settle together visually. The previous
+  // stiffness 260 / damping 30 left enough oscillation that on mobile (where
+  // image is stacked above text) the text appeared "to settle first". Bumping
+  // damping eliminates the perceived delay.
+  const slideVariants = {
+    hidden: (dir: number) => ({ x: dir > 0 ? '100%' : '-100%', opacity: 0 }),
+    visible: {
+      x: '0%',
+      opacity: 1,
+      transition: { type: 'spring' as const, stiffness: 320, damping: 38, mass: 0.8 },
+    },
+    exit: (dir: number) => ({
+      x: dir < 0 ? '100%' : '-100%',
+      opacity: 0,
+      transition: { type: 'spring' as const, stiffness: 320, damping: 38, mass: 0.8 },
+    }),
   };
 
   return (
     <section id="testimonials" className="py-20 md:py-28 bg-aphoria-bg overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20 [animation:fadeSlideIn_0.8s_ease-out_0.1s_both] animate-on-scroll">
-          <div className="inline-flex text-[13px] font-medium text-aphoria-gold rounded-none ring-0 mb-6 pt-1.5 pr-3.5 pb-1.5 pl-3.5 gap-x-2 gap-y-2 items-center">
-            <span className="uppercase text-[11px] text-aphoria-black/70 tracking-widest">
-              TESTIMONIALS
+        {/* Header — preserved from previous section */}
+        <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
+          <div className="inline-flex items-center gap-2 mb-6">
+            <span className="uppercase text-[11px] text-aphoria-black/70 tracking-[0.3em] font-medium">
+              Testimonials
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-brand font-light tracking-tight text-aphoria-black mb-4">
             Real Results, Real Stories
           </h2>
           <p className="text-base sm:text-lg text-aphoria-mid leading-relaxed">
-            Instant results from the first use. Visible transformation in 30 days. Discover why 10,247 women trust Aphoria for their skin.
+            Instant results from the first use. Visible transformation in 30 days. Discover why
+            10,247 women trust Aphoria for their skin.
           </p>
         </div>
 
-        {/* 3D Carousel */}
-        <div className="relative h-[420px] [animation:fadeSlideIn_0.8s_ease-out_0.2s_both] animate-on-scroll">
-          <div
-            className="absolute inset-0 flex items-center justify-center"
-            style={{ perspective: '1200px' }}
-          >
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="absolute w-full max-w-md"
-                style={{
-                  ...getCardStyle(index),
-                  transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1)'
-                }}
+        {/* Slider */}
+        <div className="relative w-full max-w-3xl mx-auto">
+          <div className="relative min-h-[460px] md:min-h-[340px] flex items-center justify-center overflow-hidden">
+            <AnimatePresence initial={false} custom={direction} mode="wait">
+              <motion.div
+                key={currentIndex}
+                custom={direction}
+                variants={slideVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="absolute inset-0 w-full"
               >
-                <div className="bg-white rounded-2xl shadow-2xl p-8 border border-aphoria-black/5">
-                  {/* Quote Icon */}
-                  <div className="mb-6">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="32"
-                      height="32"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="text-aphoria-gold"
-                    >
-                      <path d="M3 21c3 0 7-2 7-7V4H3v10"></path>
-                      <path d="M14 21c3 0 7-2 7-7V4h-7v10"></path>
-                    </svg>
+                <div className="flex flex-col md:flex-row items-center justify-center w-full h-full px-2 sm:px-4">
+                  {/* Image — square, overlaps the panel on desktop */}
+                  <div className="relative w-44 h-44 sm:w-52 sm:h-52 md:w-64 md:h-64 flex-shrink-0 mb-[-2.5rem] md:mb-0 md:mr-[-4rem] z-10">
+                    <img
+                      src={current.image}
+                      alt={current.name}
+                      className="w-full h-full object-cover rounded-2xl ring-1 ring-aphoria-gold/10"
+                      loading="eager"
+                      decoding="sync"
+                    />
                   </div>
 
-                  {/* Quote Text */}
-                  <p className="text-aphoria-black text-base leading-relaxed mb-8 min-h-[120px]">
-                    "{testimonial.quote}"
-                  </p>
-
-                  {/* Author Info */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <OptimizedImage
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        width={48}
-                        height={48}
-                        loading="lazy"
-                        className="h-12 w-12 rounded-full object-cover ring-2 ring-aphoria-gold/20"
-                        decoding="async"
-                      />
-                      <div>
-                        <div className="text-aphoria-black text-sm font-medium">
-                          {testimonial.name}
-                        </div>
-                        <div className="text-aphoria-mid text-xs">{testimonial.role}</div>
+                  {/* Text panel */}
+                  <div className="relative w-full bg-white text-aphoria-black rounded-2xl border border-aphoria-black/5 pt-12 md:pt-8 pl-5 md:pl-28 pr-5 md:pr-8 pb-6 md:pb-7">
+                    <Quote
+                      className="absolute top-4 left-4 md:left-24 h-7 w-7 text-aphoria-gold/25"
+                      aria-hidden="true"
+                    />
+                    <blockquote className="text-[14px] md:text-[15px] leading-relaxed text-aphoria-black/85 mb-4 italic">
+                      “{current.quote}”
+                    </blockquote>
+                    <StarRating rating={current.rating} className="mb-4" />
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="pr-2">
+                        <p className="font-medium text-[15px] md:text-[16px] text-aphoria-black tracking-tight">
+                          {current.name}
+                        </p>
+                        <p className="text-[12px] md:text-[13px] uppercase tracking-[0.2em] text-aphoria-mid mt-0.5">
+                          {current.role}
+                        </p>
                       </div>
-                    </div>
 
-                    {/* Rating - 5 Stars */}
-                    <div className="flex items-center gap-0.5">
-                      {[...Array(5)].map((_, i) => (
-                        <svg
-                          key={i}
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          className="text-aphoria-gold"
+                      {/* Navigation chevrons */}
+                      <div className="flex items-center gap-2 flex-shrink-0">
+                        <button
+                          onClick={handlePrevious}
+                          className="inline-flex items-center justify-center rounded-full h-10 w-10 bg-aphoria-bg hover:bg-aphoria-gold hover:text-white text-aphoria-black transition-colors focus:outline-none focus:ring-2 focus:ring-aphoria-gold/40 focus:ring-offset-2 focus:ring-offset-white"
+                          aria-label="Previous testimonial"
                         >
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                      ))}
+                          <ChevronLeft className="h-5 w-5" />
+                        </button>
+                        <button
+                          onClick={handleNext}
+                          className="inline-flex items-center justify-center rounded-full h-10 w-10 bg-aphoria-black hover:bg-aphoria-gold text-white transition-colors focus:outline-none focus:ring-2 focus:ring-aphoria-gold/40 focus:ring-offset-2 focus:ring-offset-white"
+                          aria-label="Next testimonial"
+                        >
+                          <ChevronRight className="h-5 w-5" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Dot indicators */}
+          <div className="flex justify-center gap-2 mt-10">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setDirection(index > currentIndex ? 1 : -1);
+                  setCurrentIndex(index);
+                }}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  currentIndex === index
+                    ? 'w-8 bg-aphoria-gold'
+                    : 'w-2 bg-aphoria-black/20 hover:bg-aphoria-black/40'
+                }`}
+                aria-label={`Go to testimonial ${index + 1}`}
+              />
             ))}
           </div>
-        </div>
-
-        {/* Navigation Dots */}
-        <div className="flex justify-center gap-2 mt-12">
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveIndex(index)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                index === activeIndex
-                  ? 'w-8 bg-aphoria-gold'
-                  : 'w-2 bg-aphoria-black/20 hover:bg-aphoria-black/40'
-              }`}
-              aria-label={`Go to testimonial ${index + 1}`}
-            />
-          ))}
         </div>
       </div>
     </section>

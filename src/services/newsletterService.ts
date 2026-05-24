@@ -35,6 +35,9 @@ export const subscribeToNewsletter = async (email: string): Promise<NewsletterRe
                 throw new Error(errorData.message || 'Subscription failed');
             }
 
+            // Store email so cart tracking can associate abandoned carts with this contact
+            try { localStorage.setItem('omnisend_email', email); } catch {}
+
             return { success: true };
         } catch (error) {
             console.error('Newsletter subscription error:', error);

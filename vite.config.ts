@@ -31,7 +31,6 @@ export default defineConfig(({ mode }) => {
             'react-vendor': ['react', 'react-dom', 'react-router-dom'],
             'motion': ['framer-motion'],
             'icons': ['lucide-react'],
-            'shopify': ['@shopify/hydrogen-react'],
             'store': ['zustand']
           }
         }

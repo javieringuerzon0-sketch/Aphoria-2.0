@@ -37,3 +37,7 @@ dist-ssr
 # Dev/utility scripts — not needed in production
 scripts/
 reset-images.mjs
+
+# Local tooling state (never commit — these are caches/logs, not project files)
+.playwright-mcp/
+.claude/

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { ChevronRight } from 'lucide-react';
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion';
 import { useCartStore } from '../store/useCartStore';
 import { PRODUCTS } from '../constants';
 import OptimizedImage from './OptimizedImage';
@@ -7,6 +8,104 @@ import OptimizedImage from './OptimizedImage';
 interface ProtocolTimelineProps {
     productHandle?: string;
 }
+
+interface ProtocolCardProps {
+    item: {
+        step: string;
+        title: string;
+        desc: string;
+        badge: string;
+        img: string;
+    };
+    index: number;
+}
+
+const ProtocolCard: React.FC<ProtocolCardProps> = ({ item, index }) => {
+    const reducedMotion = useReducedMotion();
+    const cardRef = useRef<HTMLDivElement>(null);
+
+    // 3D magnetic tilt (subtle, max 4 degrees)
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+    const springCfg = { stiffness: 150, damping: 20, mass: 0.4 };
+    const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-4, 4]), springCfg);
+    const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [3, -3]), springCfg);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (reducedMotion) return;
+        const rect = cardRef.current?.getBoundingClientRect();
+        if (!rect) return;
+        mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
+        mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
+    };
+    const handleMouseLeave = () => {
+        mouseX.set(0);
+        mouseY.set(0);
+    };
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.96 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.7, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="group relative flex flex-col"
+            style={{ perspective: 1200 }}
+        >
+            <motion.div
+                ref={cardRef}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                className="relative rounded-[20px] mb-8 overflow-hidden bg-white shadow-[0_20px_40px_-5px_rgba(0,0,0,0.1)] border border-aphoria-black/5 group-hover:shadow-[0_30px_60px_-10px_rgba(198,161,91,0.25)] transition-shadow duration-500"
+                style={{
+                    paddingBottom: '133.33%',
+                    rotateX: reducedMotion ? 0 : rotateX,
+                    rotateY: reducedMotion ? 0 : rotateY,
+                    transformStyle: 'preserve-3d',
+                }}
+            >
+                <OptimizedImage
+                    src={item.img}
+                    alt={item.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 w-full h-full object-cover object-center transition-all duration-[1.5s] ease-out group-hover:scale-105 group-hover:brightness-110"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    whileInView={{ scale: 1, rotate: 0 }}
+                    viewport={{ once: true, margin: '-80px' }}
+                    transition={{ duration: 0.6, delay: index * 0.15 + 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute top-6 left-6 w-10 h-10 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 flex items-center justify-center z-20"
+                >
+                    <span className="text-white text-xs font-bold tracking-widest">{item.step}</span>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-80px' }}
+                    transition={{ duration: 0.5, delay: index * 0.15 + 0.5, ease: 'easeOut' }}
+                    className="absolute top-6 right-6 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-white/40 z-20 shadow-sm"
+                >
+                    <span className="text-[9px] text-aphoria-black font-bold uppercase tracking-[0.2em]">{item.badge}</span>
+                </motion.div>
+            </motion.div>
+
+            <div className="text-center px-4">
+                <h3 className="text-2xl font-brand text-aphoria-black mb-3 group-hover:text-aphoria-gold transition-colors duration-300">
+                    {item.title}
+                </h3>
+                <p className="text-sm text-aphoria-mid/80 leading-relaxed max-w-xs mx-auto">
+                    {item.desc}
+                </p>
+            </div>
+        </motion.div>
+    );
+};
 
 const ProtocolTimeline: React.FC<ProtocolTimelineProps> = ({ productHandle = '24-gold-mask' }) => {
     const protocols: Record<string, any[]> = {
@@ -61,21 +160,19 @@ const ProtocolTimeline: React.FC<ProtocolTimelineProps> = ({ productHandle = '24
     const steps = protocols[productHandle] || protocols['24-gold-mask'];
 
     // Fix 4: Selective selectors — functions are stable refs, no unnecessary re-renders
-    const addItem = useCartStore((s) => s.addItem);
-    const checkout = useCartStore((s) => s.checkout);
+    const addItemAndOpen = useCartStore((s) => s.addItemAndOpen);
 
     const handleBeginProtocol = () => {
         const product = PRODUCTS.find(p => p.handle === productHandle);
         if (!product) return;
         const v = product.variants['1pc'];
-        addItem({
-            variantId: v.shopifyVariantId || `local-${v.id}`,
+        addItemAndOpen({
+            variantId: v.id,
             title: product.name,
             variantTitle: v.name,
             price: v.price,
             img: v.img,
         });
-        checkout();
     };
 
     return (
@@ -95,45 +192,7 @@ const ProtocolTimeline: React.FC<ProtocolTimelineProps> = ({ productHandle = '24
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
                     {steps.map((item, i) => (
-                        <div
-                            key={i}
-                            className="group relative flex flex-col"
-                        >
-                            {/* Card Container - Premium Tall Format */}
-                            <div className="relative rounded-[20px] mb-8 overflow-hidden bg-white shadow-[0_20px_40px_-5px_rgba(0,0,0,0.1)] border border-aphoria-black/5 group-hover:shadow-[0_30px_60px_-10px_rgba(198,161,91,0.25)] transition-shadow duration-500" style={{ paddingBottom: '133.33%' }}>
-                                {/* Image */}
-                                <OptimizedImage
-                                    src={item.img}
-                                    alt={item.title}
-                                    loading="lazy"
-                                    decoding="async"
-                                    className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-[1.5s] ease-out group-hover:scale-105"
-                                />
-
-                                {/* Overlay Gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                                {/* Step Number Badge */}
-                                <div className="absolute top-6 left-6 w-10 h-10 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 flex items-center justify-center z-20">
-                                    <span className="text-white text-xs font-bold tracking-widest">{item.step}</span>
-                                </div>
-
-                                {/* Premium Badge */}
-                                <div className="absolute top-6 right-6 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-white/40 z-20 shadow-sm">
-                                    <span className="text-[9px] text-aphoria-black font-bold uppercase tracking-[0.2em]">{item.badge}</span>
-                                </div>
-                            </div>
-
-                            {/* Text Content */}
-                            <div className="text-center px-4">
-                                <h3 className="text-2xl font-brand text-aphoria-black mb-3 group-hover:text-aphoria-gold transition-colors duration-300">
-                                    {item.title}
-                                </h3>
-                                <p className="text-sm text-aphoria-mid/80 leading-relaxed max-w-xs mx-auto">
-                                    {item.desc}
-                                </p>
-                            </div>
-                        </div>
+                        <ProtocolCard key={i} item={item} index={i} />
                     ))}
                 </div>
 

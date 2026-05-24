@@ -1,19 +1,46 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { motion } from 'framer-motion';
-import { X, Minus, Plus, ShoppingBag, Trash2, ArrowRight, Lock, Tag, CheckCircle2 } from 'lucide-react';
+import { X, Minus, Plus, ShoppingBag, Trash2, ArrowRight, Lock, Tag, CheckCircle2, ChevronLeft, Loader2 } from 'lucide-react';
 import { useCartStore } from '../store/useCartStore';
 import { DISCOUNTS } from '../constants';
-import OptimizedImage from './OptimizedImage';
-
-const FREE_SHIPPING_THRESHOLD = 50;
+import PayPalCheckout from './PayPalCheckout';
+import { pixel } from '../lib/metaPixel';
 
 const CartDrawer: React.FC = () => {
-  const { items, isOpen, isCheckingOut, close, removeItem, updateQuantity, checkout, subtotal, totalItems } = useCartStore();
+  // Selective Zustand selectors: each subscription only re-renders when its
+  // specific slice changes. Destructuring the whole store would cascade
+  // re-renders into every other component using useCartStore on every cart
+  // mutation — a known flicker source.
+  const items = useCartStore((s) => s.items);
+  const isOpen = useCartStore((s) => s.isOpen);
+  const close = useCartStore((s) => s.close);
+  const removeItem = useCartStore((s) => s.removeItem);
+  const updateQuantity = useCartStore((s) => s.updateQuantity);
+  const subtotal = useCartStore((s) => s.subtotal);
+  const totalItems = useCartStore((s) => s.totalItems);
   const sub = subtotal();
   const total = totalItems();
-  const shippingProgress = Math.min((sub / FREE_SHIPPING_THRESHOLD) * 100, 100);
-  const remaining = Math.max(FREE_SHIPPING_THRESHOLD - sub, 0);
 
+  // PayPal checkout view inside the drawer (secondary option)
+  const [showPayPal, setShowPayPal] = useState(false);
+  // Stripe checkout redirect state
+  const [stripeLoading, setStripeLoading] = useState(false);
+  const [stripeError, setStripeError] = useState<string | null>(null);
+
+  // Reset to cart view whenever the drawer closes or cart becomes empty
+  useLayoutEffect(() => {
+    if (!isOpen) {
+      setShowPayPal(false);
+      setStripeError(null);
+      setStripeLoading(false);
+    }
+  }, [isOpen]);
+  useLayoutEffect(() => {
+    if (items.length === 0) {
+      setShowPayPal(false);
+      setStripeError(null);
+    }
+  }, [items.length]);
   // ── Scroll lock — position:fixed on body prevents scroll-event cascade
   //    useLayoutEffect = synchronous, runs BEFORE the browser paints ─────
   useLayoutEffect(() => {
@@ -54,12 +81,12 @@ const CartDrawer: React.FC = () => {
 
   // Auto bundle beats manual code
   const activeDiscount = isBundleInCart ? DISCOUNTS.BUNDLE : (manualCode ?? undefined);
-  const BUNDLE_SAVINGS = 10;
+  const bundleSavingsAmt = isBundleInCart ? (sub * 0.10).toFixed(2) : '0.00';
 
   const applyCode = () => {
     const trimmed = codeInput.trim().toUpperCase();
     if (!trimmed) return;
-    // Basic validation — accepts any non-empty string, Shopify will validate at checkout
+    // Basic validation — accepts any non-empty string, Stripe will validate at checkout
     setManualCode(trimmed);
     setCodeError(false);
     setCodeInput('');
@@ -68,6 +95,43 @@ const CartDrawer: React.FC = () => {
   const removeCode = () => {
     setManualCode(null);
     setCodeError(false);
+  };
+  // ────────────────────────────────────────────────────────────────
+
+  // ── Stripe Checkout (primary payment method) ────────────────────
+  const handleStripeCheckout = async () => {
+    if (stripeLoading || items.length === 0) return;
+    setStripeError(null);
+    setStripeLoading(true);
+    try {
+      pixel.initiateCheckout(sub, total);
+      const email =
+        typeof window !== 'undefined'
+          ? localStorage.getItem('omnisend_email') || undefined
+          : undefined;
+      const res = await fetch('/api/stripe-create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: items.map((i) => ({
+            sku: i.variantId,
+            name: `${i.title} — ${i.variantTitle}`.trim(),
+            price: i.price,
+            quantity: i.quantity,
+            img: i.img,
+          })),
+          email,
+          discountCode: activeDiscount,
+        }),
+      });
+      const data = (await res.json()) as { url?: string; error?: string };
+      if (!data.url) throw new Error(data.error || 'Could not start Stripe checkout');
+      window.location.href = data.url;
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Could not start checkout';
+      setStripeError(msg);
+      setStripeLoading(false);
+    }
   };
   // ────────────────────────────────────────────────────────────────
 
@@ -121,29 +185,12 @@ const CartDrawer: React.FC = () => {
               </button>
             </div>
 
-            {/* Free Shipping Bar */}
-            {sub < FREE_SHIPPING_THRESHOLD && (
-              <div className="px-6 py-3 bg-aphoria-bg/60 border-b border-aphoria-black/5">
-                <p className="text-[10px] uppercase tracking-[0.24em] text-aphoria-mid mb-2">
-                  Add <span className="text-aphoria-black font-bold">${remaining.toFixed(2)}</span> for free shipping
-                </p>
-                <div className="h-[3px] w-full rounded-full bg-aphoria-black/8 overflow-hidden">
-                  <motion.div
-                    className="h-full bg-aphoria-gold rounded-full"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${shippingProgress}%` }}
-                    transition={{ duration: 0.6, ease: 'easeOut' }}
-                  />
-                </div>
-              </div>
-            )}
-            {sub >= FREE_SHIPPING_THRESHOLD && (
-              <div className="px-6 py-3 bg-aphoria-green/5 border-b border-aphoria-green/10">
-                <p className="text-[10px] uppercase tracking-[0.24em] text-aphoria-green font-semibold">
-                  ✓ Free shipping unlocked
-                </p>
-              </div>
-            )}
+            {/* Free Shipping — universal, no threshold */}
+            <div className="px-6 py-3 bg-aphoria-green/5 border-b border-aphoria-green/10">
+              <p className="text-[10px] uppercase tracking-[0.24em] text-aphoria-green font-semibold text-center">
+                ✓ Free Shipping On All Orders
+              </p>
+            </div>
 
             {/* Items */}
             <div className="flex-1 overflow-y-auto py-4 px-6 space-y-4">
@@ -240,7 +287,7 @@ const CartDrawer: React.FC = () => {
                     <CheckCircle2 size={15} className="text-aphoria-green flex-shrink-0" />
                     <div className="flex-1 min-w-0">
                       <p className="text-[11px] font-bold text-aphoria-green uppercase tracking-[0.2em]">Bundle discount applied</p>
-                      <p className="text-[10px] text-aphoria-mid">Code <span className="font-mono font-bold text-aphoria-black">{DISCOUNTS.BUNDLE}</span> — saves you <span className="font-bold text-aphoria-green">${BUNDLE_SAVINGS}.00</span></p>
+                      <p className="text-[10px] text-aphoria-mid">Code <span className="font-mono font-bold text-aphoria-black">{DISCOUNTS.BUNDLE}</span> — saves you <span className="font-bold text-aphoria-green">10% (−${bundleSavingsAmt})</span></p>
                     </div>
                   </motion.div>
                 )}
@@ -292,27 +339,69 @@ const CartDrawer: React.FC = () => {
                   <span className="text-[20px] font-light text-aphoria-black tabular-nums">${sub.toFixed(2)}</span>
                 </div>
 
-                {/* Checkout CTA */}
-                <button
-                  onClick={() => checkout(activeDiscount)}
-                  disabled={isCheckingOut}
-                  className="w-full flex items-center justify-center gap-3 bg-aphoria-black text-white rounded-full py-4 text-[11px] uppercase tracking-[0.28em] font-bold hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-500 shadow-lg disabled:opacity-60 disabled:cursor-not-allowed group"
-                >
-                  {isCheckingOut ? (
-                    <span>Processing...</span>
-                  ) : (
-                    <>
-                      <span>Secure My Transformation{activeDiscount ? ' — Discount Applied' : ''}</span>
-                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                    </>
-                  )}
-                </button>
+                {/* Checkout area: Stripe primary, PayPal secondary */}
+                {!showPayPal ? (
+                  <>
+                    {/* PRIMARY — Stripe Checkout (hosted, redirect) */}
+                    <button
+                      onClick={handleStripeCheckout}
+                      disabled={stripeLoading}
+                      className="w-full flex items-center justify-center gap-3 bg-aphoria-black text-white rounded-full py-4 text-[11px] uppercase tracking-[0.28em] font-bold hover:bg-aphoria-gold hover:text-aphoria-black transition-all duration-500 shadow-lg group disabled:opacity-70 disabled:cursor-not-allowed"
+                    >
+                      {stripeLoading ? (
+                        <>
+                          <Loader2 size={14} className="animate-spin" />
+                          <span>Redirecting…</span>
+                        </>
+                      ) : (
+                        <>
+                          <Lock size={12} />
+                          <span>Pay with Card{activeDiscount ? ' — Discount Applied' : ''}</span>
+                          <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                        </>
+                      )}
+                    </button>
 
-                {/* Trust */}
-                <div className="flex items-center justify-center gap-1.5 text-[9px] uppercase tracking-[0.22em] text-aphoria-mid">
-                  <Lock size={9} />
-                  Secure checkout · 30-Day Guarantee
-                </div>
+                    {stripeError && (
+                      <p className="text-[11px] text-red-600 text-center">{stripeError}</p>
+                    )}
+
+                    {/* OR separator */}
+                    <div className="flex items-center gap-3 text-aphoria-mid/60 pt-1">
+                      <div className="flex-1 h-px bg-aphoria-black/8" />
+                      <span className="text-[9px] uppercase tracking-[0.3em] font-semibold">or</span>
+                      <div className="flex-1 h-px bg-aphoria-black/8" />
+                    </div>
+
+                    {/* SECONDARY — PayPal Button (expand) */}
+                    <button
+                      onClick={() => setShowPayPal(true)}
+                      disabled={stripeLoading}
+                      className="w-full flex items-center justify-center gap-2 bg-white border border-aphoria-black/15 text-aphoria-black rounded-full py-3.5 text-[11px] uppercase tracking-[0.24em] font-semibold hover:border-aphoria-gold hover:text-aphoria-gold transition-all duration-300 disabled:opacity-50"
+                    >
+                      <span>Pay with PayPal</span>
+                    </button>
+
+                    <div className="flex items-center justify-center gap-1.5 text-[9px] uppercase tracking-[0.22em] text-aphoria-mid">
+                      <Lock size={9} />
+                      Secure checkout · 30-Day Guarantee
+                    </div>
+                  </>
+                ) : (
+                  <div className="space-y-3">
+                    <button
+                      onClick={() => setShowPayPal(false)}
+                      className="flex items-center gap-1 text-[10px] uppercase tracking-[0.24em] text-aphoria-mid hover:text-aphoria-black transition-colors"
+                    >
+                      <ChevronLeft size={12} />
+                      Back to cart
+                    </button>
+                    <PayPalCheckout
+                      discountCode={activeDiscount}
+                      onClose={() => setShowPayPal(false)}
+                    />
+                  </div>
+                )}
               </div>
             )}
           </motion.div>

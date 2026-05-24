@@ -1,7 +1,7 @@
 import { Ingredient, Product, ProtocolStep, Testimonial } from './types';
 
 // ─── Discount Codes ────────────────────────────────────────────────────────
-// These codes must exist in Shopify Admin → Discounts
+// These codes are validated server-side at Stripe Checkout.
 export const DISCOUNTS = {
   // Applied automatically when both products are in cart
   BUNDLE: 'APHORIA-BUNDLE',
@@ -10,12 +10,12 @@ export const DISCOUNTS = {
 } as const;
 
 export const HERO_COPY = {
-  h1: "Immediate Glow. Visibly Younger in 30 Days.",
+  h1: "Immediate Glow. Visibly Younger from Day One.",
   subheadline: "10,247 verified women. Instant radiance from the first use — or your full money back. No questions.",
   ctaPrimary: "Start My Transformation",
   ctaSecondary: "See Clinical Results",
-  guarantee: "30-Day Money-Back Guarantee • Free Shipping • Dermatologist Tested",
-  perUse: "As low as $1.39/use",
+  guarantee: "Money-Back Guarantee • Free Shipping • Dermatologist Tested",
+  perUse: "As low as $3.67/use",
   quizCta: "Not sure which mask? Take the 60-sec quiz"
 };
 
@@ -69,28 +69,30 @@ export const PRODUCTS: Product[] = [
     size: "50ml",
     usage: "Apply 2-3 times weekly for 15-20 minutes",
     recommended: "Best for dull, aging skin",
-    perUsePrice: 1.39,
+    perUsePrice: 3.67,
     // HOMEPAGE GALLERY CARD IMAGE
     galleryImg: '/productos%20front/COLECION-GOLDMASK.webp',
     benefits: ['Instant radiance', 'Firms & lifts', 'Reduces fine lines'],
     variants: {
       '1pc': {
         name: '50g Clinical Tube',
-        price: 38.99,
-        regularPrice: 59.99,
+        price: 54.99,
+        regularPrice: 129.99,
         id: 'REF_GOLD_S1',
         // PRODUCT IMAGE for /product/24-gold-mask (1pc) — NEVER CHANGE
         img: '/goldmask-landing/producto/goldmask-original.webp',
-        shopifyVariantId: 'gid://shopify/ProductVariant/43113257631787'
+        // CJ Variant VID — set in Vercel env / mapping inside /api/_cj-client.ts.
+        // Leaving the runtime value off-code so you can rotate VIDs without redeploying.
+        cjVariantVid: undefined
       },
       '2pcs': {
         name: 'Double Protocol Set',
-        price: 45.99,
-        regularPrice: 119.98,
+        price: 69.99,
+        regularPrice: 259.99,
         id: 'REF_GOLD_M2',
         // PRODUCT IMAGE for /product/24-gold-mask (2pcs) — NEVER CHANGE
         img: '/goldmask-landing/producto/goldmask-2pcs-white.webp',
-        shopifyVariantId: 'gid://shopify/ProductVariant/43113257599019'
+        cjVariantVid: undefined
       }
     },
     ugc: [
@@ -118,7 +120,7 @@ export const PRODUCTS: Product[] = [
     accordions: [
       { title: "How to Use", content: "Apply a thin, even layer to cleansed skin. Leave for 15-20 minutes until the molecular synthesis is complete. Rinse with lukewarm water. Use 2-3 times per week for optimal dermal transformation." },
       { title: "Key Ingredients", content: "Aqua/Water, 24K Colloidal Gold, Snail Secretion Filtrate, Hydrolyzed Peptides, Hyaluronic Acid, Glycerin, Tocopherol." },
-      { title: "Shipping & Returns", content: "All orders ship within 24 hours. Free shipping on orders over $50. Protected by our 30-Day Money-Back Guarantee — no questions asked." }
+      { title: "Shipping & Returns", content: "All orders ship within 24 hours. Free shipping on every order — no minimum. Protected by our 30-Day Money-Back Guarantee — no questions asked." }
     ],
     videoSection: {
       headline: "Beyond Cosmetics.",
@@ -166,19 +168,19 @@ export const PRODUCTS: Product[] = [
     size: "60 patch",
     usage: "Apply 2-3 times weekly for 15-20 minutes",
     recommended: "Best for dry, sensitive skin",
-    perUsePrice: 1.57,
+    perUsePrice: 1.05,
     // HOMEPAGE GALLERY CARD IMAGE
     galleryImg: '/productos%20front/COLECION-AVOCADOMASK%20(1).webp',
     benefits: ['Deep hydration', 'Soothes irritation', 'Strengthens barrier'],
     variants: {
       '1pc': {
         name: '60 Patches',
-        price: 46.99,
-        regularPrice: 59.99,
+        price: 62.99,
+        regularPrice: 149.99,
         id: 'REF_AVO_S1',
         // PRODUCT IMAGE for /product/avocado-mask — NEVER CHANGE
         img: '/avocado-landing/producto/avocado-original.webp',
-        shopifyVariantId: 'gid://shopify/ProductVariant/43113253601323'
+        cjVariantVid: undefined
       }
     },
     ugc: [
@@ -211,7 +213,7 @@ export const PRODUCTS: Product[] = [
     accordions: [
       { title: "How to Use", content: "Apply a generous layer to clean skin. Relax for 15-20 minutes allowing the lipids to penetrate. Rinse gently or tissue off excess for overnight recovery. Use 2-3 times per week." },
       { title: "Key Ingredients", content: "Aqua/Water, Persea Gratissima (Avocado) Oil, Ceramide NP, Centella Asiatica, Hyaluronic Acid, Shea Butter, Tocopherol." },
-      { title: "Shipping & Returns", content: "All orders ship within 24 hours. Free shipping on orders over $50. Protected by our 30-Day Money-Back Guarantee — no questions asked." }
+      { title: "Shipping & Returns", content: "All orders ship within 24 hours. Free shipping on every order — no minimum. Protected by our 30-Day Money-Back Guarantee — no questions asked." }
     ],
     videoSection: {
       headline: "Barrier Restoration.",

@@ -1,9 +1,11 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
 import { Agentation } from 'agentation';
 import Navbar from './components/Navbar';
 import ErrorBoundary from './components/ErrorBoundary';
 import CartDrawer from './components/CartDrawer';
+import { useOmnisendCartSync } from './hooks/useOmnisendCartSync';
 
 import ExitIntent from './components/ExitIntent';
 import LiveNotifications from './components/LiveNotifications';
@@ -29,6 +31,7 @@ const Footer = lazy(() => import('./components/Footer'));
 const ProductDetail = lazy(() => import('./pages/ProductDetail'));
 
 function AppInner() {
+  useOmnisendCartSync();
   const location = useLocation();
   const isThankYou = location.pathname === '/thank-you';
   const isLandingPage = location.pathname.startsWith('/lp/');
@@ -80,9 +83,18 @@ function AppInner() {
 function App() {
   return (
     <ErrorBoundary>
-      <Router>
-        <AppInner />
-      </Router>
+      {/* reducedMotion="never" forces framer-motion to ignore the OS-level
+          prefers-reduced-motion: reduce setting. We do this because Chrome
+          mobile + battery saver flips that preference on silently, which
+          killed every whileInView / scroll animation in the site — the entire
+          About page felt static on mobile because of it. The animations here
+          are part of the brand experience (count-ups, card reveals, hero
+          fades), not decoration, so we always show them. */}
+      <MotionConfig reducedMotion="never">
+        <Router>
+          <AppInner />
+        </Router>
+      </MotionConfig>
     </ErrorBoundary>
   );
 }

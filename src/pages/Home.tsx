@@ -1,6 +1,6 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import Hero from '../components/Hero';
-import TrustBar from '../components/TrustBar';
+import StickyStorytelling from '../components/StickyStorytelling';
 import SkeletonSection from '../components/SkeletonSection';
 // Lazy load components below the fold
 const Manifesto = lazy(() => import('../components/Manifesto'));
@@ -45,7 +45,7 @@ function Home() {
         <div className="bg-aphoria-bg">
             <main>
                 <Hero />
-                <TrustBar />
+                <StickyStorytelling />
                 <Suspense fallback={<SkeletonSection height="300px" />}><Manifesto /></Suspense>
                 <div className="below-fold"><Suspense fallback={<SkeletonSection height="100vh" />}><ProductHero /></Suspense></div>
                 <div className="below-fold"><Suspense fallback={<SkeletonSection height="100vh" />}><ProductVideoHero /></Suspense></div>

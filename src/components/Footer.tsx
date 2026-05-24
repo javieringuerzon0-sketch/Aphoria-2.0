@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
   const faqs = [
     {
       question: "What makes Aphoria different?",
-      answer: "Aphoria combines clinical-grade bioactive ingredients with luxurious formulations. Our 28-day protocols are backed by dermatological science and designed for measurable transformation."
+      answer: "Aphoria combines clinical-grade bioactive ingredients with luxurious formulations. Results are immediate — most clients feel the difference within minutes of the first application. Our 28-day protocols are backed by dermatological science for incredible, lasting transformation."
     },
     {
       question: "How do I use the 24 Gold Mask?",
@@ -89,9 +89,6 @@ const Footer: React.FC = () => {
               <Link to="/product/avocado-mask" className="hover:text-aphoria-gold transition-colors duration-200">
                 Avocado Mask
               </Link>
-              <a href="/#science" onClick={(e) => goToSection(e, 'science')} className="hover:text-aphoria-gold transition-colors duration-200">
-                Science
-              </a>
               <a href="/#ritual" onClick={(e) => goToSection(e, 'ritual')} className="hover:text-aphoria-gold transition-colors duration-200">
                 Ritual
               </a>

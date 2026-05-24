@@ -37,12 +37,12 @@ const ProductLanding: React.FC = () => {
 
     const handleBuyNow = () => {
         pixel.addToCart(product.name, variant.price);
-        addItemAndOpen({ variantId: variant.shopifyVariantId || `local-${variant.id}`, title: product.name, variantTitle: variant.name, price: variant.price, img: variant.img });
+        addItemAndOpen({ variantId: variant.id, title: product.name, variantTitle: variant.name, price: variant.price, img: variant.img });
     };
 
     const handleAddCart = () => {
         pixel.addToCart(product.name, variant.price);
-        addItemAndOpen({ variantId: variant.shopifyVariantId || `local-${variant.id}`, title: product.name, variantTitle: variant.name, price: variant.price, img: variant.img });
+        addItemAndOpen({ variantId: variant.id, title: product.name, variantTitle: variant.name, price: variant.price, img: variant.img });
     };
 
     return (
@@ -166,7 +166,7 @@ const ProductLanding: React.FC = () => {
                             </div>
                             <div className="flex items-center gap-2 text-[11px] text-aphoria-mid">
                                 <Truck size={15} className="text-aphoria-gold" />
-                                Free Shipping +$50
+                                Free Shipping Worldwide
                             </div>
                             <div className="flex items-center gap-2 text-[11px] text-aphoria-mid">
                                 <RefreshCw size={15} className="text-aphoria-gold" />

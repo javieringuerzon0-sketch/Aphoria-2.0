@@ -35,12 +35,12 @@ const Newsletter: React.FC = () => {
                 Get 10% Off <br /> <span className="italic font-serif text-aphoria-gold">Your First Order.</span>
               </h2>
               <p className="text-aphoria-mid/70 text-sm leading-relaxed max-w-sm mb-6">
-                Join 10,247 women in the Aphoria Inner Circle and get your discount code instantly — plus our free 28-Day Clinical Protocol PDF.
+                Join 10,247 women in the Aphoria Inner Circle and get your discount code instantly — plus our free Clinical Protocol PDF (feel results in minutes, incredible at 28 days).
               </p>
               <div className="space-y-3">
                 {[
                   '10% off your first order (code sent instantly)',
-                  'Free 28-Day Clinical Protocol PDF',
+                  'Free Clinical Protocol PDF — Instant & 28-Day Results',
                   'Early access to new products',
                   'Member-only pricing & restocks',
                 ].map((item) => (
@@ -79,7 +79,7 @@ const Newsletter: React.FC = () => {
                       Copy
                     </button>
                   </div>
-                  <p className="text-[11px] text-aphoria-mid mt-3">Apply this code at checkout. The 28-Day Protocol PDF is on its way to your inbox.</p>
+                  <p className="text-[11px] text-aphoria-mid mt-3">Apply this code at checkout. Your Clinical Protocol PDF is on its way to your inbox — feel results in minutes, incredible at 28 days.</p>
                 </div>
               </div>
             ) : (

@@ -21,19 +21,21 @@ const TrustBar: React.FC = () => {
 
             return (
               <FadeInView key={index} delay={index * 80} className="relative group">
-                {/* Card Container */}
-                <div className="flex flex-col items-center text-center p-6 rounded-2xl border border-aphoria-black/5 bg-white hover:border-aphoria-black/10 transition-all duration-500 hover:shadow-lg hover:-translate-y-1">
-                  {/* Glow Effect */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${colors.bg} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`}></div>
+                {/* Card Container — `relative` + `overflow-hidden` gives it its own
+                    stacking context so the glow overlay sits *inside* the card
+                    instead of bleeding under sibling layers (e.g. the particle canvas). */}
+                <div className="relative overflow-hidden flex flex-col items-center text-center p-6 rounded-2xl border border-aphoria-black/5 bg-white hover:border-aphoria-black/10 transition-all duration-500 hover:shadow-lg hover:-translate-y-1">
+                  {/* Glow Effect — z-0 keeps it behind the card's content but inside the card */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${colors.bg} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0 pointer-events-none`}></div>
 
                   {/* Icon Container */}
-                  <div className={`mb-4 relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${colors.bg} border ${colors.border} ${colors.text} transition-all duration-500 group-hover:scale-110 shadow-lg ${colors.shadow} group-hover:shadow-xl`}>
+                  <div className={`relative z-10 mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${colors.bg} border ${colors.border} ${colors.text} transition-all duration-500 group-hover:scale-110 shadow-lg ${colors.shadow} group-hover:shadow-xl`}>
                     <Icon className="w-7 h-7" strokeWidth={1.8} />
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </div>
 
                   {/* Text */}
-                  <p className="text-[10px] md:text-[11px] font-semibold uppercase tracking-[0.28em] text-aphoria-black leading-relaxed">
+                  <p className="relative z-10 text-[10px] md:text-[11px] font-semibold uppercase tracking-[0.28em] text-aphoria-black leading-relaxed">
                     {badge.text}
                   </p>
                 </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import OptimizedImage from './OptimizedImage';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 interface Notification {
   name: string;
@@ -77,14 +77,20 @@ const LiveNotifications: React.FC = () => {
   const hideTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   useEffect(() => {
-    // Check if sticky bar is visible
+    // Check if sticky bar is visible — only setState when value ACTUALLY changes
+    // (prevents re-render cascades on every scroll event)
+    let lastValue = window.scrollY > 600;
+    setStickyBarVisible(lastValue);
+
     const checkStickyBar = () => {
       const scrolled = window.scrollY > 600;
-      setStickyBarVisible(scrolled);
+      if (scrolled !== lastValue) {
+        lastValue = scrolled;
+        setStickyBarVisible(scrolled);
+      }
     };
 
     window.addEventListener('scroll', checkStickyBar, { passive: true });
-    checkStickyBar();
 
     // Esperar 10 segundos antes de mostrar la primera notificación
     const initialTimeout = setTimeout(() => {
@@ -110,20 +116,23 @@ const LiveNotifications: React.FC = () => {
   const notification = notifications[current];
 
   return (
-    <AnimatePresence>
-      {show && (
-        <motion.div
-          initial={{ x: -400, opacity: 0 }}
-          animate={{
-            x: 0,
-            opacity: 1,
-            y: stickyBarVisible ? -120 : 0
-          }}
-          exit={{ x: -400, opacity: 0 }}
-          transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-          className="fixed bottom-6 left-6 z-50 max-w-sm hidden md:block"
-        >
-          <div className="bg-white/95 rounded-2xl shadow-2xl border border-aphoria-black/10 p-4">
+    <motion.div
+      data-overlay
+      initial={false}
+      animate={{
+        x: show ? 0 : -400,
+        opacity: show ? 1 : 0,
+        y: stickyBarVisible ? -120 : 0,
+      }}
+      transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+      className="fixed bottom-6 left-6 z-50 max-w-sm hidden md:block"
+      style={{
+        pointerEvents: show ? 'auto' : 'none',
+        visibility: show ? 'visible' : 'hidden',
+        willChange: 'transform, opacity',
+      }}
+    >
+      <div className="bg-white/95 rounded-2xl shadow-2xl border border-aphoria-black/10 p-4">
             <div className="flex items-start gap-3">
               {/* Customer Image */}
               {notification.image ? (
@@ -169,11 +178,9 @@ const LiveNotifications: React.FC = () => {
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
               </div>
-            </div>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        </div>
+      </div>
+    </motion.div>
   );
 };
 

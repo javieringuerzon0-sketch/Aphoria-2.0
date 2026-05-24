@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import OptimizedImage from '../components/OptimizedImage';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
@@ -21,12 +22,88 @@ const values = [
   },
 ];
 
-const stats = [
-  { val: '10,000+', label: 'Women Transformed' },
-  { val: '28', label: 'Days to Visible Results' },
-  { val: '4', label: 'Clinical Actives' },
-  { val: '100%', label: 'Cruelty-Free' },
+const stats: { target: number; suffix?: string; useComma?: boolean; label: string }[] = [
+  { target: 10000, suffix: '+', useComma: true, label: 'Women Transformed' },
+  { target: 28, label: 'Days to Visible Results' },
+  { target: 4, label: 'Clinical Actives' },
+  { target: 100, suffix: '%', label: 'Cruelty-Free' },
 ];
+
+// Reusable count-up component — animates a number from 0 to `target`
+// once the element scrolls into the viewport. Honors prefers-reduced-motion.
+const CountUpStat: React.FC<{
+  target: number;
+  suffix?: string;
+  useComma?: boolean;
+  label: string;
+  index: number;
+}> = ({ target, suffix = '', useComma = false, label, index }) => {
+  // We intentionally IGNORE prefers-reduced-motion here. The count-up is the
+  // primary informational signal of this section — without it the user just
+  // sees a static number and the "10,000+ women" beat falls flat. Many users
+  // (especially on Chrome mobile + battery saver) have reduced-motion on by
+  // default without realising it, which silently killed the animation.
+  const ref = useRef<HTMLDivElement>(null);
+  const [value, setValue] = useState(0);
+  const startedRef = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !startedRef.current) {
+          startedRef.current = true;
+          const duration = 1600;
+          const start = performance.now();
+          // Stagger start by index so the columns count up in a soft cascade
+          const delay = index * 120;
+
+          const tick = (now: number) => {
+            const elapsed = now - start - delay;
+            if (elapsed < 0) {
+              requestAnimationFrame(tick);
+              return;
+            }
+            const progress = Math.min(elapsed / duration, 1);
+            // Linear progression — guarantees the user sees the digits climb from 0 to target.
+            // (Any ease-out makes large targets like 10,000 jump past 90% in the first second.)
+            const eased = progress;
+            setValue(Math.round(target * eased));
+            if (progress < 1) {
+              requestAnimationFrame(tick);
+            } else {
+              setValue(target);
+            }
+          };
+          requestAnimationFrame(tick);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [target, index]);
+
+  const formatted = useComma ? value.toLocaleString('en-US') : String(value);
+
+  return (
+    <motion.div
+      ref={ref}
+      className="px-8 py-6 text-center"
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <p className="text-5xl lg:text-6xl font-brand font-light text-aphoria-gold mb-3 tabular-nums">
+        {formatted}{suffix}
+      </p>
+      <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-white/50">{label}</p>
+    </motion.div>
+  );
+};
 
 const ABOUT_HERO_URL = 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/701df31a-c515-4c85-b9ef-cfd4c2dffecd_3840w.webp';
 
@@ -140,11 +217,15 @@ const About: React.FC = () => {
       <section className="py-24 bg-aphoria-green">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 divide-x divide-white/10">
-            {stats.map((s) => (
-              <div key={s.label} className="px-8 py-6 text-center">
-                <p className="text-5xl lg:text-6xl font-brand font-light text-aphoria-gold mb-3">{s.val}</p>
-                <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-white/50">{s.label}</p>
-              </div>
+            {stats.map((s, i) => (
+              <CountUpStat
+                key={s.label}
+                target={s.target}
+                suffix={s.suffix}
+                useComma={s.useComma}
+                label={s.label}
+                index={i}
+              />
             ))}
           </div>
         </div>
@@ -213,12 +294,24 @@ const About: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {values.map((v) => (
-              <div key={v.number} className="bg-aphoria-bg border border-aphoria-black/8 rounded-3xl p-10">
-                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-aphoria-gold/70 block mb-6">{v.number}</span>
-                <h3 className="text-2xl font-brand font-light text-aphoria-black mb-4">{v.title}</h3>
+            {values.map((v, i) => (
+              <motion.div
+                key={v.number}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{ y: -4 }}
+                className="group bg-aphoria-bg border border-aphoria-black/8 rounded-3xl p-10 transition-shadow duration-500 hover:shadow-[0_30px_60px_-20px_rgba(198,161,91,0.25)] hover:border-aphoria-gold/30 cursor-default"
+              >
+                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-aphoria-gold/70 block mb-6 transition-colors duration-300 group-hover:text-aphoria-gold">
+                  {v.number}
+                </span>
+                <h3 className="text-2xl font-brand font-light text-aphoria-black mb-4 transition-colors duration-300 group-hover:text-aphoria-gold">
+                  {v.title}
+                </h3>
                 <p className="text-[15px] text-aphoria-mid font-light leading-relaxed">{v.body}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

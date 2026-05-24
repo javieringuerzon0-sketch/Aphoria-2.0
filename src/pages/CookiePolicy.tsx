@@ -8,10 +8,9 @@ const cookieTypes = [
     color: 'bg-green-100 text-green-700',
     description: 'Required for the website to function. Cannot be disabled.',
     cookies: [
-      { name: '_session_id', provider: 'Aphoria / Shopify', duration: 'Session', purpose: 'Maintains your shopping session and cart contents' },
-      { name: '_csrf_token', provider: 'Shopify', duration: 'Session', purpose: 'Security token to prevent cross-site request forgery' },
-      { name: 'cart', provider: 'Shopify', duration: '2 weeks', purpose: 'Stores cart items between visits' },
-      { name: 'secure_customer_sig', provider: 'Shopify', duration: '20 years', purpose: 'Authenticates returning customers securely' },
+      { name: 'aphoria_cart', provider: 'Aphoria', duration: '2 weeks', purpose: 'Stores cart items between visits' },
+      { name: '__stripe_mid', provider: 'Stripe', duration: '1 year', purpose: 'Fraud prevention for secure card payments' },
+      { name: '__stripe_sid', provider: 'Stripe', duration: '30 minutes', purpose: 'Maintains the checkout session while paying' },
     ],
   },
   {
@@ -41,7 +40,7 @@ const cookieTypes = [
     color: 'bg-purple-100 text-purple-700',
     description: 'Remember your choices and personalize your experience.',
     cookies: [
-      { name: 'locale', provider: 'Aphoria / Shopify', duration: '1 year', purpose: 'Stores your preferred language and currency' },
+      { name: 'locale', provider: 'Aphoria', duration: '1 year', purpose: 'Stores your preferred language and currency' },
       { name: 'klaviyo_*', provider: 'Klaviyo / Omnisend', duration: '2 years', purpose: 'Personalizes email and SMS communications based on browsing' },
     ],
   },

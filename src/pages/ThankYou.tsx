@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useCartStore } from '../store/useCartStore';
@@ -6,16 +6,46 @@ import { pixel } from '../lib/metaPixel';
 
 const ThankYou: React.FC = () => {
   const [searchParams] = useSearchParams();
-  const orderNumber = searchParams.get('order');
-  const total = searchParams.get('total');
-  const { clearCart } = useCartStore();
+  const provider = searchParams.get('provider');          // 'paypal' | 'stripe' | null
+  const sessionId = searchParams.get('session_id');       // Stripe session ID
+  const orderFromUrl = searchParams.get('order');         // PayPal order ID or generic
+  const totalFromUrl = searchParams.get('total');
+  const clearCart = useCartStore((s) => s.clearCart);
 
-  // Clear cart and fire Purchase pixel event on mount
+  const [fetchState, setFetchState] = useState<'idle' | 'loading' | 'done' | 'error'>('idle');
+  const [displayOrder, setDisplayOrder] = useState<string | null>(orderFromUrl);
+  const [displayTotal, setDisplayTotal] = useState<string | null>(totalFromUrl);
+
+  // Stripe: retrieve session details for display
   useEffect(() => {
+    if (provider !== 'stripe' || !sessionId || fetchState !== 'idle') return;
+    setFetchState('loading');
+    fetch(`/api/stripe-session?id=${encodeURIComponent(sessionId)}`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.ok) {
+          setFetchState('done');
+          if (data.orderId) setDisplayOrder(data.orderId.slice(-12)); // last 12 chars of session ID
+          if (data.amount != null) setDisplayTotal(data.amount.toFixed(2));
+          clearCart();
+          pixel.purchase(data.amount || (totalFromUrl ? parseFloat(totalFromUrl) : 0));
+        } else {
+          setFetchState('error');
+          clearCart();
+        }
+      })
+      .catch(() => {
+        setFetchState('error');
+        clearCart();
+      });
+  }, [provider, sessionId, fetchState, clearCart, totalFromUrl]);
+
+  // Non-Stripe / direct visit: clear cart + fire pixel
+  useEffect(() => {
+    if (provider === 'stripe') return;
     clearCart();
-    const value = total ? parseFloat(total) : 0;
-    pixel.purchase(value);
-  }, [clearCart]);
+    pixel.purchase(totalFromUrl ? parseFloat(totalFromUrl) : 0);
+  }, [clearCart, provider, totalFromUrl]);
 
   return (
     <div className="min-h-screen bg-aphoria-bg flex flex-col items-center justify-center px-6 pt-20 pb-16 relative overflow-hidden">
@@ -64,22 +94,32 @@ const ThankYou: React.FC = () => {
           Thank you for choosing Aphoria. You'll receive a confirmation email shortly with your order details and tracking information.
         </p>
 
-        {/* Order details if available */}
-        {(orderNumber || total) && (
+        {/* Status */}
+        {fetchState === 'loading' && (
+          <p className="mt-6 text-[12px] uppercase tracking-[0.24em] text-aphoria-mid">Confirming your payment…</p>
+        )}
+        {fetchState === 'error' && (
+          <p className="mt-6 text-[12px] text-red-700 max-w-md mx-auto">
+            Your payment was received. If you have questions, contact <strong>support@aphoriabeauty.com</strong>
+          </p>
+        )}
+
+        {/* Order details */}
+        {(displayOrder || displayTotal) && (
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.7 }}
             className="mt-8 inline-flex flex-col items-center gap-2 rounded-2xl border border-aphoria-black/10 bg-white px-8 py-5 shadow-sm"
           >
-            {orderNumber && (
+            {displayOrder && (
               <div className="text-[11px] uppercase tracking-[0.28em] text-aphoria-mid">
-                Order <span className="text-aphoria-black font-semibold">#{orderNumber}</span>
+                Order <span className="text-aphoria-black font-semibold">#{displayOrder}</span>
               </div>
             )}
-            {total && (
+            {displayTotal && (
               <div className="text-[11px] uppercase tracking-[0.28em] text-aphoria-mid">
-                Total <span className="text-aphoria-black font-semibold">${total}</span>
+                Total <span className="text-aphoria-black font-semibold">${displayTotal}</span>
               </div>
             )}
           </motion.div>
